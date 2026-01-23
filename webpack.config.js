@@ -7,8 +7,8 @@ const autoprefixer = require("autoprefixer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-//const UpdateNewsHashesPlugin = require("./webpack/plugins/UpdateNewsHashesPlugin");
-//const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlugin");
+const UpdateNewsHashesPlugin = require("./webpack/plugins/UpdateNewsHashesPlugin");
+const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlugin");
 const { SITE_TITLE } = require("./src/js/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const loadPartials = require("./webpack/plugins/load-partials");
@@ -21,8 +21,9 @@ module.exports = (env, argv) => {
     mode: isProd ? "production" : "development",
 
     entry: {
-      index: "./src/pages/index.js", 
-      calendar: "./src/pages/calendar.js", 
+      index: "./src/pages/index.js",
+      calendar: "./src/pages/calendar.js",
+      news: "./src/pages/news.js",
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -80,9 +81,30 @@ module.exports = (env, argv) => {
         },
       }),
 
+      //news.html
+      new HtmlWebpackPlugin({
+        filename: "news.html",
+        template: "./src/templates/main.html",
+        chunks: ["news"],
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+        },
+      }),
+
       //css
       new MiniCssExtractPlugin({
         filename: "styles/styles.css", // output CSS file name
+      }),
+      //Update club news hash
+      new UpdateNewsHashesPlugin({
+        filePath: "src/data/pages/news.json",
+      }),
+      //Split the news
+      new SplitNewsSectionsPlugin({
+        input: "src/data/pages/news.json",
+        outputDir: "src/data/newsitems", // relative to Webpack output (dist/)
       }),
     ],
 

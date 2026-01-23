@@ -46,6 +46,7 @@ export function renderSection(parent, data, pageurl = "") {
     const headerdiv = createDiv(contentdiv, "section_header");
     createSpan(headerdiv, "section_date", text);
 
+    console.log("a");
     //a link can be added with a hash as the anchor
     if (data.hash && pageurl.length > 1) {
       let url = `/${pageurl}#${data.hash}`;

@@ -4,7 +4,7 @@ export function fetchContextArea(data) {
     console.error("There is no contentarea id to render to");
     return null;
   }
-  if (!data.content) {
+  if (!data) {
     console.error("There is no data content to render from");
     return null;
   }
