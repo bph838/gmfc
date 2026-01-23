@@ -1,3 +1,5 @@
+import { createDiv, createH1 } from "@framework/dom";
+
 export function renderHero(data) {
   console.log("renderHero");
 
@@ -16,18 +18,11 @@ export function renderHero(data) {
   }
 
   if (data.text) {
-    
-    const heroTextDiv = document.createElement("div");
-    heroTextDiv.className = "container-hero container text-center";
-    hero.appendChild(heroTextDiv);
-
-    const heroTextH1 = document.createElement("H1");
-    heroTextH1.innerHTML = data.text;
-    heroTextDiv.appendChild(heroTextH1);
+    const heroTextDiv = createDiv(hero, "container-hero container text-center");
+    createH1(heroTextDiv, null, null, data.text);
   }
 
-  //setup for alerts
-  const heroAlertDiv = document.createElement("div");
-  heroAlertDiv.id = "alerts-container";
-  hero.appendChild(heroAlertDiv);
+  //setup for alerts div
+  createDiv(hero, "alerts-container");
+  
 }
