@@ -1,0 +1,33 @@
+@use "../response" as *;
+
+.gallery-year-section {
+  display: inline-block;
+  margin: 10px;
+
+  a img {
+    max-width: 200px;
+    @include respond(pc) {
+      max-width: 380px;
+    }
+    @include respond(tablet) {
+      max-width: 280px;
+    }
+
+    height: auto;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    margin: 1.33em;
+
+    &:hover {
+      transform: scale(1.05);
+      border-color: #888;
+    }
+  }
+}
+
+.gallery-year-header {
+  text-align: center;  
+  font-size: 3em;
+}
