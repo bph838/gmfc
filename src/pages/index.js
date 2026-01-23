@@ -15,9 +15,9 @@ function renderIndex(data) {
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
+  const div = createDiv(contentarea, "sections");
 
-  if (data.content.sections) {
-    const div = createDiv(contentarea, "sections");
+  if (data.content.sections) {    
     data.content.sections.forEach((section) => {
       console.log(section);
       renderSection(div, section);
