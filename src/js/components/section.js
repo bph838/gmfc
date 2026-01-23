@@ -8,7 +8,7 @@ import {
   createParagraph,
 } from "@framework/dom";
 
-export function renderSection(parent, data, pageurl = "", extraclass='') {
+export function renderSection(parent, data, pageurl = "", extraclass = "") {
   if (!data) {
     console.error("There is no data to render");
     return;
@@ -24,7 +24,7 @@ export function renderSection(parent, data, pageurl = "", extraclass='') {
     }
   }
 
-  const section = createSection(parent, "section "+ extraclass);
+  const section = createSection(parent, "section " + extraclass);
   const contentdiv = createDiv(section, "section_content");
 
   //render title
@@ -66,6 +66,9 @@ export function renderSection(parent, data, pageurl = "", extraclass='') {
       renderWrappedTextLeftSection(contentdiv, data);
       break;
   }
+
+  //If there are any pdf links to render
+  renderPDFLinks(contentdiv, data);
 }
 
 function renderWrappedTextLeftSection(parent, data) {
@@ -78,8 +81,36 @@ function renderWrappedTextLeftSection(parent, data) {
   createImage(innerdiv, data.image);
 
   data.text.forEach((text) => {
-    createParagraph(innerdiv,text)    
+    createParagraph(innerdiv, text);
   });
+}
 
+export function renderPDFLinks(pageSection, data) {
+  console.log("Checking for PDF links to render");
+  if (data.pdfs && data.pdfs.length > 0) {
+    const pdfsDiv = document.createElement("div");
+    pdfsDiv.className = "pdfLinks";
+    pageSection.appendChild(pdfsDiv);
 
+    data.pdfs.forEach((pdf) => {
+      const pdfDiv = document.createElement("div");
+      pdfDiv.className = "pdfdoc";
+      pdfsDiv.appendChild(pdfDiv);
+
+      const pdfLink = document.createElement("a");
+      pdfLink.href = pdf.url;
+      pdfLink.target = "_blank";
+      pdfDiv.appendChild(pdfLink);
+
+      const imgPDF = document.createElement("img");
+      imgPDF.src = "/images/pdf.png";
+      imgPDF.class = "pdfimage";
+      pdfLink.appendChild(imgPDF);
+
+      const spanPDF = document.createElement("span");
+      spanPDF.innerHTML = pdf.text;
+      spanPDF.class = "pdfimagedesc";
+      pdfLink.appendChild(spanPDF);
+    });
+  }
 }

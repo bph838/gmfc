@@ -25,6 +25,7 @@ module.exports = (env, argv) => {
       calendar: "./src/pages/calendar.js",
       news: "./src/pages/news.js",
       aboutus: "./src/pages/aboutus.js",
+      clubrules: "./src/pages/club/clubrules.js",
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -105,6 +106,22 @@ module.exports = (env, argv) => {
           partials,
         },
       }),
+
+      
+      //clubrules.html
+      new HtmlWebpackPlugin({
+        filename: "club/clubrules.html",
+        template: "./src/templates/main.html",
+        chunks: ["clubrules"],
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+        },
+      }),
+
+
+
 
       //css
       new MiniCssExtractPlugin({
