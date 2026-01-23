@@ -45,7 +45,7 @@ function renderClubNews(data) {
     );
 
     data.content.sections.forEach((section) => {
-      renderSection(contentarea, section, newsItemUrl);
+      renderSection(contentarea, section, newsItemUrl, "sectionline");
     });
   }
 }

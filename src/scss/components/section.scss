@@ -1,6 +1,19 @@
 @use "../response" as *;
 
 
+
+.sectionline {
+  &::after {
+    content: ""; // required for pseudo-elements
+    display: block; // makes it appear like an <hr>
+    border-bottom: 1px solid #ccc; // color & thickness
+    margin: 20px 0; // spacing above & below
+  }
+  &:last-child::after {
+    content: none; // remove the separator for the last section
+  }
+}
+
 .section_content {
   display: flex;
   flex-wrap: wrap;

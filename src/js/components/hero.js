@@ -23,6 +23,5 @@ export function renderHero(data) {
   }
 
   //setup for alerts div
-  createDiv(hero, "alerts-container");
-  
+  createDiv(hero, "alerts-container", "alerts-container");
 }

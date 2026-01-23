@@ -8,7 +8,7 @@ import {
   createParagraph,
 } from "@framework/dom";
 
-export function renderSection(parent, data, pageurl = "") {
+export function renderSection(parent, data, pageurl = "", extraclass='') {
   if (!data) {
     console.error("There is no data to render");
     return;
@@ -24,7 +24,7 @@ export function renderSection(parent, data, pageurl = "") {
     }
   }
 
-  const section = createSection(parent, "section");
+  const section = createSection(parent, "section "+ extraclass);
   const contentdiv = createDiv(section, "section_content");
 
   //render title

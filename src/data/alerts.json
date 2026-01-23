@@ -1,0 +1,11 @@
+{
+  "alerts": [
+    {
+      "title": "Membership Renewal",
+      "message": "The annual membership renewal period is now open. Please renew your membership by the end of the month to continue enjoying member benefits.",
+      "type": "success",
+      "date_from": "2026-01-01",
+      "date_to": "2026-10-10"
+    }
+  ]
+}
