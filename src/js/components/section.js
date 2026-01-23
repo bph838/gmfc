@@ -65,10 +65,14 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
     case "wrappedTextLeft":
       renderWrappedTextLeftSection(contentdiv, data);
       break;
+    case "noImage":
+      renderSectionNoImage(contentdiv, data);
+      break;
   }
 
   //If there are any pdf links to render
   renderPDFLinks(contentdiv, data);
+  return section;
 }
 
 function renderWrappedTextLeftSection(parent, data) {
@@ -113,4 +117,22 @@ export function renderPDFLinks(pageSection, data) {
       pdfLink.appendChild(spanPDF);
     });
   }
+}
+
+function renderSectionNoImage(pageSection, data) {
+  if (!data.text) {
+    console.error("Unable to render renderSectionNoImage");
+    return;
+  }
+
+  //pageSection.style.display = "flex";
+  //pageSection.style.flexDirection = "row"; // or "column"
+
+  const sectionTextDiv = document.createElement("div");
+  sectionTextDiv.className = "sectionTextDiv";
+  pageSection.appendChild(sectionTextDiv);
+
+  data.text.forEach((text) => {
+    createParagraph(sectionTextDiv, text);
+  });
 }

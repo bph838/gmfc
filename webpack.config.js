@@ -26,6 +26,7 @@ module.exports = (env, argv) => {
       news: "./src/pages/news.js",
       aboutus: "./src/pages/aboutus.js",
       clubrules: "./src/pages/club/clubrules.js",
+      clubmerch: "./src/pages/club/clubmerch.js",
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -119,7 +120,20 @@ module.exports = (env, argv) => {
           partials,
         },
       }),
+       //clubmerch.html
+      new HtmlWebpackPlugin({
+        filename: "club/clubmerch.html",
+        template: "./src/templates/main.html",
+        chunks: ["clubmerch"],
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+        },
+      }),
 
+
+      
 
 
 
