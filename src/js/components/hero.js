@@ -1,7 +1,7 @@
 import { createDiv, createH1 } from "@framework/dom";
 
 export function renderHero(data) {
-  console.log("renderHero");
+  console.log("renderHero called");
 
   const hero = document.getElementById("hero");
   if (!hero) {
@@ -19,7 +19,7 @@ export function renderHero(data) {
 
   if (data.text) {
     const heroTextDiv = createDiv(hero, "container-hero container text-center");
-    createH1(heroTextDiv, null, null, data.text);
+    createH1(heroTextDiv, data.text);
   }
 
   //setup for alerts div

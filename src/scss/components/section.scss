@@ -1,0 +1,56 @@
+@use "../response" as *;
+
+.sections {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  @include respond(tablet) {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  @include respond(pc) {
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+  }
+}
+
+.section_content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.section_title {
+  flex: 100%;
+}
+
+.section_header {
+  flex: 100%;
+}
+
+.section_inner_wrap_left {
+  align-items: flex-start;
+  gap: 15px; /* space between image and text */
+
+  img {
+    float: left; /* Makes text wrap around image */
+    margin-right: 15px; /* Space between image and text */
+    margin-bottom: 10px; /* Space below image if text goes under */
+    width: 300px; /* Or your desired width */
+    height: auto;
+  }
+
+  p {
+    margin: 0 0 10px 0;
+  }
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
