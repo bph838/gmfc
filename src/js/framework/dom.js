@@ -1,3 +1,16 @@
+export function fetchContextArea(data) {
+  let contentarea = document.getElementById("contentarea");
+  if (!contentarea) {
+    console.error("There is no contentarea id to render to");
+    return null;
+  }
+  if (!data.content) {
+    console.error("There is no data content to render from");
+    return null;
+  }
+  return contentarea;
+}
+
 /**
  * Create a div component and return it
  * @param {*} parent

@@ -21,7 +21,8 @@ module.exports = (env, argv) => {
     mode: isProd ? "production" : "development",
 
     entry: {
-      index: "./src/pages/index.js", // for index.html
+      index: "./src/pages/index.js", 
+      calendar: "./src/pages/calendar.js", 
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -55,10 +56,23 @@ module.exports = (env, argv) => {
         ],
       }),
 
+      //index.html
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: "./src/templates/main.html",
         chunks: ["index"],
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+        },
+      }),
+
+      //calendar.html
+      new HtmlWebpackPlugin({
+        filename: "calendar.html",
+        template: "./src/templates/main.html",
+        chunks: ["calendar"],
         title: SITE_TITLE,
         templateParameters: {
           siteName: SITE_TITLE,

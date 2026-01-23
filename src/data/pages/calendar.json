@@ -1,0 +1,10 @@
+{
+  "content": {
+    "hero": {
+      "image": "images/hero/hero-01.jpg",
+      "text": "Calendar"
+    },
+    "sections": [{}]    
+  },
+  "calendarevents": "/data/calendarevents.json"
+}
