@@ -1,0 +1,50 @@
+{
+  "title": "Simple Website",
+  "content": {
+    "hero": {
+      "image": "images/hero/hero-01.jpg",
+      "text": "Gordano Model Flying Club"
+    },
+    "sections": [
+      {
+        "title": "Section 1",
+        "type": "wrappedTextLeft",
+        "image": "images/logo.png",
+        "text": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim. 2",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim. 3"
+        ]
+      },
+      {
+        "title": "Section 2",
+        "type": "leftImage",
+        "image": "images/logo.png",
+        "text": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim. 2",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim. 3"
+        ]
+      },
+      {
+        "title": "Section 3",
+        "type": "rightImage",
+        "image": "images/logo.png",
+        "text": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim. 2",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim. 3"
+        ]
+      },
+      {
+        "title": "Section 4",
+        "type": "noImage",
+        "text": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim. 2",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur libero at lorem suscipit, ut pharetra turpis tristique. Aenean aliquam massa sed sem vulputate, eget tincidunt ante rhoncus. Suspendisse et magna viverra, hendrerit est vel, sollicitudin purus. Maecenas eu tristique dui. Etiam sit amet lorem pharetra, pellentesque mi eget, aliquam eros. Nunc commodo dolor quis gravida hendrerit. Nulla eleifend eros commodo maximus scelerisque. Nam risus nunc, laoreet sed tellus sed, egestas pharetra lorem. In sit amet mi sed mauris lacinia iaculis sed ut libero. Suspendisse eget nunc hendrerit, tincidunt ipsum non, pellentesque nulla. Nam mollis enim id libero iaculis, nec tincidunt est dignissim. 3"
+        ]
+      }
+    ]
+  }
+}

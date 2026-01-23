@@ -1,0 +1,123 @@
+"use strict";
+
+const fs = require("fs");
+const path = require("path");
+
+const autoprefixer = require("autoprefixer");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+//const UpdateNewsHashesPlugin = require("./webpack/plugins/UpdateNewsHashesPlugin");
+//const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlugin");
+const { SITE_TITLE } = require("./src/js/constants.js");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const loadPartials = require("./webpack/plugins/load-partials");
+
+module.exports = (env, argv) => {
+  const isProd = argv.mode === "production";
+  const partials = loadPartials();
+
+  return {
+    mode: isProd ? "production" : "development",
+
+    entry: {
+      index: "./src/pages/index.js", // for index.html    
+       styles: "./src/scss/styles.scss",  
+
+    },
+    output: {
+      filename: "js/[name].bundle.js", // main.bundle.js, about.bundle.js
+      path: path.resolve(__dirname, "dist"),
+      clean: true,
+    },
+
+    devServer: {
+      static: path.resolve(__dirname, "dist"),
+      port: 8080,
+      hot: true,
+    },
+
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: "src/data", to: "data" },
+          { from: "src/images", to: "images" },          
+          { from: "src/favicon.ico", to: "." },
+          { from: "src/site.webmanifest", to: "." },
+        ],
+      }),
+
+      new HtmlWebpackPlugin({
+        filename: "index.html",
+        template: "./src/templates/main.html",
+        chunks: ["index"], 
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+        }
+      }),
+
+      
+
+      
+      
+      //css
+      new MiniCssExtractPlugin({
+        filename: "styles/styles.css", // output CSS file name
+      }),
+    ],
+
+    optimization: {
+      minimize: isProd,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              drop_console: true,
+            },
+          },
+        }),
+      ],
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.scss$/i,
+          use: [
+            MiniCssExtractPlugin.loader, // extract CSS to separate file
+            "css-loader", // translates CSS into CommonJS
+            "postcss-loader", // optional, for autoprefixing
+            {
+              loader: "sass-loader", // compiles SCSS to CSS
+              options: {
+                sassOptions: {
+                  quietDeps: true, // <- hides warnings from dependencies like Bootstrap
+                },
+              },
+            },
+          ],
+        },
+        {
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader"],
+        },
+        {
+          test: /\.(png|jpe?g|gif|svg|webp)$/i,
+          type: "asset/resource",
+          generator: {
+            filename: "images/[name][ext]",
+          },
+        },
+        {
+          test: /\.(woff2?|eot|ttf|otf)$/i,
+          type: "asset/resource",
+          generator: {
+            filename: "fonts/[name][ext]",
+          },
+        },
+      ],
+    },
+  };
+};
