@@ -73,3 +73,22 @@ export function setPageTitle(titleText) {
   meta.setAttribute('content', titleText);
 }
 
+
+export function initMapFrame(data) {
+  let latitude = data.latitude || 0;
+  let longitude = data.longitude || 0;
+  const mapDiv = document.getElementById("map");
+  if (!mapDiv) {
+    console.error("No map div to render to");
+    return;
+  }
+  mapDiv.innerHTML = `<iframe
+    width="100%"
+    height="100%"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps?q=${latitude},${longitude}&hl=es;z=14&output=embed">
+  </iframe>`;
+}

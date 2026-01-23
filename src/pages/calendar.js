@@ -27,16 +27,17 @@ function renderCalendar(data) {
   console.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
-  console.log("Render 1");
+  
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
 
-  createH1(contentarea, "Events Calendar", "mt-4 mb-3");
+  const sectionsdiv = createDiv(contentarea,"sections");
+  createH1(sectionsdiv, "Events Calendar", "mt-4 mb-3");
   createParagraph(
-    contentarea,
+    sectionsdiv,
     "Stay updated with our latest events and activities <span><a href='/calendar.ics'>Calendar</a></span>",
   );
-  createDiv(contentarea, null, "calendar");
+  createDiv(sectionsdiv, null, "calendar");
 }
 
 function renderExternalCalendar(url) {

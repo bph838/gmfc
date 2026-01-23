@@ -24,6 +24,7 @@ module.exports = (env, argv) => {
       index: "./src/pages/index.js",
       calendar: "./src/pages/calendar.js",
       news: "./src/pages/news.js",
+      aboutus: "./src/pages/aboutus.js",
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -86,6 +87,18 @@ module.exports = (env, argv) => {
         filename: "news.html",
         template: "./src/templates/main.html",
         chunks: ["news"],
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+        },
+      }),
+
+      //aboutus.html
+      new HtmlWebpackPlugin({
+        filename: "aboutus.html",
+        template: "./src/templates/main.html",
+        chunks: ["aboutus"],
         title: SITE_TITLE,
         templateParameters: {
           siteName: SITE_TITLE,

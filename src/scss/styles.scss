@@ -5,23 +5,5 @@
 @use "./components/navbar.scss" as *;
 @use "./components/section.scss" as *;
 @use "./components/footer.scss" as *;
+@use "./components/aboutus.scss" as *;
 
-
-#contentarea {
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  @include respond(tablet) {
-    margin-left: 2em;
-    margin-right: 2em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-  }
-  @include respond(pc) {
-    margin-left: 5em;
-    margin-right: 5em;
-    margin-top: 1em;
-    margin-bottom: 2em;
-  }
-}

@@ -1,7 +1,7 @@
 import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
-import { fetchContextArea } from "@framework/dom";
+import { fetchContextArea,createDiv } from "@framework/dom";
 import { fetchJson,setPageTitle,setMeta } from "@framework/utils";
 
 const newsUrl = "data/pages/news.json";
@@ -35,6 +35,7 @@ function renderClubNews(data) {
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
+  const sectionsdiv = createDiv(contentarea,"sections");
 
   //render th news
   if (data.content.sections && data.content.sections.length > 0) {
@@ -45,7 +46,7 @@ function renderClubNews(data) {
     );
 
     data.content.sections.forEach((section) => {
-      renderSection(contentarea, section, newsItemUrl, "sectionline");
+      renderSection(sectionsdiv, section, newsItemUrl, "sectionline");
     });
   }
 }
