@@ -1,0 +1,19 @@
+{
+  "content": {
+    "hero": {
+      "image": "images/hero/hero-01.jpg",
+      "text": "Gordano Model Flying Club"
+    },
+    "sections": [
+      {
+        "title": "Welcome to Gordano Model Flying Club",
+        "type": "wrappedTextLeft",
+        "image": "images/IMG-20220615-WA0045-300x268.jpg",
+        "text": [
+          "You will find all the information needed for active members and for those looking to join our club.",
+          "We fly fixed wing aircraft, drones, gliders and helicopters. We also have an off road RC car track."
+        ]
+      }
+    ]
+  }
+}

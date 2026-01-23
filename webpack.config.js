@@ -21,9 +21,8 @@ module.exports = (env, argv) => {
     mode: isProd ? "production" : "development",
 
     entry: {
-      index: "./src/pages/index.js", // for index.html    
-       styles: "./src/scss/styles.scss",  
-
+      index: "./src/pages/index.js", // for index.html
+      styles: "./src/scss/styles.scss",
     },
     output: {
       filename: "js/[name].bundle.js", // main.bundle.js, about.bundle.js
@@ -37,11 +36,20 @@ module.exports = (env, argv) => {
       hot: true,
     },
 
+    resolve: {
+      alias: {
+        "@components": path.resolve(__dirname, "src/js/components"),
+        "@framework": path.resolve(__dirname, "src/js/framework"),
+        "@data": path.resolve(__dirname, "src/data"),
+      },
+      extensions: [".js", ".json"], // optional, helps omit extensions
+    },
+
     plugins: [
       new CopyWebpackPlugin({
         patterns: [
           { from: "src/data", to: "data" },
-          { from: "src/images", to: "images" },          
+          { from: "src/images", to: "images" },
           { from: "src/favicon.ico", to: "." },
           { from: "src/site.webmanifest", to: "." },
         ],
@@ -50,18 +58,14 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: "./src/templates/main.html",
-        chunks: ["index"], 
+        chunks: ["index"],
         title: SITE_TITLE,
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
-        }
+        },
       }),
 
-      
-
-      
-      
       //css
       new MiniCssExtractPlugin({
         filename: "styles/styles.css", // output CSS file name
