@@ -35,7 +35,7 @@ function renderCalendar(data) {
   createH1(sectionsdiv, "Events Calendar", "mt-4 mb-3");
   createParagraph(
     sectionsdiv,
-    "Stay updated with our latest events and activities <span><a href='/calendar.ics'>Calendar</a></span>",
+    "Stay updated with our latest events and activities by subscribing to the <span><a href='/calendar.ics'>calendar</a></span>",
   );
   createDiv(sectionsdiv, null, "calendar");
 }

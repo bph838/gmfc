@@ -9,6 +9,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const UpdateNewsHashesPlugin = require("./webpack/plugins/UpdateNewsHashesPlugin");
 const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlugin");
+const JsonToIcsPlugin = require("./webpack/plugins/JsonToIcsPlugin");
 const { SITE_TITLE } = require("./src/js/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const loadPartials = require("./webpack/plugins/load-partials");
@@ -109,7 +110,7 @@ module.exports = (env, argv) => {
         },
       }),
 
-       //gallery.html
+      //gallery.html
       new HtmlWebpackPlugin({
         filename: "gallery.html",
         template: "./src/templates/main.html",
@@ -121,7 +122,6 @@ module.exports = (env, argv) => {
         },
       }),
 
-      
       //clubrules.html
       new HtmlWebpackPlugin({
         filename: "club/clubrules.html",
@@ -133,7 +133,7 @@ module.exports = (env, argv) => {
           partials,
         },
       }),
-       //clubmerch.html
+      //clubmerch.html
       new HtmlWebpackPlugin({
         filename: "club/clubmerch.html",
         template: "./src/templates/main.html",
@@ -144,11 +144,6 @@ module.exports = (env, argv) => {
           partials,
         },
       }),
-
-
-      
-
-
 
       //css
       new MiniCssExtractPlugin({
@@ -162,6 +157,12 @@ module.exports = (env, argv) => {
       new SplitNewsSectionsPlugin({
         input: "src/data/pages/news.json",
         outputDir: "src/data/newsitems", // relative to Webpack output (dist/)
+      }),
+      //ics file
+      new JsonToIcsPlugin({
+        input: "src/data/calendarevents.json",
+        output: "calendar.ics",
+        prodId: "-//"+SITE_TITLE+"//Club Calendar//EN",
       }),
     ],
 
