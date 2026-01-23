@@ -1,7 +1,7 @@
 @use "../response" as *;
 
-#contentarea{
-  width:100%;
+#contentarea {
+  width: 100%;
 }
 
 .sections {
@@ -22,7 +22,6 @@
     margin-bottom: 2em;
   }
 }
-
 
 .sectionline {
   &::after {
@@ -55,11 +54,25 @@
   gap: 15px; /* space between image and text */
 
   img {
-    float: left; /* Makes text wrap around image */
-    margin-right: 15px; /* Space between image and text */
-    margin-bottom: 10px; /* Space below image if text goes under */
-    width: 300px; /* Or your desired width */
-    height: auto;
+    display: none;
+    @include respond(tablet, pc) {
+      display: block;
+      float: left;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 15px;
+    }
+    @include respond(pc) {
+      max-width: 480px;
+      margin-right: 2em;
+      margin-top: 1em;
+    }
+    @include respond(tablet) {
+      max-width: 360px;
+      margin-right: 1em;
+      margin-top: 0.75em;
+    }
   }
 
   p {
@@ -71,7 +84,3 @@
     clear: both;
   }
 }
-
-
-
-
