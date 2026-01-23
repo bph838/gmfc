@@ -1,6 +1,5 @@
 //Load styles
 @use "./response.scss" as *;
 
-body{
-    margin:0
-}
+@use "./components/navbar.scss" as *;
+@use "./components/footer.scss" as *;

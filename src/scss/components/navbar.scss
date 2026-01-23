@@ -1,0 +1,51 @@
+@use "../response" as *;
+
+/*
+.navbar {
+  @extend .navbar-expand-lg;
+  background-color: #555;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+
+  .nav-link {
+    i {
+      display: none;
+      @include respond(pc, tablet) {
+        display: block;
+      }
+      text-align: center;
+      font-size: 2rem !important;
+    }
+  }
+}
+  */
+
+
+.collapsed-text {
+  display: none;
+  @media (max-width: 991px) {
+    // match your navbar collapse breakpoint
+    display: inline; // show on mobile / collapsed
+    font-size: 0.9rem;
+    color: #555;
+  }
+}
+
+.navbar-opacity {
+  --bs-bg-opacity: 0.8 !important;
+}
+
+.navbar-expand-lg {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+}
