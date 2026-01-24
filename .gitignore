@@ -1,7 +1,5 @@
 .DS_Store
 /node_modules/
 /dist/
-/utils/gallery/thumbnails/
-/utils/gallery/*.jpg
-/utils/gallery/*.png
+/utils/gallery/images/
 /utils/gallery/images.json

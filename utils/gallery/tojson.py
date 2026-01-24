@@ -4,7 +4,7 @@ from datetime import datetime
 from PIL import Image
 
 # Directory containing images
-image_dir = r".\\"
+image_dir = r".\\images\\"
 
 # Thumbnail directory
 thumb_dir = os.path.join(image_dir, "thumbnails")
@@ -16,8 +16,9 @@ output_file = "images.json"
 # Supported image extensions
 image_extensions = (".jpg", ".jpeg", ".png", ".gif", ".webp")
 
-# Max thumbnail width
-MAX_WIDTH = 300
+# Max sizes
+MAX_IMAGE_SIZE = 2048
+MAX_THUMB_WIDTH = 360
 
 # Collect image info
 images = []
@@ -35,35 +36,41 @@ for root, dirs, files in os.walk(image_dir):
             mtime = os.path.getmtime(file_path)
             date_str = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M:%S")
 
-            # Get image dimensions
             try:
                 with Image.open(file_path) as img:
                     width, height = img.size
+
+                    # 🔹 Resize original if larger than 2048px
+                    if width > MAX_IMAGE_SIZE or height > MAX_IMAGE_SIZE:
+                        img.thumbnail((MAX_IMAGE_SIZE, MAX_IMAGE_SIZE), Image.LANCZOS)
+                        img.save(file_path)
+                        width, height = img.size  # update dimensions
+
             except Exception as e:
                 print(f"Error reading {file}: {e}")
-                width, height = None, None
+                continue
 
             # Add info to JSON list
             images.append(
-                {"name": file, "date": date_str, "width": width, "height": height}
+                {
+                    "name": file,
+                    "date": date_str,
+                    "width": width,
+                    "height": height,
+                }
             )
 
             # Create thumbnail
             thumb_path = os.path.join(thumb_dir, file)
             if os.path.isfile(thumb_path):
-                # Already exists, skip
                 continue
 
             try:
                 with Image.open(file_path) as img:
-                    # Calculate new size
-                    if width > MAX_WIDTH:
-                        ratio = MAX_WIDTH / float(width)
-                        new_height = int(height * ratio)
-                        img = img.resize((MAX_WIDTH, new_height), Image.LANCZOS)
-                    # Save thumbnail
+                    img.thumbnail((MAX_THUMB_WIDTH, MAX_THUMB_WIDTH), Image.LANCZOS)
                     img.save(thumb_path)
                     print(f"Thumbnail created: {thumb_path}")
+
             except Exception as e:
                 print(f"Error creating thumbnail for {file}: {e}")
 
