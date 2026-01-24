@@ -30,8 +30,12 @@ footer {
   p {
     margin: 0;
     font-size: 0.75rem;
+    
   }
   text-align: center;
+  .copywrite{
+      font-size: 0.6rem;
+    }
 }
 
 #footer-links {
@@ -59,3 +63,14 @@ footer {
     color: #ff0000;
   }
 }
+
+#footer-content {
+  a,
+  a:visited, 
+   a:hover,
+  a:active {
+    color: white;
+  }
+  
+}
+
