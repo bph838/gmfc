@@ -85,7 +85,7 @@ class JsonToIcsPlugin {
             `SUMMARY:${event.title}`,
             `DESCRIPTION:Find out more at ${event.url ? event.url : ""}`,
           );
-          console.log(`   ↳ URL: ${event.url}`);
+          //console.log(`   ↳ URL: ${event.url}`);
           lines.push(`URL:${event.url}`);
         } else {
           lines.push(

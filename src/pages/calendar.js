@@ -31,7 +31,7 @@ function renderCalendar(data) {
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
 
-  const sectionsdiv = createDiv(contentarea,"sections");
+  const sectionsdiv = createDiv(contentarea,"section");
   createH1(sectionsdiv, "Events Calendar", "mt-4 mb-3");
   createParagraph(
     sectionsdiv,
