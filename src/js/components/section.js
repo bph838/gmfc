@@ -26,14 +26,13 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
   }
 
   let id = "";
-  if(data.id)
-    id = data.id;
+  if (data.id) id = data.id;
 
-  let section  = null;
+  let section = null;
   if (data.customsection) {
-    section = createSection(parent, data.customsection + " " + extraclass,id);
+    section = createSection(parent, data.customsection + " " + extraclass, id);
   } else {
-    section = createSection(parent, "section " + extraclass,id);
+    section = createSection(parent, "section " + extraclass, id);
   }
 
   const contentdiv = createDiv(section, "section_content");
@@ -89,6 +88,12 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
       break;
     case "imageRight":
       renderImageRight(contentdiv, data);
+      break;
+    case "imagesLeft":
+      renderImagesLeft(contentdiv, data);
+      break;
+    case "imagesRight":
+      renderImagesRight(contentdiv, data);
       break;
   }
 
@@ -202,4 +207,43 @@ function renderImageRight(parent, data) {
 
   const rightdiv = createDiv(innerdiv, "section_right");
   createImage(rightdiv, data.image);
+}
+
+function renderImagesLeft(parent, data) {
+  if (!data.text || !data.images) {
+    console.error("Unable to render renderImagesLeft");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_images_row row");
+
+  const leftdiv = createDiv(innerdiv, "section_images_left");
+  createImages(leftdiv, data.images);
+
+  const rightdiv = createDiv(innerdiv, "section_right col");
+  data.text.forEach((text) => {
+    createParagraph(rightdiv, text);
+  });
+
+  addScriptToMakeAcive("section_images_left");
+}
+
+function renderImagesRight(parent, data) {}
+
+function createImages(parent, images) {
+  images.forEach((image) => {
+    createImage(parent, image.src);
+  });
+}
+
+function addScriptToMakeAcive(className) {
+  document.querySelectorAll(`.${className} img`).forEach((img) => {
+    img.addEventListener("click", () => {
+      document
+        .querySelectorAll(`.${className} img`)
+        .forEach((i) => i.classList.remove("active"));
+
+      img.classList.add("active");
+    });
+  });
 }

@@ -167,3 +167,83 @@
     }
   }
 }
+
+
+$images-width-pc:420px;
+
+.section_inner_images_row {
+  gap: 20px;
+  @include respond(pc) {
+    padding-top: 2em;
+  }
+  @include respond(tablet) {
+    padding-top: 1em;
+  }
+
+  .section_images_left {
+    margin-right: 2em;
+    margin-left: 2em;
+    width: 160px;
+    height: 160px;
+    @include respond(pc) {
+      margin-right: 2em;
+      margin-left: 2em;
+      width: $images-width-pc; /* controls how wide the fan spreads */
+      height: 300px;
+    }
+    @include respond(tablet) {
+      margin-right: 2em;
+      margin-left: 2em;
+      width: 300px;
+      height: 300px;
+    }
+
+    position: relative;
+
+    img {
+      position: absolute;
+      width: 160px;
+      @include respond(pc) {
+        width: 460px;
+      }
+      @include respond(tablet) {
+        width: 260px;
+      }
+      //width: 250px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: rotate(0deg) translateX(0) scale(1.05);
+      }
+    }
+
+    img:nth-child(1) {
+      transform: rotate(-12deg) translateX(-40px);
+      z-index: 1;
+    }
+    img:nth-child(2) {
+      transform: rotate(0deg);
+      z-index: 3;
+    }
+    img:nth-child(3) {
+      transform: rotate(12deg) translateX(40px);
+      z-index: 2;
+    }
+  }
+
+  .section_images_left:hover img:nth-child(1) {
+    transform: rotate(-18deg) translateX(-80px);
+  }
+
+  .section_images_left:hover img:nth-child(3) {
+    transform: rotate(18deg) translateX(80px);
+  }
+
+  /* clicked image */
+  .section_images_left img.active {
+    z-index: 10;
+  }
+}

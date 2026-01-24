@@ -61,9 +61,9 @@ class JsonToIcsPlugin {
           return;
         }
 
-        console.log(
+        /*console.log(
           `[JsonToIcsPlugin] → Converting event ${index}: ${event.title}`,
-        );
+        );*/
 
         const uid = crypto
           .createHash("md5")
