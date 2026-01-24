@@ -25,7 +25,13 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
     }
   }
 
-  const section = createSection(parent, "section " + extraclass);
+  let section  = null;
+  if (data.customsection) {
+    section = createSection(parent, data.customsection + " " + extraclass);
+  } else {
+    section = createSection(parent, "section " + extraclass);
+  }
+
   const contentdiv = createDiv(section, "section_content");
 
   //render title
@@ -167,7 +173,7 @@ function renderImageLeft(parent, data) {
     return;
   }
   const innerdiv = createDiv(parent, "section_inner_image_left row");
-  
+
   const leftdiv = createDiv(innerdiv, "section_left");
   createImage(leftdiv, data.image);
 
@@ -183,5 +189,13 @@ function renderImageRight(parent, data) {
     return;
   }
 
+  const innerdiv = createDiv(parent, "section_inner_image_right row");
 
+  const leftdiv = createDiv(innerdiv, "section_left col");
+  data.text.forEach((text) => {
+    createParagraph(leftdiv, text);
+  });
+
+  const rightdiv = createDiv(innerdiv, "section_right");
+  createImage(rightdiv, data.image);
 }

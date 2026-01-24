@@ -16,6 +16,7 @@
       },
       {
         "type": "carousel",
+        "customsection": "sectionfullwidth",
         "images": [
           {
             "src": "https://gmfc-carousel.s3.eu-north-1.amazonaws.com/61830118_700624707020488_8840278722331279360_o.jpg"
@@ -38,7 +39,6 @@
         ]
       },
       {
-        
         "type": "imageLeft",
         "image": "images/flying_site.jpg",
         "text": [
@@ -46,20 +46,14 @@
         ]
       },
       {
-        "title": "RC Racing",
         "type": "imageRight",
         "image": "images/racetrack.jpg",
-        "text": [
-          "Our race track"
-        ]
+        "text": ["Our race track"]
       },
       {
-        "title": "Crawler Course",
-        "type": "imageRight",
+        "type": "imageLeft",
         "image": "images/crawlercourse.jpg",
-        "text": [
-          "Our crawler course"
-        ]
+        "text": ["Our crawler course"]
       }
     ]
   }

@@ -19,6 +19,10 @@ function setCarousel3D(carouselEl) {
   setClickEventDivs(carouselEl);
 
   setCarouselDisplay3D(carouselEl);
+
+  window.addEventListener("resize", () => {
+    onRotateToFinal(carouselEl,0);
+  });
 }
 
 function setClickEventDivs(carouselEl) {
@@ -33,15 +37,15 @@ function setClickEventDivs(carouselEl) {
 
   //create left div
   const nodeLeft = document.createElement("div");
-  nodeLeft.className = "carousel3DLeft";  
+  nodeLeft.className = "carousel3DLeft";
   carouselEl.appendChild(nodeLeft);
   //create right div
   const nodeRight = document.createElement("div");
-  nodeRight.className = "carousel3DRight";  
+  nodeRight.className = "carousel3DRight";
   carouselEl.appendChild(nodeRight);
 
   nodeLeft.addEventListener("click", () => {
-    onRotate(0-steps);
+    onRotate(0 - steps);
   });
   nodeRight.addEventListener("click", () => {
     onRotate(steps);
