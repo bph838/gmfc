@@ -13,6 +13,20 @@
           "You will find all the information needed for active members and for those looking to join our club.",
           "We fly fixed wing aircraft, drones, gliders and helicopters. We also have an off road RC car track."
         ]
+      },
+      {        
+        "type": "carousel",
+        "images": [
+          {
+            "src": "https://freepngimg.com/thumb/futurama/174582-logo-futurama-free-transparent-image-hd.png"
+          },
+          {
+            "src": "https://www.telegraph.co.uk/content/dam/formula-1/2023/07/31/TELEMMGLPICT000344458606_16908150447750_trans_NvBQzQNjv4BqFxEcnO8YcqCJCSII7z01fdvIfUh6u6M-fqPskjgedW4.jpeg"
+          },
+          {
+            "src": "https://media.formula1.com/image/upload/content/dam/fom-website/manual/Misc/2022manual/2022Races/EmiliaRomagnaGP/Preview/GettyImages-1239882718.jpg"
+          }
+        ]
       }
     ]
   }

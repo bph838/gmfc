@@ -93,10 +93,11 @@ export function createLink(
   return el;
 }
 
-export function createImage(parent, src = null, className = null) {
+export function createImage(parent, src = null, className = null, alt=null) {
   let el = document.createElement("img");
   if (className) el.className = className;
   if (src) el.src = src;
+  if (alt) el.alt = alt;
 
   parent.appendChild(el);
   return el;

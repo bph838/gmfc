@@ -1,7 +1,7 @@
 //Load styles
 @use "./response.scss" as *;
 
-
+@use "./framework/carousel3d.scss" as *;
 @use "./components/hero.scss" as *;
 @use "./components/navbar.scss" as *;
 @use "./components/section.scss" as *;

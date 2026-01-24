@@ -7,6 +7,9 @@ import {
   createImage,
   createParagraph,
 } from "@framework/dom";
+import {
+  initaliseCarousel, onRotate  
+} from "@framework/carousel3d";
 
 export function renderSection(parent, data, pageurl = "", extraclass = "") {
   if (!data) {
@@ -62,11 +65,16 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
 
   switch (data.type) {
     default:
+      console.error("Unable to render " + data.type);
+      break;
     case "wrappedTextLeft":
       renderWrappedTextLeftSection(contentdiv, data);
       break;
     case "noImage":
       renderSectionNoImage(contentdiv, data);
+      break;
+    case "carousel":
+      renderCarousel(contentdiv, data);
       break;
   }
 
@@ -125,14 +133,26 @@ function renderSectionNoImage(pageSection, data) {
     return;
   }
 
-  //pageSection.style.display = "flex";
-  //pageSection.style.flexDirection = "row"; // or "column"
-
-  const sectionTextDiv = document.createElement("div");
-  sectionTextDiv.className = "sectionTextDiv";
-  pageSection.appendChild(sectionTextDiv);
+  const sectiondiv = createDiv(pageSection, "sectionTextDiv");
 
   data.text.forEach((text) => {
-    createParagraph(sectionTextDiv, text);
+    createParagraph(sectiondiv, text);
   });
+}
+
+function renderCarousel(pageSection, data) {
+  if (!data.images) {
+    console.error("Unable to render renderSectionNoImage");
+    return;
+  }
+
+  const carouseldiv = createDiv(pageSection, "carousel3D", "carousel3D");
+
+  data.images.forEach((image) => {
+    const carouselitemdiv = createDiv(carouseldiv, "element3D");
+    let alt = "";
+    if (image.alt) alt = image.alt;
+    createImage(carouselitemdiv, image.src, "carouselImage", alt);
+  });
+  initaliseCarousel("carousel3D");
 }
