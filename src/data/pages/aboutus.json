@@ -37,6 +37,7 @@
     },{
       "title":"Contact Us",
       "type": "wrappedTextLeft",
+      "id":"contactus",
       "image": "images/contactus.jpg",
         "text": [
           "If you want to contact us please reach out through our Facebook page."          

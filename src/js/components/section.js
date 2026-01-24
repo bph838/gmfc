@@ -25,11 +25,15 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
     }
   }
 
+  let id = "";
+  if(data.id)
+    id = data.id;
+
   let section  = null;
   if (data.customsection) {
-    section = createSection(parent, data.customsection + " " + extraclass);
+    section = createSection(parent, data.customsection + " " + extraclass,id);
   } else {
-    section = createSection(parent, "section " + extraclass);
+    section = createSection(parent, "section " + extraclass,id);
   }
 
   const contentdiv = createDiv(section, "section_content");
