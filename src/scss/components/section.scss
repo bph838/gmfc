@@ -84,3 +84,35 @@
     clear: both;
   }
 }
+
+.section_inner_image_left {
+  gap: 15px; /* space between image and text */
+
+  .section_left {
+    max-width: 180px;
+    @include respond(pc) {
+      max-width: 480px;
+    }
+    @include respond(tablet) {
+      max-width: 280px;
+    }
+
+    img {
+      max-width: 100%;
+
+      @include respond(pc) {
+        margin-right: 2em;
+        margin-top: 1em;
+      }
+      @include respond(tablet) {
+        margin-right: 1em;
+        margin-top: 0.75em;
+      }
+
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 15px;
+    }
+  }
+}

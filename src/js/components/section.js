@@ -7,9 +7,7 @@ import {
   createImage,
   createParagraph,
 } from "@framework/dom";
-import {
-  initaliseCarousel, onRotate  
-} from "@framework/carousel3d";
+import { initaliseCarousel, onRotate } from "@framework/carousel3d";
 
 export function renderSection(parent, data, pageurl = "", extraclass = "") {
   if (!data) {
@@ -75,6 +73,12 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
       break;
     case "carousel":
       renderCarousel(contentdiv, data);
+      break;
+    case "imageLeft":
+      renderImageLeft(contentdiv, data);
+      break;
+    case "imageRight":
+      renderImageRight(contentdiv, data);
       break;
   }
 
@@ -155,4 +159,29 @@ function renderCarousel(pageSection, data) {
     createImage(carouselitemdiv, image.src, "carouselImage", alt);
   });
   initaliseCarousel("carousel3D");
+}
+
+function renderImageLeft(parent, data) {
+  if (!data.text || !data.image) {
+    console.error("Unable to render renderImageLeft");
+    return;
+  }
+  const innerdiv = createDiv(parent, "section_inner_image_left row");
+  
+  const leftdiv = createDiv(innerdiv, "section_left");
+  createImage(leftdiv, data.image);
+
+  const rightdiv = createDiv(innerdiv, "section_right col");
+  data.text.forEach((text) => {
+    createParagraph(rightdiv, text);
+  });
+}
+
+function renderImageRight(parent, data) {
+  if (!data.text || !data.image) {
+    console.error("Unable to render renderImageRight");
+    return;
+  }
+
+
 }

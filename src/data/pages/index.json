@@ -38,11 +38,27 @@
         ]
       },
       {
-        "title": "Our flying site",
+        
         "type": "imageLeft",
-        "image": "images/IMG-20220615-WA0045-300x268.jpg",
+        "image": "images/flying_site.jpg",
         "text": [
           "We have a wonderful south-west facing flying site approximatly 170m x 100m"
+        ]
+      },
+      {
+        "title": "RC Racing",
+        "type": "imageRight",
+        "image": "images/racetrack.jpg",
+        "text": [
+          "Our race track"
+        ]
+      },
+      {
+        "title": "Crawler Course",
+        "type": "imageRight",
+        "image": "images/crawlercourse.jpg",
+        "text": [
+          "Our crawler course"
         ]
       }
     ]
