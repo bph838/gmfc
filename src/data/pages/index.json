@@ -36,6 +36,14 @@
             "src": "https://gmfc-carousel.s3.eu-north-1.amazonaws.com/IMG-20210608-WA0108.jpg"
           }
         ]
+      },
+      {
+        "title": "Our flying site",
+        "type": "imageLeft",
+        "image": "images/IMG-20220615-WA0045-300x268.jpg",
+        "text": [
+          "We have a wonderful south-west facing flying site approximatly 170m x 100m"
+        ]
       }
     ]
   }
