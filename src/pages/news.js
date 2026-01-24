@@ -3,6 +3,7 @@ import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
 import { fetchContextArea,createDiv } from "@framework/dom";
 import { fetchJson,setPageTitle,setMeta } from "@framework/utils";
+const { SITE_ADDRESS } = require("../js/constants");
 
 const newsUrl = "data/pages/news.json";
 const newsItemUrl = "news.html";
@@ -73,6 +74,7 @@ function setDiscoverables(data) {
   }
 
   if (data.image) {
-    setMeta("og:image", data.image);
+    let  url = SITE_ADDRESS+data.image;
+    setMeta("og:image", url);
   }
 }
