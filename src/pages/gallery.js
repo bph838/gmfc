@@ -18,12 +18,11 @@ function renderGallery(data) {
   //If there is a hero image render it
   if (data.content.hero) renderHero(data.content.hero);
 
-  
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
   const sections = createDiv(contentarea, "sections");
 
-    console.log("Loading Gallery");
+  console.log("Loading Gallery");
   fetchJson(dataurl).then((galleryData) => {
     console.log("Gallery Data Loaded", galleryData);
     const externalPath = data.externalPath || "";
@@ -38,7 +37,7 @@ function renderGallery(data) {
     );
 
     //create a div to hold the gallery
-    const gallerydiv = createDiv(sections, "gallery"); 
+    const gallerydiv = createDiv(sections, "gallery");
 
     if (galleryData && Array.isArray(galleryData)) {
       galleryData.forEach((image) => {
@@ -55,15 +54,35 @@ function renderGallery(data) {
       });
       lightbox.init();
     });
-    
   });
-  
 }
 
-
 function renderGalleryImage(image, galleryDiv, externalPath) {
-  let imgPath = `${externalPath}/${image.name}`;
-  let imgThumbNamePath = `${externalPath}/thumbnails/${image.name}`;
+  // Normalise slashes just in case (\ vs /)
+  const normalised = image.name.replace(/\\/g, "/");
+
+  let directory = "";
+  let filename = normalised;
+
+  if (normalised.includes("/")) {
+    const parts = normalised.split("/");
+    filename = parts.pop(); // last item = file name
+    directory = parts.join("/"); // rest = directory
+  }
+
+  console.log("Directory:", directory);
+  console.log("Filename:", filename);
+
+  let imgPath = externalPath;
+  let imgThumbNamePath = ""; //;
+  if (directory.length > 1) {
+    imgPath += directory + "/" + filename;
+    imgThumbNamePath = `${externalPath}${directory}/thumbnails/${filename}`;
+  } else {
+    imgPath += "/" + filename;;
+    imgThumbNamePath = `${externalPath}/thumbnails/${filename}`;
+  }
+
   let dateObj = new Date(image.date.replace(" ", "T"));
   let year = dateObj.getFullYear();
 
@@ -90,6 +109,5 @@ function renderGalleryImage(image, galleryDiv, externalPath) {
   const img = document.createElement("img");
   img.src = imgThumbNamePath;
   img.alt = image.name;
-  alink.appendChild(img); 
+  alink.appendChild(img);
 }
-
