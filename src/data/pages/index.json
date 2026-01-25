@@ -1,7 +1,7 @@
 {
   "content": {
     "hero": {
-      "image": "images/hero/hero-01.jpg",
+      "image": "images/hero/hero-03.jpg",
       "text": "Gordano Model Flying Club"
     },
     "sections": [
@@ -49,27 +49,32 @@
         "type": "imagesLeft",
         "images": [
           {
-            "src": "images/flying_site.jpg"
+            "src": "images/mainpageimages/cartrack/cartrack3.JPG"
           },
           {
-            "src": "images/racetrack.jpg"
+            "src": "images/mainpageimages/cartrack/cartrack1.JPG"
           },
           {
-            "src": "images/crawlercourse.jpg"
+            "src": "images/mainpageimages/cartrack/cartrack2.JPG"
           }
         ],
         "text": ["Our race track"]
       },
 
       {
-        "type": "_imageRight",
-        "image": "images/racetrack.jpg",
-        "text": ["Our race track"]
-      },
-      {
-        "type": "_imageLeft",
-        "image": "images/crawlercourse.jpg",
-        "text": ["Our crawler course"]
+        "type": "imagesRight",
+        "images": [
+          {
+            "src": "images/mainpageimages/crawl/crawl1.JPG"
+          },
+          {
+            "src": "images/mainpageimages/crawl/crawl2.JPG"
+          },
+          {
+            "src": "images/mainpageimages/crawl/crawl3.JPG"
+          }
+        ],
+        "text": ["Our crawler track"]
       }
     ]
   }

@@ -75,6 +75,7 @@ function setDiscoverables(data) {
 
   if (data.image) {
     let  url = SITE_ADDRESS+data.image;
+    console.log("seting og:image");
     setMeta("og:image", url);
   }
 }

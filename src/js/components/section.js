@@ -228,7 +228,26 @@ function renderImagesLeft(parent, data) {
   addScriptToMakeAcive("section_images_left");
 }
 
-function renderImagesRight(parent, data) {}
+function renderImagesRight(parent, data) {
+  if (!data.text || !data.images) {
+    console.error("Unable to render renderImagesLeft");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_images_row row");
+
+  const leftdiv = createDiv(innerdiv, "section_right col");
+  data.text.forEach((text) => {
+    createParagraph(leftdiv, text);
+  });
+
+  const rightdiv = createDiv(innerdiv, "section_images_right");
+  createImages(rightdiv, data.images);
+
+  
+
+  addScriptToMakeAcive("section_images_right");
+}
 
 function createImages(parent, images) {
   images.forEach((image) => {
