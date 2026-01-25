@@ -1,10 +1,25 @@
+import sys
+import argparse
 import os
 import json
 from datetime import datetime
 from PIL import Image
 
+
+parser = argparse.ArgumentParser(description="Tojson")
+parser.add_argument("image_dir", help="The image directory to parse")
+args = parser.parse_args()
+
+
+if not os.path.isdir(args.image_dir):
+    print(f"Error: '{args.image_dir}' is not a valid directory", file=sys.stderr)
+    sys.exit(1)
+
+
 # Directory containing images
-image_dir = r".\\images\\"
+image_dir = args.image_dir
+print(f"Processing images directory: {image_dir}")
+image_dir_with_folder = image_dir.replace("./imgs", "")
 
 # Thumbnail directory
 thumb_dir = os.path.join(image_dir, "thumbnails")
@@ -53,7 +68,7 @@ for root, dirs, files in os.walk(image_dir):
             # Add info to JSON list
             images.append(
                 {
-                    "name": file,
+                    "name": image_dir_with_folder + file,
                     "date": date_str,
                     "width": width,
                     "height": height,
