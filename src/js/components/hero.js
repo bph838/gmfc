@@ -1,4 +1,4 @@
-import { createDiv, createH1 } from "@framework/dom";
+import { createDiv, createH1, createSpan } from "@framework/dom";
 
 export function renderHero(data) {
   console.log("renderHero called");
@@ -24,4 +24,68 @@ export function renderHero(data) {
 
   //setup for alerts div
   createDiv(hero, "alerts-container", "alerts-container");
+
+  //setup fonts for changing the hero image
+  const herochangediv = createDiv(hero, "herochange-container");
+
+  const planespan = createSpan(
+    herochangediv,
+    "herochange",
+    `<i class="fa-solid fa-plane"></i>`,
+  );
+  const helicopterspan = createSpan(
+    herochangediv,
+    "herochange",
+    `<i class="fa-solid fa-helicopter"></i>`,
+  );
+  const racecarspan = createSpan(
+    herochangediv,
+    "herochange",
+    `<i class="fa-solid fa-car"></i>`,
+  );
+  const crawlerspan = createSpan(
+    herochangediv,
+    "herochange",
+    `<i class="fa-solid fa-truck-pickup"></i>`,
+  );
+
+  planespan.addEventListener("click", (event) => {
+    changeHeroImage("plane");
+  });
+  helicopterspan.addEventListener("click", (event) => {
+    changeHeroImage("helicopter");
+  });
+  racecarspan.addEventListener("click", (event) => {
+    changeHeroImage("racecar");
+  });
+  crawlerspan.addEventListener("click", (event) => {
+    changeHeroImage("crawler");
+  });
+}
+
+function changeHeroImage(herotype) {
+  const hero = document.getElementById("hero");
+  console.log("changeHeroImage");
+  let imageurl = "";
+  switch (herotype) {
+    case "plane":
+      imageurl = "images/hero/hero-01.jpg";
+      break;
+    case "helicopter":
+      imageurl = "images/hero/hero-helicopter.jpg";
+      break;
+    case "racecar":
+      break;
+    case "crawler":
+      break;
+    default:
+      break;
+  }
+
+  if (imageurl.length <= 1) return;
+
+  hero.style.backgroundImage = "url('/" + imageurl + "')";
+  hero.style.backgroundPosition = "center";
+  hero.style.backgroundSize = "cover";
+  hero.style.backgroundRepeat = "no-repeat";
 }
