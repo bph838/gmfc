@@ -27,6 +27,7 @@ module.exports = (env, argv) => {
       news: "./src/pages/news.js",
       aboutus: "./src/pages/aboutus.js",
       gallery: "./src/pages/gallery.js",
+      leaderboard: "./src/pages/club/leaderboard.js",      
       clubrules: "./src/pages/club/clubrules.js",
       clubmerch: "./src/pages/club/clubmerch.js",
       styles: "./src/scss/styles.scss",
@@ -133,6 +134,19 @@ module.exports = (env, argv) => {
           partials,
         },
       }),
+
+      //leaderboard.html
+      new HtmlWebpackPlugin({
+        filename: "club/leaderboard.html",
+        template: "./src/templates/main.html",
+        chunks: ["leaderboard"],
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+        },
+      }),
+
       //clubmerch.html
       new HtmlWebpackPlugin({
         filename: "club/clubmerch.html",

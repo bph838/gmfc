@@ -1,0 +1,17 @@
+{
+  "content": {
+    "hero": {
+      "image": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-helicopter.jpg",
+      "text": "Leader Board"
+    },
+    "sections": [
+      {
+        "title": "Coming Soon",
+        "type": "noImage",
+        "text": [
+          "Keep your eye out!"
+        ]        
+      }
+    ]
+  }
+}
