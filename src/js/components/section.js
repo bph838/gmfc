@@ -215,7 +215,7 @@ function renderImagesLeft(parent, data) {
     return;
   }
 
-  const innerdiv = createDiv(parent, "section_inner_images_row row");
+  const innerdiv = createDiv(parent, "section_inner_images_left_row row");
 
   const leftdiv = createDiv(innerdiv, "section_images_left");
   createImages(leftdiv, data.images);
@@ -234,7 +234,7 @@ function renderImagesRight(parent, data) {
     return;
   }
 
-  const innerdiv = createDiv(parent, "section_inner_images_row row");
+  const innerdiv = createDiv(parent, "section_inner_images_right_row row");
 
   const leftdiv = createDiv(innerdiv, "section_right col");
   data.text.forEach((text) => {

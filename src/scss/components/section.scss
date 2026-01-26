@@ -85,12 +85,10 @@
     @include respond(pc) {
       max-width: 480px;
       margin-right: 2em;
-      margin-top: 1em;
     }
     @include respond(tablet) {
       max-width: 360px;
       margin-right: 1em;
-      margin-top: 0.75em;
     }
   }
 
@@ -106,6 +104,9 @@
 
 .section_inner_image_left {
   gap: 15px; /* space between image and text */
+  .section_right {
+    margin-left: 5em;
+  }
 
   .section_left {
     max-width: 180px;
@@ -121,11 +122,9 @@
 
       @include respond(pc) {
         margin-right: 2em;
-        margin-top: 1em;
       }
       @include respond(tablet) {
         margin-right: 1em;
-        margin-top: 0.75em;
       }
 
       border-top-left-radius: 15px;
@@ -153,11 +152,9 @@
 
       @include respond(pc) {
         margin-right: 2em;
-        margin-top: 1em;
       }
       @include respond(tablet) {
         margin-right: 1em;
-        margin-top: 0.75em;
       }
 
       border-top-left-radius: 15px;
@@ -168,18 +165,23 @@
   }
 }
 
+$images-width-pc: 420px;
 
-$images-width-pc:420px;
+.section_right_text {
+  margin-left: 5em;
+}
 
-.section_inner_images_row {
-  margin-top: 5em;
-  margin-bottom: 5em;
+%section_inner_images_row {
   gap: 20px;
   @include respond(pc) {
     padding-top: 2em;
+    margin-top: 3em;
+    margin-bottom: 3em;
   }
   @include respond(tablet) {
     padding-top: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 
   .section_images_left {
@@ -203,6 +205,7 @@ $images-width-pc:420px;
     position: relative;
 
     img {
+      border: #303030 solid 2px;
       position: absolute;
       width: 160px;
       @include respond(pc) {
@@ -270,6 +273,7 @@ $images-width-pc:420px;
     position: relative;
 
     img {
+      border: #303030 solid 2px;
       position: absolute;
       width: 160px;
       @include respond(pc) {
@@ -314,5 +318,35 @@ $images-width-pc:420px;
   /* clicked image */
   .section_images_right img.active {
     z-index: 10;
+  }
+}
+
+.section_inner_images_left_row {
+  @extend %section_inner_images_row;
+
+  .section_right {
+    @include respond(pc) {
+      margin-left: 5em;
+    }
+    @include respond(tablet) {
+      margin-left: 1em;
+    }
+  }
+  .section_images_left {
+    @include respond(pc) {
+      margin-left: 5em;
+    }
+    @include respond(tablet) {
+      margin-left: 1em;
+    }
+  }
+}
+.section_inner_images_right_row {
+  @extend %section_inner_images_row;
+  @include respond(pc) {
+    margin-right: 5em;
+  }
+  @include respond(tablet) {
+    margin-right: 1em;
   }
 }

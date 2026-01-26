@@ -10,8 +10,9 @@
         "type": "wrappedTextLeft",
         "image": "images/IMG-20220615-WA0045-300x268.jpg",
         "text": [
-          "You will find all the information needed for active members and for those looking to join our club.",
-          "We fly fixed wing aircraft, drones, gliders and helicopters. We also have an off road RC car track."
+          "The website has had a little make over!",
+          "The Gordano Model Flying Club has changed its name from AMARC and we now have more facilities than ever before.",
+          "We are aiming for the site to be a resource for everyone to keep up to date with the <a href=/ calendar.html>events</a> and maybe some of fun we have most weekends."
         ]
       },
       {
@@ -42,9 +43,10 @@
         "type": "imageLeft",
         "image": "images/flying_site.jpg",
         "text": [
-          "We have a wonderful south-west facing flying site approximatly 170m x 100m"
+          "Our wonderful south-south-west facing flying site sites on 12 acres"
         ]
       },
+
       {
         "type": "imagesLeft",
         "images": [
@@ -58,7 +60,11 @@
             "src": "images/mainpageimages/cartrack/cartrack2.JPG"
           }
         ],
-        "text": ["Our race track"]
+        "text": [
+          "We have a huge car racing track now!",
+          "The track is perfectly suited to 1:10 scale cars, and for those with the skill and confidence, 1:8 scale cars can really stretch their legs too.",
+          "We are planning to keep a leader board of the festest laps, keep an eye on <a href='/club/leaderboard.html'>here</a> for news."
+        ]
       },
 
       {
@@ -74,7 +80,10 @@
             "src": "images/mainpageimages/crawl/crawl3.JPG"
           }
         ],
-        "text": ["Our crawler track"]
+        "text": [
+          "Our new crawler track is now open.",
+          "Featuring technical obstacles and challenging lines, it’s ideal for drivers who enjoy skill, patience, and realism over outright speed."
+        ]
       }
     ]
   }
