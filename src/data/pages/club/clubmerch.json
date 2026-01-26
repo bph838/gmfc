@@ -1,6 +1,7 @@
 {
   "content": {
     "hero": {
+      "generatehero":true,
       "image": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-helicopter.jpg",
       "text": "Club Merchandise"
     },

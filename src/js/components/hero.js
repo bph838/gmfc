@@ -9,13 +9,27 @@ export function renderHero(data) {
     return;
   }
 
-  hero.className = "hero";
-  if (data.image) {
-    hero.style.backgroundImage = "url('" + data.image + "')";
-    hero.style.backgroundPosition = "center";
-    hero.style.backgroundSize = "cover";
-    hero.style.backgroundRepeat = "no-repeat";
+  if (data.generatehero && data.generatehero == true) {
+    //check for hero type
+    const herotype = localStorage.getItem("herotype");
+    if (herotype !== null) {
+      let url = getImageForHero(herotype);
+      hero.style.backgroundImage = "url('" + url + "')";
+    } else {
+      if (data.image) {
+        hero.style.backgroundImage = "url('" + data.image + "')";
+      }
+    }
+  } else {
+    if (data.image) {
+      hero.style.backgroundImage = "url('" + data.image + "')";
+    }
   }
+
+  hero.className = "hero";
+  hero.style.backgroundPosition = "center";
+  hero.style.backgroundSize = "cover";
+  hero.style.backgroundRepeat = "no-repeat";
 
   if (data.text) {
     const heroTextDiv = createDiv(hero, "container-hero container text-center");
@@ -63,18 +77,16 @@ export function renderHero(data) {
   });
 }
 
-function changeHeroImage(herotype) {
-  const hero = document.getElementById("hero");
-  console.log("changeHeroImage");
+function getImageForHero(herotype) {
   let imageurl = "";
   switch (herotype) {
     case "plane":
       imageurl =
-        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-plane.jpg"; 
+        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-plane.jpg";
       break;
     case "helicopter":
       imageurl =
-        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-helicopter.jpg"; 
+        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-helicopter.jpg";
       break;
     case "racecar":
       imageurl =
@@ -87,6 +99,14 @@ function changeHeroImage(herotype) {
     default:
       break;
   }
+  return imageurl;
+}
+
+function changeHeroImage(herotype) {
+  localStorage.setItem("herotype", herotype);
+  const hero = document.getElementById("hero");
+  console.log("changeHeroImage");
+  let imageurl = getImageForHero(herotype);
 
   if (imageurl.length <= 1) return;
 
