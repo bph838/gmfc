@@ -238,8 +238,7 @@ function renderImagesLeft(parent, data) {
 
   const leftdiv = createDiv(innerdiv, "section_images_left");
   createImages(leftdiv, data.images);
-
-  //const rightdiv = createDiv(innerdiv, "section_right col");
+  
   data.text.forEach((text) => {
     createParagraph(innerdiv, text);
   });
@@ -252,6 +251,17 @@ function renderImagesRight(parent, data) {
     console.error("Unable to render renderImagesLeft");
     return;
   }
+
+    const innerdiv = createDiv(parent, "section_inner_images_row");
+
+  const leftdiv = createDiv(innerdiv, "section_images_right");
+  createImages(leftdiv, data.images);
+  
+  data.text.forEach((text) => {
+    createParagraph(innerdiv, text);
+  });
+
+  addScriptToMakeAcive("section_images_right");
 }
 
   
