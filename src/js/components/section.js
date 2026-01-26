@@ -209,45 +209,6 @@ function renderImageRight(parent, data) {
   createImage(rightdiv, data.image);
 }
 
-function renderImagesLeft(parent, data) {
-  if (!data.text || !data.images) {
-    console.error("Unable to render renderImagesLeft");
-    return;
-  }
-
-  const innerdiv = createDiv(parent, "section_inner_images_left_row row");
-
-  const leftdiv = createDiv(innerdiv, "section_images_left");
-  createImages(leftdiv, data.images);
-
-  const rightdiv = createDiv(innerdiv, "section_right col");
-  data.text.forEach((text) => {
-    createParagraph(rightdiv, text);
-  });
-
-  addScriptToMakeAcive("section_images_left");
-}
-
-function renderImagesRight(parent, data) {
-  if (!data.text || !data.images) {
-    console.error("Unable to render renderImagesLeft");
-    return;
-  }
-
-  const innerdiv = createDiv(parent, "section_inner_images_right_row row");
-
-  const leftdiv = createDiv(innerdiv, "section_right col");
-  data.text.forEach((text) => {
-    createParagraph(leftdiv, text);
-  });
-
-  const rightdiv = createDiv(innerdiv, "section_images_right");
-  createImages(rightdiv, data.images);
-
-  
-
-  addScriptToMakeAcive("section_images_right");
-}
 
 function createImages(parent, images) {
   images.forEach((image) => {
@@ -266,3 +227,31 @@ function addScriptToMakeAcive(className) {
     });
   });
 }
+
+function renderImagesLeft(parent, data) {
+  if (!data.text || !data.images) {
+    console.error("Unable to render renderImagesLeft");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_images_row");
+
+  const leftdiv = createDiv(innerdiv, "section_images_left");
+  createImages(leftdiv, data.images);
+
+  //const rightdiv = createDiv(innerdiv, "section_right col");
+  data.text.forEach((text) => {
+    createParagraph(innerdiv, text);
+  });
+
+  addScriptToMakeAcive("section_images_left");
+}
+
+function renderImagesRight(parent, data) {
+  if (!data.text || !data.images) {
+    console.error("Unable to render renderImagesLeft");
+    return;
+  }
+}
+
+  
