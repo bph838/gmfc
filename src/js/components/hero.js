@@ -11,7 +11,7 @@ export function renderHero(data) {
 
   hero.className = "hero";
   if (data.image) {
-    hero.style.backgroundImage = "url('/" + data.image + "')";
+    hero.style.backgroundImage = "url('" + data.image + "')";
     hero.style.backgroundPosition = "center";
     hero.style.backgroundSize = "cover";
     hero.style.backgroundRepeat = "no-repeat";
@@ -69,10 +69,12 @@ function changeHeroImage(herotype) {
   let imageurl = "";
   switch (herotype) {
     case "plane":
-      imageurl = "images/hero/hero-01.jpg";
+      imageurl =
+        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-plane.jpg"; //"images/hero/hero-plane.jpg";
       break;
     case "helicopter":
-      imageurl = "images/hero/hero-helicopter.jpg";
+      imageurl =
+        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-helicopter.jpg"; //"images/hero/hero-helicopter.jpg";
       break;
     case "racecar":
       break;
@@ -84,7 +86,7 @@ function changeHeroImage(herotype) {
 
   if (imageurl.length <= 1) return;
 
-  hero.style.backgroundImage = "url('/" + imageurl + "')";
+  hero.style.backgroundImage = "url('" + imageurl + "')";
   hero.style.backgroundPosition = "center";
   hero.style.backgroundSize = "cover";
   hero.style.backgroundRepeat = "no-repeat";

@@ -1,7 +1,7 @@
 {
   "content": {
     "hero": {
-      "image": "images/hero/hero-helicopter.jpg",
+      "image": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-helicopter.jpg",
       "text": "Gordano Model Flying Club"
     },
     "sections": [
