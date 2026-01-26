@@ -51,13 +51,13 @@
         "type": "imagesLeft",
         "images": [
           {
-            "src": "images/mainpageimages/cartrack/cartrack1.jpg"
+            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/cartrack/cartrack1.jpg"
           },
           {
-            "src": "images/mainpageimages/cartrack/cartrack2.jpg"
+            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/cartrack/cartrack2.jpg"
           },
           {
-            "src": "images/mainpageimages/cartrack/cartrack3.jpg"
+            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/cartrack/cartrack3.jpg"
           }
         ],
         "text": [
@@ -71,13 +71,13 @@
         "type": "imagesRight",
         "images": [
           {
-            "src": "images/mainpageimages/crawl/crawl1.jpg"
+            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/crawl/crawl1.jpg"
           },
           {
-            "src": "images/mainpageimages/crawl/crawl2.jpg"
+            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/crawl/crawl2.jpg"
           },
           {
-            "src": "images/mainpageimages/crawl/crawl3.jpg"
+            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/crawl/crawl3.jpg"
           }
         ],
         "text": [
