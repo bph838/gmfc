@@ -70,15 +70,19 @@ function changeHeroImage(herotype) {
   switch (herotype) {
     case "plane":
       imageurl =
-        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-plane.jpg"; //"images/hero/hero-plane.jpg";
+        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-plane.jpg"; 
       break;
     case "helicopter":
       imageurl =
-        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-helicopter.jpg"; //"images/hero/hero-helicopter.jpg";
+        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-helicopter.jpg"; 
       break;
     case "racecar":
+      imageurl =
+        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-racecar.jpg";
       break;
     case "crawler":
+      imageurl =
+        "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-crawl.jpg";
       break;
     default:
       break;
