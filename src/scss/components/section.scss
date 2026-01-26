@@ -42,12 +42,13 @@
   }
 }
 
-.sectionline {
+.rawsection {
   &::after {
     content: ""; // required for pseudo-elements
     display: block; // makes it appear like an <hr>
-    border-bottom: 1px solid #ccc; // color & thickness
-    margin: 20px 0; // spacing above & below
+    border-bottom: 1px solid #ccc; // color & thickness    
+    width: 60%;
+    margin: 20px auto;
   }
   &:last-child::after {
     content: none; // remove the separator for the last section

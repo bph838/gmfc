@@ -28,14 +28,17 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
   let id = "";
   if (data.id) id = data.id;
 
-  let section = null;
+  let section = createSection(parent, "rawsection",id);
+
+
+  let section_inner = null;
   if (data.customsection) {
-    section = createSection(parent, data.customsection + " " + extraclass, id);
+    section_inner = createDiv(section, data.customsection + " sectionbreak " + extraclass, id);
   } else {
-    section = createSection(parent, "section " + extraclass, id);
+    section_inner = createDiv(section, "section sectionbreak " + extraclass, id);
   }
 
-  const contentdiv = createDiv(section, "section_content");
+  const contentdiv = createDiv(section_inner, "section_content");
 
   //render title
   if (data.title) {
