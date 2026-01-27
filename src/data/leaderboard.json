@@ -19,5 +19,19 @@
     "Battery": "2S",
     "Date": 45984.61041666667,
     "Laptime": 19.3
+  },
+  {
+    "Participant": "Ben",
+    "Course": "Trophy Course",
+    "Battery": "2S",
+    "Date": 45984.652083333334,
+    "Laptime": 20.01
+  },
+  {
+    "Participant": "Ben",
+    "Course": "Trophy Course",
+    "Battery": "2S",
+    "Date": 45984.61041666667,
+    "Laptime": 19.01
   }
 ]
