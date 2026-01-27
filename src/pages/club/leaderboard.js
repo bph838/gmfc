@@ -11,7 +11,7 @@ import { fetchJson, formatDate } from "@framework/utils";
 import { setData, getFastestEverLap } from "@framework/leaderboard";
 import data from "@data/pages/club/leaderboard.json";
 
-setupMenuCommands("page-clubrules");
+setupMenuCommands("page-leaderboard");
 renderClubLeaderBoard(data);
 
 function renderClubLeaderBoard(data) {

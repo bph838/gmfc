@@ -10,5 +10,10 @@
 @use "./components/club.scss" as *;
 @use "./components/gallery.scss" as *;
 @use "./components/calendar.scss" as *;
+@use "./components/leaderboard.scss" as *;
 
 @import "~photoswipe/style.css";
+
+body{
+    height: 100vh;
+}

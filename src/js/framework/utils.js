@@ -90,28 +90,41 @@ export function initMapFrame(data) {
 }
 
 export function formatDate(date) {
-  console.log("formatDate");
-  if (!(date instanceof Date)) return;
+  if (!(date instanceof Date)) return "";
 
-  const day = date.getDate().toString().padStart(2, "0"); // 1 → "01"
+  const day = date.getDate();
+
+  // Determine the ordinal
+  const ordinal = (d) => {
+    if (d > 3 && d < 21) return d + "th"; // 4-20 are all 'th'
+    switch (d % 10) {
+      case 1:
+        return d + "st";
+      case 2:
+        return d + "nd";
+      case 3:
+        return d + "rd";
+      default:
+        return d + "th";
+    }
+  };
+
   const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "January",
+    "February",
+    "March",
+    "April",
     "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   const month = monthNames[date.getMonth()];
-  const year = date.getFullYear().toString().slice(-2); // last 2 digits
+  const year = date.getFullYear();
 
-  return `${day} ${month} ${year}`;
+  return `${ordinal(day)} ${month} ${year}`;
 }
-
-
