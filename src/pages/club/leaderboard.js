@@ -49,14 +49,16 @@ function renderLeaderboard(parent, leaderboard) {
     setData(jsondata);
 
     //add the fasted time
-    let fasted = getFastestEverLap("Charlie");
-    console.log(fasted);
-    const fastest_div = createDiv(lbdiv, "lb_holdertimes");
-    createH2(fastest_div, "Fastest Ever Lap");
-    const divtimes = createDiv(fastest_div,"lb_times");
-    createSpan(divtimes, "lb_participant", fasted.Participant);
-    createSpan(divtimes, "lb_date", formatDate(fasted.date));
-    createSpan(divtimes, "lb_time", formatLaptime(fasted.Laptime));
+    let fasted = getFastestEverLap();
+    if (fasted) {
+      console.log(fasted);
+      const fastest_div = createDiv(lbdiv, "lb_holdertimes");
+      createH2(fastest_div, "Fastest Ever Lap");
+      const divtimes = createDiv(fastest_div, "lb_times");
+      createSpan(divtimes, "lb_participant", fasted.Participant);
+      createSpan(divtimes, "lb_date", formatDate(fasted.date));
+      createSpan(divtimes, "lb_time", formatLaptime(fasted.Laptime));
+    }
   });
 }
 

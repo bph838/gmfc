@@ -22,21 +22,26 @@ export function getLapsWithDate(participant) {
     }));
 }
 
-export function getFastestEverLap() {
+export function getFastestEverLap(course = "Trophy Course") {
   if (!leaderboard_data.length) return null; // handle empty array
 
-  // Start with the first lap
-  let fastestLap = leaderboard_data[0];
+  console.log("Course");
+  // Filter laps by course
+  const courseLaps = leaderboard_data.filter((lap) => lap.Course === course);
+  if(courseLaps.length<=0) return null;
 
-  for (let i = 1; i < leaderboard_data.length; i++) {
-    if (leaderboard_data[i].Laptime < fastestLap.Laptime) {
-      fastestLap = leaderboard_data[i];
+  // Start with the first lap
+  let fastestLap = courseLaps[0];
+
+  for (let i = 1; i < courseLaps.length; i++) {
+    if (courseLaps[i].Laptime < fastestLap.Laptime) {
+      fastestLap = courseLaps[i];
     }
   }
 
   // Optionally, include a JS Date version
   return {
     ...fastestLap,
-    date: excelDateToJSDate(fastestLap.Date),
+    date: excelDateToJSDate(fastestLap.Date)
   };
 }
