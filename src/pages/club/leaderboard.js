@@ -53,7 +53,7 @@ function renderLeaderboard(parent, leaderboard) {
     if (fasted) {
       console.log(fasted);
       const fastest_div = createDiv(lbdiv, "lb_holdertimes");
-      createH2(fastest_div, "Fastest Ever Lap");
+      createH2(fastest_div, "🎉 Fastest Ever Lap 🎉");
       const divtimes = createDiv(fastest_div, "lb_times");
       createSpan(divtimes, "lb_participant", fasted.Participant);
       createSpan(divtimes, "lb_date", formatDate(fasted.date));

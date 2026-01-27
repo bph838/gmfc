@@ -125,6 +125,8 @@ export function formatDate(date) {
   ];
   const month = monthNames[date.getMonth()];
   const year = date.getFullYear();
+  const hour = date.getHours();
+  const min = date.getMinutes();
 
-  return `${ordinal(day)} ${month} ${year}`;
+  return `${ordinal(day)} ${month} ${year} ${hour}:${min}`;
 }
