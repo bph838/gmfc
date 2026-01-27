@@ -54,6 +54,12 @@ export function setMeta(property, content) {
   }
 }
 
+export function sanitizeString(str) {
+  if (typeof str !== "string") return "";
+  // Replace anything that is NOT a letter or number with empty string
+  return str.replace(/[^a-zA-Z0-9]/g, "");
+}
+
 export function setPageTitle(titleText) {
   // Update <title>
   if (document.title !== titleText) {

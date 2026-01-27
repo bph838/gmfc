@@ -5,11 +5,18 @@ import {
   createDiv,
   fetchContextArea,
   createH2,
+  createH3,
   createSpan,
 } from "@framework/dom";
-import { fetchJson, formatDate } from "@framework/utils";
-import { setData, getFastestEverLap } from "@framework/leaderboard";
+import { fetchJson, formatDate,sanitizeString } from "@framework/utils";
+import {
+  setData,
+  getFastestEverLap,
+  getAllParticipants,
+  getLapsByParticipantForCourse,
+} from "@framework/leaderboard";
 import data from "@data/pages/club/leaderboard.json";
+import { createParagraph } from "../../js/framework/dom";
 
 setupMenuCommands("page-leaderboard");
 renderClubLeaderBoard(data);
@@ -50,6 +57,14 @@ function renderLeaderboard(parent, leaderboard) {
 
     //add the fasted time
     renderFastestEverLap(lbdiv);
+
+    //get all the participants
+    const participants = getAllParticipants();
+    if (participants) {
+      participants.forEach((participant) => {
+        renderFastestLapsForParticipant(lbdiv, participant);
+      });
+    }
   });
 }
 
@@ -71,3 +86,38 @@ function renderFastestEverLap(parent) {
     createSpan(divtimes, "lb_time", formatLaptime(fasted.Laptime));
   }
 }
+
+function renderFastestLapsForParticipant(parent, participant) {
+  console.log(`renderFastestLapsForParticipant ${participant}`);
+  if (!participant) return;
+  const laps = getLapsByParticipantForCourse(participant);
+  if (laps && laps.length > 0) {
+    console.log(laps);
+    const fastest_time = formatLaptime(laps[0].Laptime);
+    const nospace_participant = sanitizeString(participant);
+    const participant_id = `accordion_id_${nospace_participant}`
+    const participant_collapse_id = `accordion_collapse_id_${nospace_participant}`;
+    const participant_div = createDiv(
+      parent,
+      "lb_participant_holdertimes accordion",
+      participant_id
+    );
+    const participant_item = createDiv(participant_div, "accordion-item");
+    const participant_title_innerhtml = `<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${participant_collapse_id}" aria-expanded="true" aria-controls="${participant_collapse_id}">
+       ${participant}<span class='participant_fastesttime'>${fastest_time}</span>
+      </button>`;
+    const participant_header = createH3(
+      participant_item,
+      participant_title_innerhtml,
+      "accordion-header",
+    );
+
+    let participant_data_div_class = `accordion-collapse collapse show" data-bs-parent="#${participant_id}`;
+    const participant_data_div = createDiv(participant_item,participant_data_div_class,participant_collapse_id)
+    const participant_body_div = createDiv(participant_data_div,"accordion-body");
+
+    //need to render all the times for the paricipant
+
+  }
+}
+

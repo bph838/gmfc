@@ -12,7 +12,8 @@
         "image": "/images/mainpageimages/racing/checkeredflag.jpg",
         "text": [
           "A little friendly competition on the RC car track!",
-          "Sumbit your time with a date and how many S you were running."
+          "Sumbit your time with a date and how many S you were running.",
+          "The leaderboard is only for the last year."
         ],
         "leaderboard": {
           "url": "/data/leaderboard.json"

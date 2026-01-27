@@ -1,4 +1,7 @@
 let leaderboard_data = [];
+const course = "Trophy Course";
+const returnTop = 20;
+
 export function setData(data) {
   leaderboard_data = data;
 }
@@ -22,7 +25,7 @@ export function getLapsWithDate(participant) {
     }));
 }
 
-export function getFastestEverLap(course = "Trophy Course") {
+export function getFastestEverLap() {
   if (!leaderboard_data.length) return null; // handle empty array
 
   const now = new Date();
@@ -59,4 +62,43 @@ export function getFastestEverLap(course = "Trophy Course") {
     ...fastestLap,
     date: excelDateToJSDate(fastestLap.Date),
   };
+}
+
+export function getAllParticipants() {
+  if (!leaderboard_data) return [];
+
+  return [
+    ...new Set(
+      leaderboard_data
+        .filter((lap) => lap.Course === course && lap.Participant)
+        .map((lap) => lap.Participant),
+    ),
+  ].sort((a, b) => a.localeCompare(b));
+}
+
+export function getLapsByParticipantForCourse( participant) {
+  if (!course || !participant) return [];
+
+  const now = new Date();
+  const oneYearAgo = new Date();
+  oneYearAgo.setFullYear(now.getFullYear() - 1);
+
+  return leaderboard_data
+    .filter(lap => {
+      if (lap.Course !== course) return false;
+      if (lap.Participant !== participant) return false;
+      if (!lap.Date || !lap.Laptime) return false;
+
+      const lapDate = excelDateToJSDate(lap.Date);
+      return lapDate >= oneYearAgo && lapDate <= now;
+    })
+    .map(lap => {
+      const jsDate = excelDateToJSDate(lap.Date);
+      return {
+        ...lap,
+        date: jsDate       
+      };
+    })
+    .sort((a, b) => a.Laptime - b.Laptime) //fastets first    
+    .slice(0, returnTop);//top X
 }

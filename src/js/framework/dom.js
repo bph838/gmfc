@@ -40,6 +40,10 @@ export function createH1(parent, innerHTML, className = null, id = null) {
 export function createH2(parent, innerHTML, className = null, id = null) {
   return createHeader(parent, innerHTML, className, id, 2);
 }
+export function createH3(parent, innerHTML, className = null, id = null) {
+  return createHeader(parent, innerHTML, className, id, 2);
+}
+
 
 function createHeader(
   parent,
