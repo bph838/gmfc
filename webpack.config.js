@@ -10,6 +10,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const UpdateNewsHashesPlugin = require("./webpack/plugins/UpdateNewsHashesPlugin");
 const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlugin");
 const JsonToIcsPlugin = require("./webpack/plugins/JsonToIcsPlugin");
+const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
 const { SITE_TITLE } = require("./src/js/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const loadPartials = require("./webpack/plugins/load-partials");
@@ -27,7 +28,7 @@ module.exports = (env, argv) => {
       news: "./src/pages/news.js",
       aboutus: "./src/pages/aboutus.js",
       gallery: "./src/pages/gallery.js",
-      leaderboard: "./src/pages/club/leaderboard.js",      
+      leaderboard: "./src/pages/club/leaderboard.js",
       clubrules: "./src/pages/club/clubrules.js",
       clubmerch: "./src/pages/club/clubmerch.js",
       styles: "./src/scss/styles.scss",
@@ -176,7 +177,12 @@ module.exports = (env, argv) => {
       new JsonToIcsPlugin({
         input: "src/data/calendarevents.json",
         output: "calendar.ics",
-        prodId: "-//"+SITE_TITLE+"//Club Calendar//EN",
+        prodId: "-//" + SITE_TITLE + "//Club Calendar//EN",
+      }),
+      //keywords
+      new KeywordsMetaPlugin({
+        input: path.resolve(__dirname, "src/data/website/keywords.json"),
+        output: "src/partials/keywords.html",
       }),
     ],
 
