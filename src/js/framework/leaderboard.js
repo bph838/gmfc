@@ -25,23 +25,38 @@ export function getLapsWithDate(participant) {
 export function getFastestEverLap(course = "Trophy Course") {
   if (!leaderboard_data.length) return null; // handle empty array
 
-  console.log("Course");
-  // Filter laps by course
-  const courseLaps = leaderboard_data.filter((lap) => lap.Course === course);
-  if(courseLaps.length<=0) return null;
+  const now = new Date();
+  const oneYearAgo = new Date();
+  oneYearAgo.setFullYear(now.getFullYear() - 1);
+
+  console.log("getFastestEverLap in the last year");
+
+  // Filter laps by course in the last year
+  const recentCourseLaps = leaderboard_data.filter((lap) => {
+    if (!lap.Course || lap.Course !== course) return false;
+    if (!lap.Date) return false;
+
+    const lapDate = excelDateToJSDate(lap.Date);
+    return lapDate >= oneYearAgo && lapDate <= now;
+  });
+
+  if (recentCourseLaps.length === 0) {
+    console.warn(`No laps in the last year for course: "${course}"`);
+    return null;
+  }
 
   // Start with the first lap
-  let fastestLap = courseLaps[0];
+  let fastestLap = recentCourseLaps[0];
 
-  for (let i = 1; i < courseLaps.length; i++) {
-    if (courseLaps[i].Laptime < fastestLap.Laptime) {
-      fastestLap = courseLaps[i];
+  for (let i = 1; i < recentCourseLaps.length; i++) {
+    if (recentCourseLaps[i].Laptime < fastestLap.Laptime) {
+      fastestLap = recentCourseLaps[i];
     }
   }
 
   // Optionally, include a JS Date version
   return {
     ...fastestLap,
-    date: excelDateToJSDate(fastestLap.Date)
+    date: excelDateToJSDate(fastestLap.Date),
   };
 }
