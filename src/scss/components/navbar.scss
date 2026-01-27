@@ -1,27 +1,6 @@
 @use "../response" as *;
 
-/*
-.navbar {
-  @extend .navbar-expand-lg;
-  background-color: #555;
-  position: fixed !important;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
 
-  .nav-link {
-    i {
-      display: none;
-      @include respond(pc, tablet) {
-        display: block;
-      }
-      text-align: center;
-      font-size: 2rem !important;
-    }
-  }
-}
-  */
 
 
 .collapsed-text {

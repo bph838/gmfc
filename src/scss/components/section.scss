@@ -189,7 +189,7 @@
     @include respond(pc) {
       width: 460px;
       height: 400px;
-      margin-right: 5em;
+      margin-right: 5em; 
     }
     @include respond(tablet) {
       width: 260px;
