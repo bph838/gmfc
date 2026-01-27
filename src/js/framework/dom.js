@@ -93,7 +93,7 @@ export function createLink(
   return el;
 }
 
-export function createImage(parent, src = null, className = null, alt=null) {
+export function createImage(parent, src = null, className = null, alt = null) {
   let el = document.createElement("img");
   if (className) el.className = className;
   if (src) el.src = src;
@@ -104,6 +104,8 @@ export function createImage(parent, src = null, className = null, alt=null) {
 }
 
 export function createParagraph(parent, innerHTML = null, className = null) {
+  if (typeof innerHTML !== "string") return;
+
   let el = document.createElement("p");
   if (className) el.className = className;
   if (innerHTML) el.innerHTML = innerHTML;

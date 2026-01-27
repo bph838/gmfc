@@ -8,6 +8,7 @@ import {
   createParagraph,
 } from "@framework/dom";
 import { initaliseCarousel, onRotate } from "@framework/carousel3d";
+import { renderLeaderboard } from "./leaderboard";
 
 export function renderSection(parent, data, pageurl = "", extraclass = "") {
   if (!data) {
@@ -28,14 +29,21 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
   let id = "";
   if (data.id) id = data.id;
 
-  let section = createSection(parent, "rawsection",id);
-
+  let section = createSection(parent, "rawsection", id);
 
   let section_inner = null;
   if (data.customsection) {
-    section_inner = createDiv(section, data.customsection + " sectionbreak " + extraclass, id);
+    section_inner = createDiv(
+      section,
+      data.customsection + " sectionbreak " + extraclass,
+      id,
+    );
   } else {
-    section_inner = createDiv(section, "section sectionbreak " + extraclass, id);
+    section_inner = createDiv(
+      section,
+      "section sectionbreak " + extraclass,
+      id,
+    );
   }
 
   const contentdiv = createDiv(section_inner, "section_content");
@@ -102,6 +110,13 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
 
   //If there are any pdf links to render
   renderPDFLinks(contentdiv, data);
+
+  //if there is leaderboard render i
+  console.log("d");
+  if (data.leaderboard) {
+    renderLeaderboard(contentdiv, data.leaderboard);
+  }
+
   return section;
 }
 
@@ -157,9 +172,11 @@ function renderSectionNoImage(pageSection, data) {
 
   const sectiondiv = createDiv(pageSection, "sectionTextDiv");
 
-  data.text.forEach((text) => {
-    createParagraph(sectiondiv, text);
-  });
+  if (data.text.length >= 1) {
+    data.text.forEach((text) => {
+      createParagraph(sectiondiv, text);
+    });
+  }
 }
 
 function renderCarousel(pageSection, data) {
@@ -212,7 +229,6 @@ function renderImageRight(parent, data) {
   createImage(rightdiv, data.image);
 }
 
-
 function createImages(parent, images) {
   images.forEach((image) => {
     createImage(parent, image.src);
@@ -241,7 +257,7 @@ function renderImagesLeft(parent, data) {
 
   const leftdiv = createDiv(innerdiv, "section_images_left");
   createImages(leftdiv, data.images);
-  
+
   data.text.forEach((text) => {
     createParagraph(innerdiv, text);
   });
@@ -255,16 +271,14 @@ function renderImagesRight(parent, data) {
     return;
   }
 
-    const innerdiv = createDiv(parent, "section_inner_images_row");
+  const innerdiv = createDiv(parent, "section_inner_images_row");
 
   const leftdiv = createDiv(innerdiv, "section_images_right");
   createImages(leftdiv, data.images);
-  
+
   data.text.forEach((text) => {
     createParagraph(innerdiv, text);
   });
 
   addScriptToMakeAcive("section_images_right");
 }
-
-  

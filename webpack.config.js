@@ -200,7 +200,7 @@ module.exports = (env, argv) => {
       }),
     ],
     watchOptions: {
-      ignored: ["**/src/data/dynamic/**","**/src/data/**"], // <- ignore CSV to stop repeated builds
+      ignored: ["**/src/data/dynamic/**","**/src/data/leaderboard.json"], // <- ignore CSV to stop repeated builds
     },
     optimization: {
       minimize: isProd,

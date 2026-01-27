@@ -1,17 +1,27 @@
 {
   "content": {
     "hero": {
-      "generatehero":true,
+      "generatehero": true,
       "image": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/hero/hero-helicopter.jpg",
-      "text": "Leader Board"
+      "text": "Leaderboard"
     },
     "sections": [
       {
-        "title": "Coming Soon",
-        "type": "noImage",
+        "title": "RC Track Leaderboard",
+        "type": "wrappedTextLeft",
+        "image": "/images/mainpageimages/racing/checkeredflag.jpg",
         "text": [
-          "Keep your eye out!"
-        ]        
+          "A little friendly competition on the RC car track!",
+          "Sumbit you time with a date and what S battery you were using."
+        ]
+      },
+      {
+        "title": "",
+        "type": "noImage",
+        "text": [{}],
+        "leaderboard": {
+          "url": "/data/leaderboard.json"
+        }
       }
     ]
   }
