@@ -8,7 +8,7 @@ import {
   createH3,
   createSpan,
 } from "@framework/dom";
-import { fetchJson, formatDate,sanitizeString } from "@framework/utils";
+import { fetchJson, formatDate, sanitizeString,formatLaptime } from "@framework/utils";
 import {
   setData,
   getFastestEverLap,
@@ -68,22 +68,18 @@ function renderLeaderboard(parent, leaderboard) {
   });
 }
 
-function formatLaptime(secs) {
-  let seconds = secs.toFixed(2);
-  let time = `${seconds} seconds`;
-  return time;
-}
+
 
 function renderFastestEverLap(parent) {
-  let fasted = getFastestEverLap();
-  if (fasted) {
-    console.log(fasted);
+  let fastest = getFastestEverLap();
+  if (fastest) {
+    console.log(fastest);
     const fastest_div = createDiv(parent, "lb_holdertimes");
     createH2(fastest_div, "🎉 Fastest Ever Lap 🎉");
     const divtimes = createDiv(fastest_div, "lb_times");
-    createSpan(divtimes, "lb_participant", fasted.Participant);
-    createSpan(divtimes, "lb_date", formatDate(fasted.date));
-    createSpan(divtimes, "lb_time", formatLaptime(fasted.Laptime));
+    createSpan(divtimes, "lb_participant", fastest.Participant);
+    createSpan(divtimes, "lb_date", formatDate(fastest.date));
+    createSpan(divtimes, "lb_time", formatLaptime(fastest.Laptime));
   }
 }
 
@@ -95,12 +91,12 @@ function renderFastestLapsForParticipant(parent, participant) {
     console.log(laps);
     const fastest_time = formatLaptime(laps[0].Laptime);
     const nospace_participant = sanitizeString(participant);
-    const participant_id = `accordion_id_${nospace_participant}`
+    const participant_id = `accordion_id_${nospace_participant}`;
     const participant_collapse_id = `accordion_collapse_id_${nospace_participant}`;
     const participant_div = createDiv(
       parent,
       "lb_participant_holdertimes accordion",
-      participant_id
+      participant_id,
     );
     const participant_item = createDiv(participant_div, "accordion-item");
     const participant_title_innerhtml = `<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${participant_collapse_id}" aria-expanded="true" aria-controls="${participant_collapse_id}">
@@ -113,11 +109,56 @@ function renderFastestLapsForParticipant(parent, participant) {
     );
 
     let participant_data_div_class = `accordion-collapse collapse show" data-bs-parent="#${participant_id}`;
-    const participant_data_div = createDiv(participant_item,participant_data_div_class,participant_collapse_id)
-    const participant_body_div = createDiv(participant_data_div,"accordion-body");
+    const participant_data_div = createDiv(
+      participant_item,
+      participant_data_div_class,
+      participant_collapse_id,
+    );
+    const participant_body_div = createDiv(
+      participant_data_div,
+      "accordion-body",
+    );
 
     //need to render all the times for the paricipant
-
+    renderLapTimeTableForParticipant(participant_body_div, laps);
   }
 }
 
+function renderLapTimeTableForParticipant(parent, laps) {
+  // Create table
+  const table = document.createElement("table");
+  parent.appendChild(table);
+  table.className = "participantLapTimes";
+  // Create table header
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+
+  ["Date", "Laptime"].forEach((text) => {
+    const th = document.createElement("th");
+    th.textContent = text;
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Create table body
+  const tbody = document.createElement("tbody");
+
+  laps.forEach((lap) => {
+    const tr = document.createElement("tr");
+
+    const tdDate = document.createElement("td");
+    
+    tdDate.textContent = formatDate(lap.date);
+    tr.appendChild(tdDate);
+
+    const tdLapTime = document.createElement("td");
+    tdLapTime.textContent = formatLaptime(lap.Laptime);
+    tr.appendChild(tdLapTime);
+
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+}

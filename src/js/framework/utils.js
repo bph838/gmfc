@@ -95,7 +95,7 @@ export function initMapFrame(data) {
   </iframe>`;
 }
 
-export function formatDate(date) {
+export function formatDate(date,longMonth=false) {
   if (!(date instanceof Date)) return "";
 
   const day = date.getDate();
@@ -115,7 +115,7 @@ export function formatDate(date) {
     }
   };
 
-  const monthNames = [
+  const monthNamesLong = [
     "January",
     "February",
     "March",
@@ -129,10 +129,38 @@ export function formatDate(date) {
     "November",
     "December",
   ];
-  const month = monthNames[date.getMonth()];
+
+
+    const monthNamesShort = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+
+  let month = "";
+  if(longMonth) 
+    month = monthNamesLong[date.getMonth()];
+  else 
+    month = monthNamesShort[date.getMonth()];
   const year = date.getFullYear();
   const hour = date.getHours();
   const min = date.getMinutes();
 
   return `${ordinal(day)} ${month} ${year} ${hour}:${min}`;
+}
+
+export function formatLaptime(secs) {
+  let seconds = secs.toFixed(2);
+  let time = `${seconds} sec`;
+  return time;
 }
