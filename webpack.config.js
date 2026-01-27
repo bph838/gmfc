@@ -11,6 +11,7 @@ const UpdateNewsHashesPlugin = require("./webpack/plugins/UpdateNewsHashesPlugin
 const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlugin");
 const JsonToIcsPlugin = require("./webpack/plugins/JsonToIcsPlugin");
 const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
+const ExcelToCsvAndJsonPlugin = require("./webpack/plugins/ExcelToCsvAndJsonPlugin.js");
 const { SITE_TITLE } = require("./src/js/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const loadPartials = require("./webpack/plugins/load-partials");
@@ -190,8 +191,17 @@ module.exports = (env, argv) => {
         input: path.resolve(__dirname, "src/data/dynamic/keywords.json"),
         output: "src/partials/keywords.html",
       }),
+      //output leaderboard
+      new ExcelToCsvAndJsonPlugin({
+        input: path.resolve(__dirname, "src/data/dynamic/leaderboard.xlsx"),
+        sheetName: "Leaderboard", // Your Excel sheet name
+        csvOutput: "src/data/dynamic/leaderboard.csv", // Where CSV will go
+        jsonOutput: "src/data/dynamic/leaderboard.json", // Where JSON will go
+      }),
     ],
-
+    watchOptions: {
+      ignored: ["**/src/data/dynamic/**"], // <- ignore CSV to stop repeated builds
+    },
     optimization: {
       minimize: isProd,
       minimizer: [
