@@ -13,12 +13,7 @@
         "text": [
           "A little friendly competition on the RC car track!",
           "Sumbit you time with a date and what S battery you were using."
-        ]
-      },
-      {
-        "title": "",
-        "type": "noImage",
-        "text": [{}],
+        ],
         "leaderboard": {
           "url": "/data/leaderboard.json"
         }

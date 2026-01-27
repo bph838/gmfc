@@ -1,15 +1,14 @@
-
 export function loadScript(url, callback) {
   // Create a new script element
-  const script = document.createElement('script');
+  const script = document.createElement("script");
   script.src = url;
-  script.type = 'text/javascript';
+  script.type = "text/javascript";
   script.async = true; // optional, loads asynchronously
 
   // Optional: call a function when script is loaded
   if (callback) {
     script.onload = callback;
-    script.onerror = () => console.error('Failed to load script:', url);
+    script.onerror = () => console.error("Failed to load script:", url);
   }
 
   // Inject into <head>
@@ -18,7 +17,7 @@ export function loadScript(url, callback) {
 
 export async function fetchJson(url) {
   try {
-    console.log(`Fetching: ${url}`)
+    console.log(`Fetching: ${url}`);
     const response = await fetch(url); // fetch the URL
 
     // Check for HTTP errors
@@ -34,7 +33,6 @@ export async function fetchJson(url) {
   }
 }
 
-
 /**
  * Sets or creates an Open Graph meta tag.
  * @param {string} property - The OG property, e.g., "og:title"
@@ -42,18 +40,17 @@ export async function fetchJson(url) {
  */
 export function setMeta(property, content) {
   let meta = document.querySelector(`meta[property='${property}']`);
-  
+
   if (!meta) {
     // Create meta if it doesn't exist
-    meta = document.createElement('meta');
-    meta.setAttribute('property', property);
+    meta = document.createElement("meta");
+    meta.setAttribute("property", property);
     document.head.appendChild(meta);
   }
 
-  meta.setAttribute('content', content);
+  meta.setAttribute("content", content);
 
-  if(property=="og:title"){
-
+  if (property == "og:title") {
   }
 }
 
@@ -66,13 +63,12 @@ export function setPageTitle(titleText) {
   // Update or create <meta property="og:title" />
   let meta = document.querySelector(`meta[property='og:title']`);
   if (!meta) {
-    meta = document.createElement('meta');
-    meta.setAttribute('property', 'og:title');
+    meta = document.createElement("meta");
+    meta.setAttribute("property", "og:title");
     document.head.appendChild(meta);
   }
-  meta.setAttribute('content', titleText);
+  meta.setAttribute("content", titleText);
 }
-
 
 export function initMapFrame(data) {
   let latitude = data.latitude || 0;
@@ -92,3 +88,30 @@ export function initMapFrame(data) {
     src="https://www.google.com/maps?q=${latitude},${longitude}&hl=es;z=14&output=embed">
   </iframe>`;
 }
+
+export function formatDate(date) {
+  console.log("formatDate");
+  if (!(date instanceof Date)) return;
+
+  const day = date.getDate().toString().padStart(2, "0"); // 1 → "01"
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear().toString().slice(-2); // last 2 digits
+
+  return `${day} ${month} ${year}`;
+}
+
+

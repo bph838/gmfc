@@ -8,7 +8,6 @@ import {
   createParagraph,
 } from "@framework/dom";
 import { initaliseCarousel, onRotate } from "@framework/carousel3d";
-import { renderLeaderboard } from "./leaderboard";
 
 export function renderSection(parent, data, pageurl = "", extraclass = "") {
   if (!data) {
@@ -110,12 +109,6 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
 
   //If there are any pdf links to render
   renderPDFLinks(contentdiv, data);
-
-  //if there is leaderboard render i
-  console.log("d");
-  if (data.leaderboard) {
-    renderLeaderboard(contentdiv, data.leaderboard);
-  }
 
   return section;
 }
