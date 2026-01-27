@@ -67,7 +67,7 @@ module.exports = (env, argv) => {
           },
           { from: "src/images", to: "images" },
           { from: "src/favicon.ico", to: "." },
-          { from: "src/site.webmanifest", to: "." },
+          { from: "src/site.webmanifest", to: "." }          
         ],
       }),
 
@@ -196,11 +196,11 @@ module.exports = (env, argv) => {
         input: path.resolve(__dirname, "src/data/dynamic/leaderboard.xlsx"),
         sheetName: "Leaderboard", // Your Excel sheet name
         csvOutput: "src/data/dynamic/leaderboard.csv", // Where CSV will go
-        jsonOutput: "src/data/dynamic/leaderboard.json", // Where JSON will go
+        jsonOutput: "src/data/leaderboard.json", // Where JSON will go
       }),
     ],
     watchOptions: {
-      ignored: ["**/src/data/dynamic/**"], // <- ignore CSV to stop repeated builds
+      ignored: ["**/src/data/dynamic/**","**/src/data/**"], // <- ignore CSV to stop repeated builds
     },
     optimization: {
       minimize: isProd,
