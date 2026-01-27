@@ -1,11 +1,12 @@
 import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
-import { createDiv, fetchContextArea } from "@framework/dom";
+import { createDiv, createImage, fetchContextArea } from "@framework/dom";
 import { fetchJson } from "@framework/utils";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 
 import data from "@data/pages/gallery.json";
+import { createLink } from "../js/framework/dom";
 const dataurl = "/data/media/gallery_data.json";
 
 let yearSections = [];
@@ -79,7 +80,7 @@ function renderGalleryImage(image, galleryDiv, externalPath) {
     imgPath += directory + "/" + filename;
     imgThumbNamePath = `${externalPath}${directory}/thumbnails/${filename}`;
   } else {
-    imgPath += "/" + filename;;
+    imgPath += "/" + filename;
     imgThumbNamePath = `${externalPath}/thumbnails/${filename}`;
   }
 
@@ -88,26 +89,19 @@ function renderGalleryImage(image, galleryDiv, externalPath) {
 
   let yearDiv = document.getElementById(`galleryyear-${year}`);
   if (!yearDiv) {
-    yearDiv = document.createElement("div");
-    yearDiv.id = `galleryyear-${year}`;
-    yearDiv.className = "gallery-year-section";
-    galleryDiv.appendChild(yearDiv);
-    const yearHeader = document.createElement("h2");
+    yearDiv = createDiv(
+      galleryDiv,
+      "gallery-year-section",
+      `galleryyear-${year}`,
+    );
+
+    const yearHeader = createDiv(yearDiv, "gallery-year-header");
     yearHeader.textContent = year;
-    yearHeader.className = "gallery-year-header";
-    yearDiv.appendChild(yearHeader);
     yearSections.push(yearDiv.id);
   }
 
-  const alink = document.createElement("a");
-  alink.href = imgPath;
+  const alink = createLink(yearDiv, imgPath);
   alink.setAttribute("data-pswp-width", image.width);
   alink.setAttribute("data-pswp-height", image.height);
-  alink.target = "_blank";
-  yearDiv.appendChild(alink);
-
-  const img = document.createElement("img");
-  img.src = imgThumbNamePath;
-  img.alt = image.name;
-  alink.appendChild(img);
+  createImage(alink, imgThumbNamePath, null, image.name, true);
 }

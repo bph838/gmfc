@@ -93,11 +93,20 @@ export function createLink(
   return el;
 }
 
-export function createImage(parent, src = null, className = null, alt = null) {
+export function createImage(
+  parent,
+  src = null,
+  className = null,
+  alt = null,
+  lazyload = false,
+) {
   let el = document.createElement("img");
   if (className) el.className = className;
   if (src) el.src = src;
   if (alt) el.alt = alt;
+  if (lazyload === true) {
+    el.loading = "lazy";
+  }
 
   parent.appendChild(el);
   return el;
