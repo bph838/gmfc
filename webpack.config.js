@@ -57,7 +57,13 @@ module.exports = (env, argv) => {
     plugins: [
       new CopyWebpackPlugin({
         patterns: [
-          { from: "src/data", to: "data" },
+          {
+            from: "src/data",
+            to: "data",
+            globOptions: {
+              ignore: ["**/dynamic/**"], // <-- this skips any folder named "website" inside data
+            },
+          },
           { from: "src/images", to: "images" },
           { from: "src/favicon.ico", to: "." },
           { from: "src/site.webmanifest", to: "." },
@@ -181,7 +187,7 @@ module.exports = (env, argv) => {
       }),
       //keywords
       new KeywordsMetaPlugin({
-        input: path.resolve(__dirname, "src/data/website/keywords.json"),
+        input: path.resolve(__dirname, "src/data/dynamic/keywords.json"),
         output: "src/partials/keywords.html",
       }),
     ],
