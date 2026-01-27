@@ -12,7 +12,7 @@
         "image": "/images/mainpageimages/racing/checkeredflag.jpg",
         "text": [
           "A little friendly competition on the RC car track!",
-          "Sumbit you time with a date and what S battery you were using."
+          "Sumbit your time with a date and what S battery you were using."
         ],
         "leaderboard": {
           "url": "/data/leaderboard.json"
