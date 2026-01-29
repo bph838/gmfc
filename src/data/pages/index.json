@@ -42,7 +42,7 @@
       },
       {
         "type": "imageLeft",
-        "image": "images/flying_site.jpg",
+        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/flying/flying_site.jpg",
         "text": [
           "Our wonderful south-south-west facing flying site sits on 12 acres"
         ]
