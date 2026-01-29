@@ -9,7 +9,7 @@
       {
         "title": "RC Track Leaderboard",
         "type": "wrappedTextLeft",
-        "image": "/images/mainpageimages/racing/checkeredflag.jpg",
+        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/racing/checkeredflag.png",
         "text": [
           "A little friendly competition on the RC car track!",
           "Sumbit your time with a date and how many S you were running.",

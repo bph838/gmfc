@@ -2,7 +2,7 @@
   "content": {
     "hero": {
       "generatehero": true,
-      "image":"https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-helicopter.jpg",
+      "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-helicopter.jpg",
       "text": "News & Posts"
     },
     "sections": [
@@ -11,7 +11,7 @@
         "date": "2025-01-01",
         "hash": "cff8f66ca666a7f80caf2773b1042992",
         "type": "wrappedTextLeft",
-        "image": "/images/caa.jpg",
+        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/news/caa.jpg",
         "text": [
           "One area I perceive we will need to encourage more this year is CAA regulations.",
           "The Air Navigation Order obligations on anyone flying anything over 250g (or less if with a camera) are law. Your BMFA membership assumes compliance. So please, if you haven’t already read the latest position with respect to Flier ID (summarised in the January  BMFA newsletter – paper or online) get your Operator ID on to every model, and ensure you have gained a flier ID by undertaking the RCC test via the BMFA site.",

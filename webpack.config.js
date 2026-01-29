@@ -65,9 +65,15 @@ module.exports = (env, argv) => {
               ignore: ["**/dynamic/**"], // <-- this skips any folder named "website" inside data
             },
           },
-          { from: "src/images", to: "images" },
+          {
+            from: "src/images",
+            to: "images",
+            globOptions: {
+              ignore: ["**/carousel/**","**/cartrack/**","**/crawl/**","**/flying/**","**/hero/**","**/news/**","**/racing/**"], 
+            },
+          },
           { from: "src/favicon.ico", to: "." },
-          { from: "src/site.webmanifest", to: "." }          
+          { from: "src/site.webmanifest", to: "." },
         ],
       }),
 
@@ -131,8 +137,6 @@ module.exports = (env, argv) => {
         },
       }),
 
-
-
       //clubindex.html
       new HtmlWebpackPlugin({
         filename: "club/index.html",
@@ -144,7 +148,6 @@ module.exports = (env, argv) => {
           partials,
         },
       }),
-
 
       //clubrules.html
       new HtmlWebpackPlugin({
@@ -182,7 +185,6 @@ module.exports = (env, argv) => {
         },
       }),
 
-
       //clubmember.html
       new HtmlWebpackPlugin({
         filename: "club/clubmember.html",
@@ -194,7 +196,6 @@ module.exports = (env, argv) => {
           partials,
         },
       }),
-
 
       //css
       new MiniCssExtractPlugin({
@@ -229,7 +230,7 @@ module.exports = (env, argv) => {
       }),
     ],
     watchOptions: {
-      ignored: ["**/src/data/dynamic/**","**/src/data/leaderboard.json"], // <- ignore CSV to stop repeated builds
+      ignored: ["**/src/data/dynamic/**", "**/src/data/leaderboard.json"], // <- ignore CSV to stop repeated builds
     },
     optimization: {
       minimize: isProd,
