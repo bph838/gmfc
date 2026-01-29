@@ -131,6 +131,21 @@ module.exports = (env, argv) => {
         },
       }),
 
+
+
+      //clubindex.html
+      new HtmlWebpackPlugin({
+        filename: "club/index.html",
+        template: "./src/templates/main.html",
+        chunks: ["clubrules"],
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+        },
+      }),
+
+
       //clubrules.html
       new HtmlWebpackPlugin({
         filename: "club/clubrules.html",
@@ -166,6 +181,20 @@ module.exports = (env, argv) => {
           partials,
         },
       }),
+
+
+      //clubmember.html
+      new HtmlWebpackPlugin({
+        filename: "club/clubmember.html",
+        template: "./src/templates/iframe_membermojo_holder.html",
+        chunks: ["clubmember"],
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+        },
+      }),
+
 
       //css
       new MiniCssExtractPlugin({

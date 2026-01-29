@@ -1,7 +1,7 @@
 {
   "content": {
     "hero": {
-      "generatehero":true,
+      "generatehero": true,
       "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-helicopter.jpg",
       "text": "Gordano Model Flying Club"
     },
@@ -62,9 +62,9 @@
           }
         ],
         "text": [
-          "We have a huge car racing track now!",
-          "The track is perfectly suited to 1:10 scale cars, and for those with the skill and confidence, 1:8 scale cars can really stretch their legs too.",
-          "We are keeping a leaderboard of the festest laps, keep an eye out <a href='/club/leaderboard.html'>here</a> for the latest times."
+          "We now have an RC track that is perfectly suited to 1:10 scale cars, and for those with the skill and confidence, 1:8 scale cars can really stretch their legs too.",
+          "Gordano Model Flying Club unfortunately can not host any race competitions due to site access and facilities.",
+          "But for those members though who would like to take part in a little healthy competition, there is a <a href='/club/leaderboard.html'>leaderboard</a> of fastest laps.   "
         ]
       },
 
@@ -82,7 +82,7 @@
           }
         ],
         "text": [
-          "Our new crawler track is now open.",
+          "Our new crawler track is now open for members.",
           "Featuring technical obstacles and challenging lines, it’s ideal for drivers who enjoy skill, patience, and realism over outright speed."
         ]
       }
