@@ -71,8 +71,8 @@ function renderGalleryImage(image, galleryDiv, externalPath) {
     directory = parts.join("/"); // rest = directory
   }
 
-  console.log("Directory:", directory);
-  console.log("Filename:", filename);
+  //console.log("Directory:", directory);
+  //console.log("Filename:", filename);
 
   let imgPath = externalPath;
   let imgThumbNamePath = ""; //;
@@ -87,6 +87,8 @@ function renderGalleryImage(image, galleryDiv, externalPath) {
   let dateObj = new Date(image.date.replace(" ", "T"));
   let year = dateObj.getFullYear();
 
+  if(year<2015)
+    console.log("found date");
   let yearDiv = document.getElementById(`galleryyear-${year}`);
   if (!yearDiv) {
     yearDiv = createDiv(

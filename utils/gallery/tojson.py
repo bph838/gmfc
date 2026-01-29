@@ -4,6 +4,7 @@ import os
 import json
 from datetime import datetime
 from PIL import Image
+from PIL.ExifTags import TAGS
 
 
 parser = argparse.ArgumentParser(description="Tojson")
@@ -20,7 +21,9 @@ if not os.path.isdir(args.image_dir):
 
 
 # Directory containing images
-image_dir = args.image_dir
+image_dir = (
+    args.image_dir
+)  # "D:\\Web Repos\\gmfc\\utils\\gallery\\gallery-gmfc\\original\\"
 print(f"Processing images directory: {image_dir}")
 image_dir_with_folder = image_dir.replace("./gallery-gmfc/", "/" "")
 
@@ -38,6 +41,30 @@ image_extensions = (".jpg", ".jpeg", ".png", ".gif", ".webp")
 MAX_IMAGE_SIZE = 2048
 MAX_THUMB_WIDTH = 360
 
+
+def get_image_date(file_path):
+    """
+    Try EXIF date taken first, fall back to file modified time
+    """
+    if "dsc_0166-scaled" in file_path.lower():
+        found = True
+
+    try:
+        with Image.open(file_path) as img:
+            exif = img._getexif()
+            if exif:
+                for tag_id, value in exif.items():
+                    tag = TAGS.get(tag_id, tag_id)
+                    if tag in ("DateTimeOriginal", "DateTimeDigitized", "DateTime"):
+                        return datetime.strptime(value, "%Y:%m:%d %H:%M:%S")
+    except Exception:
+        pass
+
+    # Fallback: file modified time
+    date = datetime.fromtimestamp(os.path.getmtime(file_path))
+    return date
+
+
 # Collect image info
 images = []
 
@@ -50,25 +77,34 @@ for root, dirs, files in os.walk(image_dir):
         if file.lower().endswith(image_extensions):
             file_path = os.path.join(root, file)
 
-            # Get modification time
-            mtime = os.path.getmtime(file_path)
-            date_str = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M:%S")
+            # 🔹 Get date (EXIF preferred)
+            date_taken = get_image_date(file_path)
+            date_str = date_taken.strftime("%Y-%m-%d %H:%M:%S")
 
             try:
                 with Image.open(file_path) as img:
                     width, height = img.size
 
                     # 🔹 Resize original if larger than 2048px
+                    # 🔹 Resize original if larger than 2048px
                     if width > MAX_IMAGE_SIZE or height > MAX_IMAGE_SIZE:
+                        # Save original timestamps
+                        stat = os.stat(file_path)
+                        atime = stat.st_atime
+                        mtime = stat.st_mtime
+
                         img.thumbnail((MAX_IMAGE_SIZE, MAX_IMAGE_SIZE), Image.LANCZOS)
                         img.save(file_path)
-                        width, height = img.size  # update dimensions
+
+                        # Restore timestamps
+                        os.utime(file_path, (atime, mtime))
+
+                        width, height = img.size
 
             except Exception as e:
                 print(f"Error reading {file}: {e}")
                 continue
 
-            # Add info to JSON list
             images.append(
                 {
                     "name": image_dir_with_folder + file,
