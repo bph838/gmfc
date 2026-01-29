@@ -21,22 +21,22 @@
         "customsection": "sectionfullwidth",
         "images": [
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/carousel/carousel-01.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-01.jpg"
           },
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/carousel/carousel-02.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-02.jpg"
           },
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/carousel/carousel-03.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-03.jpg"
           },
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/carousel/carousel-04.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-04.jpg"
           },
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/carousel/carousel-05.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-05.jpg"
           },
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/carousel/carousel-06.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-06.jpg"
           }
         ]
       },
@@ -52,13 +52,13 @@
         "type": "imagesLeft",
         "images": [
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/cartrack/cartrack1.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/cartrack/cartrack1.jpg"
           },
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/cartrack/cartrack2.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/cartrack/cartrack2.jpg"
           },
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/cartrack/cartrack3.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/cartrack/cartrack3.jpg"
           }
         ],
         "text": [
@@ -72,13 +72,13 @@
         "type": "imagesRight",
         "images": [
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/crawl/crawl1.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/crawl/crawl1.jpg"
           },
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/crawl/crawl2.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/crawl/crawl2.jpg"
           },
           {
-            "src": "https://gmfc-siteimages.s3.eu-north-1.amazonaws.com/mainpageimages/crawl/crawl3.jpg"
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/crawl/crawl3.jpg"
           }
         ],
         "text": [

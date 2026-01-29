@@ -22,12 +22,15 @@ def resize_image(path: Path, max_dim: int):
 
 
 def main():
-    if len(sys.argv) != 3:
-        print("Usage: python resize.py <directory> <max_dimension>")
-        sys.exit(1)
+    # if len(sys.argv) != 3:
+    # print("Usage: python resize.py <directory> <max_dimension>")
+    # sys.exit(1)
 
-    directory = Path(sys.argv[1])
-    max_dim = int(sys.argv[2])
+    # directory = Path(sys.argv[1])
+    # max_dim = int(sys.argv[2])
+
+    directory = Path("D:\\Web Repos\\gmfc\\src\images\\crawl")
+    max_dim = 640
 
     if not directory.is_dir():
         print("Error: directory does not exist")
