@@ -29,7 +29,7 @@ def main():
     # directory = Path(sys.argv[1])
     # max_dim = int(sys.argv[2])
 
-    directory = Path("D:\\Web Repos\\gmfc\\src\images\\crawl")
+    directory = Path("D:\\Web Repos\\gmfc\\src\images\\news")
     max_dim = 640
 
     if not directory.is_dir():
