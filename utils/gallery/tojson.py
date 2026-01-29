@@ -22,7 +22,7 @@ if not os.path.isdir(args.image_dir):
 # Directory containing images
 image_dir = args.image_dir
 print(f"Processing images directory: {image_dir}")
-image_dir_with_folder = image_dir.replace("./gallery-gmfc/", "/")
+image_dir_with_folder = image_dir.replace("./gallery-gmfc/", "/" "")
 
 # Thumbnail directory
 thumb_dir = os.path.join(image_dir, "thumbnails")
