@@ -2,5 +2,5 @@
 /node_modules/
 /dist/
 utils/gallery/images.json
-utils/gallery/imgs/
+utils/gallery/gallery-gmfc/
 src/images/mainpageimages/
