@@ -24,24 +24,25 @@
   }
 
   .container-hero {
-    // background-color: darkgrey;
-    //opacity: 0.8;
-
     h1 {
       font-size: 3.5rem;
       font-weight: 300;
       line-height: 1.2;
       font-weight: 700 !important;
       color: white;
-      font-size: 24px;
+      font-size: 2rem;
       @include respond(tablet) {
-        font-size: 48px;
+        font-size: 3.5rem
       }
       @include respond(pc) {
-        font-size: 64px;
+        font-size: 5rem;
       }
 
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+      //text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+      text-shadow:
+        0 0 2px rgba(0, 0, 0, 0.85),
+        // normal shadow
+        0 3px 4px rgba(255, 0, 0, 0.5); // very soft red under-glow
     }
   }
 }
