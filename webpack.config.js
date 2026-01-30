@@ -32,6 +32,7 @@ module.exports = (env, argv) => {
       leaderboard: "./src/pages/club/leaderboard.js",
       clubrules: "./src/pages/club/clubrules.js",
       clubmerch: "./src/pages/club/clubmerch.js",
+      clubmember:"./src/pages/club/clubmember.js",
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -69,7 +70,18 @@ module.exports = (env, argv) => {
             from: "src/images",
             to: "images",
             globOptions: {
-              ignore: ["**/carousel/**","**/cartrack/**","**/crawl/**","**/flying/**","**/hero/**","**/news/**","**/racing/**","**/favicon/**","**/icons/**","**/siteimages/**"], 
+              ignore: [
+                "**/carousel/**",
+                "**/cartrack/**",
+                "**/crawl/**",
+                "**/flying/**",
+                "**/hero/**",
+                "**/news/**",
+                "**/racing/**",
+                "**/favicon/**",
+                "**/icons/**",
+                "**/siteimages/**",
+              ],
             },
           },
           { from: "src/favicon.ico", to: "." },
