@@ -32,7 +32,7 @@ module.exports = (env, argv) => {
       leaderboard: "./src/pages/club/leaderboard.js",
       clubrules: "./src/pages/club/clubrules.js",
       clubmerch: "./src/pages/club/clubmerch.js",
-      clubmember:"./src/pages/club/clubmember.js",
+      clubmember: "./src/pages/club/clubmember.js",
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -106,7 +106,7 @@ module.exports = (env, argv) => {
         filename: "calendar.html",
         template: "./src/templates/main.html",
         chunks: ["calendar"],
-        title: SITE_TITLE,
+        title: SITE_TITLE + " - Calendar",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
@@ -118,7 +118,7 @@ module.exports = (env, argv) => {
         filename: "news.html",
         template: "./src/templates/main.html",
         chunks: ["news"],
-        title: SITE_TITLE,
+        title: SITE_TITLE + " - News",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
@@ -130,7 +130,7 @@ module.exports = (env, argv) => {
         filename: "aboutus.html",
         template: "./src/templates/main.html",
         chunks: ["aboutus"],
-        title: SITE_TITLE,
+        title: SITE_TITLE + " - About Us",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
@@ -142,7 +142,7 @@ module.exports = (env, argv) => {
         filename: "gallery.html",
         template: "./src/templates/main.html",
         chunks: ["gallery"],
-        title: SITE_TITLE,
+        title: SITE_TITLE + " - Gallery",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
@@ -154,7 +154,7 @@ module.exports = (env, argv) => {
         filename: "club/index.html",
         template: "./src/templates/main.html",
         chunks: ["clubrules"],
-        title: SITE_TITLE,
+        title: SITE_TITLE + " - Club Rules",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
@@ -166,7 +166,7 @@ module.exports = (env, argv) => {
         filename: "club/clubrules.html",
         template: "./src/templates/main.html",
         chunks: ["clubrules"],
-        title: SITE_TITLE,
+        title: SITE_TITLE + " - Club Rules",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
@@ -178,7 +178,7 @@ module.exports = (env, argv) => {
         filename: "club/leaderboard.html",
         template: "./src/templates/main.html",
         chunks: ["leaderboard"],
-        title: SITE_TITLE,
+        title: SITE_TITLE + " - Leaderboard",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
@@ -190,7 +190,7 @@ module.exports = (env, argv) => {
         filename: "club/clubmerch.html",
         template: "./src/templates/main.html",
         chunks: ["clubmerch"],
-        title: SITE_TITLE,
+        title: SITE_TITLE + " - Club Merch",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
@@ -202,7 +202,7 @@ module.exports = (env, argv) => {
         filename: "club/clubmember.html",
         template: "./src/templates/iframe_membermojo_holder.html",
         chunks: ["clubmember"],
-        title: SITE_TITLE,
+        title: SITE_TITLE + " - Members",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,

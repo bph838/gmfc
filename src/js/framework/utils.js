@@ -47,11 +47,7 @@ export function setMeta(property, content) {
     meta.setAttribute("property", property);
     document.head.appendChild(meta);
   }
-
   meta.setAttribute("content", content);
-
-  if (property == "og:title") {
-  }
 }
 
 export function sanitizeString(str) {
@@ -169,6 +165,3 @@ export function setSiteImage(url){
   setMeta("og:image", url);
 }
 
-export function setSiteTitle(title){
-  setMeta("og:title", title);
-}
