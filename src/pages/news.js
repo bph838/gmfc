@@ -1,9 +1,9 @@
 import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
-import { fetchContextArea,createDiv } from "@framework/dom";
-import { fetchJson,setPageTitle,setMeta } from "@framework/utils";
-const { SITE_ADDRESS } = require("../js/constants");
+import { fetchContextArea, createDiv } from "@framework/dom";
+import { fetchJson, setPageTitle, setMeta } from "@framework/utils";
+const { SITE_TITLE, SITE_ADDRESS } = require("../js/constants");
 
 const newsUrl = "data/pages/news.json";
 const newsItemUrl = "news.html";
@@ -36,7 +36,7 @@ function renderClubNews(data) {
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
-  const sectionsdiv = createDiv(contentarea,"sections");
+  const sectionsdiv = createDiv(contentarea, "sections");
 
   //render th news
   if (data.content.sections && data.content.sections.length > 0) {
@@ -61,7 +61,7 @@ function renderNewsItem(newsHash) {
     } else {
       // Render the news
       renderClubNews(data);
-      if(data.content.sections.length===1)
+      if (data.content.sections.length === 1)
         setDiscoverables(data.content.sections[0]);
     }
   });
@@ -70,12 +70,20 @@ function renderNewsItem(newsHash) {
 function setDiscoverables(data) {
   console.log("setDiscoverables");
   if (data.title) {
-    setPageTitle(data.title);
+    setPageTitle(SITE_TITLE + " - " + data.title);
   }
 
   if (data.image) {
-    let  url = SITE_ADDRESS+data.image;
+    let url = SITE_ADDRESS + data.image;
     console.log("seting og:image");
     setMeta("og:image", url);
+  }
+
+  if (data.text) {
+    let description = "";
+    data.text.forEach((text) => {
+      description += text;
+    });
+    setMeta("og:description", description);
   }
 }

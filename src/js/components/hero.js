@@ -31,8 +31,9 @@ export function renderHero(data) {
     }
   }
 
-  if(sitepic.length>=0)
-    setSiteImage(sitepic);
+  if(sitepic.length>=0){
+    setSiteImage(sitepic);    
+  }
 
   hero.className = "hero";
   hero.style.backgroundPosition = "center";

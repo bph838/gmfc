@@ -7,9 +7,9 @@
  * Expects each nav-link to have a `data-menu` attribute matching the ID of its target section.
  */
 
-import { setPageTitle } from "../framework/utils";
+import { setPageTitle,setMeta } from "../framework/utils";
 import { initCopyrightYear, initMenuName } from "./initpage";
-const { SITE_TITLE } = require("../constants");
+const { SITE_TITLE,SITE_ADDRESS,SITE_DESCRIPTION  } = require("../constants");
 
 export function setupMenuCommands(activeClass = "page-home") {
   console.info("setupMenuCommands");
@@ -27,8 +27,12 @@ export function setupMenuCommands(activeClass = "page-home") {
   });
 
   let title = getPageTitle(activeClass);
-  if(title.length>0)
+  if(title.length>0){
     setPageTitle(title);
+    setMeta("og:type", "website");
+    setMeta("og:url", SITE_ADDRESS);
+    setMeta("og:description", SITE_DESCRIPTION);
+  }
 
   initCopyrightYear();
   initMenuName(SITE_TITLE);
