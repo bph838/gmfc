@@ -1,4 +1,5 @@
 import { createDiv, createH1, createSpan } from "@framework/dom";
+import { setSiteImage } from "@framework/utils";
 
 export function renderHero(data) {
   console.log("renderHero called");
@@ -9,22 +10,29 @@ export function renderHero(data) {
     return;
   }
 
+  let sitepic = '';
   if (data.generatehero && data.generatehero == true) {
     //check for hero type
     const herotype = localStorage.getItem("herotype");
     if (herotype !== null) {
       let url = getImageForHero(herotype);
       hero.style.backgroundImage = "url('" + url + "')";
+      sitepic = url;
     } else {
       if (data.image) {
         hero.style.backgroundImage = "url('" + data.image + "')";
+        sitepic = data.image;
       }
     }
   } else {
     if (data.image) {
       hero.style.backgroundImage = "url('" + data.image + "')";
+      sitepic = data.image;
     }
   }
+
+  if(sitepic.length>=0)
+    setSiteImage(sitepic);
 
   hero.className = "hero";
   hero.style.backgroundPosition = "center";
@@ -107,9 +115,10 @@ function changeHeroImage(herotype) {
   const hero = document.getElementById("hero");
   console.log("changeHeroImage");
   let imageurl = getImageForHero(herotype);
-
+  
   if (imageurl.length <= 1) return;
 
+  setSiteImage(imageurl);
   hero.style.backgroundImage = "url('" + imageurl + "')";
   hero.style.backgroundPosition = "center";
   hero.style.backgroundSize = "cover";

@@ -164,3 +164,11 @@ export function formatLaptime(secs) {
   let time = `${seconds} sec`;
   return time;
 }
+
+export function setSiteImage(url){
+  setMeta("og:image", url);
+}
+
+export function setSiteTitle(title){
+  setMeta("og:title", title);
+}
