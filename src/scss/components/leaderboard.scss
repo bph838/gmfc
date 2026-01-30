@@ -31,13 +31,35 @@
     display: flex;
     flex-wrap: wrap; /* allows items to wrap if needed */
     justify-content: center; /* center items horizontally */
+    align-items: center;
     gap: 5px;
+    margin-bottom: 1em;
+    width: 400px;
     @include respond(tablet, pc) {
       gap: 15px;
+      width: 540px;
+    }
+    .lb_participant {
+      margin-right: auto;
+      min-width: 100px;
+      margin-left: 10px;
+      @include respond(tablet, pc) {
+        min-width: 160px;
+        margin-left: 0;
+      }
+    }
+    .lb_date {
+      @include respond(tablet, pc) {
+        width: 200px;
+      }
+    }
+    .lb_time {
+      width: 100px;
+      margin-right: 10px;
     }
 
     span {
-      font-size: 16px;
+      font-size: 14px;
       @include respond(tablet, pc) {
         font-size: 18px;
       }
@@ -85,4 +107,3 @@
 .participant_fastesttime {
   margin-left: auto;
 }
-

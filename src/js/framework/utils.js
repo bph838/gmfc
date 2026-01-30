@@ -154,7 +154,7 @@ export function formatDate(date,longMonth=false) {
     month = monthNamesShort[date.getMonth()];
   const year = date.getFullYear();
   const hour = date.getHours();
-  const min = date.getMinutes();
+  const min = String(date.getMinutes()).padStart(2, "0");
 
   return `${ordinal(day)} ${month} ${year} ${hour}:${min}`;
 }

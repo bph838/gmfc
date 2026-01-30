@@ -8,12 +8,18 @@ import {
   createH3,
   createSpan,
 } from "@framework/dom";
-import { fetchJson, formatDate, sanitizeString,formatLaptime } from "@framework/utils";
+import {
+  fetchJson,
+  formatDate,
+  sanitizeString,
+  formatLaptime,
+} from "@framework/utils";
 import {
   setData,
   getFastestEverLap,
   getAllParticipants,
   getLapsByParticipantForCourse,
+  getTopParticipantsForCourse,
 } from "@framework/leaderboard";
 import data from "@data/pages/club/leaderboard.json";
 import { createParagraph } from "../../js/framework/dom";
@@ -58,6 +64,9 @@ function renderLeaderboard(parent, leaderboard) {
     //add the fasted time
     renderFastestEverLap(lbdiv);
 
+    //add a League table
+    renderLeagueTable(lbdiv);
+
     //get all the participants
     const participants = getAllParticipants();
     if (participants) {
@@ -68,8 +77,6 @@ function renderLeaderboard(parent, leaderboard) {
   });
 }
 
-
-
 function renderFastestEverLap(parent) {
   let fastest = getFastestEverLap();
   if (fastest) {
@@ -77,9 +84,42 @@ function renderFastestEverLap(parent) {
     const fastest_div = createDiv(parent, "lb_holdertimes");
     createH2(fastest_div, "🎉 Fastest Ever Lap 🎉");
     const divtimes = createDiv(fastest_div, "lb_times");
-    createSpan(divtimes, "lb_participant", fastest.Participant);
+    createSpan(divtimes, "lb_participant", "🥇" + fastest.Participant);
     createSpan(divtimes, "lb_date", formatDate(fastest.date));
-    createSpan(divtimes, "lb_time", formatLaptime(fastest.Laptime));
+    let fastestTime = formatLaptime(fastest.Laptime);
+    createSpan(divtimes, "lb_time", fastestTime);
+  }
+}
+
+function renderLeagueTable(parent) {
+  console.log("renderLeagueTable");
+  const leagueTimes = getTopParticipantsForCourse();
+  let place = 2;
+  if (leagueTimes && leagueTimes.length > 0) {
+    console.log(leagueTimes);
+    const fastest_div = createDiv(parent, "lb_holdertimes");
+    createH2(fastest_div, "and the rest...");
+    leagueTimes.forEach((lap) => {
+      let dst = formatDate(lap.Date);
+      let participantText;
+      switch (place) {
+        case 2:
+          participantText = "🥈" + lap.Participant;
+          break;
+        case 3:
+          participantText = "🥉" + lap.Participant;
+          break;
+        default:
+          participantText = lap.Participant;
+          break;
+      }
+      const divtimes = createDiv(fastest_div, "lb_times");
+      createSpan(divtimes, "lb_participant", participantText);
+      createSpan(divtimes, "lb_date", dst);
+      let time = formatLaptime(lap.Laptime);
+      createSpan(divtimes, "lb_time", time);
+      place++;
+    });
   }
 }
 
@@ -149,7 +189,7 @@ function renderLapTimeTableForParticipant(parent, laps) {
     const tr = document.createElement("tr");
 
     const tdDate = document.createElement("td");
-    
+
     tdDate.textContent = formatDate(lap.date);
     tr.appendChild(tdDate);
 

@@ -76,7 +76,7 @@ export function getAllParticipants() {
   ].sort((a, b) => a.localeCompare(b));
 }
 
-export function getLapsByParticipantForCourse( participant) {
+export function getLapsByParticipantForCourse(participant) {
   if (!course || !participant) return [];
 
   const now = new Date();
@@ -101,4 +101,35 @@ export function getLapsByParticipantForCourse( participant) {
     })
     .sort((a, b) => a.Laptime - b.Laptime) //fastets first    
     .slice(0, returnTop);//top X
+}
+
+export function getTopParticipantsForCourse(limit = 10) {
+  const oneYearAgo = new Date();
+  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+
+  // 1️⃣ filter + convert date
+  const laps = leaderboard_data
+    .filter(lap => lap.Course === course)
+    .map(lap => ({
+      ...lap,
+      Date: excelDateToJSDate(lap.Date)
+    }))
+    .filter(lap => lap.Date >= oneYearAgo);
+
+  // 2️⃣ sort fastest first
+  laps.sort((a, b) => a.Laptime - b.Laptime);
+
+  // 3️⃣ keep fastest per participant
+  const seen = new Set();
+  const unique = [];
+
+  for (const lap of laps) {
+    if (!seen.has(lap.Participant)) {
+      seen.add(lap.Participant);
+      unique.push(lap);
+    }
+  }
+
+  // 4️⃣ skip first (fastest) and return next X
+  return unique.slice(1, limit + 1);
 }
