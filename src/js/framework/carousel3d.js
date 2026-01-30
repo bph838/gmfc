@@ -1,10 +1,10 @@
 "use strict";
 
 let timerHandle = 0;
-let carouselCircleRatio = 0.65;
+let carouselCircleRatio = 0.45;
 let carouselSpeed = 2;
 let carouselMinimizeRatio = 0.8;
-let carouselOpacityRatio = 0.65;
+let carouselOpacityRatio = 0.45;
 
 export function initaliseCarousel(id) {
   const element = document.getElementById(id);
