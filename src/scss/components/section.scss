@@ -64,7 +64,18 @@
 
 .section_header {
   flex: 100%;
+  margin-bottom: 0.5em;
+  .section_date{
+  font-family: 'Courier New', Courier, monospace;
 }
+
+.sectionlink{
+  margin-left: 1em;
+}
+
+}
+
+
 
 .section_inner_wrap_left {
   align-items: flex-start;
