@@ -69,7 +69,7 @@ module.exports = (env, argv) => {
             from: "src/images",
             to: "images",
             globOptions: {
-              ignore: ["**/carousel/**","**/cartrack/**","**/crawl/**","**/flying/**","**/hero/**","**/news/**","**/racing/**"], 
+              ignore: ["**/carousel/**","**/cartrack/**","**/crawl/**","**/flying/**","**/hero/**","**/news/**","**/racing/**","**/favicon/**"], 
             },
           },
           { from: "src/favicon.ico", to: "." },
