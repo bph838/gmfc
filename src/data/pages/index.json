@@ -11,7 +11,7 @@
         "type": "wrappedTextLeft",
         "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/siteimages/siteflying.jpg",
         "text": [
-          "The website has had a little make over!",          
+          "The website has had a little make over!",
           "We are aiming for the site to be a resource for everyone to keep up to date with the <a href='/calendar.html'>events</a> and maybe some of the fun we have most weekends."
         ]
       },
@@ -39,16 +39,27 @@
           }
         ]
       },
+
       {
-        "type": "imageLeft",
-        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/flying/flying_site.jpg",
+        "type": "imagesLeft",
+        "images": [
+          {
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/flying/flying_site.jpg"
+          },
+          {
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/flying/flying_site.jpg"
+          },
+          {
+            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/flying/flying_site.jpg"
+          }
+        ],
         "text": [
-          "Our wonderful south-south-west facing flying site sits on 12 acres"
+          "Our wonderful south-south-west facing flying site sits on 12 acres of land."
         ]
       },
 
       {
-        "type": "imagesLeft",
+        "type": "imagesRight",
         "images": [
           {
             "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/cartrack/cartrack1.jpg"
@@ -68,7 +79,7 @@
       },
 
       {
-        "type": "imagesRight",
+        "type": "imagesLeft",
         "images": [
           {
             "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/crawl/crawl1.jpg"
