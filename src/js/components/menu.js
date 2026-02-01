@@ -9,7 +9,7 @@
 
 import { setPageTitle,setMeta } from "../framework/utils";
 import { initCopyrightYear, initMenuName } from "./initpage";
-const { SITE_TITLE,SITE_ADDRESS,SITE_DESCRIPTION  } = require("../constants");
+const { SITE_TITLE,SITE_ADDRESS,SITE_DESCRIPTION  } = require("@components/constants");
 
 export function setupMenuCommands(activeClass = "page-home") {
   console.info("setupMenuCommands");

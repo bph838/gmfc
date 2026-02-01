@@ -9,7 +9,6 @@
       {
         "title": "Monthly Club Days",
         "date": "2025-01-01",
-        "hash": "373ce1cf4f81efaf5b0ae42ffc84390b",
         "type": "wrappedTextLeft",
         "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/news/clubnews.jpg",
         "text": [
@@ -17,7 +16,8 @@
           "Saturday is general member flying. Sunday we hold a maintenance session in the morning, from 9am until 12pm (we expect all members to help out when they can, many hands make light work), this is followed by an afternoon of flying and some fun competitions. We will aim for something different each month. Please keep an eye on the flyers for each club day.",
           "Tea, coffee, squash and cakes are generally available with a donations box. In the summer we sometimes have a BBQ as well.",
           "On both days at least one member of the committee will be on site, so newcomers and interested parties are very welcome to visit on these days to introduce themselves and find out some more information about the club."
-        ]
+        ],
+        "hash": "373ce1cf4f81efaf5b0ae42ffc84390b"
       }
     ]
   }

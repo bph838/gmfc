@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><%= title %></title>
     <%= partials.keywords %>
     <!--Keywords-->
     <%= partials.favicon %>
@@ -22,8 +22,19 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.benhooper.com">
     <meta property="og:description" content="Gordano Model Flying Club news.">
-    <meta property="og:image" content="https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-plane.jpg">
+    <meta property="og:image" content=<%= image %>>
+
+<script>
+    window.MY_NEWS_ITEM = {
+      title: "<%= title %>",     
+      hash: "<%= hash %>"
+    };
+  </script>
+
+
   </head>
+
+  
   <body>
     <%= partials.navigation %>
     <main>

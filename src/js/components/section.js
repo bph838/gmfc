@@ -8,6 +8,7 @@ import {
   createParagraph,
 } from "@framework/dom";
 import { initaliseCarousel, onRotate } from "@framework/carousel3d";
+import { sanitizeString } from "@framework/utils";
 
 export function renderSection(parent, data, pageurl = "", extraclass = "") {
   if (!data) {
@@ -69,14 +70,23 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
     console.log("a");
     //a link can be added with a hash as the anchor
     if (data.hash && pageurl.length > 1) {
-      let url = `/${pageurl}#${data.hash}`;
+      const url = `/news/${date.getFullYear()}/${date.getMonth() + 1}/${sanitizeString(data.title)}.html`;
       section.id = url;
       createLink(
         headerdiv,
         url,
         "sectionlink",
         "<i class='fa-solid fa-link'></i>",
+        ""
       );
+      /*let url = `/${pageurl}#${data.hash}`;
+      section.id = url;
+      createLink(
+        headerdiv,
+        url,
+        "sectionlink",
+        "<i class='fa-solid fa-link'></i>",
+      );*/
     }
   }
 
@@ -145,7 +155,8 @@ export function renderPDFLinks(pageSection, data) {
       pdfDiv.appendChild(pdfLink);
 
       const imgPDF = document.createElement("img");
-      imgPDF.src = "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/icons/pdf.png";
+      imgPDF.src =
+        "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/icons/pdf.png";
       imgPDF.class = "pdfimage";
       pdfLink.appendChild(imgPDF);
 

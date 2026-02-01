@@ -9,7 +9,6 @@
       {
         "title": "GMFC and the CAA – Awareness for members",
         "date": "2025-01-01",
-        "hash": "cff8f66ca666a7f80caf2773b1042992",
         "type": "wrappedTextLeft",
         "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/news/caa.jpg",
         "text": [
@@ -19,7 +18,8 @@
           "We’ll obviously keep members aware of any updates to this consultation – I’m hopeful pragmatism of our suggestions will be successful.We’ll obviously keep members aware of any updates to this consultation – I’m hopeful pragmatism of our suggestions will be successful.",
           "Thank you",
           "Doug Dinnett – Chairman"
-        ]
+        ],
+        "hash": "cff8f66ca666a7f80caf2773b1042992"
       }
     ]
   }

@@ -53,7 +53,10 @@ export function setMeta(property, content) {
 export function sanitizeString(str) {
   if (typeof str !== "string") return "";
   // Replace anything that is NOT a letter or number with empty string
-  return str.replace(/[^a-zA-Z0-9]/g, "");
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 export function setPageTitle(titleText) {
@@ -91,7 +94,7 @@ export function initMapFrame(data) {
   </iframe>`;
 }
 
-export function formatDate(date,longMonth=false) {
+export function formatDate(date, longMonth = false) {
   if (!(date instanceof Date)) return "";
 
   const day = date.getDate();
@@ -126,8 +129,7 @@ export function formatDate(date,longMonth=false) {
     "December",
   ];
 
-
-    const monthNamesShort = [
+  const monthNamesShort = [
     "Jan",
     "Feb",
     "Mar",
@@ -142,12 +144,9 @@ export function formatDate(date,longMonth=false) {
     "Dec",
   ];
 
-
   let month = "";
-  if(longMonth) 
-    month = monthNamesLong[date.getMonth()];
-  else 
-    month = monthNamesShort[date.getMonth()];
+  if (longMonth) month = monthNamesLong[date.getMonth()];
+  else month = monthNamesShort[date.getMonth()];
   const year = date.getFullYear();
   const hour = date.getHours();
   const min = String(date.getMinutes()).padStart(2, "0");
@@ -161,7 +160,15 @@ export function formatLaptime(secs) {
   return time;
 }
 
-export function setSiteImage(url){
+export function setSiteImage(url) {
   setMeta("og:image", url);
 }
 
+export function isAbsoluteUrl(url) {
+  try {
+    new URL(url);
+    return true; // valid absolute URL
+  } catch (e) {
+    return false; // relative or invalid URL
+  }
+}

@@ -12,9 +12,49 @@ const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlug
 const JsonToIcsPlugin = require("./webpack/plugins/JsonToIcsPlugin");
 const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
 const ExcelToCsvAndJsonPlugin = require("./webpack/plugins/ExcelToCsvAndJsonPlugin.js");
-const { SITE_TITLE } = require("./src/js/constants.js");
+const { SITE_TITLE } = require("./src/js/components/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const loadPartials = require("./webpack/plugins/load-partials");
+
+// Utility to sanitize a string for a filename
+function sanitize(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// Load your JSON data
+const newsItems = JSON.parse(
+  fs.readFileSync(
+    path.resolve(__dirname, "src/data/newsitems/summary.json"),
+    "utf8",
+  ),
+);
+const outputPath = path.resolve(__dirname, "dist");
+// Create an array of HtmlWebpackPlugin instances
+const newsPlugins = newsItems.map((item) => {
+  const filename = `/news/${item.year}/${item.month}/${sanitize(item.title)}.html`;
+  console.log(`Processing new item for: ${filename}`);
+  const absoluteFilename = path.resolve(outputPath, filename);
+
+  console.log(`Processing new item for: ${absoluteFilename}`);
+
+  return new HtmlWebpackPlugin({
+    filename,
+    template: path.resolve(__dirname, "src/templates/news.html"),
+    inject: "body",
+    chunks: ["news"],
+    templateParameters: {
+      title: SITE_TITLE + " - News - " + item.title,
+      image: item.image,
+      month: item.month,
+      year: item.year,
+      hash: item.hash,
+      partials: loadPartials(),
+    },
+  });
+});
 
 module.exports = (env, argv) => {
   const isProd = argv.mode === "production";
@@ -26,7 +66,7 @@ module.exports = (env, argv) => {
     entry: {
       index: "./src/pages/index.js",
       calendar: "./src/pages/calendar.js",
-      news: "./src/pages/news.js",
+      news: "./src/pages/news.js",      
       aboutus: "./src/pages/aboutus.js",
       gallery: "./src/pages/gallery.js",
       leaderboard: "./src/pages/club/leaderboard.js",
@@ -38,6 +78,7 @@ module.exports = (env, argv) => {
     output: {
       filename: "js/[name].bundle.js", // main.bundle.js, about.bundle.js
       path: path.resolve(__dirname, "dist"),
+      publicPath: "/",
       clean: true,
     },
 
@@ -57,6 +98,7 @@ module.exports = (env, argv) => {
     },
 
     plugins: [
+      ...newsPlugins,
       new CopyWebpackPlugin({
         patterns: [
           {

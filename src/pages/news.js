@@ -2,18 +2,23 @@ import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
 import { fetchContextArea, createDiv } from "@framework/dom";
-import { fetchJson, setPageTitle, setMeta } from "@framework/utils";
-const { SITE_TITLE, SITE_ADDRESS } = require("../js/constants");
+import {
+  fetchJson,
+  setPageTitle,
+  setMeta,
+  isAbsoluteUrl,
+} from "@framework/utils";
+const { SITE_TITLE, SITE_ADDRESS } = require("@components/constants");
 
 const newsUrl = "data/pages/news.json";
 const newsItemUrl = "news.html";
 
 setupMenuCommands("page-news");
-const hash = window.location.hash; // "#123" or "" if none
-if (hash) {
-  const newsHash = hash.substring(1);
-  console.log(`news hash found: ${newsHash}`);
-  renderNewsItem(newsHash);
+console.log("Rending news");
+if (window.MY_NEWS_ITEM && window.MY_NEWS_ITEM.hash) {
+  let hash = window.MY_NEWS_ITEM.hash;
+  let jsonUrl = `/data/newsitems/${hash}.json`;
+  renderNewsItem(jsonUrl);
 } else {
   renderNews(newsUrl);
 }
@@ -52,11 +57,9 @@ function renderClubNews(data) {
   }
 }
 
-function renderNewsItem(newsHash) {
-  const url = "data/newsitems/" + newsHash + ".json";
-
-  fetchJson(url).then((data) => {
-    console.log(`Looking for news ${url}`);
+function renderNewsItem(jsonUrl) {
+  fetchJson(jsonUrl).then((data) => {
+    console.log(`Looking for news ${jsonUrl}`);
     if (!data) {
     } else {
       // Render the news
@@ -74,7 +77,9 @@ function setDiscoverables(data) {
   }
 
   if (data.image) {
-    let url = SITE_ADDRESS + data.image;
+    let url = "";
+    if (isAbsoluteUrl(data.image)) url = data.image;
+    else url = SITE_ADDRESS + data.image;
     console.log("seting og:image");
     setMeta("og:image", url);
   }
