@@ -172,3 +172,34 @@ export function isAbsoluteUrl(url) {
     return false; // relative or invalid URL
   }
 }
+
+export function createCopy(className) {
+  console.log("createCopyFunction for " + className);
+
+  document.querySelectorAll(className).forEach((el) => {
+    console.log(el.textContent);
+
+    // Define the handler function
+    const handler = () => {
+      const textToCopy = el.dataset.copy;
+      if (!textToCopy) return;
+
+      // Use modern Clipboard API
+      if (navigator.clipboard) {
+        console.log("copy");
+
+        // Change tooltip text
+        el.dataset.tooltip = "Copied!";
+
+        navigator.clipboard
+          .writeText(textToCopy)
+          .then(() => console.log(`Copied: ${textToCopy}`))
+          .catch((err) => console.error("Copy failed:", err));
+      }
+    };
+
+    // Add click and touch events
+    el.addEventListener("click", handler);
+    el.addEventListener("touchstart", handler);
+  });
+}

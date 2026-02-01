@@ -42,7 +42,7 @@
         "id": "contactus",
         "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/siteimages/contactus.jpg",
         "text": [
-          "If you would like to contact us this can be done through our <a href='https://www.facebook.com/groups/327796220935498' target='_blank'>facebook</a> group or via <a href='mailto:secretary@amarc2002.co.uk'>email</a> at secretary@amarc2002.co.uk",
+          "If you would like to contact us this can be done through our <a href='https://www.facebook.com/groups/327796220935498' target='_blank'>facebook</a> group or via email <a href='mailto:secretary@amarc2002.co.uk'>secretary@amarc2002.co.uk</a><span class='copydata' data-tooltip='Click to copy' data-copy='secretary@amarc2002.co.uk'><i class='fa-regular fa-copy'></i></span> ",
           "If you are interested in joining, please reach out and we would be happy to arrange a time that is suitable for you to come and meet someone at the field."
         ],
         "contactus": "Facebook"
