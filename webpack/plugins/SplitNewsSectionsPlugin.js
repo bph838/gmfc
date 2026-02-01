@@ -38,12 +38,14 @@ class SplitNewsSectionsPlugin {
               return;
             }
 
-            // Ensure output directory exists
             const absoluteOutputDir = path.resolve(this.outputDir);
             if (!fs.existsSync(absoluteOutputDir)) {
               fs.mkdirSync(absoluteOutputDir, { recursive: true });
             }
             console.log(`[SplitNewsSectionsPlugin] Output directory: ${absoluteOutputDir}`);
+
+            // --- start fresh summary ---
+            const summary = [];
 
             sections.forEach((section) => {
               try {
@@ -52,30 +54,25 @@ class SplitNewsSectionsPlugin {
                   .update(`${section.title}|${section.date}`)
                   .digest("hex");
 
-                // Create a new JSON structure with only this section
+                // Write individual section JSON
                 const sectionJson = {
                   content: {
-                    hero: json.content.hero, // keep the original hero
+                    hero: json.content.hero,
                     sections: [
                       {
                         ...section,
-                        hash, // update the hash
+                        hash
                       }
                     ]
                   }
                 };
 
                 const outputFilePath = path.join(absoluteOutputDir, `${hash}.json`);
-
-                // Only write if file does not exist
                 if (!fs.existsSync(outputFilePath)) {
                   fs.writeFileSync(outputFilePath, JSON.stringify(sectionJson, null, 2));
                   console.log(`[SplitNewsSectionsPlugin] Wrote new JSON: ${outputFilePath}`);
-                } else {
-                  console.log(`[SplitNewsSectionsPlugin] Skipping existing JSON: ${outputFilePath}`);
                 }
 
-                // Emit to Webpack
                 const relativeFilename = path.relative(
                   compiler.options.output.path,
                   outputFilePath
@@ -86,10 +83,36 @@ class SplitNewsSectionsPlugin {
                   new RawSource(JSON.stringify(sectionJson, null, 2))
                 );
 
+                // --- add to summary ---
+                const dateObj = new Date(section.date);
+                summary.push({
+                  hash,
+                  month: dateObj.getMonth() + 1,
+                  year: dateObj.getFullYear(),
+                  title: section.title,
+                  image: section.image
+                });
+
               } catch (innerErr) {
                 console.error(`[SplitNewsSectionsPlugin] Failed to process section: ${section.title}`, innerErr);
               }
             });
+
+            // Write summary JSON once
+            const summaryFilePath = path.join(absoluteOutputDir, `summary.json`);
+            fs.writeFileSync(summaryFilePath, JSON.stringify(summary, null, 2));
+            console.log(`[SplitNewsSectionsPlugin] Wrote summary JSON: ${summaryFilePath}`);
+
+            const summaryRelative = path.relative(
+              compiler.options.output.path,
+              summaryFilePath
+            ).replace(/\\/g, "/");
+
+            compilation.emitAsset(
+              summaryRelative,
+              new RawSource(JSON.stringify(summary, null, 2))
+            );
+
           } catch (err) {
             console.error("[SplitNewsSectionsPlugin] Error processing input JSON", err);
           }
