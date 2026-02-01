@@ -41,7 +41,7 @@ function renderCalendar(data) {
     "copyurl",
     '<i class="fa-regular fa-copy"></i>',
   );
-  span.dataset.copy = "https://www.benhooper.com/calendar.ics";
+  span.dataset.copy = "https://www.gmfc.uk/calendar.ics";
   span.dataset.tooltip = "Click to copy";
 
   createDiv(sectionsdiv, null, "calendar");

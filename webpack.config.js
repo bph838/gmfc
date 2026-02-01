@@ -66,7 +66,7 @@ module.exports = (env, argv) => {
     entry: {
       index: "./src/pages/index.js",
       calendar: "./src/pages/calendar.js",
-      news: "./src/pages/news.js",      
+      news: "./src/pages/news.js",
       aboutus: "./src/pages/aboutus.js",
       gallery: "./src/pages/gallery.js",
       leaderboard: "./src/pages/club/leaderboard.js",
@@ -269,6 +269,7 @@ module.exports = (env, argv) => {
         input: "src/data/calendarevents.json",
         output: "calendar.ics",
         prodId: "-//" + SITE_TITLE + "//Club Calendar//EN",
+        nameId: SITE_TITLE,
       }),
       //keywords
       new KeywordsMetaPlugin({

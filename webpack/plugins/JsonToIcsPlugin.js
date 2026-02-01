@@ -8,10 +8,12 @@ class JsonToIcsPlugin {
     input,
     output = "calendar.ics",
     prodId = "-//GMFC//Events//EN",
+    nameId = "GMFC",
   }) {
     this.input = input;
     this.output = output;
     this.prodId = prodId;
+    this.nameId = nameId;
     console.log("[JsonToIcsPlugin] Initialized");
   }
 
@@ -50,6 +52,7 @@ class JsonToIcsPlugin {
         "VERSION:2.0",
         `PRODID:${this.prodId}`,
         "CALSCALE:GREGORIAN",
+        `X-WR-CALNAME:${this.nameId}`,
         "METHOD:PUBLISH",
       ];
 
