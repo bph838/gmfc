@@ -129,4 +129,8 @@
   &.is-hidden {
     display: none;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -17,6 +17,7 @@ export function renderAlerts() {
       return;
     }
 
+    let alertsfound = false;
     data.alerts.forEach((alert) => {
       let now = new Date();
       let dateFrom = alert.date_from ? new Date(alert.date_from) : null;
@@ -27,17 +28,33 @@ export function renderAlerts() {
         console.log(`Skipping alert "${alert.title}" due to date range`);
         return; //skip this alert
       } else {
-        showAlertBell();        
+        alertsfound = true;
+        let showalert = shouldAlertBeShown(alert.hash);
         const alertDiv = document.createElement("div");
-        alertDiv.className = `alert alert-${alert.type} show`;
+        alertDiv.className = `alert alert-${alert.type} show site-alerts`;
         alertDiv.setAttribute("role", "alert");
         alertDiv.innerHTML = `
-          <h4><strong>${alert.title}</strong></h4> ${alert.message}          
-        `;
+          <h4><strong>${alert.title}</strong></h4> ${alert.message}`;
+        if (!showalert) alertDiv.style.display = "none";
         alertsContainer.appendChild(alertDiv);
+        //need to add click handler for alert
+        addClickHandler(alertDiv, alert.hash);
         shakeContainer(alertsContainer);
       }
     });
+
+    if (alertsfound) {
+      showAlertBell();
+
+      const navbarAlertBell = document.getElementById("navbar-alert");
+      if (navbarAlertBell) {
+        navbarAlertBell.addEventListener("pointerup", () => {
+          document.querySelectorAll(".site-alerts").forEach((el) => {
+            el.style.display = "block"; 
+          });
+        });
+      }
+    }
   });
 }
 
@@ -46,4 +63,23 @@ function showAlertBell() {
   if (alertNav) {
     alertNav.classList.remove("is-hidden");
   }
+}
+
+function shouldAlertBeShown(hash) {
+  console.log("shouldAlertBeShown");
+  const hashFound = localStorage.getItem(hash);
+  if (hashFound) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function addClickHandler(el, hash) {
+  el.addEventListener("pointerup", (e) => {
+    console.log(`activated alert click ${hash}`);
+    const strNow = new Date().toISOString();
+    localStorage.setItem(hash, strNow);
+    el.style.display = "none";
+  });
 }
