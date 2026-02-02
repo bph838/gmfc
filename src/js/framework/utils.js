@@ -203,3 +203,12 @@ export function createCopy(className) {
     el.addEventListener("touchstart", handler);
   });
 }
+
+
+export function shakeContainer(container) {
+  container.classList.add("shake");
+
+  setTimeout(() => {
+    container.classList.remove("shake");
+  }, 500);    
+}

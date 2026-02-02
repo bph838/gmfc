@@ -1,11 +1,18 @@
 {
   "alerts": [
     {
-      "title": "Membership Renewal",
-      "message": "The annual membership renewal period is now open. Please renew your membership by the end of the month to continue enjoying member benefits.",
-      "type": "success",
-      "date_from": "2026-01-01",
-      "date_to": "2026-01-10"
+      "title": "Test alert process",
+      "message": "Bla bla bla testing <strong>alert</strong> system",
+      "type": "warning",
+      "date_from": "2026-02-01 10:00:00",
+      "date_to": "2026-02-02 12:00:00"
+    },
+    {
+      "title": "Second alert process",
+      "message": "Bla bla bla testing <strong>alert</strong> system bla vla bla ",
+      "type": "danger",
+      "date_from": "2026-02-01 10:00:00",
+      "date_to": "2026-02-02 12:00:00"
     }
   ]
 }
