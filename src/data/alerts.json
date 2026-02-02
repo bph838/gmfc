@@ -15,6 +15,14 @@
       "date_from": "2026-02-01 10:00:00",
       "date_to": "2026-02-01 12:00:00",
       "hash": "9d326c6ff7ff1f40682945dd13321c53"
+    },
+    {
+      "title": "New website",
+      "message": "you can have alerts",
+      "type": "primary",
+      "date_from": "2026-02-01 10:00:00",
+      "date_to": "2026-02-02 11:00:00",
+      "hash": "06647c37519c6c144fc9ae7a099d1f75"
     }
   ]
 }

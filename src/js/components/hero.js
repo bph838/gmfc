@@ -1,6 +1,6 @@
 import { createDiv, createH1, createSpan } from "@framework/dom";
 import { setSiteImage } from "@framework/utils";
-import { renderAlerts } from "@framework/alerts";
+import { renderAlerts } from "@components/alerts";
 
 export function renderHero(data) {
   console.log("renderHero called");
@@ -93,6 +93,7 @@ export function renderHero(data) {
 function getImageForHero(herotype) {
   let imageurl = "";
   switch (herotype) {
+    default:
     case "plane":
       imageurl =
         "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-plane.jpg";
@@ -108,8 +109,6 @@ function getImageForHero(herotype) {
     case "crawler":
       imageurl =
         "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-crawl.jpg";
-      break;
-    default:
       break;
   }
   return imageurl;

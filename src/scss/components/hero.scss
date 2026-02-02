@@ -100,13 +100,19 @@
 
 #alerts-container {
   position: absolute;
-  top: 5rem;
-  width: 20rem;
   z-index: 1050; // Ensure it appears above other content
-  margin-left: 50px;
-  margin-top: 20px;
+  top: 2rem;
   rotate: -15deg;
-  padding: 1em;
+  padding: 2em;
+
+  @include respond(pc, tablet) {
+    top: 5rem;
+    width: 20rem;
+    margin-left: 50px;
+    margin-top: 20px;
+    
+    padding: 1em;
+  }
 }
 
 .nav-menu-link {
@@ -130,6 +136,12 @@
     display: none;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.site-alerts {
   &:hover {
     cursor: pointer;
   }
