@@ -1,5 +1,6 @@
 import { createDiv, createH1, createSpan } from "@framework/dom";
 import { setSiteImage } from "@framework/utils";
+import { renderAlerts } from "@framework/alerts";
 
 export function renderHero(data) {
   console.log("renderHero called");
@@ -84,6 +85,9 @@ export function renderHero(data) {
   crawlerspan.addEventListener("click", (event) => {
     changeHeroImage("crawler");
   });
+
+  //render any alerts
+  renderAlerts();
 }
 
 function getImageForHero(herotype) {

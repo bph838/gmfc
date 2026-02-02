@@ -58,4 +58,3 @@ function renderExternalCalendar(url) {
   });
   calendar.render();
 }
-
