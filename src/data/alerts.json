@@ -5,14 +5,16 @@
       "message": "Bla bla bla testing <strong>alert</strong> system",
       "type": "warning",
       "date_from": "2026-02-01 10:00:00",
-      "date_to": "2026-02-02 12:00:00"
+      "date_to": "2026-02-02 12:00:00",
+      "hash": "d7a1bdabe48023d12dce3ff0bfe41bf7"
     },
     {
       "title": "Second alert process",
       "message": "Bla bla bla testing <strong>alert</strong> system bla vla bla ",
       "type": "danger",
       "date_from": "2026-02-01 10:00:00",
-      "date_to": "2026-02-02 12:00:00"
+      "date_to": "2026-02-02 12:00:00",
+      "hash": "cfd723cd642db5136c5862bb43a5aa2a"
     }
   ]
 }

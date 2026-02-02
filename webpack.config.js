@@ -11,6 +11,7 @@ const UpdateNewsHashesPlugin = require("./webpack/plugins/UpdateNewsHashesPlugin
 const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlugin");
 const JsonToIcsPlugin = require("./webpack/plugins/JsonToIcsPlugin");
 const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
+const AlertHashPlugin = require("./webpack/plugins/AlertHashPlugin");
 const ExcelToCsvAndJsonPlugin = require("./webpack/plugins/ExcelToCsvAndJsonPlugin.js");
 const { SITE_TITLE } = require("./src/js/components/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -283,13 +284,18 @@ module.exports = (env, argv) => {
         csvOutput: "src/data/dynamic/leaderboard.csv", // Where CSV will go
         jsonOutput: "src/data/leaderboard.json", // Where JSON will go
       }),
+      //hash the alerts
+      new AlertHashPlugin({
+      file: "./src/data/alerts.json"
+    })
     ],
     watchOptions: {
       ignored: [
         "**/src/data/dynamic/**",
         "**/src/data/leaderboard.json",
         "**/src/data/newsitems/summary.json",
-      ], // <- ignore CSV to stop repeated builds
+        "**/src/data/alerts.json",
+      ], 
     },
     optimization: {
       minimize: isProd,
