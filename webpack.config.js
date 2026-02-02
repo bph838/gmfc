@@ -12,6 +12,7 @@ const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlug
 const JsonToIcsPlugin = require("./webpack/plugins/JsonToIcsPlugin");
 const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
 const AlertHashPlugin = require("./webpack/plugins/AlertHashPlugin");
+const GeneratePathsPlugin = require("./webpack/plugins/GeneratePathsPlugin");
 const ExcelToCsvAndJsonPlugin = require("./webpack/plugins/ExcelToCsvAndJsonPlugin.js");
 const { SITE_TITLE } = require("./src/js/components/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -127,8 +128,10 @@ module.exports = (env, argv) => {
               ],
             },
           },
-          { from: "src/favicon.ico", to: "." },
-          { from: "src/site.webmanifest", to: "." },
+          { from: "src/rootdir/favicon.ico", to: "." },
+          { from: "src/rootdir/site.webmanifest", to: "." },
+          { from: "src/rootdir/sitemap.xml", to: "." },
+          { from: "src/rootdir/robots.txt", to: "." },
         ],
       }),
 
@@ -286,8 +289,9 @@ module.exports = (env, argv) => {
       }),
       //hash the alerts
       new AlertHashPlugin({
-      file: "./src/data/alerts.json"
-    })
+        file: "./src/data/alerts.json",
+      }),
+      //new GeneratePathsPlugin(),
     ],
     watchOptions: {
       ignored: [
@@ -295,7 +299,7 @@ module.exports = (env, argv) => {
         "**/src/data/leaderboard.json",
         "**/src/data/newsitems/summary.json",
         "**/src/data/alerts.json",
-      ], 
+      ],
     },
     optimization: {
       minimize: isProd,

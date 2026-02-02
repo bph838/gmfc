@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /data/
+Disallow: /newsitems/
+
+Sitemap: https://gmfc.uk/sitemap.xml
