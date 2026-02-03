@@ -88,6 +88,15 @@ module.exports = (env, argv) => {
       static: path.resolve(__dirname, "dist"),
       port: 8080,
       hot: true,
+
+      historyApiFallback: {
+        rewrites: [
+          {
+            from: /^\/([^\/]+)$/,
+            to: (context) => `/${context.match[1]}.html`,
+          },
+        ],
+      },
     },
 
     resolve: {

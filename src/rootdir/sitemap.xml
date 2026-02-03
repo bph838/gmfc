@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://www.gmfc.uk/index.html</loc>
+        <loc>https://www.gmfc.uk/index</loc>
         <lastmod>2026-02-02</lastmod>
     </url>
     <url>
-        <loc>https://www.gmfc.uk/calendar.html</loc>
+        <loc>https://www.gmfc.uk/calendar</loc>
         <lastmod>2026-02-02</lastmod>
     </url>
     <url>
-        <loc>https://www.gmfc.uk/news.html</loc>
+        <loc>https://www.gmfc.uk/news</loc>
         <lastmod>2026-02-02</lastmod>
     </url>
      <url>
-        <loc>https://www.gmfc.uk/aboutus.html</loc>
+        <loc>https://www.gmfc.uk/aboutus</loc>
         <lastmod>2026-02-02</lastmod>
     </url>
      <url>
-        <loc>https://www.gmfc.uk/gallery.html</loc>
+        <loc>https://www.gmfc.uk/gallery</loc>
         <lastmod>2026-02-02</lastmod>
     </url>
      <url>
-        <loc>https://www.gmfc.uk/club/clubrules.html</loc>
+        <loc>https://www.gmfc.uk/club/clubrules</loc>
         <lastmod>2026-02-02</lastmod>
     </url>
      <url>
-        <loc>https://www.gmfc.uk/club/leaderboard.html</loc>
+        <loc>https://www.gmfc.uk/club/leaderboard</loc>
         <lastmod>2026-02-02</lastmod>
     </url>
      <url>
-        <loc>https://www.gmfc.uk/club/clubmerch.html</loc>
+        <loc>https://www.gmfc.uk/club/clubmerch</loc>
         <lastmod>2026-02-02</lastmod>
     </url>
      <url>
-        <loc>https://www.gmfc.uk/club/clubmember.html</loc>
+        <loc>https://www.gmfc.uk/club/clubmember</loc>
         <lastmod>2026-02-02</lastmod>
     </url>
 
     <url>
-        <loc>https://www.gmfc.uk/news/news/2026/1/track-only-members-non-flying.html</loc>
+        <loc>https://www.gmfc.uk/news/news/2026/1/track-only-members-non-flying</loc>
         <lastmod>2026-01-01</lastmod>
     </url>
     <url>
-        <loc>https://www.gmfc.uk/news/news/2026/1/news/2025/1/gmfc-and-the-caa-awareness-for-members.html</loc>
+        <loc>https://www.gmfc.uk/news/news/2026/1/news/2025/1/gmfc-and-the-caa-awareness-for-members</loc>
         <lastmod>2025-01-01</lastmod>
     </url>
      <url>
-        <loc>https://www.gmfc.uk/news/2025/1/monthly-club-days.html</loc>
+        <loc>https://www.gmfc.uk/news/2025/1/monthly-club-days</loc>
         <lastmod>2025-01-01</lastmod>
     </url>
 </urlset>

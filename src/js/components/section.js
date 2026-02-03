@@ -70,7 +70,7 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
     console.log("a");
     //a link can be added with a hash as the anchor
     if (data.hash && pageurl.length > 1) {
-      const url = `/news/${date.getFullYear()}/${date.getMonth() + 1}/${sanitizeString(data.title)}.html`;
+      const url = `/news/${date.getFullYear()}/${date.getMonth() + 1}/${sanitizeString(data.title)}`;
       section.id = url;
       createLink(
         headerdiv,
@@ -78,15 +78,7 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
         "sectionlink",
         "<i class='fa-solid fa-link'></i>",
         ""
-      );
-      /*let url = `/${pageurl}#${data.hash}`;
-      section.id = url;
-      createLink(
-        headerdiv,
-        url,
-        "sectionlink",
-        "<i class='fa-solid fa-link'></i>",
-      );*/
+      );     
     }
   }
 

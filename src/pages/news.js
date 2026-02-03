@@ -11,7 +11,7 @@ import {
 const { SITE_TITLE, SITE_ADDRESS } = require("@components/constants");
 
 const newsUrl = "data/pages/news.json";
-const newsItemUrl = "news.html";
+const newsItemUrl = "news";
 
 setupMenuCommands("page-news");
 console.log("Rending news");
