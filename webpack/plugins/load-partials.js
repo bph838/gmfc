@@ -6,7 +6,7 @@ const partials = {
   navigation: "navigation.html",
   footer: "footer.html",
   keywords:"keywords.html",
-  favicon:"favicon.html",
+  favicon:"favicon.html"
 };
 
 const loadPartials = () => {

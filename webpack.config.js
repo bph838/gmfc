@@ -14,17 +14,15 @@ const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
 const AlertHashPlugin = require("./webpack/plugins/AlertHashPlugin");
 const GeneratePathsPlugin = require("./webpack/plugins/GeneratePathsPlugin");
 const ExcelToCsvAndJsonPlugin = require("./webpack/plugins/ExcelToCsvAndJsonPlugin.js");
-const { SITE_TITLE } = require("./src/js/components/constants.js");
+const { SITE_TITLE, SITE_DESCRIPTION } = require("./src/js/components/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const loadPartials = require("./webpack/plugins/load-partials");
 
-// Utility to sanitize a string for a filename
-function sanitize(str) {
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
+const site = {
+  sitename: SITE_TITLE,
+  description:SITE_DESCRIPTION,
+    
+};
 
 // Load your JSON data
 const newsItems = JSON.parse(
@@ -54,6 +52,7 @@ const newsPlugins = newsItems.map((item) => {
       year: item.year,
       hash: item.hash,
       partials: loadPartials(),
+      site: site,
     },
   });
 });
@@ -153,6 +152,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -165,6 +165,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -177,6 +178,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -189,6 +191,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -201,6 +204,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -213,6 +217,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -225,6 +230,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -237,6 +243,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -249,6 +256,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -261,6 +269,7 @@ module.exports = (env, argv) => {
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
+          site: site,
         },
       }),
 
@@ -363,3 +372,11 @@ module.exports = (env, argv) => {
     },
   };
 };
+
+// Utility to sanitize a string for a filename
+function sanitize(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}

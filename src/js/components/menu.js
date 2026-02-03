@@ -7,9 +7,8 @@
  * Expects each nav-link to have a `data-menu` attribute matching the ID of its target section.
  */
 
-import { setPageTitle,setMeta } from "../framework/utils";
 import { initCopyrightYear, initMenuName } from "./initpage";
-const { SITE_TITLE,SITE_ADDRESS,SITE_DESCRIPTION  } = require("@components/constants");
+const { SITE_TITLE } = require("@components/constants");
 
 export function setupMenuCommands(activeClass = "page-home") {
   console.info("setupMenuCommands");
@@ -24,9 +23,8 @@ export function setupMenuCommands(activeClass = "page-home") {
     } else {
       link.classList.remove("active");
     }
-  });  
+  });
 
   initCopyrightYear();
   initMenuName(SITE_TITLE);
 }
-
