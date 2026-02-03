@@ -1,4 +1,4 @@
-import { fetchJson, shakeContainer } from "@framework/utils";
+import { fetchJson, shakeContainer, getTimeParts } from "@framework/utils";
 
 export function renderAlerts() {
   console.log("Rendering alerts");
@@ -92,18 +92,24 @@ function renderAnyCountdowns(alertsContainer) {
     elCd.forEach((el) => {
       const countdownType = el.dataset.cdType?.toLowerCase();
       const dateStr = el.dataset.cdDate;
-      if (!dateStr||!countdownType) return;
+      if (!dateStr || !countdownType) return;
 
       const date = new Date(dateStr.replace(" ", "T"));
       if (isNaN(date)) return;
-      
+
       const diff = date - now;
-      switch(countdownType){
+      const t = getTimeParts(diff);
+      switch (countdownType) {
         case "days":
-          let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          el.textContent = `${days} days`;
+          el.textContent = `${t.days} days`;
           break;
-      }        
+        case "datetimetoseconds":
+          if (t.days > 0)
+            el.textContent = `${t.days} days ${t.hours} hours ${t.minutes} mins ${t.seconds} secs`;
+          else
+            el.textContent = `${t.hours} hours ${t.minutes} mins ${t.seconds} secs`;
+          break;
+      }
     });
   }, 1000);
 }

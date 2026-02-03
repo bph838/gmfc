@@ -26,11 +26,11 @@
     },
     {
       "title": "Christmas Countdown",
-      "message": "It is <span class='countdown' data-cd-date='2026-12-25T12:00:00' data-cd-type='days'></span> till christmas!",
+      "message": "It is <span class='countdown' data-cd-date='2026-12-25T12:00:00' data-cd-type='datetimetoseconds'></span> till christmas!",
       "type": "primary",
       "date_from": "2026-02-01 10:00:00",
       "date_to": "2026-02-03 18:00:00",
-      "hash": "5906f6bc6be7e60fa04696c81d88c6e2"
+      "hash": "0625b3b5a403329869c671aad1c52397"
     }
   ]
 }
