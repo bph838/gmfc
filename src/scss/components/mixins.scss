@@ -2,7 +2,7 @@
 
 $border-radius-big: 18px;
 $border-radius-med: 12px;
-
+$border-radius-small: 6px;
 
 @mixin line_break {
   content: "\f519"; // your icon
@@ -27,22 +27,22 @@ $border-radius-med: 12px;
 }
 
 @mixin site-image-radius {
-    border-top-left-radius: $border-radius-med*0.33;
-    border-top-right-radius: $border-radius-big*0.33;;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: $border-radius-big*0.33;
+  border-top-left-radius: $border-radius-med * 0.33;
+  border-top-right-radius: $border-radius-big * 0.33;
+  border-bottom-right-radius: $border-radius-small * 0.33;
+  border-bottom-left-radius: $border-radius-big * 0.33;
 
   @include respond(pc) {
     border-top-left-radius: $border-radius-med;
     border-top-right-radius: $border-radius-big;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius:$border-radius-big
+    border-bottom-right-radius: $border-radius-small;
+    border-bottom-left-radius: $border-radius-big;
   }
 
   @include respond(tablet) {
-    border-top-left-radius: $border-radius-med*0.75;
-    border-top-right-radius: $border-radius-big*0.75;;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: $border-radius-big*0.75;
+    border-top-left-radius: $border-radius-med * 0.75;
+    border-top-right-radius: $border-radius-big * 0.75;
+    border-bottom-right-radius: $border-radius-small * 0.75;
+    border-bottom-left-radius: $border-radius-big * 0.75;
   }
 }
