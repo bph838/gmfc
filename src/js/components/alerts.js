@@ -44,13 +44,13 @@ export function renderAlerts() {
     });
 
     if (alertsfound) {
+      renderAnyCountdowns(alertsContainer);
       showAlertBell();
-
       const navbarAlertBell = document.getElementById("navbar-alert");
       if (navbarAlertBell) {
         navbarAlertBell.addEventListener("pointerup", () => {
           document.querySelectorAll(".site-alerts").forEach((el) => {
-            el.style.display = "block"; 
+            el.style.display = "block";
           });
         });
       }
@@ -82,4 +82,28 @@ function addClickHandler(el, hash) {
     localStorage.setItem(hash, strNow);
     el.style.display = "none";
   });
+}
+
+function renderAnyCountdowns(alertsContainer) {
+  //<span class='countdown' data-cd-date='2026-12-25 12:00:00' data-cd-type='days'></span>
+  const elCd = alertsContainer.querySelectorAll(".countdown");
+  setInterval(() => {
+    const now = new Date();
+    elCd.forEach((el) => {
+      const countdownType = el.dataset.cdType?.toLowerCase();
+      const dateStr = el.dataset.cdDate;
+      if (!dateStr||!countdownType) return;
+
+      const date = new Date(dateStr.replace(" ", "T"));
+      if (isNaN(date)) return;
+      
+      const diff = date - now;
+      switch(countdownType){
+        case "days":
+          let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          el.textContent = `${days} days`;
+          break;
+      }        
+    });
+  }, 1000);
 }
