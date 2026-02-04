@@ -12,8 +12,9 @@
         "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/racing/checkeredflag.png",
         "text": [
           "A little friendly competition on the RC car track!",
-          "Sumbit your time with a date and how many S you were running.",
-          "The leaderboard is only for the last year."
+          "Submit your times to Ben via WhatsApp... it's an honour system we are running here.",
+          "If anyone wants to put a transponder on their car for millisecond timing, people are using the <a href='https://lapmonitor.com/store/en/' target='_blank'>LapMonitor</a> system.",
+          "The leaderboard is only for the last year. after a year your time disappears."
         ],
         "leaderboard": {
           "url": "/data/leaderboard.json"

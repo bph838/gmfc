@@ -60,7 +60,7 @@ function renderExternalCalendar(url) {
       if (info.event.url) {
         const urlObj = new URL(info.event.url, window.location.origin);
         if (
-          urlObj.hostname != "www.gmfc.uk" ||
+          urlObj.hostname != "www.gmfc.uk" &&
           urlObj.hostname != "localhost"
         ) {
           info.jsEvent.preventDefault(); // stop default navigation
