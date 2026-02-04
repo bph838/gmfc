@@ -10,7 +10,7 @@ import {
 } from "@framework/utils";
 const { SITE_TITLE, SITE_ADDRESS } = require("@components/constants");
 
-const newsUrl = "data/pages/news.json";
+const newsUrl = "/data/pages/news.json";
 const newsItemUrl = "news";
 
 setupMenuCommands("page-news");

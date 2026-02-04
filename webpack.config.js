@@ -92,6 +92,7 @@ module.exports = (env, argv) => {
       hot: true,
       historyApiFallback: {
         rewrites: [
+          { from: /^\/news\/?$/, to: "/news.html" },
           {
             from: /./,
             to: (context) => {
@@ -167,6 +168,19 @@ module.exports = (env, argv) => {
         template: "./src/templates/main.html",
         chunks: ["calendar"],
         title: SITE_TITLE + " - Calendar",
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+          site: site,
+        },
+      }),
+
+      //news.html
+      new HtmlWebpackPlugin({
+        filename: "news/index.html",
+        template: "./src/templates/main.html",
+        chunks: ["news"],
+        title: SITE_TITLE + " - News",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
