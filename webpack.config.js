@@ -120,7 +120,7 @@ module.exports = (env, argv) => {
             from: "src/data",
             to: "data",
             globOptions: {
-              ignore: ["**/dynamic/**"], // <-- this skips any folder named "website" inside data
+              ignore: ["**/dynamic/**", "**/documents/**"],
             },
           },
           {

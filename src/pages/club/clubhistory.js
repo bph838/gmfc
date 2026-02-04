@@ -3,13 +3,13 @@ import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea } from "@framework/dom";
 import { fetchJson } from "@framework/utils";
-import data from "@data/pages/club/clubrules.json";
+import data from "@data/pages/club/clubhistory.json";
 
 setupMenuCommands("page-clubhistory");
-//renderClubRules(data);
+renderClubHistory(data);
 
-/*
-function renderClubRules(data) {
+
+function renderClubHistory(data) {
   console.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
@@ -24,4 +24,4 @@ function renderClubRules(data) {
     });
   }
 }
-  */
+
