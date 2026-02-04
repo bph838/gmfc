@@ -6,6 +6,8 @@ from datetime import datetime
 from PIL import Image
 from PIL.ExifTags import TAGS
 
+# make sure you add the end /
+# run> python tojson.py ./gallery-gmfc/<DIRNAME>/
 
 parser = argparse.ArgumentParser(description="Tojson")
 parser.add_argument("image_dir", help="The image directory to parse")
