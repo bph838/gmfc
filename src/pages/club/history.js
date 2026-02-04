@@ -3,7 +3,7 @@ import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea } from "@framework/dom";
 import { fetchJson } from "@framework/utils";
-import data from "@data/pages/club/clubhistory.json";
+import data from "@data/pages/club/history.json";
 
 setupMenuCommands("page-clubhistory");
 renderClubHistory(data);

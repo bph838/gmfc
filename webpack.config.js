@@ -73,10 +73,10 @@ module.exports = (env, argv) => {
       aboutus: "./src/pages/aboutus.js",
       gallery: "./src/pages/gallery.js",
       leaderboard: "./src/pages/club/leaderboard.js",
-      clubrules: "./src/pages/club/clubrules.js",
+      clubrules: "./src/pages/club/rules.js",
       clubmerch: "./src/pages/club/clubmerch.js",
       clubmember: "./src/pages/club/clubmember.js",
-      clubhistory: "./src/pages/club/clubhistory.js",
+      cubhistory: "./src/pages/club/history.js",
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -242,7 +242,7 @@ module.exports = (env, argv) => {
 
       //clubrules.html
       new HtmlWebpackPlugin({
-        filename: "club/clubrules.html",
+        filename: "club/rules.html",
         template: "./src/templates/main.html",
         chunks: ["clubrules"],
         title: SITE_TITLE + " - Club Rules",
@@ -253,11 +253,11 @@ module.exports = (env, argv) => {
         },
       }),
 
-      //clubhistory.html
+      //club/history.html
       new HtmlWebpackPlugin({
-        filename: "club/clubhistory.html",
+        filename: "club/history.html",
         template: "./src/templates/main.html",
-        chunks: ["clubhistory"],
+        chunks: ["cubhistory"],
         title: SITE_TITLE + " - Club History",
         templateParameters: {
           siteName: SITE_TITLE,
