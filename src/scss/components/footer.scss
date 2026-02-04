@@ -38,10 +38,11 @@ footer {
   text-align: center;
   .copywrite {
     font-size: 0.6rem;
+    margin-bottom: 1em;
   }
 }
 
-#footer-links {
+.footer-links-general {
   display: none;
   @include respond(pc, tablet) {
     display: flex;
@@ -67,6 +68,20 @@ footer {
 
   .colour_red {
     color: #ff0000;
+  }
+}
+
+#footer-links {
+  display: none;
+  @include respond(pc, tablet) {
+    display: flex;
+  }
+}
+
+#footer-links-mobile {
+  display: contents;
+  @include respond(pc, tablet) {
+    display: none;
   }
 }
 
