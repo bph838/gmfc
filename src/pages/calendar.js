@@ -55,6 +55,19 @@ function renderExternalCalendar(url) {
     initialView: "dayGridMonth",
     firstDay: 1,
     events: url,
+    eventClick: function (info) {
+      console.log("cal click");
+      if (info.event.url) {
+        const urlObj = new URL(info.event.url, window.location.origin);
+        if (
+          urlObj.hostname != "www.gmfc.uk" ||
+          urlObj.hostname != "localhost"
+        ) {
+          info.jsEvent.preventDefault(); // stop default navigation
+          window.open(info.event.url, "_blank"); // new tab
+        }
+      }
+    },
   });
   calendar.render();
 }
