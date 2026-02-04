@@ -74,8 +74,8 @@ module.exports = (env, argv) => {
       gallery: "./src/pages/gallery.js",
       leaderboard: "./src/pages/club/leaderboard.js",
       clubrules: "./src/pages/club/rules.js",
-      clubmerch: "./src/pages/club/clubmerch.js",
-      clubmember: "./src/pages/club/clubmember.js",
+      clubmerch: "./src/pages/club/merch.js",
+      clubmember: "./src/pages/club/member.js",
       cubhistory: "./src/pages/club/history.js",
       styles: "./src/scss/styles.scss",
     },
@@ -281,7 +281,7 @@ module.exports = (env, argv) => {
 
       //clubmerch.html
       new HtmlWebpackPlugin({
-        filename: "club/clubmerch.html",
+        filename: "club/merch.html",
         template: "./src/templates/main.html",
         chunks: ["clubmerch"],
         title: SITE_TITLE + " - Club Merch",
@@ -294,7 +294,7 @@ module.exports = (env, argv) => {
 
       //clubmember.html
       new HtmlWebpackPlugin({
-        filename: "club/clubmember.html",
+        filename: "club/member.html",
         template: "./src/templates/iframe_membermojo_holder.html",
         chunks: ["clubmember"],
         title: SITE_TITLE + " - Members",
