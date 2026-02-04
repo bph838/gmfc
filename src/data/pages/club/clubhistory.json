@@ -1,0 +1,26 @@
+{
+  "content": {
+    "hero": {
+      "generatehero":true,
+      "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-plane.jpg",
+      "text": "Club History"
+    },
+    "sections": [
+      {
+        "title": "AMARC (2002) Ltd Win Full Planning Permission for their Flying Site",
+        "date":"2009-02-01",
+        "type": "wrappedTextLeft",
+        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/siteimages/clubhistory.jpg",
+        "text": [
+          ""
+        ],
+        "pdfs": [
+          {
+            "text": "Original Article",
+            "url": "/data/documents/GMFC-Rules-2025-Updated-March-2023.pdf"
+          }
+        ]
+      }
+    ]
+  }
+}

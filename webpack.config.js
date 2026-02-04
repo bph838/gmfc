@@ -14,14 +14,16 @@ const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
 const AlertHashPlugin = require("./webpack/plugins/AlertHashPlugin");
 const GeneratePathsPlugin = require("./webpack/plugins/GeneratePathsPlugin");
 const ExcelToCsvAndJsonPlugin = require("./webpack/plugins/ExcelToCsvAndJsonPlugin.js");
-const { SITE_TITLE, SITE_DESCRIPTION } = require("./src/js/components/constants.js");
+const {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+} = require("./src/js/components/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const loadPartials = require("./webpack/plugins/load-partials");
 
 const site = {
   sitename: SITE_TITLE,
-  description:SITE_DESCRIPTION,
-    
+  description: SITE_DESCRIPTION,
 };
 
 // Load your JSON data
@@ -74,6 +76,7 @@ module.exports = (env, argv) => {
       clubrules: "./src/pages/club/clubrules.js",
       clubmerch: "./src/pages/club/clubmerch.js",
       clubmember: "./src/pages/club/clubmember.js",
+      clubhistory: "./src/pages/club/clubhistory.js",
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -87,12 +90,14 @@ module.exports = (env, argv) => {
       static: path.resolve(__dirname, "dist"),
       port: 8080,
       hot: true,
-
       historyApiFallback: {
         rewrites: [
           {
-            from: /^\/([^\/]+)$/,
-            to: (context) => `/${context.match[1]}.html`,
+            from: /./,
+            to: (context) => {
+              const path = context.parsedUrl.pathname;
+              return `${path}.html`;
+            },
           },
         ],
       },
@@ -227,6 +232,19 @@ module.exports = (env, argv) => {
         template: "./src/templates/main.html",
         chunks: ["clubrules"],
         title: SITE_TITLE + " - Club Rules",
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+          site: site,
+        },
+      }),
+
+      //clubhistory.html
+      new HtmlWebpackPlugin({
+        filename: "club/clubhistory.html",
+        template: "./src/templates/main.html",
+        chunks: ["clubhistory"],
+        title: SITE_TITLE + " - Club History",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,
