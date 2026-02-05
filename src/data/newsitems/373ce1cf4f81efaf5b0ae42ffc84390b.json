@@ -2,7 +2,7 @@
   "content": {
     "hero": {
       "generatehero": true,
-      "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-plane.jpg",
+      "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
       "text": "News & Posts"
     },
     "sections": [
@@ -10,7 +10,7 @@
         "title": "Monthly Club Days",
         "date": "2025-01-01",
         "type": "wrappedTextLeft",
-        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/news/clubnews.jpg",
+        "image": "https://siteimages.gmfc.uk/news/clubnews.jpg",
         "text": [
           "We aim to run monthly club days on the third weekend of the month throughout the year, weather depending.",
           "Saturday is general member flying. Sunday we hold a maintenance session in the morning, from 9am until 12pm (we expect all members to help out when they can, many hands make light work), this is followed by an afternoon of flying and some fun competitions. We will aim for something different each month. Please keep an eye on the flyers for each club day.",

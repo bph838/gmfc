@@ -2,14 +2,14 @@
   "content": {
     "hero": {
       "generatehero": true,
-      "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-plane.jpg",
+      "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
       "text": "Gordano Model Flying Club"
     },
     "sections": [
       {
         "title": "Welcome to Gordano Model Flying Club",
         "type": "wrappedTextLeft",
-        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/siteimages/siteflying.jpg",
+        "image": "https://siteimages.gmfc.uk/siteimages/siteflying.jpg",
         "text": [
           "The website has had a little make over!",
           "We are aiming for the site to be a resource for everyone to keep up to date with the <a href='/calendar'>events</a> and maybe some of the fun we have most weekends.",
@@ -21,22 +21,22 @@
         "customsection": "sectionfullwidth",
         "images": [
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-01.jpg"
+            "src": "https://siteimages.gmfc.uk/carousel/carousel-01.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-02.jpg"
+            "src": "https://siteimages.gmfc.uk/carousel/carousel-02.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-03.jpg"
+            "src": "https://siteimages.gmfc.uk/carousel/carousel-03.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-04.jpg"
+            "src": "https://siteimages.gmfc.uk/carousel/carousel-04.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-05.jpg"
+            "src": "https://siteimages.gmfc.uk/carousel/carousel-05.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/carousel/carousel-06.jpg"
+            "src": "https://siteimages.gmfc.uk/carousel/carousel-06.jpg"
           }
         ]
       },
@@ -45,13 +45,13 @@
         "type": "imagesLeft",
         "images": [
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/flying/flying_site_01.jpg"
+            "src": "https://siteimages.gmfc.uk/flying/flying_site_01.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/flying/flying_site_02.jpg"
+            "src": "https://siteimages.gmfc.uk/flying/flying_site_02.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/flying/flying_site_03.jpg"
+            "src": "https://siteimages.gmfc.uk/flying/flying_site_03.jpg"
           }
         ],
         "text": [
@@ -63,13 +63,13 @@
         "type": "imagesRight",
         "images": [
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/cartrack/cartrack1.jpg"
+            "src": "https://siteimages.gmfc.uk/cartrack/cartrack1.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/cartrack/cartrack2.jpg"
+            "src": "https://siteimages.gmfc.uk/cartrack/cartrack2.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/cartrack/cartrack3.jpg"
+            "src": "https://siteimages.gmfc.uk/cartrack/cartrack3.jpg"
           }
         ],
         "text": [
@@ -83,13 +83,13 @@
         "type": "imagesLeft",
         "images": [
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/crawl/crawl1.jpg"
+            "src": "https://siteimages.gmfc.uk/crawl/crawl1.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/crawl/crawl2.jpg"
+            "src": "https://siteimages.gmfc.uk/crawl/crawl2.jpg"
           },
           {
-            "src": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/crawl/crawl3.jpg"
+            "src": "https://siteimages.gmfc.uk/crawl/crawl3.jpg"
           }
         ],
         "text": [

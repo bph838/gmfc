@@ -2,7 +2,7 @@
   "content": {
     "hero": {
       "generatehero": true,
-      "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-plane.jpg",
+      "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
       "text": "News & Posts"
     },
     "sections": [
@@ -10,7 +10,7 @@
         "title": "Track only members (non Flying)",
         "date": "2026-01-05",
         "type": "wrappedTextLeft",
-        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/news/stand.jpg",
+        "image": "https://siteimages.gmfc.uk/news/stand.jpg",
         "text": [
           "The Club have received a number of enquiries about joining Gordano Model Flying Club to use the RC track facilities. Details for ‘track only members (non Flying)’ are currently being finalised by the committee. We plan to admit new members in the Spring after the Club April AGM. Any new applications will be added to a waiting list until then.",
           "Visitors wishing to visit and view track facilities are welcome, but must contact the club in advance to arrange a suitable date. A committee member will act as host for their visit.",
@@ -22,7 +22,7 @@
         "title": "GMFC and the CAA – Awareness for members",
         "date": "2025-01-01",
         "type": "wrappedTextLeft",
-        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/news/caa.jpg",
+        "image": "https://siteimages.gmfc.uk/news/caa.jpg",
         "text": [
           "One area I perceive we will need to encourage more this year is CAA regulations.",
           "The Air Navigation Order obligations on anyone flying anything over 250g (or less if with a camera) are law. Your BMFA membership assumes compliance. So please, if you haven’t already read the latest position with respect to Flier ID (summarised in the January  BMFA newsletter – paper or online) get your Operator ID on to every model, and ensure you have gained a flier ID by undertaking the RCC test via the BMFA site.",
@@ -37,7 +37,7 @@
         "title": "Monthly Club Days",
         "date": "2025-01-01",
         "type": "wrappedTextLeft",
-        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/news/clubnews.jpg",
+        "image": "https://siteimages.gmfc.uk/news/clubnews.jpg",
         "text": [
           "We aim to run monthly club days on the third weekend of the month throughout the year, weather depending.",
           "Saturday is general member flying. Sunday we hold a maintenance session in the morning, from 9am until 12pm (we expect all members to help out when they can, many hands make light work), this is followed by an afternoon of flying and some fun competitions. We will aim for something different each month. Please keep an eye on the flyers for each club day.",

@@ -2,7 +2,7 @@
   "content": {
     "hero": {
       "generatehero": true,
-      "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-plane.jpg",
+      "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
       "text": "Club History"
     },
     "sections": [
@@ -10,7 +10,7 @@
         "title": "AMARC (2002) Ltd Win Full Planning Permission for their Flying Site",
         "date": "2009-02-01",
         "type": "wrappedTextLeft",
-        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/history/article-2009-photo.jpg",
+        "image": "https://siteimages.gmfc.uk/history/article-2009-photo.jpg",
         "text": [
           "Avon Model Aero Radio Club was formed in the late fifties by a group of like-minded enthusiasts to forward the sport and recreation of building and flying model aircraft. The chosen venue for this, from then to the present day is the old disused Bristol Airport now known as Hengrove Park in Bristol. The park covers some 60 acres and with Bristol City Council permission we share it with the general public and a local Rugby club. Bristol City Council has been keen to increase the utilisation and realise the potential of this site to include under cover sports, leisure, industry, 500 houses and a new Hospital. The formal planning consultation is now well underway and this will in the very near future make model flying non-viable at this site.",
           "In preparation for this the club, who affiliated to the BMFA a long time ago, started to look for alternative sites, bearing in mind that there were very limited funds available from our eighty members, a half of which are juniors or Senior Citizens. In November 2001, much to our surprise we managed, with a bid of £1000 successfully to purchase at auction an area of land that was formerly a waste disposal tip in the Gordano Valley within North Somerset. Since then we have changed the club to a Limited Company, secured the site from the ever-present motor bikes and tried to realise the potential of this site for our purpose by removing some of the 20 acres of brambles, rubbish and scrub.",
@@ -28,7 +28,7 @@
         "pdfs": [
           {
             "text": "Original article",
-            "url": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/documents/AMARC%282002%29-Ltd-Win-Full-Planning-Permission.pdf"
+            "url": "https://siteimages.gmfc.uk/documents/AMARC%282002%29-Ltd-Win-Full-Planning-Permission.pdf"
           }
         ]
       }

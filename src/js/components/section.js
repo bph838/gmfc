@@ -148,7 +148,7 @@ export function renderPDFLinks(pageSection, data) {
 
       const imgPDF = document.createElement("img");
       imgPDF.src =
-        "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/icons/pdf.png";
+        "https://siteimages.gmfc.uk/icons/pdf.png";
       imgPDF.class = "pdfimage";
       pdfLink.appendChild(imgPDF);
 

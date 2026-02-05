@@ -96,19 +96,19 @@ function getImageForHero(herotype) {
     default:
     case "plane":
       imageurl =
-        "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-plane.jpg";
+        "https://siteimages.gmfc.uk/hero/hero-plane.jpg";
       break;
     case "helicopter":
       imageurl =
-        "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-helicopter.jpg";
+        "https://siteimages.gmfc.uk/hero/hero-helicopter.jpg";
       break;
     case "racecar":
       imageurl =
-        "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-racecar.jpg";
+        "https://siteimages.gmfc.uk/hero/hero-racecar.jpg";
       break;
     case "crawler":
       imageurl =
-        "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-crawl.jpg";
+        "https://siteimages.gmfc.uk/hero/hero-crawl.jpg";
       break;
   }
   return imageurl;

@@ -2,14 +2,14 @@
   "content": {
     "hero": {
       "generatehero": true,
-      "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/hero/hero-plane.jpg",
+      "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
       "text": "Leaderboard"
     },
     "sections": [
       {
         "title": "RC Track Leaderboard",
         "type": "wrappedTextLeft",
-        "image": "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/racing/checkeredflag.png",
+        "image": "https://siteimages.gmfc.uk/racing/checkeredflag.png",
         "text": [
           "A little friendly competition on the RC car track!",
           "Submit your times to Ben via WhatsApp. It's an honour system we are running here....🫡",
