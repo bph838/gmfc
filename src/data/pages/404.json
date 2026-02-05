@@ -1,0 +1,19 @@
+{
+  "content": {
+    "hero": {
+      "generatehero": true,
+      "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
+      "text": "Page not found"
+    },
+    "sections": [
+      {
+        "title": "Page not found",
+        "type": "wrappedTextLeft",
+        "image": "https://siteimages.gmfc.uk/siteimages/siteflying.jpg",
+        "text": [
+          "Sorry the page you think you knew doesn't exist!"          
+        ]
+      }
+    ]
+  }
+}

@@ -68,6 +68,7 @@ module.exports = (env, argv) => {
 
     entry: {
       index: "./src/pages/index.js",
+      404: "./src/pages/404.js",
       calendar: "./src/pages/calendar.js",
       news: "./src/pages/news.js",
       aboutus: "./src/pages/aboutus.js",
@@ -90,7 +91,9 @@ module.exports = (env, argv) => {
       static: path.resolve(__dirname, "dist"),
       port: 8080,
       hot: true,
+      /*
       historyApiFallback: {
+        index: '/404.html',
         rewrites: [
           { from: /^\/news\/?$/, to: "/news.html" },
           {
@@ -99,6 +102,21 @@ module.exports = (env, argv) => {
               const path = context.parsedUrl.pathname;
               return `${path}.html`;
             },
+          },
+        ],
+      },*/
+
+      historyApiFallback: {
+        index: "/404.html",
+
+        rewrites: [
+          // specific exception
+          { from: /^\/news\/?$/, to: "/news.html" },
+
+          // only rewrite paths WITHOUT extensions
+          {
+            from: /^(?!.*\.\w+$).*/,
+            to: (ctx) => `${ctx.parsedUrl.pathname.replace(/\/$/, "")}.html`,
           },
         ],
       },
@@ -147,6 +165,19 @@ module.exports = (env, argv) => {
           { from: "src/rootdir/sitemap.xml", to: "." },
           { from: "src/rootdir/robots.txt", to: "." },
         ],
+      }),
+
+      //404.html
+      new HtmlWebpackPlugin({
+        filename: "404.html",
+        template: "./src/templates/main.html",
+        chunks: ["404"],
+        title: SITE_TITLE,
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+          site: site,
+        },
       }),
 
       //index.html
