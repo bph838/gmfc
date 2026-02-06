@@ -11,6 +11,10 @@ footer {
   @include respond(pc, tablet) {
     flex-direction: row;
   }
+
+  .circleimg {
+    border-radius: 50%;
+  }
 }
 
 #footer-logo {
