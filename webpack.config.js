@@ -26,38 +26,49 @@ const site = {
   description: SITE_DESCRIPTION,
 };
 
-// Load your JSON data
-const newsItems = JSON.parse(
-  fs.readFileSync(
-    path.resolve(__dirname, "src/data/newsitems/summary.json"),
-    "utf8",
-  ),
-);
-const outputPath = path.resolve(__dirname, "dist");
-// Create an array of HtmlWebpackPlugin instances
-const newsPlugins = newsItems.map((item) => {
-  const filename = `/news/${item.year}/${item.month}/${sanitize(item.title)}.html`;
-  console.log(`Processing new item for: ${filename}`);
-  const absoluteFilename = path.resolve(outputPath, filename);
+let  newsPlugins = []
+try {
+  // Load your JSON data
+  const newsItems = JSON.parse(
+    fs.readFileSync(
+      path.resolve(__dirname, "src/data/newsitems/summary.json"),
+      "utf8",
+    ),
+  );
 
-  console.log(`Processing new item for: ${absoluteFilename}`);
+  const outputPath = path.resolve(__dirname, "dist");
+  // Create an array of HtmlWebpackPlugin instances
+  newsPlugins = newsItems.map((item) => {
+    const filename = `/news/${item.year}/${item.month}/${sanitize(item.title)}.html`;
+    console.log(`Processing new item for: ${filename}`);
+    const absoluteFilename = path.resolve(outputPath, filename);
 
-  return new HtmlWebpackPlugin({
-    filename,
-    template: path.resolve(__dirname, "src/templates/news.html"),
-    inject: "body",
-    chunks: ["news"],
-    templateParameters: {
-      title: SITE_TITLE + " - News - " + item.title,
-      image: item.image,
-      month: item.month,
-      year: item.year,
-      hash: item.hash,
-      partials: loadPartials(),
-      site: site,
-    },
+    console.log(`Processing new item for: ${absoluteFilename}`);
+
+    return new HtmlWebpackPlugin({
+      filename,
+      template: path.resolve(__dirname, "src/templates/news.html"),
+      inject: "body",
+      chunks: ["news"],
+      templateParameters: {
+        title: SITE_TITLE + " - News - " + item.title,
+        image: item.image,
+        month: item.month,
+        year: item.year,
+        hash: item.hash,
+        partials: loadPartials(),
+        site: site,
+      },
+    });
   });
-});
+} catch (err) {
+  console.warn("WebPack may need to be run again..." );
+  if (err.code === "ENOENT") {
+    console.warn("summary.json not found — continuing with empty news list" );
+  } else {
+    throw err; // real error → still crash
+  }
+}
 
 module.exports = (env, argv) => {
   const isProd = argv.mode === "production";
