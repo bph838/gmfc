@@ -101,22 +101,7 @@ module.exports = (env, argv) => {
     devServer: {
       static: path.resolve(__dirname, "dist"),
       port: 8080,
-      hot: true,
-      /*
-      historyApiFallback: {
-        index: '/404.html',
-        rewrites: [
-          { from: /^\/news\/?$/, to: "/news.html" },
-          {
-            from: /./,
-            to: (context) => {
-              const path = context.parsedUrl.pathname;
-              return `${path}.html`;
-            },
-          },
-        ],
-      },*/
-
+      hot: true,     
       historyApiFallback: {
         index: "/404.html",
 
