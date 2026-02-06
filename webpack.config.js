@@ -26,7 +26,7 @@ const site = {
   description: SITE_DESCRIPTION,
 };
 
-let  newsPlugins = []
+let newsPlugins = [];
 try {
   // Load your JSON data
   const newsItems = JSON.parse(
@@ -62,9 +62,9 @@ try {
     });
   });
 } catch (err) {
-  console.warn("WebPack may need to be run again..." );
+  console.warn("WebPack may need to be run again...");
   if (err.code === "ENOENT") {
-    console.warn("summary.json not found — continuing with empty news list" );
+    console.warn("summary.json not found — continuing with empty news list");
   } else {
     throw err; // real error → still crash
   }
@@ -101,7 +101,7 @@ module.exports = (env, argv) => {
     devServer: {
       static: path.resolve(__dirname, "dist"),
       port: 8080,
-      hot: true,     
+      hot: true,
       historyApiFallback: {
         index: "/404.html",
 
