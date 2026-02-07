@@ -13,6 +13,7 @@ const JsonToIcsPlugin = require("./webpack/plugins/JsonToIcsPlugin");
 const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
 const AlertHashPlugin = require("./webpack/plugins/AlertHashPlugin");
 const GeneratePathsPlugin = require("./webpack/plugins/GeneratePathsPlugin");
+const GenerateSitemapPlugin = require("./webpack/plugins/GenerateSitemapPlugin");
 const UpdatePageDatesPlugin = require("./webpack/plugins/UpdatePageDatesPlugin");
 const ExcelToCsvAndJsonPlugin = require("./webpack/plugins/ExcelToCsvAndJsonPlugin.js");
 const {
@@ -125,6 +126,7 @@ module.exports = (env, argv) => {
         "@framework": path.resolve(__dirname, "src/js/framework"),
         "@data": path.resolve(__dirname, "src/data"),
         "@jdbpages": path.resolve(__dirname, "src/data/pages"),
+        "@siteurl": "https://www.gmfc.uk/",
       },
       extensions: [".js", ".json"], // optional, helps omit extensions
     },
@@ -374,6 +376,13 @@ module.exports = (env, argv) => {
       new UpdatePageDatesPlugin({
         input: "src/data/site.json",
       }),
+
+      //sitmap
+      new GenerateSitemapPlugin({
+        input: "src/data/site.json",
+        siteUrl: "https://www.gmfc.uk",
+        output: "src/rootdir/sitemap.xml",
+      }),
     ],
     watchOptions: {
       ignored: [
@@ -381,6 +390,7 @@ module.exports = (env, argv) => {
         "**/src/data/leaderboard.json",
         "**/src/data/newsitems/summary.json",
         "**/src/data/alerts.json",
+        "**/src/rootdir/sitemap.xml",
       ],
     },
     optimization: {

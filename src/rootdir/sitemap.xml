@@ -1,52 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://www.gmfc.uk</loc>
-        <lastmod>2026-02-06</lastmod>
-    </url>
-    <url>
-        <loc>https://www.gmfc.uk/calendar</loc>
-        <lastmod>2026-02-02</lastmod>
-    </url>
-    <url>
-        <loc>https://www.gmfc.uk/news</loc>
-        <lastmod>2026-02-02</lastmod>
-    </url>
-     <url>
-        <loc>https://www.gmfc.uk/aboutus</loc>
-        <lastmod>2026-02-02</lastmod>
-    </url>
-     <url>
-        <loc>https://www.gmfc.uk/gallery</loc>
-        <lastmod>2026-02-02</lastmod>
-    </url>
-     <url>
-        <loc>https://www.gmfc.uk/club/clubrules</loc>
-        <lastmod>2026-02-02</lastmod>
-    </url>
-     <url>
-        <loc>https://www.gmfc.uk/club/leaderboard</loc>
-        <lastmod>2026-02-02</lastmod>
-    </url>
-     <url>
-        <loc>https://www.gmfc.uk/club/clubmerch</loc>
-        <lastmod>2026-02-02</lastmod>
-    </url>
-     <url>
-        <loc>https://www.gmfc.uk/club/clubmember</loc>
-        <lastmod>2026-02-02</lastmod>
-    </url>
 
-    <url>
-        <loc>https://www.gmfc.uk/news/news/2026/1/track-only-members-non-flying</loc>
-        <lastmod>2026-01-01</lastmod>
-    </url>
-    <url>
-        <loc>https://www.gmfc.uk/news/news/2026/1/news/2025/1/gmfc-and-the-caa-awareness-for-members</loc>
-        <lastmod>2025-01-01</lastmod>
-    </url>
-     <url>
-        <loc>https://www.gmfc.uk/news/2025/1/monthly-club-days</loc>
-        <lastmod>2025-01-01</lastmod>
-    </url>
+  <url>
+    <loc>https://www.gmfc.uk</loc>
+    <lastmod>2026-02-05T09:38:42.728Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/calendar</loc>
+    <lastmod>2026-02-05T09:40:34.713Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/news</loc>
+    <lastmod>2026-02-05T09:40:28.005Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/gallery</loc>
+    <lastmod>2026-02-05T09:40:42.187Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/aboutus</loc>
+    <lastmod>2026-02-05T09:39:58.115Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/club/history</loc>
+    <lastmod>2026-02-05T09:40:48.794Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/club/rules</loc>
+    <lastmod>2026-02-05T09:41:14.246Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/club/merch</loc>
+    <lastmod>2026-02-05T09:41:11.422Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/club/member</loc>
+    <lastmod>2026-02-07T11:18:33.526Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/club/leaderboard</loc>
+    <lastmod>2026-02-05T09:40:18.529Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/news/2026/1/track-only-members-non-flying.html</loc>
+    <lastmod>2026-01-05</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/news/2025/1/gmfc-and-the-caa-awareness-for-members.html</loc>
+    <lastmod>2025-01-01</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/news/2025/1/monthly-club-days.html</loc>
+    <lastmod>2025-01-01</lastmod>
+  </url>
 </urlset>
