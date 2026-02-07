@@ -1,0 +1,16 @@
+{
+  "pages": [
+    {
+      "page": "index.html",
+      "jdb": "@jdbpages/index.json",
+      "datetype": "filemodified",
+      "date": "2026-02-05T09:38:42.728Z"
+    },
+    {
+      "page": "calendar.html",
+      "jdb": "@jdbpages/calendar.json",
+      "datetype": "filemodified",
+      "date": "2026-02-05T09:40:34.713Z"
+    }
+  ]
+}

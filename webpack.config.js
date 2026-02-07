@@ -13,6 +13,7 @@ const JsonToIcsPlugin = require("./webpack/plugins/JsonToIcsPlugin");
 const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
 const AlertHashPlugin = require("./webpack/plugins/AlertHashPlugin");
 const GeneratePathsPlugin = require("./webpack/plugins/GeneratePathsPlugin");
+const UpdatePageDatesPlugin = require("./webpack/plugins/UpdatePageDatesPlugin");
 const ExcelToCsvAndJsonPlugin = require("./webpack/plugins/ExcelToCsvAndJsonPlugin.js");
 const {
   SITE_TITLE,
@@ -123,6 +124,7 @@ module.exports = (env, argv) => {
         "@components": path.resolve(__dirname, "src/js/components"),
         "@framework": path.resolve(__dirname, "src/js/framework"),
         "@data": path.resolve(__dirname, "src/data"),
+        "@jdbpages": path.resolve(__dirname, "src/data/pages"),
       },
       extensions: [".js", ".json"], // optional, helps omit extensions
     },
@@ -369,6 +371,9 @@ module.exports = (env, argv) => {
         file: "./src/data/alerts.json",
       }),
       //new GeneratePathsPlugin(),
+      new UpdatePageDatesPlugin({
+        input: "src/data/site.json",
+      }),
     ],
     watchOptions: {
       ignored: [

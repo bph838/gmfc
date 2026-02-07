@@ -93,6 +93,8 @@ class SplitNewsSectionsPlugin {
                   image: section.image
                 });
 
+                let pagetitle =  sanitize(section.title);
+
               } catch (innerErr) {
                 console.error(`[SplitNewsSectionsPlugin] Failed to process section: ${section.title}`, innerErr);
               }
@@ -121,5 +123,14 @@ class SplitNewsSectionsPlugin {
     });
   }
 }
+
+// Utility to sanitize a string for a filename
+function sanitize(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 
 module.exports = SplitNewsSectionsPlugin;
