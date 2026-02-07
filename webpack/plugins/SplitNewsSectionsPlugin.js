@@ -93,7 +93,44 @@ class SplitNewsSectionsPlugin {
                   image: section.image
                 });
 
-                let pagetitle =  sanitize(section.title);
+                // --- update site.json with unique entry ---
+                const siteJsonPath = path.resolve(__dirname, "../../src/data/site.json");
+                try {
+                  let siteData = { pages: [] };
+                  if (fs.existsSync(siteJsonPath)) {
+                    const siteContent = fs.readFileSync(siteJsonPath, "utf8");
+                    siteData = JSON.parse(siteContent);
+                  }
+
+                  // Check if entry with this hash already exists
+                  const hashExists = siteData.pages && siteData.pages.some(page => page.hash === hash);
+                  
+                  if (!hashExists) {
+                    // Add new entry
+                    if (!siteData.pages) {
+                      siteData.pages = [];
+                    }
+                    let pagetitle =  sanitize(section.title);
+                    let month =  dateObj.getMonth() + 1;
+                    let year =  dateObj.getFullYear();
+                    siteData.pages.push({
+                      hash,
+                      page: `news/${year}/${month}/${pagetitle}.html`,
+                      jdb: `@jdbpages/newsitems/${hash}.json`,
+                      datetype: "static",
+                      date: section.date,
+                      title: section.title
+                    });
+                    fs.writeFileSync(siteJsonPath, JSON.stringify(siteData, null, 2));
+                    console.log(`[SplitNewsSectionsPlugin] Added entry to site.json for hash: ${hash}`);
+                  } else {
+                    console.log(`[SplitNewsSectionsPlugin] Entry already exists in site.json for hash: ${hash}`);
+                  }
+                } catch (siteErr) {
+                  console.error(`[SplitNewsSectionsPlugin] Error updating site.json:`, siteErr);
+                }
+
+                
 
               } catch (innerErr) {
                 console.error(`[SplitNewsSectionsPlugin] Failed to process section: ${section.title}`, innerErr);
