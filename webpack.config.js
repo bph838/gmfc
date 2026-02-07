@@ -137,7 +137,7 @@ module.exports = (env, argv) => {
             from: "src/data",
             to: "data",
             globOptions: {
-              ignore: ["**/dynamic/**", "**/documents/**"],
+              ignore: ["**/dynamic/**", "**/documents/**", "**/site.json"],
             },
           },
           {
