@@ -2,19 +2,19 @@ import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
 import { createDiv, createImage, fetchContextArea } from "@framework/dom";
-import { fetchJson } from "@framework/utils";
+import { fetchJson, loadMergedJson } from "@framework/utils";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
-
 import data from "@data/pages/gallery.json";
 import { createLink } from "../js/framework/dom";
-const dataurl = "/data/media/gallery_data.json";
+
+const urls = ["/data/media/gallery_data.json", "/data/media/video_data.json"];
 
 let yearSections = [];
 
 setupMenuCommands("page-gallery");
-renderGallery(data);
+render(data);
 
-function renderGallery(data) {
+function render(data) {
   console.log("Rendering Gallery");
   //If there is a hero image render it
   if (data.content.hero) renderHero(data.content.hero);
@@ -23,9 +23,30 @@ function renderGallery(data) {
   if (!contentarea) return;
   const sections = createDiv(contentarea, "sections");
 
-  console.log("Loading Gallery");
-  fetchJson(dataurl).then((galleryData) => {
-    console.log("Gallery Data Loaded", galleryData);
+  (async () => {
+    try {
+      const items = await loadMergedJson(
+        urls,
+        (a, b) => new Date(b.date) - new Date(a.date), // example sort newest first
+      );
+
+      console.log(items);
+      renderGallery(items,sections);
+    } catch (err) {
+      console.error(err);
+    }
+  })();
+}
+
+function renderGallery(data,sections) {
+  console.log(data);
+}
+
+/*
+
+
+
+
     const externalPath = data.externalPath || "";
     if (!galleryData) {
       console.log("no images");
@@ -55,8 +76,7 @@ function renderGallery(data) {
       });
       lightbox.init();
     });
-  });
-}
+    */
 
 function renderGalleryImage(image, galleryDiv, externalPath) {
   // Normalise slashes just in case (\ vs /)
@@ -87,8 +107,7 @@ function renderGalleryImage(image, galleryDiv, externalPath) {
   let dateObj = new Date(image.date.replace(" ", "T"));
   let year = dateObj.getFullYear();
 
-  if(year<2015)
-    console.log("found date");
+  if (year < 2015) console.log("found date");
   let yearDiv = document.getElementById(`galleryyear-${year}`);
   if (!yearDiv) {
     yearDiv = createDiv(

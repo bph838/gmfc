@@ -33,6 +33,26 @@ export async function fetchJson(url) {
   }
 }
 
+export async function loadMergedJson(urls, sortFn) {
+  // run requests in parallel
+  const results = await Promise.allSettled(urls.map(fetchJson));
+
+  // keep only successful ones
+  const data = results
+    .filter((r) => r.status === "fulfilled")
+    .map((r) => r.value);
+
+  // flatten in case each returns an array
+  const merged = data.flat();
+
+  // sort if provided
+  if (sortFn) {
+    merged.sort(sortFn);
+  }
+
+  return merged;
+}
+
 /**
  * Sets or creates an Open Graph meta tag.
  * @param {string} property - The OG property, e.g., "og:title"
@@ -204,13 +224,12 @@ export function createCopy(className) {
   });
 }
 
-
 export function shakeContainer(container) {
   container.classList.add("shake");
 
   setTimeout(() => {
     container.classList.remove("shake");
-  }, 500);    
+  }, 500);
 }
 
 export function getTimeParts(diffMs) {
@@ -220,6 +239,6 @@ export function getTimeParts(diffMs) {
     days: Math.floor(totalSeconds / 86400),
     hours: Math.floor((totalSeconds % 86400) / 3600),
     minutes: Math.floor((totalSeconds % 3600) / 60),
-    seconds: totalSeconds % 60
+    seconds: totalSeconds % 60,
   };
 }
