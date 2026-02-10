@@ -18,10 +18,11 @@ export function fetchContextArea(data) {
  * @param {*} id
  * @returns
  */
-export function createDiv(parent, className = null, id = null) {
+export function createDiv(parent, className = null, id = null, role = null) {
   let el = document.createElement("div");
   if (className) el.className = className;
   if (id) el.id = id;
+  if (role) el.role = role;
   parent.appendChild(el);
   return el;
 }
@@ -44,6 +45,44 @@ export function createH3(parent, innerHTML, className = null, id = null) {
   return createHeader(parent, innerHTML, className, id, 2);
 }
 
+export function createInput(
+  parent,
+  type,
+  className = null,
+  name = null,
+  id = null,
+  value = null,
+  checked = false,
+) {
+  let el = document.createElement("input");
+  el.type = type;
+  if (className) el.className = className;
+  if (name) el.name = name;
+  if (id) el.id = id;
+  if (value) el.value = value;
+  if (checked){ 
+    console.log("a");
+    el.checked = checked;
+  }
+
+  parent.appendChild(el);
+  return el;
+}
+
+export function createLabel(
+  parent,
+  className = null,
+  forName = null,
+  innerHTML = null,
+) {
+  let el = document.createElement("label");
+  if (className) el.className = className;
+  if (forName) el.htmlFor = forName;
+  if (innerHTML) el.innerHTML = innerHTML;
+
+  parent.appendChild(el);
+  return el;
+}
 
 function createHeader(
   parent,
