@@ -10,7 +10,7 @@ const partials = {
 };
 
 const loadPartials = (isProduction) => {
-  if (!isProduction) partials.google_analytics = "blank.html";
+  if (isProduction===false) partials.google_analytics = "blank.html";
 
   const loaded = {};
 
