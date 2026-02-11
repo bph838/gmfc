@@ -63,8 +63,31 @@ $hoverTiltOffset: 60;
   flex-direction: column;
 }
 
+$header-size: 0.75;
+$header-scale-mobile: 2;
+$header-scale-tablet: 2.5;
+$header-scale-pc: 3;
+
 .section_title {
   flex: 100%;
+
+  h2 {
+    font-weight: 300;
+    line-height: 1.2;
+    font-weight: 700 !important;
+    color: rgb(0, 0, 0);
+    font-size: ($header-size * $header-scale-mobile) * 1rem;
+    @include respond(tablet) {
+      font-size: ($header-size * $header-scale-tablet) * 1rem;
+    }
+    @include respond(pc) {
+      font-size: ($header-size * $header-scale-pc) * 1rem;
+    }
+    //text-shadow:
+    //0 0 2px rgba(0, 0, 0, 0.85),
+    // normal shadow
+    //0 1px 1px rgba(255, 0, 0, 0.5); // very soft red under-glow
+  }
 }
 
 .section_header {
