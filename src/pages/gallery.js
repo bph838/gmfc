@@ -32,7 +32,7 @@ function render(data) {
 
   const filterDiv = createDiv(
     contentarea,
-    "btn-group  mb-3 gallery_selector",//
+    "btn-group  mb-3 gallery_selector", //
     "mediaFilter",
     "group",
   );
@@ -138,52 +138,19 @@ function renderGallery(sections, type) {
   });
 }
 
-/*
-
-
-
-
-    const externalPath = data.externalPath || "";
-    if (!galleryData) {
-      console.log("no images");
-      return;
-    }
-    //need to sort the images by date order
-    galleryData.sort(
-      (a, b) =>
-        new Date(b.date.replace(" ", "T")) - new Date(a.date.replace(" ", "T")),
-    );
-
-    //create a div to hold the gallery
-    const gallerydiv = createDiv(sections, "gallery");
-
-    if (galleryData && Array.isArray(galleryData)) {
-      galleryData.forEach((image) => {
-        renderGalleryImage(image, gallerydiv, externalPath);
-      });
-    }
-
-    yearSections.forEach((yearDivId) => {
-      //Initialize PhotoSwipe Lightbox
-      let lightbox = new PhotoSwipeLightbox({
-        gallery: `#${yearDivId}`,
-        children: "a",
-        pswpModule: () => import("photoswipe"),
-      });
-      lightbox.init();
-    });
-    */
-
 function checkGalleryYearDiv(parent, date) {
   let dateObj = new Date(date.replace(" ", "T"));
   let year = dateObj.getFullYear();
 
-  let yearDiv = document.getElementById(`galleryyear-${year}`);
+  let yearDiv = document.getElementById(`gallery-year-${year}`);
   if (!yearDiv) {
-    yearDiv = createDiv(parent, "gallery-year-section", `galleryyear-${year}`);
+    const yearHolderDiv = createDiv(parent, "gallery-year-section");
 
-    const yearHeader = createDiv(yearDiv, "gallery-year-header");
+    const yearHeader = createDiv(yearHolderDiv, "gallery-year-header");
     yearHeader.textContent = year;
+
+    let yearId = `gallery-year-${year}`;
+    yearDiv = createDiv(yearHolderDiv, "gallery-year-items", yearId);
     yearSections.push(yearDiv.id);
   }
   return yearDiv;

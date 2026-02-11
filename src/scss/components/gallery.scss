@@ -1,27 +1,40 @@
 @use "../response" as *;
 @use "./mixins.scss" as *;
 
-
 $image-max-width: 20;
 $image-scale-mobile: 16;
 $image-scale-tablet: 17;
 $image-scale-pc: 18;
 
+$video-width: 16;
+$video-height: 9;
+
+$video-scale-mobile: 23;
+$video-scale-tablet: 48;
+$video-scale-pc: 55;
 
 .gallery-year-section {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-year-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;  
+
   margin: 10px;
   width: 100%;
 
-  a img {    
+  a img {
     max-width: ($image-max-width * $image-scale-mobile) * 1px;
     @include respond(tablet) {
       max-width: ($image-max-width * $image-scale-tablet) * 1px;
     }
     @include respond(pc) {
-      max-width: ($image-max-width * $image-scale-pc) * 1px;      
+      max-width: ($image-max-width * $image-scale-pc) * 1px;
     }
-    
 
     height: auto;
     border: 2px solid #ccc;
@@ -44,17 +57,10 @@ $image-scale-pc: 18;
   font-size: 3em;
 }
 
-$video-width: 16;
-$video-height: 9;
-
-$video-scale-mobile: 23;
-$video-scale-tablet: 48;
-$video-scale-pc: 55;
-
 .gallery_video_holder {
-  display: flex; /* enable flexbox */
-  justify-content: center; /* horizontal center (optional) */
-  align-items: center; /* vertical center */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #fff;
 
   width: ($video-width * $video-scale-mobile) * 1px;
@@ -79,8 +85,8 @@ $video-scale-pc: 55;
 
 .gallery_container {
   display: flex;
-  justify-content: center; /* horizontal center */
-  align-items: center; /* vertical center */
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   .gallery_selector {
     margin-top: 20px;
