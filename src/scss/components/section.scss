@@ -335,3 +335,14 @@ $header-scale-pc: 3;
     transform: rotate(#{$hoverTilt}deg) translateX(80px);
   }
 }
+
+.pano-wrap {
+  height: 300vh; /* scroll distance */
+  position: relative;
+  .pano {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: auto;
+  }
+}

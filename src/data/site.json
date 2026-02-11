@@ -2,70 +2,70 @@
   "pages": [
     {
       "page": "index.html",
-      "url":"@siteurl",
+      "url": "@siteurl",
       "jdb": "@jdbpages/index.json",
       "datetype": "filemodified",
-      "date": "2026-02-05T09:38:42.728Z"
+      "date": "2026-02-11T11:21:51.555Z"
     },
     {
       "page": "calendar.html",
-      "url":"@/calendar",
+      "url": "@/calendar",
       "jdb": "@jdbpages/calendar.json",
       "datetype": "filemodified",
       "date": "2026-02-05T09:40:34.713Z"
     },
     {
       "page": "news.html",
-      "url":"@/news",
+      "url": "@/news",
       "jdb": "@jdbpages/news.json",
       "datetype": "filemodified",
       "date": "2026-02-05T09:40:28.005Z"
     },
     {
       "page": "gallery.html",
-      "url":"@/gallery",
+      "url": "@/gallery",
       "jdb": "@jdbpages/gallery.json",
       "datetype": "filemodified",
       "date": "2026-02-05T09:40:42.187Z"
     },
     {
       "page": "aboutus.html",
-      "url":"@/aboutus",
+      "url": "@/aboutus",
       "jdb": "@jdbpages/aboutus.json",
       "datetype": "filemodified",
       "date": "2026-02-05T09:39:58.115Z"
     },
     {
       "page": "club/history.html",
-      "url":"@/club/history",
+      "url": "@/club/history",
       "jdb": "@jdbpages/club/history.json",
       "datetype": "filemodified",
       "date": "2026-02-05T09:40:48.794Z"
     },
     {
       "page": "club/rules.html",
-      "url":"@/club/rules",
+      "url": "@/club/rules",
       "jdb": "@jdbpages/club/rules.json",
       "datetype": "filemodified",
       "date": "2026-02-05T09:41:14.246Z"
     },
     {
       "page": "club/merch.html",
-      "url":"@/club/merch",
+      "url": "@/club/merch",
       "jdb": "@jdbpages/club/merch.json",
       "datetype": "filemodified",
       "date": "2026-02-05T09:41:11.422Z"
     },
     {
       "page": "club/member.html",
-      "url":"@/club/member",
+      "url": "@/club/member",
       "jdb": "@jdbpages/club/member.json",
       "datetype": "filemodified",
       "date": "2026-02-07T11:18:33.526Z"
     },
     {
       "page": "club/leaderboard.html",
-      "url":"@/club/leaderboard",
+      "url": "@/club/leaderboard",
       "jdb": "@jdbpages/club/leaderboard.json",
       "datetype": "filemodified",
       "date": "2026-02-05T09:40:18.529Z"

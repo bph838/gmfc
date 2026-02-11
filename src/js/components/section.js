@@ -77,8 +77,8 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
         url,
         "sectionlink",
         "<i class='fa-solid fa-link'></i>",
-        ""
-      );     
+        "",
+      );
     }
   }
 
@@ -106,6 +106,9 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
       break;
     case "imagesRight":
       renderImagesRight(contentdiv, data);
+      break;
+    case "pano":
+      renderPanoImage(contentdiv, data);
       break;
   }
 
@@ -147,8 +150,7 @@ export function renderPDFLinks(pageSection, data) {
       pdfDiv.appendChild(pdfLink);
 
       const imgPDF = document.createElement("img");
-      imgPDF.src =
-        "https://siteimages.gmfc.uk/icons/pdf.png";
+      imgPDF.src = "https://siteimages.gmfc.uk/icons/pdf.png";
       imgPDF.class = "pdfimage";
       pdfLink.appendChild(imgPDF);
 
@@ -277,4 +279,21 @@ function renderImagesRight(parent, data) {
   });
 
   addScriptToMakeAcive("section_images_right");
+}
+
+function renderPanoImage(parent, data) {
+  if (!data.image) {
+    console.error("Unable to render pano image");
+    return;
+  }
+
+  const pano_wrap = createDiv(parent, "pano-wrap");
+  const pano = createImage(pano_wrap, data.image, "pano");
+
+  window.addEventListener('scroll', () => {
+  const maxScroll = document.body.scrollHeight - innerHeight;
+  const percent = scrollY / maxScroll;
+
+  pano.style.transform = `translateX(-${percent * (pano.scrollWidth - innerWidth)}px)`;
+});
 }
