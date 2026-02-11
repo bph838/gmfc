@@ -22,7 +22,6 @@ import {
   getTopParticipantsForCourse,
 } from "@framework/leaderboard";
 import data from "@data/pages/club/leaderboard.json";
-import { createParagraph } from "../../js/framework/dom";
 
 setupMenuCommands("page-leaderboard");
 renderClubLeaderBoard(data);

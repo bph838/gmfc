@@ -2,7 +2,6 @@ import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
 import { renderSection,renderPDFLinks } from "@components/section";
 import { createDiv, fetchContextArea } from "@framework/dom";
-import { fetchJson } from "@framework/utils";
 import data from "@data/pages/club/merch.json";
 
 setupMenuCommands("page-clubmerch");

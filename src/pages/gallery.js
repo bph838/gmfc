@@ -1,6 +1,5 @@
 import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
-import { renderSection } from "@components/section";
 import {
   createDiv,
   createImage,

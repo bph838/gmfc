@@ -2,7 +2,6 @@ import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea } from "@framework/dom";
-import { fetchJson } from "@framework/utils";
 import data from "@data/pages/club/rules.json";
 
 setupMenuCommands("page-clubrules");
