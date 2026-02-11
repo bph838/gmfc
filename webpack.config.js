@@ -29,6 +29,7 @@ const site = {
 };
 
 let newsPlugins = [];
+let isProduction = null;
 try {
   // Load your JSON data
   const newsItems = JSON.parse(
@@ -58,7 +59,7 @@ try {
         month: item.month,
         year: item.year,
         hash: item.hash,
-        partials: loadPartials(),
+        partials: loadPartials(isProduction),
         site: site,
       },
     });
@@ -73,11 +74,13 @@ try {
 }
 
 module.exports = (env, argv) => {
-  const isProd = argv.mode === "production";
-  const partials = loadPartials();
+  isProduction = argv.mode === "production";
+  
+  const partials = loadPartials(isProduction);
+
 
   return {
-    mode: isProd ? "production" : "development",
+    mode: isProduction ? "production" : "development",
 
     entry: {
       index: "./src/pages/index.js",
@@ -394,7 +397,7 @@ module.exports = (env, argv) => {
       ],
     },
     optimization: {
-      minimize: isProd,
+      minimize: isProduction,
       minimizer: [
         new TerserPlugin({
           terserOptions: {
