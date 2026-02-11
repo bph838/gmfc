@@ -1,19 +1,27 @@
 @use "../response" as *;
 @use "./mixins.scss" as *;
 
+
+$image-max-width: 20;
+$image-scale-mobile: 16;
+$image-scale-tablet: 17;
+$image-scale-pc: 18;
+
+
 .gallery-year-section {
   display: inline-block;
   margin: 10px;
   width: 100%;
 
-  a img {
-    max-width: 200px;
-    @include respond(pc) {
-      max-width: 380px;
-    }
+  a img {    
+    max-width: ($image-max-width * $image-scale-mobile) * 1px;
     @include respond(tablet) {
-      max-width: 280px;
+      max-width: ($image-max-width * $image-scale-tablet) * 1px;
     }
+    @include respond(pc) {
+      max-width: ($image-max-width * $image-scale-pc) * 1px;      
+    }
+    
 
     height: auto;
     border: 2px solid #ccc;
@@ -36,15 +44,29 @@
   font-size: 3em;
 }
 
+$video-width: 16;
+$video-height: 9;
+
+$video-scale-mobile: 23;
+$video-scale-tablet: 48;
+$video-scale-pc: 55;
+
 .gallery_video_holder {
   display: flex; /* enable flexbox */
   justify-content: center; /* horizontal center (optional) */
   align-items: center; /* vertical center */
-  //max-width: 680px;           /* or whatever height you need */
   background: #fff;
 
-  width: 600px;
-  height: 340px;
+  width: ($video-width * $video-scale-mobile) * 1px;
+  height: ($video-height * $video-scale-mobile) * 1px;
+  @include respond(tablet) {
+    width: ($video-width * $video-scale-tablet) * 1px;
+    height: ($video-height * $video-scale-tablet) * 1px;
+  }
+  @include respond(pc) {
+    width: ($video-width * $video-scale-pc) * 1px;
+    height: ($video-height * $video-scale-pc) * 1px;
+  }
   margin-right: 20px;
   margin-bottom: 20px;
   float: left;
