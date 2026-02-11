@@ -22,7 +22,7 @@ $video-scale-pc: 55;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
 
   margin: 10px;
   width: 100%;
@@ -54,7 +54,31 @@ $video-scale-pc: 55;
 
 .gallery-year-header {
   text-align: center;
-  font-size: 3em;
+
+  $year-size: 2;
+  $year-scale-mobile: 1.5;
+  $year-scale-tablet: 2;
+  $year-scale-pc: 3;
+
+  h2 {
+    font-weight: 300;
+    line-height: 1.2;
+    font-weight: 700 !important;
+    color: white;
+    font-size: ($year-size * $year-scale-mobile) * 1rem;
+    @include respond(tablet) {
+      font-size: ($year-size * $year-scale-tablet) * 1rem;
+    }
+    @include respond(pc) {
+      font-size: ($year-size * $year-scale-pc) * 1rem;
+    }
+
+    color: #fdfdf5;
+    text-shadow:
+      0 0 2px rgba(0, 0, 0, 0.85),
+      // normal shadow
+      0 3px 4px rgba(255, 0, 0, 0.5); // very soft red under-glow
+  }
 }
 
 .gallery_video_holder {

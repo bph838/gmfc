@@ -11,7 +11,7 @@ import {
 import { fetchJson, loadMergedJson } from "@framework/utils";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import data from "@data/pages/gallery.json";
-import { createLink } from "../js/framework/dom";
+import { createLink, createH3 } from "../js/framework/dom";
 
 const urls = ["/data/media/gallery_data.json", "/data/media/video_data.json"];
 
@@ -28,60 +28,21 @@ function render(data) {
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
-  contentarea.classList.add("gallery_container");
+  contentarea.classList.add("gallery_with_date_picker");
 
-  const filterDiv = createDiv(
+  const gallery_container = createDiv(contentarea, "gallery_container");
+  const gallery_date_picker = createDiv(
     contentarea,
-    "btn-group  mb-3 gallery_selector", //
-    "mediaFilter",
-    "group",
+    "gallery_date_picker",
+    "gallery_date_picker",
   );
 
-  createInput(
-    filterDiv,
-    "radio",
-    "btn-check",
-    "mediaType",
-    "gallery_all",
-    "gallery_all",
-    true,
+  const gallery_filter = createGalleryFilter(gallery_container);
+  const sections = createDiv(
+    gallery_container,
+    "sections",
+    "gallery_section_holder",
   );
-  createLabel(filterDiv, "btn btn-outline-primary", "gallery_all", "All");
-
-  createInput(
-    filterDiv,
-    "radio",
-    "btn-check",
-    "mediaType",
-    "gallery_images",
-    "gallery_images",
-  );
-  createLabel(filterDiv, "btn btn-outline-primary", "gallery_images", "Images");
-
-  createInput(
-    filterDiv,
-    "radio",
-    "btn-check",
-    "mediaType",
-    "gallery_videos",
-    "gallery_videos",
-  );
-  createLabel(filterDiv, "btn btn-outline-primary", "gallery_videos", "Videos");
-
-  const sections = createDiv(contentarea, "sections", "gallery_section_holder");
-
-  document.querySelectorAll('input[name="mediaType"]').forEach((input) => {
-    input.addEventListener("change", (e) => {
-      console.log("input changed:" + e.target.value);
-      const type = e.target.value;
-      let gallery_section_holder = document.getElementById(
-        "gallery_section_holder",
-      );
-      if (gallery_section_holder) {
-        renderGallery(gallery_section_holder, type);
-      }
-    });
-  });
 
   (async () => {
     try {
@@ -147,7 +108,7 @@ function checkGalleryYearDiv(parent, date) {
     const yearHolderDiv = createDiv(parent, "gallery-year-section");
 
     const yearHeader = createDiv(yearHolderDiv, "gallery-year-header");
-    yearHeader.textContent = year;
+    createH3(yearHeader, year);
 
     let yearId = `gallery-year-${year}`;
     yearDiv = createDiv(yearHolderDiv, "gallery-year-items", yearId);
@@ -196,4 +157,59 @@ function renderGalleryVideo(video, galleryDiv) {
 
   let innerDiv = createDiv(yearDiv, "gallery_video_holder");
   innerDiv.innerHTML = youTubeEmbed;
+}
+
+function createGalleryFilter(parent) {
+  const filterDiv = createDiv(
+    parent,
+    "btn-group  mb-3 gallery_selector", //
+    "mediaFilter",
+    "group",
+  );
+
+  createInput(
+    filterDiv,
+    "radio",
+    "btn-check",
+    "mediaType",
+    "gallery_all",
+    "gallery_all",
+    true,
+  );
+  createLabel(filterDiv, "btn btn-outline-primary", "gallery_all", "All");
+
+  createInput(
+    filterDiv,
+    "radio",
+    "btn-check",
+    "mediaType",
+    "gallery_images",
+    "gallery_images",
+  );
+  createLabel(filterDiv, "btn btn-outline-primary", "gallery_images", "Images");
+
+  createInput(
+    filterDiv,
+    "radio",
+    "btn-check",
+    "mediaType",
+    "gallery_videos",
+    "gallery_videos",
+  );
+  createLabel(filterDiv, "btn btn-outline-primary", "gallery_videos", "Videos");
+
+  document.querySelectorAll('input[name="mediaType"]').forEach((input) => {
+    input.addEventListener("change", (e) => {
+      console.log("input changed:" + e.target.value);
+      const type = e.target.value;
+      let gallery_section_holder = document.getElementById(
+        "gallery_section_holder",
+      );
+      if (gallery_section_holder) {
+        renderGallery(gallery_section_holder, type);
+      }
+    });
+  });
+
+  return filterDiv;
 }
