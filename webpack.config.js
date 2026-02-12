@@ -10,7 +10,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const UpdateNewsHashesPlugin = require("./webpack/plugins/UpdateNewsHashesPlugin");
 const SplitNewsSectionsPlugin = require("./webpack/plugins/SplitNewsSectionsPlugin");
 const JsonToIcsPlugin = require("./webpack/plugins/JsonToIcsPlugin");
-const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
+//const KeywordsMetaPlugin = require("./webpack/plugins/KeywordsMetaPlugin");
 const AlertHashPlugin = require("./webpack/plugins/AlertHashPlugin");
 const GeneratePathsPlugin = require("./webpack/plugins/GeneratePathsPlugin");
 const GenerateSitemapPlugin = require("./webpack/plugins/GenerateSitemapPlugin");
@@ -22,6 +22,10 @@ const {
 } = require("./src/js/components/constants.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const loadPartials = require("./webpack/plugins/load-partials");
+const KeywordsPlugin = require("./webpack/plugins/keywords-plugin");
+
+const keywords = new KeywordsPlugin("./src/data/dynamic/keywords.json");
+keywords.load(); // blocks automatically
 
 const site = {
   sitename: SITE_TITLE,
@@ -61,6 +65,7 @@ try {
         hash: item.hash,
         partials: loadPartials(isProduction),
         site: site,
+        keywords: keywords.csv(["all","news"]),
       },
     });
   });
@@ -75,9 +80,8 @@ try {
 
 module.exports = (env, argv) => {
   isProduction = argv.mode === "production";
-  
-  const partials = loadPartials(isProduction);
 
+  const partials = loadPartials(isProduction);
 
   return {
     mode: isProduction ? "production" : "development",
@@ -180,6 +184,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv("all"),
         },
       }),
 
@@ -193,6 +198,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv("all"),
         },
       }),
 
@@ -206,6 +212,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv(["all","calendar"]),
         },
       }),
 
@@ -219,6 +226,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv(["all","news"]),
         },
       }),
 
@@ -232,6 +240,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv(["all","news"]),
         },
       }),
 
@@ -245,6 +254,8 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv(["all","aboutus"]),
+
         },
       }),
 
@@ -258,6 +269,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv(["all","gallery"]),
         },
       }),
 
@@ -271,6 +283,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv("all"),
         },
       }),
 
@@ -284,6 +297,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv(["all","clubrules"]),
         },
       }),
 
@@ -297,6 +311,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv(["all","history"]),
         },
       }),
 
@@ -310,6 +325,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv(["all","leaderboard"]),
         },
       }),
 
@@ -323,6 +339,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv("all"),
         },
       }),
 
@@ -336,6 +353,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
+          keywords: keywords.csv("all"),
         },
       }),
 
@@ -360,10 +378,11 @@ module.exports = (env, argv) => {
         nameId: SITE_TITLE,
       }),
       //keywords
+      /*
       new KeywordsMetaPlugin({
         input: path.resolve(__dirname, "src/data/dynamic/keywords.json"),
         output: "src/partials/keywords.html",
-      }),
+      }),*/
       //output leaderboard
       new ExcelToCsvAndJsonPlugin({
         input: path.resolve(__dirname, "src/data/dynamic/leaderboard.xlsx"),

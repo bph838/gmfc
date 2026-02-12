@@ -5,7 +5,7 @@ const partials = {
   google_analytics: "google_analytics.html",
   navigation: "navigation.html",
   footer: "footer.html",
-  keywords: "keywords.html",
+  //keywords: "keywords.html",
   favicon: "favicon.html",
 };
 

@@ -1,18 +1,56 @@
-[
-  "Gordano Model Flying Club",
-  "GMFC",
-  "RC helicopters",
-  "RC Planes",
-  "Remote Controlled",
-  "Gordano Model Flying Club website",
-  "RC Crawler",
-  "RC Crawler Course",
-  "RC Race track",
-  "Bristol RC Club",
-  "North Somerset RC Club",
-  "Gordano RC Club",
-  "Model helicopter",
-  "Model RC Club",
-  "Bristol Model RC Club",
-  "Somerset Model RC Club"
-]
+{
+  "all": [
+    "Gordano Model Flying Club",
+    "GMFC",
+    "RC helicopters",
+    "RC Planes",
+    "Remote Controlled",
+    "Gordano Model Flying Club website",
+    "RC Crawler",
+    "RC Crawler Course",
+    "RC Race track",
+    "Bristol RC Club",
+    "North Somerset RC Club",
+    "Gordano RC Club",
+    "Model helicopter",
+    "Model RC Club",
+    "Bristol Model RC Club",
+    "Somerset Model RC Club"
+  ],
+  "calendar": [
+    "Gordano Model Flying Club calendar",
+    "GMFC calendar",
+    "Gordano Model Flying Club events"
+  ],
+  "news": [
+    "Gordano Model Flying Club news",
+    "GMFC news",
+    "Gordano Model Flying Club latest news"
+  ],
+  "gallery": [
+    "Gordano Model Flying Club gallery",
+    "GMFC gallery",
+    "Gordano Model Flying Club photos",
+    "Gordano Model Flying Club videos"
+  ],
+  "aboutus": [
+    "Gordano Model Flying Club about us",
+    "GMFC about us",
+    "Gordano Model Flying Club information"
+  ],
+  "clubrules": [
+    "Gordano Model Flying Club rules",
+    "GMFC rules",
+    "Gordano Model Flying Club club rules"
+  ],
+  "history": [
+    "Gordano Model Flying Club history",
+    "GMFC history",
+    "Gordano Model Flying Club past"
+  ],
+  "leaderboard": [
+    "Gordano Model Flying Club leaderboard",
+    "GMFC leaderboard",
+    "Gordano Model Flying Club rankings"
+  ]
+}
