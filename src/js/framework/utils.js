@@ -26,6 +26,7 @@ export async function fetchJson(url) {
     }
 
     const data = await response.json(); // parse JSON
+    console.log(`Fetched data from ${url}:`, data);
     return data;
   } catch (error) {
     console.error("Failed to fetch JSON:", error);

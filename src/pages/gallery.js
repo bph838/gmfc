@@ -148,6 +148,7 @@ function renderGalleryImage(image, galleryDiv) {
 }
 
 function renderGalleryVideo(video, galleryDiv) {
+  console.log("Rendering video: " + video);
   let yearDiv = checkGalleryYearDiv(galleryDiv, video.date);
   let title = "";
   if (video.title) title = video.title;
