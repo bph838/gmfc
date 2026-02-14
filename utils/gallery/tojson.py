@@ -8,6 +8,7 @@ from PIL.ExifTags import TAGS
 
 # make sure you add the end /
 # run> python tojson.py ./gallery-gmfc/<DIRNAME>/
+# e.g. python tojson.py ./gallery-gmfc/140226/
 
 parser = argparse.ArgumentParser(description="Tojson")
 parser.add_argument("image_dir", help="The image directory to parse")
