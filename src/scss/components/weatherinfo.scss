@@ -1,0 +1,42 @@
+.weather-widget {
+  position: absolute;
+  top: 250px;
+  right: 20px; 
+  transform: translateY(-50%); 
+
+  width: 200px;
+  padding: 20px;
+  background: linear-gradient(to bottom, #87ceeb, #f0f8ff);
+  border-radius: 12px;
+  font-family: sans-serif;
+  text-align: center;
+  color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  rotate:10deg;
+  opacity: 0.8;
+
+  .weather-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  .weather-info .temp {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .wind {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .wind-arrow {
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 6px;
+    transition: transform 0.5s ease;
+  }
+}

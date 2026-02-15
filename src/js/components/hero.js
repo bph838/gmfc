@@ -88,6 +88,14 @@ export function renderHero(data) {
 
   //render any alerts
   renderAlerts();
+
+  //render any weather if we have the coordinates
+  if (data.weatherCoordinates && data.weatherCoordinates.latitude && data.weatherCoordinates.longitude) {
+    import("@components/weather").then((module) => {
+      module.renderWeatherInfo(hero,data.weatherCoordinates.latitude, data.weatherCoordinates.longitude);
+    });
+  }
+
 }
 
 function getImageForHero(herotype) {
