@@ -29,8 +29,9 @@ def main():
     # directory = Path(sys.argv[1])
     # max_dim = int(sys.argv[2])
 
-    directory = Path("D:\\Web Repos\\gmfc\\src\\images\\siteimages")
+    directory = Path("D:\\Gordano Model Flying Club\\gmfc\\src\\images\\news")
     max_dim = 640
+    print(f"Processing images directory: {directory}")
 
     if not directory.is_dir():
         print("Error: directory does not exist")

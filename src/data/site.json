@@ -19,7 +19,7 @@
       "url": "@/news",
       "jdb": "@jdbpages/news.json",
       "datetype": "filemodified",
-      "date": "2026-02-05T09:40:28.005Z"
+      "date": "2026-02-15T10:15:30.372Z"
     },
     {
       "page": "gallery.html",
@@ -93,6 +93,14 @@
       "datetype": "static",
       "date": "2025-01-01",
       "title": "Monthly Club Days"
+    },
+    {
+      "hash": "d23e85a98aa38d5930a69f8504bc1fd5",
+      "page": "news/2026/2/maintenance-help-needed.html",
+      "jdb": "@jdbpages/newsitems/d23e85a98aa38d5930a69f8504bc1fd5.json",
+      "datetype": "static",
+      "date": "2026-02-19",
+      "title": "Maintenance help needed"
     }
   ]
 }
