@@ -1,19 +1,10 @@
 import { fetchJson, getDayOfYearUTC } from "@framework/utils";
-import {
-  createDiv,
-  createSection,
-  createH2,
-  createH3,
-  createSpan,
-  createLink,
-  createImage,
-  createParagraph,
-  createOrderedList,
-  createListItem,
-} from "@framework/dom";
+import { createDiv, createH3, createSpan } from "@framework/dom";
 import { getWeatherIconAndLabel } from "@components/weatherinfo";
 
 let forcast_data = [];
+const CACHE_KEY = "weatherForcastCache";
+const CACHE_DURATION = 1000*60*60*60; // 1 hour
 
 export function fetchAndRenderWeatherForecast(parent, data) {
   if (!data.weatherCoordinates) {
@@ -23,57 +14,15 @@ export function fetchAndRenderWeatherForecast(parent, data) {
 
   const latitude = data.weatherCoordinates.latitude;
   const longitude = data.weatherCoordinates.longitude;
-  //https://api.open-meteo.com/v1/forecast?latitude=51.459563&longitude=-2.790968&hourly=temperature_2m,weather_code,precipitation_probability,precipitation,wind_speed_10m,wind_speed_80m,wind_speed_120m,wind_speed_180m,wind_direction_10m,wind_direction_80m,wind_direction_120m,wind_direction_180m,wind_gusts_10m&wind_speed_unit=mph
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code,precipitation_probability,precipitation,wind_speed_10m,wind_speed_80m,wind_speed_120m,wind_speed_180m,wind_direction_10m,wind_direction_80m,wind_direction_120m,wind_direction_180m,wind_gusts_10m&wind_speed_unit=mph`;
-  //need to convert this to a structure that the render function can use
-  console.log(`Fetching weather data from ${url}`);
-  fetchJson(url)
-    .then((jsondata) => {
-      //console.log(JSON.stringify(jsondata, null, 2));
-      let forcast = [];
-      jsondata.hourly.time.forEach((time, index) => {
-        /*console.log(`Time: ${time}`);
-        console.log(`Temperature: ${jsondata.hourly.temperature_2m[index]}`);
-        console.log(`Weather Code: ${jsondata.hourly.weather_code[index]}`);        
-        console.log(`precipitation_probability: ${jsondata.hourly.precipitation_probability[index]}`);
-        console.log(`precipitation: ${jsondata.hourly.precipitation[index]}`);
-        console.log(`wind_speed_10m: ${jsondata.hourly.wind_speed_10m[index]}`);
-        console.log(`wind_speed_80m: ${jsondata.hourly.wind_speed_80m[index]}`);
-        console.log(`wind_speed_120m: ${data.hourly.wind_speed_120m[index]}`);
-        console.log(`wind_speed_180m: ${jsondata.hourly.wind_speed_180m[index]}`);
-        console.log(`wind_direction_10m: ${jsondata.hourly.wind_direction_10m[index]}`);
-        console.log(`wind_direction_80m: ${jsondata.hourly.wind_direction_80m[index]}`);
-        console.log(`wind_direction_120m: ${jsondata.hourly.wind_direction_120m[index]}`);
-        console.log(`wind_direction_180m: ${jsondata.hourly.wind_direction_180m[index]}`);
-        console.log(`wind_gusts_10m: ${jsondata.hourly.wind_gusts_10m[index]}`);*/
 
-        forcast_data.push({
-          time: new Date(time),
-          temperature: jsondata.hourly.temperature_2m[index],
-          weather_code: jsondata.hourly.weather_code[index],
-          precipitation_probability:
-            jsondata.hourly.precipitation_probability[index],
-          precipitation: jsondata.hourly.precipitation[index],
-          wind_speed_10m: jsondata.hourly.wind_speed_10m[index],
-          wind_speed_80m: jsondata.hourly.wind_speed_80m[index],
-          wind_speed_120m: jsondata.hourly.wind_speed_120m[index],
-          wind_speed_180m: jsondata.hourly.wind_speed_180m[index],
-          wind_direction_10m: jsondata.hourly.wind_direction_10m[index],
-          wind_direction_80m: jsondata.hourly.wind_direction_80m[index],
-          wind_direction_120m: jsondata.hourly.wind_direction_120m[index],
-          wind_direction_180m: jsondata.hourly.wind_direction_180m[index],
-          wind_gusts_10m: jsondata.hourly.wind_gusts_10m[index],
-        });
-      });
-      renderWeatherForecast(parent);
-    })
-    .catch((error) => {
-      console.error("Error fetching weather data", error);
-    });
+  getWeather(latitude, longitude).then(() => {
+    renderWeatherForecast(parent);
+  }); 
 }
 
 function renderWeatherForecast(parent) {
   const sectiondiv = createDiv(parent, "sectionWeatherForecastDiv");
+  console.log("Rendering weather forcast with data:", forcast_data);
   let currentDay = getDayOfYearUTC(forcast_data[0].time);
   forcast_data.forEach((data, index) => {
     let day = getDayOfYearUTC(data.time);
@@ -91,7 +40,13 @@ function renderWeatherForecast(parent) {
       }
       const h2 = createH3(sectiondiv, `Weather forecast for ${dayName}`);
       let weatherDayId = `weatherDay-${day}`;
-      const dayDiv = createDiv(sectiondiv, "weatherDayDiv", weatherDayId);
+      let weatherViewpostId = `weatherViewport-${day}`;
+      const viewportDiv = createDiv(
+        sectiondiv,
+        "weatherViewport",
+        weatherViewpostId,
+      );
+      const dayDiv = createDiv(viewportDiv, "weatherDayDiv", weatherDayId);
       dayDiv.dataset.day = day;
       for (let i = 0; i < 24; i++) {
         const hourDiv = createDiv(dayDiv, "weatherHourDiv");
@@ -124,7 +79,93 @@ function renderWeatherForecast(parent) {
 
     tempSpan.textContent = `${data.temperature}°C`;
     precipSpan.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${data.precipitation_probability}%`;
-    iconSpan.innerHTML = `<i class="${weathericon}"></i>`
+    iconSpan.innerHTML = `<i class="${weathericon}"></i>`;
     windSpan.innerHTML = `<i class="fa-solid fa-wind"></i> ${data.wind_speed_10m} mph`;
+  });
+
+  let current_day = getDayOfYearUTC(new Date());
+  for (let day = current_day; day < current_day + 7; day++) {
+    scrollToHourCentered(day, 12);
+  }
+}
+
+function scrollToHourCentered(day, hour) {
+  console.log(`Scrolling to day ${day}, hour ${hour}`);
+  let weatherDayId = `weatherDay-${day}`;
+  let weatherViewportId = `weatherViewport-${day}`;
+  const strip = document.getElementById(weatherDayId);
+  if (!strip) {
+    console.error(`No strip found for day ${day}`);
+    return;
+  }
+  const target = strip.querySelector(`.weatherHourDiv[data-hour="${hour}"]`);
+  if (!target) return;
+
+  const viewport = document.getElementById(weatherViewportId);
+  if (viewport) {
+    const offset =
+      target.offsetLeft - (viewport.offsetWidth / 2 - target.offsetWidth / 2);
+    viewport.scrollLeft = offset;
+  }
+}
+
+async function getWeather(latitude, longitude) {
+  forcast_data = [];
+  const cached = localStorage.getItem(CACHE_KEY);
+  if (cached) {
+    const { timestamp, data } = JSON.parse(cached);
+    if (Date.now() - timestamp < CACHE_DURATION) {
+      console.log("Using cached weather forcast:", data);
+      forcast_data = data;
+      procssDatesForWeatherForcast();
+      return;
+    }
+  }
+
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code,precipitation_probability,precipitation,wind_speed_10m,wind_speed_80m,wind_speed_120m,wind_speed_180m,wind_direction_10m,wind_direction_80m,wind_direction_120m,wind_direction_180m,wind_gusts_10m&wind_speed_unit=mph`;
+
+  //need to convert this to a structure that the render function can use
+  console.log(`Fetching weather data from ${url}`);
+
+  const response = await fetch(url);
+  const jsondata = await response.json();
+  
+  jsondata.hourly.time.forEach((time, index) => {
+    forcast_data.push({
+      time: new Date(time),
+      temperature: jsondata.hourly.temperature_2m[index],
+      weather_code: jsondata.hourly.weather_code[index],
+      precipitation_probability:
+        jsondata.hourly.precipitation_probability[index],
+      precipitation: jsondata.hourly.precipitation[index],
+      wind_speed_10m: jsondata.hourly.wind_speed_10m[index],
+      wind_speed_80m: jsondata.hourly.wind_speed_80m[index],
+      wind_speed_120m: jsondata.hourly.wind_speed_120m[index],
+      wind_speed_180m: jsondata.hourly.wind_speed_180m[index],
+      wind_direction_10m: jsondata.hourly.wind_direction_10m[index],
+      wind_direction_80m: jsondata.hourly.wind_direction_80m[index],
+      wind_direction_120m: jsondata.hourly.wind_direction_120m[index],
+      wind_direction_180m: jsondata.hourly.wind_direction_180m[index],
+      wind_gusts_10m: jsondata.hourly.wind_gusts_10m[index],
+    });
+  });
+
+  // Save to cache
+  localStorage.setItem(
+    CACHE_KEY,
+    JSON.stringify({
+      timestamp: Date.now(),
+      data: forcast_data,
+    }),
+  );
+  
+
+  console.log("Fetched new weather forcast:", forcast_data);
+}
+
+
+function procssDatesForWeatherForcast() {
+  forcast_data.forEach((entry) => {
+    entry.time = new Date(entry.time);
   });
 }
