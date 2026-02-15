@@ -347,7 +347,47 @@ $header-scale-pc: 3;
   }
 }
 
+.section_list {
+  list-style-type: decimal;
+  li::marker {
+    font-weight: bold;
+  }
 
-.section_list{
-  list-style-type: decimal; 
+  .section_list_item {
+    margin-bottom: 0.25em;
+    @include respond(tablet) {
+      margin-bottom: 0.5em;
+    }
+    @include respond(pc) {
+      margin-bottom: 0.75em;
+    }
+  }
+}
+
+.pdfLinks {
+  a {
+    margin-bottom: 1em;
+    img {
+      width: 24px;
+      @include respond(tablet) {
+        width: 28px;
+      }
+      @include respond(pc) {
+        width: 32px;
+      }
+
+      height: auto;
+    }
+  }
+
+  .pdfdoc {
+    margin: 2em;
+    img {
+      border-radius: 0;
+    }
+  }
+
+  span {
+    margin-left: 1em;
+  }
 }

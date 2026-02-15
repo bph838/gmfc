@@ -1,25 +1,2 @@
 @use "../response" as *;
 
-.pdfLinks {
-  a {
-    img {
-      width: 24px;
-      @include respond(tablet) {
-        width: 28px;
-      }
-      @include respond(pc) {
-        width: 32px;
-      }
-
-      height: auto;
-    }
-  }
-
-  .pdfdoc {
-    margin: 1em;
-  }
-
-  span {
-    margin-left: 1em;
-  }
-}

@@ -94,36 +94,34 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
       renderedDiv = renderWrappedTextLeftSection(contentdiv, data);
       break;
     case "noImage":
-      renderSectionNoImage(contentdiv, data);
+      renderedDiv = renderSectionNoImage(contentdiv, data);
       break;
     case "carousel":
       renderCarousel(contentdiv, data);
       break;
     case "imageLeft":
-      renderImageLeft(contentdiv, data);
+      renderedDiv = renderImageLeft(contentdiv, data);
       break;
     case "imageRight":
-      renderImageRight(contentdiv, data);
+      renderedDiv = renderImageRight(contentdiv, data);
       break;
     case "imagesLeft":
-      renderImagesLeft(contentdiv, data);
+      renderedDiv = renderImagesLeft(contentdiv, data);
       break;
     case "imagesRight":
-      renderImagesRight(contentdiv, data);
+      renderedDiv = renderImagesRight(contentdiv, data);
       break;
     case "pano":
       renderPanoImage(contentdiv, data);
       break;
   }
 
-  if (renderedDiv) {
-    if (data.listitems) {
-      renderListItems(renderedDiv, data.listitems);
-    }
-  }
+  //render any list items if they exist
+  renderListItems(renderedDiv, data.listitems);
+   
 
   //If there are any pdf links to render
-  renderPDFLinks(contentdiv, data);
+  renderPDFLinks(renderedDiv, data);
 
   return section;
 }
@@ -187,11 +185,12 @@ function renderSectionNoImage(pageSection, data) {
       createParagraph(sectiondiv, text);
     });
   }
+  return sectiondiv;
 }
 
 function renderCarousel(pageSection, data) {
   if (!data.images) {
-    console.error("Unable to render renderSectionNoImage");
+    console.error("Unable to render renderCarousel");
     return;
   }
 
@@ -220,6 +219,7 @@ function renderImageLeft(parent, data) {
   data.text.forEach((text) => {
     createParagraph(rightdiv, text);
   });
+  return innerdiv;
 }
 
 function renderImageRight(parent, data) {
@@ -237,6 +237,7 @@ function renderImageRight(parent, data) {
 
   const rightdiv = createDiv(innerdiv, "section_right");
   createImage(rightdiv, data.image);
+  return  innerdiv;
 }
 
 function createImages(parent, images) {
@@ -273,6 +274,7 @@ function renderImagesLeft(parent, data) {
   });
 
   addScriptToMakeAcive("section_images_left");
+  return innerdiv;
 }
 
 function renderImagesRight(parent, data) {
@@ -291,6 +293,7 @@ function renderImagesRight(parent, data) {
   });
 
   addScriptToMakeAcive("section_images_right");
+  return innerdiv;
 }
 
 function renderPanoImage(parent, data) {
@@ -311,6 +314,9 @@ function renderPanoImage(parent, data) {
 }
 
 function renderListItems(parent, items) {
+  if (!parent || !items || items.length === 0) {
+    return;
+  }
   const list = createOrderedList(parent, "section_list");
   items.forEach((item) => {
     createListItem(list, "section_list_item", item);
