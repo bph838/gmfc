@@ -132,7 +132,7 @@ module.exports = (env, argv) => {
         "@components": path.resolve(__dirname, "src/js/components"),
         "@framework": path.resolve(__dirname, "src/js/framework"),
         "@data": path.resolve(__dirname, "src/data"),
-        "@jdbpages": path.resolve(__dirname, "src/data/pages"),
+        "@jdbpages": path.resolve(__dirname, "src/data/pages"),        
         "@siteurl": "https://www.gmfc.uk/",
       },
       extensions: [".js", ".json"], // optional, helps omit extensions

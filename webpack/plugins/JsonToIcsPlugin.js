@@ -79,6 +79,11 @@ class JsonToIcsPlugin {
         const end = endDate.toISOString().slice(0, 10).replace(/-/g, "");
 
         if (event.url) {
+          if (!isAbsoluteUrl(event.url)) {
+            event.url = `https://www.gmfc.uk${event.url}`;
+          }
+          //console.log(`   ↳ URL: ${event.url}`);
+
           lines.push(
             "BEGIN:VEVENT",
             `UID:${uid}@gmfc`,
@@ -88,7 +93,7 @@ class JsonToIcsPlugin {
             `SUMMARY:${event.title}`,
             `DESCRIPTION:Find out more at ${event.url ? event.url : ""}`,
           );
-          //console.log(`   ↳ URL: ${event.url}`);
+
           lines.push(`URL:${event.url}`);
         } else {
           lines.push(
@@ -125,6 +130,14 @@ class JsonToIcsPlugin {
 
       callback();
     });
+  }
+}
+
+function isAbsoluteUrl(u) {
+  try {
+    return Boolean(new URL(u).protocol);
+  } catch {
+    return false;
   }
 }
 
