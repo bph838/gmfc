@@ -11,7 +11,7 @@ import {
 } from "@framework/dom";
 import { initaliseCarousel, onRotate } from "@framework/carousel3d";
 import { sanitizeString } from "@framework/utils";
-
+import { fetchAndRenderWeatherForecast } from "@components/weatherforcast";
 
 export function renderSection(parent, data, pageurl = "", extraclass = "") {
   if (!data) {
@@ -114,11 +114,13 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
     case "pano":
       renderPanoImage(contentdiv, data);
       break;
+    case "weatherForecast":
+      fetchAndRenderWeatherForecast(contentdiv, data);
+      break;
   }
 
   //render any list items if they exist
   renderListItems(renderedDiv, data.listitems);
-   
 
   //If there are any pdf links to render
   renderPDFLinks(renderedDiv, data);
@@ -237,7 +239,7 @@ function renderImageRight(parent, data) {
 
   const rightdiv = createDiv(innerdiv, "section_right");
   createImage(rightdiv, data.image);
-  return  innerdiv;
+  return innerdiv;
 }
 
 function createImages(parent, images) {
@@ -322,3 +324,4 @@ function renderListItems(parent, items) {
     createListItem(list, "section_list_item", item);
   });
 }
+
