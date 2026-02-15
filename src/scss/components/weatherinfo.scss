@@ -1,43 +1,83 @@
+@use "../response" as *;
+
 .weather-widget {
   display: none;
   position: absolute;
-  top: 250px;
-  right: 50px; 
-  transform: translateY(-50%); 
 
-  width: 200px;
-  padding: 20px;
+  top: 250px;
+  right: 50px;
+  width: 100px;
+  padding: 1rem;
+
+  @include respond(pc, tablet) {
+    top: 250px;
+    right: 50px;
+    width: 200px;
+    padding: 20px;
+  }
+
+  transform: translateY(-50%);
   background: linear-gradient(to bottom, #87ceeb, #f0f8ff);
   border-radius: 12px;
   font-family: sans-serif;
   text-align: center;
   color: #333;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  rotate:10deg;
+  rotate: 10deg;
   opacity: 0.8;
 
   .weather-icon {
-    font-size: 48px;
-    margin-bottom: 10px;
-  }
-
-  .weather-info .temp {
-    font-size: 32px;
-    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 2px;
+    @include respond(pc) {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    @include respond(tablet) {
+      font-size: 32px;
+      margin-bottom: 6px;
+    }
+    .temp {
+      font-weight: bold;
+      font-size: 16px;
+      @include respond(pc) {
+        font-size: 32px;
+      }
+      @include respond(tablet) {
+        font-size: 24px;
+      }
+    }
   }
 
   .wind {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8px;
-    font-size: 14px;
+    margin-top: 2px;
+    font-size: 6px;
+    @include respond(pc) {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+    @include respond(tablet) {
+      margin-top: 4px;
+      font-size: 10px;
+    }
   }
 
   .wind-arrow {
-    font-size: 20px;
-    display: inline-block;
+    font-size: 8px;
     margin-right: 6px;
+    @include respond(pc) {
+      font-size: 20px;
+      margin-right: 6px;
+    }
+    @include respond(tablet) {
+      font-size: 14px;
+      margin-right: 6px;
+    }
+    display: inline-block;
+
     transition: transform 0.5s ease;
   }
 }
