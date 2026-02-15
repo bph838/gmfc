@@ -1,6 +1,7 @@
 import { createDiv, createH1, createSpan } from "@framework/dom";
 import { setSiteImage } from "@framework/utils";
 import { renderAlerts } from "@components/alerts";
+import { renderWeatherInfo, showhideWeather } from "@components/weather";
 
 export function renderHero(data) {
   console.log("renderHero called");
@@ -11,7 +12,7 @@ export function renderHero(data) {
     return;
   }
 
-  let sitepic = '';
+  let sitepic = "";
   if (data.generatehero && data.generatehero == true) {
     //check for hero type
     const herotype = localStorage.getItem("herotype");
@@ -32,8 +33,8 @@ export function renderHero(data) {
     }
   }
 
-  if(sitepic.length>=0){
-    setSiteImage(sitepic);    
+  if (sitepic.length >= 0) {
+    setSiteImage(sitepic);
   }
 
   hero.className = "hero";
@@ -73,16 +74,16 @@ export function renderHero(data) {
     `<i class="fa-solid fa-truck-pickup"></i>`,
   );
 
-  planespan.addEventListener("click", (event) => {
+  planespan.addEventListener("pointerup", (event) => {
     changeHeroImage("plane");
   });
-  helicopterspan.addEventListener("click", (event) => {
+  helicopterspan.addEventListener("pointerup", (event) => {
     changeHeroImage("helicopter");
   });
-  racecarspan.addEventListener("click", (event) => {
+  racecarspan.addEventListener("pointerup", (event) => {
     changeHeroImage("racecar");
   });
-  crawlerspan.addEventListener("click", (event) => {
+  crawlerspan.addEventListener("pointerup", (event) => {
     changeHeroImage("crawler");
   });
 
@@ -90,12 +91,32 @@ export function renderHero(data) {
   renderAlerts();
 
   //render any weather if we have the coordinates
-  if (data.weatherCoordinates && data.weatherCoordinates.latitude && data.weatherCoordinates.longitude) {
-    import("@components/weather").then((module) => {
-      module.renderWeatherInfo(hero,data.weatherCoordinates.latitude, data.weatherCoordinates.longitude);
-    });
-  }
+  if (
+    data.weatherCoordinates &&
+    data.weatherCoordinates.latitude &&
+    data.weatherCoordinates.longitude
+  ) {
+    const watherchangediv = createDiv(
+      hero,
+      "weatherchange-container",
+      "weatherchange-container",
+    );
+    const weatherspan = createSpan(
+      watherchangediv,
+      "weatherchange",
+      `<i class="fa-solid fa-cloud-sun"></i>`,
+    );
 
+    weatherspan.addEventListener("pointerup", (event) => {
+      showhideWeather();
+    });
+
+    renderWeatherInfo(
+      hero,
+      data.weatherCoordinates.latitude,
+      data.weatherCoordinates.longitude,
+    );
+  }
 }
 
 function getImageForHero(herotype) {
@@ -103,20 +124,16 @@ function getImageForHero(herotype) {
   switch (herotype) {
     default:
     case "plane":
-      imageurl =
-        "https://siteimages.gmfc.uk/hero/hero-plane.jpg";
+      imageurl = "https://siteimages.gmfc.uk/hero/hero-plane.jpg";
       break;
     case "helicopter":
-      imageurl =
-        "https://siteimages.gmfc.uk/hero/hero-helicopter.jpg";
+      imageurl = "https://siteimages.gmfc.uk/hero/hero-helicopter.jpg";
       break;
     case "racecar":
-      imageurl =
-        "https://siteimages.gmfc.uk/hero/hero-racecar.jpg";
+      imageurl = "https://siteimages.gmfc.uk/hero/hero-racecar.jpg";
       break;
     case "crawler":
-      imageurl =
-        "https://siteimages.gmfc.uk/hero/hero-crawl.jpg";
+      imageurl = "https://siteimages.gmfc.uk/hero/hero-crawl.jpg";
       break;
   }
   return imageurl;
@@ -127,7 +144,7 @@ function changeHeroImage(herotype) {
   const hero = document.getElementById("hero");
   console.log("changeHeroImage");
   let imageurl = getImageForHero(herotype);
-  
+
   if (imageurl.length <= 1) return;
 
   setSiteImage(imageurl);

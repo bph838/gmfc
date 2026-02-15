@@ -6,7 +6,11 @@ const CACHE_DURATION = 56 * 1000; // 60 second
 
 export function renderWeatherInfo(parent, latitude, longitude) {
   //render the weather info
-  const weather_widgetdiv = createDiv(parent, "weather-widget");
+  const weather_widgetdiv = createDiv(
+    parent,
+    "weather-widget",
+    "weather-widget",
+  );
 
   const weather_icondiv = createDiv(
     weather_widgetdiv,
@@ -14,7 +18,11 @@ export function renderWeatherInfo(parent, latitude, longitude) {
     "weather-icon",
   );
   const weather_infodiv = createDiv(weather_widgetdiv, "weather-info");
-
+  const weather_descdiv = createDiv(
+    weather_infodiv,
+    "weather-description",
+    "weather-description",
+  );
   const weather_tempdiv = createDiv(weather_infodiv, "temp", "temp");
   weather_tempdiv.innerHTML = "--°C";
   const weather_winddiv = createDiv(weather_infodiv, "wind");
@@ -31,22 +39,28 @@ export function renderWeatherInfo(parent, latitude, longitude) {
   );
   weather_windtextdiv.innerHTML = "-- km/h";
 
+  weather_widgetdiv.addEventListener("click", (event) => {
+    hideWeather();
+  });
+
   getWeather(latitude, longitude).then((data) => {
     const temp = data.current_weather.temperature;
-    const wind = data.current_weather.windspeed;
-    const windDir = data.current_weather.winddirection;
+    const wind = getMPH(data.current_weather.windspeed);
+    const windDir = data.current_weather.winddirection + 180; // Adjust to point in the direction the wind is coming from
     const weatherCode = data.current_weather.weathercode;
     const weatherInfo = getWeatherIconAndLabel(weatherCode);
     const weathericon = weatherInfo.icon;
     const weatherlabel = weatherInfo.label;
 
+    weather_descdiv.innerHTML = weatherlabel;
     weather_tempdiv.innerHTML = `${temp}°C`;
-    weather_windtextdiv.innerHTML = `${wind} km/h`;
+    weather_windtextdiv.innerHTML = `${wind} mph`;
     weather_windarrowdiv.style.transform = `rotate(${windDir}deg)`;
     let weathericonInner = `<i class="${weathericon}"></i>`;
-
     weather_icondiv.innerHTML = weathericonInner;
-    weather_widgetdiv.style.display = "block";
+
+    let weatherShowHide = document.getElementById("weatherchange-container");
+    if (weatherShowHide) weatherShowHide.style.display = "block";
   });
 }
 
@@ -118,4 +132,26 @@ function getWeatherIconAndLabel(weatherCode) {
   };
 
   return map[weatherCode] || { icon: "fa-question", label: "Unknown" };
+}
+
+export function showhideWeather() {
+  let weather_widget = document.getElementById("weather-widget");
+  if (weather_widget) {
+    if (weather_widget.style.display === "block") {
+      weather_widget.style.display = "none";
+    } else {
+      weather_widget.style.display = "block";
+    }
+  }
+}
+
+export function hideWeather() {
+  let weather_widget = document.getElementById("weather-widget");
+  if (weather_widget) {
+    weather_widget.style.display = "none";
+  }
+}
+
+function getMPH(kmh) {
+  return Math.round(kmh * 0.621371);
 }

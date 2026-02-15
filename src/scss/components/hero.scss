@@ -69,6 +69,46 @@
   }
 }
 
+.weatherchange-container {
+  display: none;
+  position: absolute;
+  top: var(--nav-height);
+  left: 1em;
+  z-index: 1050; // Ensure it appears above other content
+
+  .weatherchange {
+    i {
+      cursor: default;
+      font-size: 0.7em;
+      margin-right: 0.7em;
+      @include respond(pc) {
+        font-size: 1em;
+        margin-right: 1em;
+      }
+      &:hover {
+        cursor: pointer;
+        color: #fff2f2;
+      }
+    }
+  }
+
+  .weatherchange {
+    i {
+      cursor: default;
+      font-size: 0.7em;
+      margin-right: 0.7em;
+      @include respond(pc) {
+        font-size: 1em;
+        margin-right: 1em;
+      }
+      &:hover {
+        cursor: pointer;
+        color: #fff2f2;
+      }
+    }
+  }
+}
+
 @keyframes highlight {
   0% {
     transform: translateX(0) rotate(0deg);
@@ -110,7 +150,7 @@
     width: 20rem;
     margin-left: 50px;
     margin-top: 20px;
-    
+
     padding: 1em;
   }
 }

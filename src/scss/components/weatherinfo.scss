@@ -4,8 +4,13 @@
   display: none;
   position: absolute;
 
+  cursor: default;
+  &:hover {
+    cursor: pointer;
+  }
+
   top: 250px;
-  right: 50px;
+  right: 20px;
   width: 100px;
   padding: 1rem;
 
