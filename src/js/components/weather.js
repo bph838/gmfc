@@ -1,6 +1,7 @@
 import { fetchJson } from "@framework/utils";
 import { createDiv } from "@framework/dom";
 
+const SHOW_WEATHER_KEY = "showWeather";
 const CACHE_KEY = "weatherCache";
 const CACHE_DURATION = 56 * 1000; // 60 second
 
@@ -61,6 +62,12 @@ export function renderWeatherInfo(parent, latitude, longitude) {
 
     let weatherShowHide = document.getElementById("weatherchange-container");
     if (weatherShowHide) weatherShowHide.style.display = "block";
+    
+    const toshow = localStorage.getItem(SHOW_WEATHER_KEY);
+    if (toshow === "true") {
+      showhideWeather();
+    }
+
   });
 }
 
@@ -75,8 +82,7 @@ async function getWeather(latitude, longitude) {
     }
   }
 
-  console.log("AAAA");
-  // Fetch fresh data
+    // Fetch fresh data
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
   console.log(`Fetching weather: ${url}`);
 
@@ -139,8 +145,10 @@ export function showhideWeather() {
   if (weather_widget) {
     if (weather_widget.style.display === "block") {
       weather_widget.style.display = "none";
+      localStorage.removeItem(SHOW_WEATHER_KEY);
     } else {
       weather_widget.style.display = "block";
+      localStorage.setItem(SHOW_WEATHER_KEY, "true");
     }
   }
 }
@@ -149,6 +157,7 @@ export function hideWeather() {
   let weather_widget = document.getElementById("weather-widget");
   if (weather_widget) {
     weather_widget.style.display = "none";
+    localStorage.removeItem(SHOW_WEATHER_KEY);
   }
 }
 
