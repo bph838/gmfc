@@ -71,6 +71,21 @@
       "date": "2026-02-15T14:14:31.494Z"
     },
     {
+      "page": "club/weather.html",
+      "url": "@/club/weather",
+      "jdb": "@jdbpages/club/weather.json",
+      "datetype": "filemodified",
+      "date": "2026-02-15T16:03:30.271Z"
+    },
+    {
+      "hash": "b1cbbabc778c5d1ce1b26cae3fed4500",
+      "page": "news/2026/2/february-maintenance-help-needed.html",
+      "jdb": "@jdbpages/newsitems/b1cbbabc778c5d1ce1b26cae3fed4500.json",
+      "datetype": "static",
+      "date": "2026-02-19",
+      "title": "February maintenance help needed"
+    },
+    {
       "hash": "c1363e4bb353782534016ac3c6577901",
       "page": "news/2026/1/track-only-members-non-flying.html",
       "jdb": "@jdbpages/newsitems/c1363e4bb353782534016ac3c6577901.json",
@@ -93,22 +108,6 @@
       "datetype": "static",
       "date": "2025-01-01",
       "title": "Monthly Club Days"
-    },
-    {
-      "hash": "d23e85a98aa38d5930a69f8504bc1fd5",
-      "page": "news/2026/2/maintenance-help-needed.html",
-      "jdb": "@jdbpages/newsitems/d23e85a98aa38d5930a69f8504bc1fd5.json",
-      "datetype": "static",
-      "date": "2026-02-19",
-      "title": "Maintenance help needed"
-    },
-    {
-      "hash": "b1cbbabc778c5d1ce1b26cae3fed4500",
-      "page": "news/2026/2/february-maintenance-help-needed.html",
-      "jdb": "@jdbpages/newsitems/b1cbbabc778c5d1ce1b26cae3fed4500.json",
-      "datetype": "static",
-      "date": "2026-02-19",
-      "title": "February maintenance help needed"
     }
   ]
 }

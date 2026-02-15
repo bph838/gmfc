@@ -98,6 +98,7 @@ module.exports = (env, argv) => {
       clubmerch: "./src/pages/club/merch.js",
       clubmember: "./src/pages/club/member.js",
       cubhistory: "./src/pages/club/history.js",
+      clubweather: "./src/pages/club/weather.js",
       styles: "./src/scss/styles.scss",
     },
     output: {
@@ -349,6 +350,20 @@ module.exports = (env, argv) => {
         template: "./src/templates/iframe_membermojo_holder.html",
         chunks: ["clubmember"],
         title: SITE_TITLE + " - Members",
+        templateParameters: {
+          siteName: SITE_TITLE,
+          partials,
+          site: site,
+          keywords: keywords.csv("all"),
+        },
+      }),
+
+      //clubweather.html
+      new HtmlWebpackPlugin({
+        filename: "club/weather.html",
+        template: "./src/templates/main.html",
+        chunks: ["clubweather"],
+        title: SITE_TITLE + " - Weather",
         templateParameters: {
           siteName: SITE_TITLE,
           partials,

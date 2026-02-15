@@ -52,6 +52,16 @@
   </url>
 
   <url>
+    <loc>https://www.gmfc.uk/club/weather</loc>
+    <lastmod>2026-02-15T16:03:30.271Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.gmfc.uk/news/2026/2/february-maintenance-help-needed.html</loc>
+    <lastmod>2026-02-19</lastmod>
+  </url>
+
+  <url>
     <loc>https://www.gmfc.uk/news/2026/1/track-only-members-non-flying.html</loc>
     <lastmod>2026-01-05</lastmod>
   </url>
@@ -64,15 +74,5 @@
   <url>
     <loc>https://www.gmfc.uk/news/2025/1/monthly-club-days.html</loc>
     <lastmod>2025-01-01</lastmod>
-  </url>
-
-  <url>
-    <loc>https://www.gmfc.uk/news/2026/2/maintenance-help-needed.html</loc>
-    <lastmod>2026-02-19</lastmod>
-  </url>
-
-  <url>
-    <loc>https://www.gmfc.uk/news/2026/2/february-maintenance-help-needed.html</loc>
-    <lastmod>2026-02-19</lastmod>
   </url>
 </urlset>
