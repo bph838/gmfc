@@ -19,7 +19,7 @@
       "url": "@/news",
       "jdb": "@jdbpages/news.json",
       "datetype": "filemodified",
-      "date": "2026-02-15T10:15:30.372Z"
+      "date": "2026-02-15T10:25:09.596Z"
     },
     {
       "page": "gallery.html",
@@ -101,6 +101,14 @@
       "datetype": "static",
       "date": "2026-02-19",
       "title": "Maintenance help needed"
+    },
+    {
+      "hash": "b1cbbabc778c5d1ce1b26cae3fed4500",
+      "page": "news/2026/2/february-maintenance-help-needed.html",
+      "jdb": "@jdbpages/newsitems/b1cbbabc778c5d1ce1b26cae3fed4500.json",
+      "datetype": "static",
+      "date": "2026-02-19",
+      "title": "February maintenance help needed"
     }
   ]
 }

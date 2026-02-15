@@ -60,7 +60,7 @@ export function createInput(
   if (name) el.name = name;
   if (id) el.id = id;
   if (value) el.value = value;
-  if (checked){ 
+  if (checked) {
     console.log("a");
     el.checked = checked;
   }
@@ -159,6 +159,23 @@ export function createParagraph(parent, innerHTML = null, className = null) {
   if (typeof innerHTML !== "string") return;
 
   let el = document.createElement("p");
+  if (className) el.className = className;
+  if (innerHTML) el.innerHTML = innerHTML;
+
+  parent.appendChild(el);
+  return el;
+}
+
+export function createOrderedList(parent, className = null) {
+  let el = document.createElement("ol");
+  if (className) el.className = className;
+
+  parent.appendChild(el);
+  return el;
+}
+
+export function createListItem(parent, className = null, innerHTML = null) {
+  let el = document.createElement("li");
   if (className) el.className = className;
   if (innerHTML) el.innerHTML = innerHTML;
 

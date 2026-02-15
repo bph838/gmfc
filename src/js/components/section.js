@@ -6,9 +6,12 @@ import {
   createLink,
   createImage,
   createParagraph,
+  createOrderedList,
+  createListItem,
 } from "@framework/dom";
 import { initaliseCarousel, onRotate } from "@framework/carousel3d";
 import { sanitizeString } from "@framework/utils";
+
 
 export function renderSection(parent, data, pageurl = "", extraclass = "") {
   if (!data) {
@@ -82,12 +85,13 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
     }
   }
 
+  let renderedDiv = null;
   switch (data.type) {
     default:
       console.error("Unable to render " + data.type);
       break;
     case "wrappedTextLeft":
-      renderWrappedTextLeftSection(contentdiv, data);
+      renderedDiv = renderWrappedTextLeftSection(contentdiv, data);
       break;
     case "noImage":
       renderSectionNoImage(contentdiv, data);
@@ -112,6 +116,12 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
       break;
   }
 
+  if (renderedDiv) {
+    if (data.listitems) {
+      renderListItems(renderedDiv, data.listitems);
+    }
+  }
+
   //If there are any pdf links to render
   renderPDFLinks(contentdiv, data);
 
@@ -130,6 +140,8 @@ function renderWrappedTextLeftSection(parent, data) {
   data.text.forEach((text) => {
     createParagraph(innerdiv, text);
   });
+
+  return innerdiv;
 }
 
 export function renderPDFLinks(pageSection, data) {
@@ -290,10 +302,17 @@ function renderPanoImage(parent, data) {
   const pano_wrap = createDiv(parent, "pano-wrap");
   const pano = createImage(pano_wrap, data.image, "pano");
 
-  window.addEventListener('scroll', () => {
-  const maxScroll = document.body.scrollHeight - innerHeight;
-  const percent = scrollY / maxScroll;
+  window.addEventListener("scroll", () => {
+    const maxScroll = document.body.scrollHeight - innerHeight;
+    const percent = scrollY / maxScroll;
 
-  pano.style.transform = `translateX(-${percent * (pano.scrollWidth - innerWidth)}px)`;
-});
+    pano.style.transform = `translateX(-${percent * (pano.scrollWidth - innerWidth)}px)`;
+  });
+}
+
+function renderListItems(parent, items) {
+  const list = createOrderedList(parent, "section_list");
+  items.forEach((item) => {
+    createListItem(list, "section_list_item", item);
+  });
 }
