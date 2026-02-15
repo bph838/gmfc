@@ -102,7 +102,7 @@ async function getWeather(latitude, longitude) {
   return data;
 }
 
-function getWeatherIconAndLabel(weatherCode) {
+export function getWeatherIconAndLabel(weatherCode) {
   const map = {
     0: { icon: "fa-solid fa-sun", label: "Clear sky" },
     1: { icon: "fa-solid fa-cloud-sun", label: "Mainly clear" },

@@ -243,3 +243,16 @@ export function getTimeParts(diffMs) {
     seconds: totalSeconds % 60,
   };
 }
+
+export function getDayOfYearUTC(input) {
+  const date = new Date(input); // always converts safely
+
+  const start = Date.UTC(date.getUTCFullYear(), 0, 0);
+  const now = Date.UTC(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate()
+  );
+
+  return Math.floor((now - start) / 86400000);
+}
