@@ -1,10 +1,13 @@
 import { fetchJson, getDayOfYearUTC } from "@framework/utils";
 import { createDiv, createH3, createSpan } from "@framework/dom";
-import { getWeatherIconAndLabel } from "@components/weatherinfo";
+import {
+  getWeatherIconAndLabel,
+  getWeatherImageAndLabel,
+} from "@components/weatherinfo";
 
 let forcast_data = [];
 const CACHE_KEY = "weatherForcastCache";
-const CACHE_DURATION = 1000*60*60*60; // 1 hour
+const CACHE_DURATION = 1000 * 60 * 60; // 1 hour
 
 export function fetchAndRenderWeatherForecast(parent, data) {
   if (!data.weatherCoordinates) {
@@ -17,7 +20,7 @@ export function fetchAndRenderWeatherForecast(parent, data) {
 
   getWeather(latitude, longitude).then(() => {
     renderWeatherForecast(parent);
-  }); 
+  });
 }
 
 function renderWeatherForecast(parent) {
@@ -38,7 +41,7 @@ function renderWeatherForecast(parent) {
       ) {
         dayName = "Tomorrow";
       }
-      const h2 = createH3(sectiondiv, `Weather forecast for ${dayName}`);
+      const h2 = createH3(sectiondiv, `${dayName}`);
       let weatherDayId = `weatherDay-${day}`;
       let weatherViewpostId = `weatherViewport-${day}`;
       const viewportDiv = createDiv(
@@ -49,7 +52,13 @@ function renderWeatherForecast(parent) {
       const dayDiv = createDiv(viewportDiv, "weatherDayDiv", weatherDayId);
       dayDiv.dataset.day = day;
       for (let i = 0; i < 24; i++) {
-        const hourDiv = createDiv(dayDiv, "weatherHourDiv");
+        let divhourClass = "weatherHourDiv";
+        if (i < 6 || i > 20) {
+          divhourClass += " weather-night";
+        } else {
+          divhourClass += " weather-daylight";
+        }
+        const hourDiv = createDiv(dayDiv, divhourClass);
         hourDiv.dataset.hour = i;
         const timeSpan = createSpan(hourDiv, "weatherTime", `${i}:00`);
         const tempSpan = createSpan(hourDiv, "weatherTemp");
@@ -73,13 +82,13 @@ function renderWeatherForecast(parent) {
     const precipSpan = hourDiv.querySelector(".weatherPrecip");
     const iconSpan = hourDiv.querySelector(".weatherIcon");
     const windSpan = hourDiv.querySelector(".weatherWind");
-    const weatherInfo = getWeatherIconAndLabel(data.weather_code);
-    const weathericon = weatherInfo.icon;
+    const weatherInfo = getWeatherImageAndLabel(data.weather_code); //getWeatherIconAndLabel(data.weather_code);
+    const weatherimage = weatherInfo.image;
     const weatherlabel = weatherInfo.label;
 
     tempSpan.textContent = `${data.temperature}°C`;
     precipSpan.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${data.precipitation_probability}%`;
-    iconSpan.innerHTML = `<i class="${weathericon}"></i>`;
+    iconSpan.innerHTML = `<img src="${weatherimage}" alt="${weatherlabel}"  title="${weatherlabel}"  class="weather-image" />`;
     windSpan.innerHTML = `<i class="fa-solid fa-wind"></i> ${data.wind_speed_10m} mph`;
   });
 
@@ -95,7 +104,6 @@ function scrollToHourCentered(day, hour) {
   let weatherViewportId = `weatherViewport-${day}`;
   const strip = document.getElementById(weatherDayId);
   if (!strip) {
-    console.error(`No strip found for day ${day}`);
     return;
   }
   const target = strip.querySelector(`.weatherHourDiv[data-hour="${hour}"]`);
@@ -129,7 +137,7 @@ async function getWeather(latitude, longitude) {
 
   const response = await fetch(url);
   const jsondata = await response.json();
-  
+
   jsondata.hourly.time.forEach((time, index) => {
     forcast_data.push({
       time: new Date(time),
@@ -158,11 +166,9 @@ async function getWeather(latitude, longitude) {
       data: forcast_data,
     }),
   );
-  
 
   console.log("Fetched new weather forcast:", forcast_data);
 }
-
 
 function procssDatesForWeatherForcast() {
   forcast_data.forEach((entry) => {

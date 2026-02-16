@@ -167,39 +167,43 @@ function getMPH(kmh) {
 }
 
 export function getWeatherImageAndLabel(weatherCode) {
+
+  let source = "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/weather/";
+  //source = "https://siteimages.gmfc.uk/weather/";
+
   const map = {
-    0: { image: "https://siteimages.gmfc.uk/weather/sun.png", label: "Clear sky" },
-    1: { image: "https://siteimages.gmfc.uk/weather/cloud-sun.png", label: "Mainly clear" },
-    2: { image: "https://siteimages.gmfc.uk/weather/cloud-sun.png", label: "Partly cloudy" },
-    3: { image: "https://siteimages.gmfc.uk/weather/cloud.png", label: "Overcast" },
-    45: { image: "https://siteimages.gmfc.uk/weather/dark-cloud.png", label: "Fog" },
-    48: { image: "https://siteimages.gmfc.uk/weather/dark-cloud.png", label: "Depositing rime fog" },
-    51: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Light drizzle" },
-    53: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Moderate drizzle" },
-    55: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Dense drizzle" },
-    56: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Light freezing drizzle" },
-    57: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Dense freezing drizzle" },
-    61: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Light rain" },
-    63: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Moderate rain" },
-    65: { image: "https://siteimages.gmfc.uk/weather/heavy-rain.png", label: "Heavy rain" },
-    66: { image: "https://siteimages.gmfc.uk/weather/heavy-rain.png", label: "Light freezing rain" },
-    67: { image: "https://siteimages.gmfc.uk/weather/heavy-rain.png", label: "Heavy freezing rain" },
-    71: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Light snow" },
-    73: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Moderate snow" },
-    75: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Heavy snow" },
-    77: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Snow grains" },
-    80: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Rain showers" },
-    81: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Moderate showers" },
-    82: { image: "https://siteimages.gmfc.uk/weather/heavy-rain.png", label: "Violent showers" },
-    85: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Snow showers light" },
-    86: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Snow showers heavy" },
-    95: { image: "https://siteimages.gmfc.uk/weather/thunderstorm.png", label: "Thunderstorm" },
-    96: { image: "https://siteimages.gmfc.uk/weather/thunderstorm.png", label: "Thunderstorm with hail" },
+    0: { image: `${source}sun.png`, label: "Clear sky" },
+    1: { image: `${source}cloud-sun.png`, label: "Mainly clear" },
+    2: { image: `${source}cloud-sun.png`, label: "Partly cloudy" },
+    3: { image: `${source}cloud.png`, label: "Overcast" },
+    45: { image: `${source}dark-cloud.png`, label: "Fog" },
+    48: { image: `${source}dark-cloud.png`, label: "Depositing rime fog" },
+    51: { image: `${source}light-rain.png`, label: "Light drizzle" },
+    53: { image: `${source}light-rain.png`, label: "Moderate drizzle" },
+    55: { image: `${source}light-rain.png`, label: "Dense drizzle" },
+    56: { image: `${source}light-rain.png`, label: "Light freezing drizzle" },
+    57: { image: `${source}light-rain.png`, label: "Dense freezing drizzle" },
+    61: { image: `${source}light-rain.png`, label: "Light rain" },
+    63: { image: `${source}light-rain.png`, label: "Moderate rain" },
+    65: { image: `${source}heavy-rain.png`, label: "Heavy rain" },
+    66: { image: `${source}heavy-rain.png`, label: "Light freezing rain" },
+    67: { image: `${source}heavy-rain.png`, label: "Heavy freezing rain" },
+    71: { image: `${source}snow.png`, label: "Light snow" },
+    73: { image: `${source}snow.png`, label: "Moderate snow" },
+    75: { image: `${source}snow.png`, label: "Heavy snow" },
+    77: { image: `${source}snow.png`, label: "Snow grains" },
+    80: { image: `${source}light-rain.png`, label: "Rain showers" },
+    81: { image: `${source}light-rain.png`, label: "Moderate showers" },
+    82: { image: `${source}heavy-rain.png`, label: "Violent showers" },
+    85: { image: `${source}snow.png`, label: "Snow showers light" },
+    86: { image: `${source}snow.png`, label: "Snow showers heavy" },
+    95: { image: `${source}thunderstorm.png`, label: "Thunderstorm" },
+    96: { image: `${source}thunderstorm.png`, label: "Thunderstorm with hail" },
     99: {
-      image: "https://siteimages.gmfc.uk/weather/hail.png",
+      image: `${source}hail.png`,
       label: "Thunderstorm with heavy hail",
     },
   };
 
-  return map[weatherCode] || { image: "https://siteimages.gmfc.uk/weather/cloud-sun.png", label: "Unknown" };
+  return map[weatherCode] || { image: `${source}cloud-sun.png`, label: "Unknown" };
 }
