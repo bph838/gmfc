@@ -49,16 +49,17 @@ export function renderWeatherInfo(parent, latitude, longitude) {
     const wind = getMPH(data.current_weather.windspeed);
     const windDir = data.current_weather.winddirection + 180; // Adjust to point in the direction the wind is coming from
     const weatherCode = data.current_weather.weathercode;
-    const weatherInfo = getWeatherIconAndLabel(weatherCode);
-    const weathericon = weatherInfo.icon;
+    const weatherInfo = getWeatherImageAndLabel(weatherCode);//getWeatherIconAndLabel(weatherCode);
+    const weatherimage = weatherInfo.image;
     const weatherlabel = weatherInfo.label;
 
     weather_descdiv.innerHTML = weatherlabel;
     weather_tempdiv.innerHTML = `${temp}°C`;
     weather_windtextdiv.innerHTML = `${wind} mph`;
     weather_windarrowdiv.style.transform = `rotate(${windDir}deg)`;
-    let weathericonInner = `<i class="${weathericon}"></i>`;
-    weather_icondiv.innerHTML = weathericonInner;
+    //let weathericonInner = `<i class="${weathericon}"></i>`;
+    let weatherImgInner = `<img src="${weatherimage}" alt="${weatherlabel}" class="weather-image" />`;
+    weather_icondiv.innerHTML = weatherImgInner;
 
     let weatherShowHide = document.getElementById("weatherchange-container");
     if (weatherShowHide) weatherShowHide.style.display = "block";
@@ -163,4 +164,42 @@ export function hideWeather() {
 
 function getMPH(kmh) {
   return Math.round(kmh * 0.621371);
+}
+
+export function getWeatherImageAndLabel(weatherCode) {
+  const map = {
+    0: { image: "https://siteimages.gmfc.uk/weather/sun.png", label: "Clear sky" },
+    1: { image: "https://siteimages.gmfc.uk/weather/cloud-sun.png", label: "Mainly clear" },
+    2: { image: "https://siteimages.gmfc.uk/weather/cloud-sun.png", label: "Partly cloudy" },
+    3: { image: "https://siteimages.gmfc.uk/weather/cloud.png", label: "Overcast" },
+    45: { image: "https://siteimages.gmfc.uk/weather/dark-cloud.png", label: "Fog" },
+    48: { image: "https://siteimages.gmfc.uk/weather/dark-cloud.png", label: "Depositing rime fog" },
+    51: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Light drizzle" },
+    53: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Moderate drizzle" },
+    55: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Dense drizzle" },
+    56: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Light freezing drizzle" },
+    57: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Dense freezing drizzle" },
+    61: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Light rain" },
+    63: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Moderate rain" },
+    65: { image: "https://siteimages.gmfc.uk/weather/heavy-rain.png", label: "Heavy rain" },
+    66: { image: "https://siteimages.gmfc.uk/weather/heavy-rain.png", label: "Light freezing rain" },
+    67: { image: "https://siteimages.gmfc.uk/weather/heavy-rain.png", label: "Heavy freezing rain" },
+    71: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Light snow" },
+    73: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Moderate snow" },
+    75: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Heavy snow" },
+    77: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Snow grains" },
+    80: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Rain showers" },
+    81: { image: "https://siteimages.gmfc.uk/weather/light-rain.png", label: "Moderate showers" },
+    82: { image: "https://siteimages.gmfc.uk/weather/heavy-rain.png", label: "Violent showers" },
+    85: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Snow showers light" },
+    86: { image: "https://siteimages.gmfc.uk/weather/snow.png", label: "Snow showers heavy" },
+    95: { image: "https://siteimages.gmfc.uk/weather/thunderstorm.png", label: "Thunderstorm" },
+    96: { image: "https://siteimages.gmfc.uk/weather/thunderstorm.png", label: "Thunderstorm with hail" },
+    99: {
+      image: "https://siteimages.gmfc.uk/weather/hail.png",
+      label: "Thunderstorm with heavy hail",
+    },
+  };
+
+  return map[weatherCode] || { image: "https://siteimages.gmfc.uk/weather/cloud-sun.png", label: "Unknown" };
 }
