@@ -65,7 +65,7 @@ try {
         hash: item.hash,
         partials: loadPartials(isProduction),
         site: site,
-        keywords: keywords.csv(["all","news"]),
+        keywords: keywords.csv(["all", "news"]),
       },
     });
   });
@@ -102,7 +102,7 @@ module.exports = (env, argv) => {
       styles: "./src/scss/styles.scss",
     },
     output: {
-      filename: "js/[name].bundle.js", // main.bundle.js, about.bundle.js
+      filename: "js/[name].js", 
       path: path.resolve(__dirname, "dist"),
       publicPath: "/",
       clean: true,
@@ -133,7 +133,7 @@ module.exports = (env, argv) => {
         "@components": path.resolve(__dirname, "src/js/components"),
         "@framework": path.resolve(__dirname, "src/js/framework"),
         "@data": path.resolve(__dirname, "src/data"),
-        "@jdbpages": path.resolve(__dirname, "src/data/pages"),        
+        "@jdbpages": path.resolve(__dirname, "src/data/pages"),
         "@siteurl": "https://www.gmfc.uk/",
       },
       extensions: [".js", ".json"], // optional, helps omit extensions
@@ -213,7 +213,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
-          keywords: keywords.csv(["all","calendar"]),
+          keywords: keywords.csv(["all", "calendar"]),
         },
       }),
 
@@ -227,7 +227,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
-          keywords: keywords.csv(["all","news"]),
+          keywords: keywords.csv(["all", "news"]),
         },
       }),
 
@@ -241,7 +241,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
-          keywords: keywords.csv(["all","news"]),
+          keywords: keywords.csv(["all", "news"]),
         },
       }),
 
@@ -255,8 +255,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
-          keywords: keywords.csv(["all","aboutus"]),
-
+          keywords: keywords.csv(["all", "aboutus"]),
         },
       }),
 
@@ -270,7 +269,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
-          keywords: keywords.csv(["all","gallery"]),
+          keywords: keywords.csv(["all", "gallery"]),
         },
       }),
 
@@ -298,7 +297,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
-          keywords: keywords.csv(["all","clubrules"]),
+          keywords: keywords.csv(["all", "clubrules"]),
         },
       }),
 
@@ -312,7 +311,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
-          keywords: keywords.csv(["all","history"]),
+          keywords: keywords.csv(["all", "history"]),
         },
       }),
 
@@ -326,7 +325,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
-          keywords: keywords.csv(["all","leaderboard"]),
+          keywords: keywords.csv(["all", "leaderboard"]),
         },
       }),
 
@@ -441,6 +440,24 @@ module.exports = (env, argv) => {
           },
         }),
       ],
+      splitChunks: {
+        chunks: "all",
+        cacheGroups: {
+          framework: {
+            test: /[\\/]src[\\/]js[\\/]framework[\\/]/,
+            name: "framework",
+            chunks: "all",
+            enforce: true,
+          },
+
+          components: {
+            test: /[\\/]src[\\/]js[\\/]components[\\/]/,
+            name: "components",
+            chunks: "all",
+            enforce: true,
+          },
+        },
+      },
     },
 
     module: {
