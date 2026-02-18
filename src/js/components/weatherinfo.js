@@ -40,10 +40,6 @@ export function renderWeatherInfo(parent, latitude, longitude) {
   );
   weather_windtextdiv.innerHTML = "-- km/h";
 
-  weather_widgetdiv.addEventListener("click", (event) => {
-    hideWeather();
-  });
-
   getWeather(latitude, longitude).then((data) => {
     const temp = data.current_weather.temperature;
     const wind = getMPH(data.current_weather.windspeed);
@@ -68,6 +64,10 @@ export function renderWeatherInfo(parent, latitude, longitude) {
     if (toshow === "true") {
       showhideWeather();
     }
+
+    weather_widgetdiv.addEventListener("click", (event) => {
+        window.location.href = "/club/weather.html";
+    });
   });
 }
 
