@@ -49,7 +49,7 @@ export function renderWeatherInfo(parent, latitude, longitude) {
     const wind = getMPH(data.current_weather.windspeed);
     const windDir = data.current_weather.winddirection + 180; // Adjust to point in the direction the wind is coming from
     const weatherCode = data.current_weather.weathercode;
-    const weatherInfo = getWeatherImageAndLabel(weatherCode);//getWeatherIconAndLabel(weatherCode);
+    const weatherInfo = getWeatherImageAndLabel(weatherCode); //getWeatherIconAndLabel(weatherCode);
     const weatherimage = weatherInfo.image;
     const weatherlabel = weatherInfo.label;
 
@@ -63,12 +63,11 @@ export function renderWeatherInfo(parent, latitude, longitude) {
 
     let weatherShowHide = document.getElementById("weatherchange-container");
     if (weatherShowHide) weatherShowHide.style.display = "block";
-    
+
     const toshow = localStorage.getItem(SHOW_WEATHER_KEY);
     if (toshow === "true") {
       showhideWeather();
     }
-
   });
 }
 
@@ -83,7 +82,7 @@ async function getWeather(latitude, longitude) {
     }
   }
 
-    // Fetch fresh data
+  // Fetch fresh data
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
   console.log(`Fetching weather: ${url}`);
 
@@ -166,44 +165,90 @@ function getMPH(kmh) {
   return Math.round(kmh * 0.621371);
 }
 
-export function getWeatherImageAndLabel(weatherCode) {
+export function getWeatherImageAndLabel(weatherCode, night = false) {
+  let source = "https://siteimages.gmfc.uk/weather/";
 
-  let source = "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com/weather/";
-  //source = "https://siteimages.gmfc.uk/weather/";
+  if (night) {
+    const map = {
+      0: { image: `${source}wsymbol_0008_clear_sky_night.png`, label: "Clear sky" },
+      1: { image: `${source}wsymbol_0041_partly_cloudy_night.png`, label: "Mainly clear" },
+      2: { image: `${source}wsymbol_0044_mostly_cloudy_night.png`, label: "Partly cloudy" },
+      3: { image: `${source}wsymbol_0041_partly_cloudy_night.png`, label: "Overcast" },
+      45: { image: `${source}wsymbol_0064_fog_night.png`, label: "Fog" },
+      48: { image: `${source}wsymbol_0064_fog_night.png`, label: "Depositing rime fog" },
+      51: { image: `${source}wsymbol_0066_drizzle_night.png`, label: "Light drizzle" },
+      53: { image: `${source}wsymbol_0066_drizzle_night.png`, label: "Moderate drizzle" },
+      55: { image: `${source}wsymbol_0066_drizzle_night.png`, label: "Dense drizzle" },
+      56: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Light freezing drizzle" },
+      57: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Dense freezing drizzle" },
+      61: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Light rain" },
+      63: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Moderate rain" },
+      65: { image: `${source}wsymbol_0026_heavy_rain_showers_night.png`, label: "Heavy rain" },
+      66: { image: `${source}wsymbol_0026_heavy_rain_showers_night.png`, label: "Light freezing rain" },
+      67: { image: `${source}wsymbol_0026_heavy_rain_showers_night.png`, label: "Heavy freezing rain" },
+      71: { image: `${source}swsymbol_0027_light_snow_showers_night.png`, label: "Light snow" },
+      73: { image: `${source}wsymbol_0027_light_snow_showers_night.png`, label: "Moderate snow" },
+      75: { image: `${source}wsymbol_0028_heavy_snow_showers_night.png`, label: "Heavy snow" },
+      77: { image: `${source}wsymbol_0027_light_snow_showers_night.png`, label: "Snow grains" },
+      80: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Rain showers" },
+      81: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Moderate showers" },
+      82: { image: `${source}wsymbol_0034_cloudy_with_heavy_rain_night.png`, label: "Violent showers" },
+      85: { image: `${source}wsymbol_0029_sleet_showers_night.png`, label: "Snow showers light" },
+      86: { image: `${source}wsymbol_0029_sleet_showers_night.png`, label: "Snow showers heavy" },
+      95: { image: `${source}wsymbol_0032_thundery_showers_night.png`, label: "Thunderstorm" },
+      96: {
+        image: `${source}wsymbol_0032_thundery_showers_night.png`,
+        label: "Thunderstorm with hail",
+      },
+      99: {
+        image: `${source}wsymbol_0039_cloudy_with_heavy_hail_night.png`,
+        label: "Thunderstorm with heavy hail",
+      },
+    };
 
-  const map = {
-    0: { image: `${source}sun.png`, label: "Clear sky" },
-    1: { image: `${source}cloud-sun.png`, label: "Mainly clear" },
-    2: { image: `${source}cloud-sun.png`, label: "Partly cloudy" },
-    3: { image: `${source}cloud.png`, label: "Overcast" },
-    45: { image: `${source}dark-cloud.png`, label: "Fog" },
-    48: { image: `${source}dark-cloud.png`, label: "Depositing rime fog" },
-    51: { image: `${source}light-rain.png`, label: "Light drizzle" },
-    53: { image: `${source}light-rain.png`, label: "Moderate drizzle" },
-    55: { image: `${source}light-rain.png`, label: "Dense drizzle" },
-    56: { image: `${source}light-rain.png`, label: "Light freezing drizzle" },
-    57: { image: `${source}light-rain.png`, label: "Dense freezing drizzle" },
-    61: { image: `${source}light-rain.png`, label: "Light rain" },
-    63: { image: `${source}light-rain.png`, label: "Moderate rain" },
-    65: { image: `${source}heavy-rain.png`, label: "Heavy rain" },
-    66: { image: `${source}heavy-rain.png`, label: "Light freezing rain" },
-    67: { image: `${source}heavy-rain.png`, label: "Heavy freezing rain" },
-    71: { image: `${source}snow.png`, label: "Light snow" },
-    73: { image: `${source}snow.png`, label: "Moderate snow" },
-    75: { image: `${source}snow.png`, label: "Heavy snow" },
-    77: { image: `${source}snow.png`, label: "Snow grains" },
-    80: { image: `${source}light-rain.png`, label: "Rain showers" },
-    81: { image: `${source}light-rain.png`, label: "Moderate showers" },
-    82: { image: `${source}heavy-rain.png`, label: "Violent showers" },
-    85: { image: `${source}snow.png`, label: "Snow showers light" },
-    86: { image: `${source}snow.png`, label: "Snow showers heavy" },
-    95: { image: `${source}thunderstorm.png`, label: "Thunderstorm" },
-    96: { image: `${source}thunderstorm.png`, label: "Thunderstorm with hail" },
-    99: {
-      image: `${source}hail.png`,
-      label: "Thunderstorm with heavy hail",
-    },
-  };
+    return (
+      map[weatherCode] || { image: `${source}wsymbol_0042_cloudy_night.png`, label: "Unknown" }
+    );
+  } else {
+    const map = {
+      0: { image: `${source}wsymbol_0001_sunny.png`, label: "Clear sky" },
+      1: { image: `${source}wsymbol_0002_sunny_intervals.png`, label: "Mainly clear" },
+      2: { image: `${source}wsymbol_0002_sunny_intervals.png`, label: "Partly cloudy" },
+      3: { image: `${source}wsymbol_0003_white_cloud.png`, label: "Overcast" },
+      45: { image: `${source}wsymbol_0007_fog.png`, label: "Fog" },
+      48: { image: `${source}wsymbol_0007_fog.png`, label: "Depositing rime fog" },
+      51: { image: `${source}wsymbol_0048_drizzle.png`, label: "Light drizzle" },
+      53: { image: `${source}wsymbol_0048_drizzle.png`, label: "Moderate drizzle" },
+      55: { image: `${source}wsymbol_0081_heavy_drizzle.png`, label: "Dense drizzle" },
+      56: { image: `${source}wsymbol_0048_drizzle.png`, label: "Light freezing drizzle" },
+      57: { image: `${source}wsymbol_0049_freezing_drizzle.png`, label: "Dense freezing drizzle" },
+      61: { image: `${source}wsymbol_0017_cloudy_with_light_rain.png`, label: "Light rain" },
+      63: { image: `${source}wsymbol_0018_cloudy_with_heavy_rain.png`, label: "Moderate rain" },
+      65: { image: `${source}wsymbol_0018_cloudy_with_heavy_rain.png`, label: "Heavy rain" },
+      66: { image: `${source}wsymbol_0050_freezing_rain.png`, label: "Light freezing rain" },
+      67: { image: `${source}wsymbol_0050_freezing_rain.png`, label: "Heavy freezing rain" },
+      71: { image: `${source}wsymbol_0019_cloudy_with_light_snow.png`, label: "Light snow" },
+      73: { image: `${source}wsymbol_0019_cloudy_with_light_snow.png`, label: "Moderate snow" },
+      75: { image: `${source}wsymbol_0020_cloudy_with_heavy_snow.png`, label: "Heavy snow" },
+      77: { image: `${source}wsymbol_0020_cloudy_with_heavy_snow.png`, label: "Snow grains" },
+      80: { image: `${source}wsymbol_0009_light_rain_showers.png`, label: "Rain showers" },
+      81: { image: `${source}wsymbol_0009_light_rain_showers.png`, label: "Moderate showers" },
+      82: { image: `${source}wsymbol_0010_heavy_rain_showers.png`, label: "Violent showers" },
+      85: { image: `${source}wsymbol_0019_cloudy_with_light_snow.png`, label: "Snow showers light" },
+      86: { image: `${source}wsymbol_0020_cloudy_with_heavy_snow.png`, label: "Snow showers heavy" },
+      95: { image: `${source}wsymbol_0024_thunderstorms.png`, label: "Thunderstorm" },
+      96: {
+        image: `${source}wsymbol_0024_thunderstorms.png`,
+        label: "Thunderstorm with hail",
+      },
+      99: {
+        image: `${source}wsymbol_0039_cloudy_with_heavy_hail_night.png`,
+        label: "Thunderstorm with heavy hail",
+      },
+    };
 
-  return map[weatherCode] || { image: `${source}cloud-sun.png`, label: "Unknown" };
+    return (
+      map[weatherCode] || { image: `${source}cloud-sun.png`, label: "Unknown" }
+    );
+  }
 }
