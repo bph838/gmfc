@@ -3,6 +3,8 @@ import { createDiv, createH3, createSpan } from "@framework/dom";
 import {
   getWeatherIconAndLabel,
   getWeatherImageAndLabel,
+  renderWindWidget,
+  setWind,
 } from "@components/weatherinfo";
 
 let forcast_data = [];
@@ -73,7 +75,9 @@ function renderWeatherForecast(parent, daylightData) {
         const tempSpan = createSpan(hourDiv, "weatherTemp");
         const precipSpan = createSpan(hourDiv, "weatherPrecip");
         const iconSpan = createSpan(hourDiv, "weatherIcon");
-        const windSpan = createSpan(hourDiv, "weatherWind");
+        //const windSpan = createSpan(hourDiv, "weatherWind");
+        let windwidgetId = `wind-widget-${day}-${i}`;
+        renderWindWidget(hourDiv, 70, windwidgetId);
       }
       currentDay = day;
     }
@@ -102,7 +106,9 @@ function renderWeatherForecast(parent, daylightData) {
     tempSpan.textContent = `${data.temperature}°C`;
     precipSpan.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${data.precipitation_probability}%`;
     iconSpan.innerHTML = `<img src="${weatherimage}" alt="${weatherlabel}"  title="${weatherlabel}"  class="weather-image" />`;
-    windSpan.innerHTML = `<i class="fa-solid fa-wind"></i> ${data.wind_speed_10m} mph`;
+    //windSpan.innerHTML = `<i class="fa-solid fa-wind"></i> ${data.wind_speed_10m} mph`;
+    let windwidgetId = `wind-widget-${day}-${hour}`;
+    setWind( data.wind_direction_10m,data.wind_speed_10m, windwidgetId);
   });
 
   let current_day = getDayOfYearUTC(new Date());

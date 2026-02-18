@@ -465,10 +465,18 @@ export function renderWindWidget(parent, size = 120, id = "wind-widget") {
 
 export function setWind(directionDeg, speed, parentId = "wind-widget") {
   const windDiv = document.getElementById(parentId);
-  const arrow = windDiv.querySelector(".windDirGroup");
-  const text = windDiv.querySelector(".windSpeed");
+  if (windDiv) {
+    const arrow = windDiv.querySelector(".windDirGroup");
+    const text = windDiv.querySelector(".windSpeed");
 
-  if (arrow) arrow.setAttribute("transform", `rotate(${directionDeg} 50 50)`);
+    if (arrow) {
+      console.log(`Setting wind direction: ${directionDeg}°`);
+      arrow.setAttribute("transform", `rotate(${directionDeg} 50 50)`);
+    }
 
-  if (text) text.textContent = `${Math.round(speed)}`;
+    if (text) {
+      console.log(`Setting wind speed: ${speed} mph`);
+      text.textContent = `${Math.round(speed)}`;
+    }
+  }
 }
