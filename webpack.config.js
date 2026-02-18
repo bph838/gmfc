@@ -367,7 +367,7 @@ module.exports = (env, argv) => {
           siteName: SITE_TITLE,
           partials,
           site: site,
-          keywords: keywords.csv("all"),
+          keywords: keywords.csv(["all","weather"]),
         },
       }),
 
