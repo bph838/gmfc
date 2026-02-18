@@ -15,7 +15,7 @@ function renderClubWeather(data) {
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
-  const sectionsdiv = createDiv(contentarea, "sections");
+  const sectionsdiv = createDiv(contentarea, "sections", "sections-clubweather");
 
   if (data.content.sections) {
     data.content.sections.forEach((section) => {

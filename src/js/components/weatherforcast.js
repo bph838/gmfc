@@ -59,16 +59,16 @@ function renderWeatherForecast(parent, daylightData) {
         console.log(`Checking daylight for day`);
         let divhourClass = "weatherHourDiv";
         let x = Math.pow(2, i);
-        let isDayLight = true;
+        let isNight = false;
         if ((daylightInfo & x) === x) {
           divhourClass += " weather-daylight";
         } else {
           divhourClass += " weather-night";
-          isDayLight = false;
+          isNight = true;
         }
         const hourDiv = createDiv(dayDiv, divhourClass);
         hourDiv.dataset.hour = i;
-        hourDiv.dataset.daylight = isDayLight;
+        hourDiv.dataset.night = isNight ? "true" : "false";
         const timeSpan = createSpan(hourDiv, "weatherTime", `${i}:00`);
         const tempSpan = createSpan(hourDiv, "weatherTemp");
         const precipSpan = createSpan(hourDiv, "weatherPrecip");
@@ -87,14 +87,17 @@ function renderWeatherForecast(parent, daylightData) {
     const hourDiv = dayDiv.querySelector(
       `.weatherHourDiv[data-hour="${hour}"]`,
     );
-    const daylight = hourDiv.dataset.daylight === "true";
+    const isNight = hourDiv.dataset.night === "true";
     const tempSpan = hourDiv.querySelector(".weatherTemp");
     const precipSpan = hourDiv.querySelector(".weatherPrecip");
     const iconSpan = hourDiv.querySelector(".weatherIcon");
     const windSpan = hourDiv.querySelector(".weatherWind");
-    const weatherInfo = getWeatherImageAndLabel(data.weather_code,!daylight); //getWeatherIconAndLabel(data.weather_code);
+    const weatherInfo = getWeatherImageAndLabel(data.weather_code, isNight);
     const weatherimage = weatherInfo.image;
     const weatherlabel = weatherInfo.label;
+    if (!isNight) {
+      hourDiv.style.backgroundColor = tempToColor(data.temperature);
+    }
 
     tempSpan.textContent = `${data.temperature}°C`;
     precipSpan.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${data.precipitation_probability}%`;
@@ -184,4 +187,16 @@ function procssDatesForWeatherForcast() {
   forcast_data.forEach((entry) => {
     entry.time = new Date(entry.time);
   });
+}
+
+function tempToColor(temp) {
+  const min = -10;
+  const max = 40;
+
+  temp = Math.max(min, Math.min(max, temp));
+  const t = (temp - min) / (max - min);
+
+  const hue = 220 - 220 * t;
+
+  return `hsl(${hue}, 70%, 72%)`;
 }

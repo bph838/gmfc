@@ -66,7 +66,7 @@ export function renderWeatherInfo(parent, latitude, longitude) {
     }
 
     weather_widgetdiv.addEventListener("click", (event) => {
-        window.location.href = "/club/weather.html";
+        window.location.href = "/club/weather#sections-clubweather";
     });
   });
 }
