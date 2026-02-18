@@ -404,63 +404,73 @@ export function getWeatherImageAndLabel(weatherCode, night = false) {
   }
 }
 
-/*export function renderWindWidget(parent, size=120,id = "wind-widget") {
-  const wind_widget = createDiv(parent, "wind-widget", id);
-  let wind_svg = `<svg viewBox="0 0 120 120" width="120" height="120">
-
-    
-    <g id="windDirGroup" transform="rotate(0 60 60)">
-
-      
-      <line x1="60" y1="60" x2="60" y2="20" class="shaft"/>
-
-      
-      <polygon points="60,12 52,26 68,26" class="head"/>
-
-      <circle cx="60" cy="60" r="20" class="circle"/>
-
-    </g>
-
-    
-    <text id="windSpeed"
-          x="60"
-          y="60"
-          class="speed"
-          text-anchor="middle"
-          dominant-baseline="middle">19</text>
-
-  </svg>`;
-  wind_widget.innerHTML = wind_svg;
-  return wind_widget;
-}
-*/
-
 export function renderWindWidget(parent, size = 120, id = "wind-widget") {
-  const wind_widget = createDiv(parent, "wind-widget", id);
+  const NS = "http://www.w3.org/2000/svg";
 
-  wind_widget.innerHTML = `<svg viewBox="0 0 100 100"  width="${size}" height="${size}">
-<g class="windDirGroup" transform="rotate(0 50 50)">
+  const center = 50;
+  const edge = 2; // tiny margin so stroke isn't clipped
+  const circleRadius = 18;
+  const arrowWidth = 20; // arrow width
+  const arrowHeight = 20; // arrow length
 
-  <line x1="50" y1="50" x2="50" y2="16" class="shaft"/>
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "0 0 100 100");
+  svg.setAttribute("width", size);
+  svg.setAttribute("height", size);
+  svg.setAttribute("id", id);
 
-  <!--<polygon points="50,20 44,30 56,30" class="head"/>-->
+  const title = document.createElementNS(NS, "title");
+  title.classList.add("windTitle");
+  svg.appendChild(title);
 
-  <circle cx="50" cy="50" r="18" class="circle"/>
+  const group = document.createElementNS(NS, "g");
+  group.setAttribute("class", "windDirGroup");
 
-</g>
+  // shaft → reaches near top edge
+  const shaft = document.createElementNS(NS, "line");
+  shaft.setAttribute("x1", center);
+  shaft.setAttribute("y1", center);
+  shaft.setAttribute("x2", center);
+  shaft.setAttribute("y2", edge + arrowHeight); // leave space for arrow
+  shaft.setAttribute("class", "shaft");
 
-      <text class="windSpeed"
-            x="50"
-            y="50"
-            class="speed"
-            text-anchor="middle"
-            dominant-baseline="middle">
-      </text>
+  // arrowhead at the tip
+  const arrow = document.createElementNS(NS, "polygon");
+  const tipX = center;
+  const tipY = edge;
+  // triangle points: tip, left base, right base
+  const points = [
+    `${tipX},${tipY}`, // tip
+    `${tipX - arrowWidth / 2},${tipY + arrowHeight}`, // bottom-left
+    `${tipX + arrowWidth / 2},${tipY + arrowHeight}`, // bottom-right
+  ].join(" ");
+  arrow.setAttribute("points", points);
+  arrow.setAttribute("class", "head");
 
-    </svg>
-  `;
+  const circle = document.createElementNS(NS, "circle");
+  circle.setAttribute("cx", center);
+  circle.setAttribute("cy", center);
+  circle.setAttribute("r", circleRadius);
+  circle.setAttribute("class", "circle");
 
-  return wind_widget;
+  group.appendChild(shaft);
+  group.appendChild(arrow);
+  group.appendChild(circle);
+
+  const text = document.createElementNS(NS, "text");
+  text.setAttribute("class", "windSpeed");
+  text.setAttribute("x", center);
+  text.setAttribute("y", center);
+  text.setAttribute("text-anchor", "middle");
+  text.setAttribute("dominant-baseline", "middle");
+  //text.textContent = "19"
+
+  svg.appendChild(group);
+  svg.appendChild(text);
+
+  parent.appendChild(svg);
+
+  return { svg, group, text };
 }
 
 export function setWind(directionDeg, speed, parentId = "wind-widget") {
@@ -468,15 +478,11 @@ export function setWind(directionDeg, speed, parentId = "wind-widget") {
   if (windDiv) {
     const arrow = windDiv.querySelector(".windDirGroup");
     const text = windDiv.querySelector(".windSpeed");
+    const windTitle = windDiv.querySelector(".windTitle");
 
-    if (arrow) {
-      console.log(`Setting wind direction: ${directionDeg}°`);
-      arrow.setAttribute("transform", `rotate(${directionDeg} 50 50)`);
-    }
-
-    if (text) {
-      console.log(`Setting wind speed: ${speed} mph`);
-      text.textContent = `${Math.round(speed)}`;
-    }
+    if (windTitle)
+      windTitle.textContent = `Wind: ${Math.round(speed)} mph, Direction: ${Math.round(directionDeg)}°`;
+    if (arrow) arrow.setAttribute("transform", `rotate(${directionDeg} 50 50)`);
+    if (text) text.textContent = `${Math.round(speed)}`;
   }
 }

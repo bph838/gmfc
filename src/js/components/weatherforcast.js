@@ -77,7 +77,7 @@ function renderWeatherForecast(parent, daylightData) {
         const iconSpan = createSpan(hourDiv, "weatherIcon");
         //const windSpan = createSpan(hourDiv, "weatherWind");
         let windwidgetId = `wind-widget-${day}-${i}`;
-        renderWindWidget(hourDiv, 70, windwidgetId);
+        renderWindWidget(hourDiv, 60, windwidgetId);
       }
       currentDay = day;
     }
@@ -108,7 +108,7 @@ function renderWeatherForecast(parent, daylightData) {
     iconSpan.innerHTML = `<img src="${weatherimage}" alt="${weatherlabel}"  title="${weatherlabel}"  class="weather-image" />`;
     //windSpan.innerHTML = `<i class="fa-solid fa-wind"></i> ${data.wind_speed_10m} mph`;
     let windwidgetId = `wind-widget-${day}-${hour}`;
-    setWind( data.wind_direction_10m,data.wind_speed_10m, windwidgetId);
+    setWind( data.wind_direction_10m+180,data.wind_speed_10m, windwidgetId);
   });
 
   let current_day = getDayOfYearUTC(new Date());
