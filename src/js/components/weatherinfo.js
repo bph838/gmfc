@@ -26,6 +26,8 @@ export function renderWeatherInfo(parent, latitude, longitude) {
   );
   const weather_tempdiv = createDiv(weather_infodiv, "temp", "temp");
   weather_tempdiv.innerHTML = "--°C";
+  renderWindWidget(weather_infodiv);
+  /*
   const weather_winddiv = createDiv(weather_infodiv, "wind");
   const weather_windarrowdiv = createDiv(
     weather_winddiv,
@@ -38,7 +40,7 @@ export function renderWeatherInfo(parent, latitude, longitude) {
     "wind-text",
     "wind-text",
   );
-  weather_windtextdiv.innerHTML = "-- km/h";
+  weather_windtextdiv.innerHTML = "-- km/h";*/
 
   getWeather(latitude, longitude).then((data) => {
     const temp = data.current_weather.temperature;
@@ -51,9 +53,11 @@ export function renderWeatherInfo(parent, latitude, longitude) {
 
     weather_descdiv.innerHTML = weatherlabel;
     weather_tempdiv.innerHTML = `${temp}°C`;
-    weather_windtextdiv.innerHTML = `${wind} mph`;
-    weather_windarrowdiv.style.transform = `rotate(${windDir}deg)`;
-    //let weathericonInner = `<i class="${weathericon}"></i>`;
+    setWind(windDir, wind);
+
+    //weather_windtextdiv.innerHTML = `${wind} mph`;
+    //weather_windarrowdiv.style.transform = `rotate(${windDir}deg)`;
+
     let weatherImgInner = `<img src="${weatherimage}" alt="${weatherlabel}" class="weather-image" />`;
     weather_icondiv.innerHTML = weatherImgInner;
 
@@ -66,7 +70,7 @@ export function renderWeatherInfo(parent, latitude, longitude) {
     }
 
     weather_widgetdiv.addEventListener("click", (event) => {
-        window.location.href = "/club/weather#sections-clubweather";
+      window.location.href = "/club/weather#sections-clubweather";
     });
   });
 }
@@ -170,32 +174,107 @@ export function getWeatherImageAndLabel(weatherCode, night = false) {
 
   if (night) {
     const map = {
-      0: { image: `${source}wsymbol_0008_clear_sky_night.png`, label: "Clear sky" },
-      1: { image: `${source}wsymbol_0041_partly_cloudy_night.png`, label: "Mainly clear" },
-      2: { image: `${source}wsymbol_0044_mostly_cloudy_night.png`, label: "Partly cloudy" },
-      3: { image: `${source}wsymbol_0041_partly_cloudy_night.png`, label: "Overcast" },
+      0: {
+        image: `${source}wsymbol_0008_clear_sky_night.png`,
+        label: "Clear sky",
+      },
+      1: {
+        image: `${source}wsymbol_0041_partly_cloudy_night.png`,
+        label: "Mainly clear",
+      },
+      2: {
+        image: `${source}wsymbol_0044_mostly_cloudy_night.png`,
+        label: "Partly cloudy",
+      },
+      3: {
+        image: `${source}wsymbol_0041_partly_cloudy_night.png`,
+        label: "Overcast",
+      },
       45: { image: `${source}wsymbol_0064_fog_night.png`, label: "Fog" },
-      48: { image: `${source}wsymbol_0064_fog_night.png`, label: "Depositing rime fog" },
-      51: { image: `${source}wsymbol_0066_drizzle_night.png`, label: "Light drizzle" },
-      53: { image: `${source}wsymbol_0066_drizzle_night.png`, label: "Moderate drizzle" },
-      55: { image: `${source}wsymbol_0066_drizzle_night.png`, label: "Dense drizzle" },
-      56: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Light freezing drizzle" },
-      57: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Dense freezing drizzle" },
-      61: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Light rain" },
-      63: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Moderate rain" },
-      65: { image: `${source}wsymbol_0026_heavy_rain_showers_night.png`, label: "Heavy rain" },
-      66: { image: `${source}wsymbol_0026_heavy_rain_showers_night.png`, label: "Light freezing rain" },
-      67: { image: `${source}wsymbol_0026_heavy_rain_showers_night.png`, label: "Heavy freezing rain" },
-      71: { image: `${source}swsymbol_0027_light_snow_showers_night.png`, label: "Light snow" },
-      73: { image: `${source}wsymbol_0027_light_snow_showers_night.png`, label: "Moderate snow" },
-      75: { image: `${source}wsymbol_0028_heavy_snow_showers_night.png`, label: "Heavy snow" },
-      77: { image: `${source}wsymbol_0027_light_snow_showers_night.png`, label: "Snow grains" },
-      80: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Rain showers" },
-      81: { image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`, label: "Moderate showers" },
-      82: { image: `${source}wsymbol_0034_cloudy_with_heavy_rain_night.png`, label: "Violent showers" },
-      85: { image: `${source}wsymbol_0029_sleet_showers_night.png`, label: "Snow showers light" },
-      86: { image: `${source}wsymbol_0029_sleet_showers_night.png`, label: "Snow showers heavy" },
-      95: { image: `${source}wsymbol_0032_thundery_showers_night.png`, label: "Thunderstorm" },
+      48: {
+        image: `${source}wsymbol_0064_fog_night.png`,
+        label: "Depositing rime fog",
+      },
+      51: {
+        image: `${source}wsymbol_0066_drizzle_night.png`,
+        label: "Light drizzle",
+      },
+      53: {
+        image: `${source}wsymbol_0066_drizzle_night.png`,
+        label: "Moderate drizzle",
+      },
+      55: {
+        image: `${source}wsymbol_0066_drizzle_night.png`,
+        label: "Dense drizzle",
+      },
+      56: {
+        image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`,
+        label: "Light freezing drizzle",
+      },
+      57: {
+        image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`,
+        label: "Dense freezing drizzle",
+      },
+      61: {
+        image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`,
+        label: "Light rain",
+      },
+      63: {
+        image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`,
+        label: "Moderate rain",
+      },
+      65: {
+        image: `${source}wsymbol_0026_heavy_rain_showers_night.png`,
+        label: "Heavy rain",
+      },
+      66: {
+        image: `${source}wsymbol_0026_heavy_rain_showers_night.png`,
+        label: "Light freezing rain",
+      },
+      67: {
+        image: `${source}wsymbol_0026_heavy_rain_showers_night.png`,
+        label: "Heavy freezing rain",
+      },
+      71: {
+        image: `${source}swsymbol_0027_light_snow_showers_night.png`,
+        label: "Light snow",
+      },
+      73: {
+        image: `${source}wsymbol_0027_light_snow_showers_night.png`,
+        label: "Moderate snow",
+      },
+      75: {
+        image: `${source}wsymbol_0028_heavy_snow_showers_night.png`,
+        label: "Heavy snow",
+      },
+      77: {
+        image: `${source}wsymbol_0027_light_snow_showers_night.png`,
+        label: "Snow grains",
+      },
+      80: {
+        image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`,
+        label: "Rain showers",
+      },
+      81: {
+        image: `${source}wsymbol_0033_cloudy_with_light_rain_night.png`,
+        label: "Moderate showers",
+      },
+      82: {
+        image: `${source}wsymbol_0034_cloudy_with_heavy_rain_night.png`,
+        label: "Violent showers",
+      },
+      85: {
+        image: `${source}wsymbol_0029_sleet_showers_night.png`,
+        label: "Snow showers light",
+      },
+      86: {
+        image: `${source}wsymbol_0029_sleet_showers_night.png`,
+        label: "Snow showers heavy",
+      },
+      95: {
+        image: `${source}wsymbol_0032_thundery_showers_night.png`,
+        label: "Thunderstorm",
+      },
       96: {
         image: `${source}wsymbol_0032_thundery_showers_night.png`,
         label: "Thunderstorm with hail",
@@ -207,36 +286,108 @@ export function getWeatherImageAndLabel(weatherCode, night = false) {
     };
 
     return (
-      map[weatherCode] || { image: `${source}wsymbol_0042_cloudy_night.png`, label: "Unknown" }
+      map[weatherCode] || {
+        image: `${source}wsymbol_0042_cloudy_night.png`,
+        label: "Unknown",
+      }
     );
   } else {
     const map = {
       0: { image: `${source}wsymbol_0001_sunny.png`, label: "Clear sky" },
-      1: { image: `${source}wsymbol_0002_sunny_intervals.png`, label: "Mainly clear" },
-      2: { image: `${source}wsymbol_0002_sunny_intervals.png`, label: "Partly cloudy" },
+      1: {
+        image: `${source}wsymbol_0002_sunny_intervals.png`,
+        label: "Mainly clear",
+      },
+      2: {
+        image: `${source}wsymbol_0002_sunny_intervals.png`,
+        label: "Partly cloudy",
+      },
       3: { image: `${source}wsymbol_0003_white_cloud.png`, label: "Overcast" },
       45: { image: `${source}wsymbol_0007_fog.png`, label: "Fog" },
-      48: { image: `${source}wsymbol_0007_fog.png`, label: "Depositing rime fog" },
-      51: { image: `${source}wsymbol_0048_drizzle.png`, label: "Light drizzle" },
-      53: { image: `${source}wsymbol_0048_drizzle.png`, label: "Moderate drizzle" },
-      55: { image: `${source}wsymbol_0081_heavy_drizzle.png`, label: "Dense drizzle" },
-      56: { image: `${source}wsymbol_0048_drizzle.png`, label: "Light freezing drizzle" },
-      57: { image: `${source}wsymbol_0049_freezing_drizzle.png`, label: "Dense freezing drizzle" },
-      61: { image: `${source}wsymbol_0017_cloudy_with_light_rain.png`, label: "Light rain" },
-      63: { image: `${source}wsymbol_0018_cloudy_with_heavy_rain.png`, label: "Moderate rain" },
-      65: { image: `${source}wsymbol_0018_cloudy_with_heavy_rain.png`, label: "Heavy rain" },
-      66: { image: `${source}wsymbol_0050_freezing_rain.png`, label: "Light freezing rain" },
-      67: { image: `${source}wsymbol_0050_freezing_rain.png`, label: "Heavy freezing rain" },
-      71: { image: `${source}wsymbol_0019_cloudy_with_light_snow.png`, label: "Light snow" },
-      73: { image: `${source}wsymbol_0019_cloudy_with_light_snow.png`, label: "Moderate snow" },
-      75: { image: `${source}wsymbol_0020_cloudy_with_heavy_snow.png`, label: "Heavy snow" },
-      77: { image: `${source}wsymbol_0020_cloudy_with_heavy_snow.png`, label: "Snow grains" },
-      80: { image: `${source}wsymbol_0009_light_rain_showers.png`, label: "Rain showers" },
-      81: { image: `${source}wsymbol_0009_light_rain_showers.png`, label: "Moderate showers" },
-      82: { image: `${source}wsymbol_0010_heavy_rain_showers.png`, label: "Violent showers" },
-      85: { image: `${source}wsymbol_0019_cloudy_with_light_snow.png`, label: "Snow showers light" },
-      86: { image: `${source}wsymbol_0020_cloudy_with_heavy_snow.png`, label: "Snow showers heavy" },
-      95: { image: `${source}wsymbol_0024_thunderstorms.png`, label: "Thunderstorm" },
+      48: {
+        image: `${source}wsymbol_0007_fog.png`,
+        label: "Depositing rime fog",
+      },
+      51: {
+        image: `${source}wsymbol_0048_drizzle.png`,
+        label: "Light drizzle",
+      },
+      53: {
+        image: `${source}wsymbol_0048_drizzle.png`,
+        label: "Moderate drizzle",
+      },
+      55: {
+        image: `${source}wsymbol_0081_heavy_drizzle.png`,
+        label: "Dense drizzle",
+      },
+      56: {
+        image: `${source}wsymbol_0048_drizzle.png`,
+        label: "Light freezing drizzle",
+      },
+      57: {
+        image: `${source}wsymbol_0049_freezing_drizzle.png`,
+        label: "Dense freezing drizzle",
+      },
+      61: {
+        image: `${source}wsymbol_0017_cloudy_with_light_rain.png`,
+        label: "Light rain",
+      },
+      63: {
+        image: `${source}wsymbol_0018_cloudy_with_heavy_rain.png`,
+        label: "Moderate rain",
+      },
+      65: {
+        image: `${source}wsymbol_0018_cloudy_with_heavy_rain.png`,
+        label: "Heavy rain",
+      },
+      66: {
+        image: `${source}wsymbol_0050_freezing_rain.png`,
+        label: "Light freezing rain",
+      },
+      67: {
+        image: `${source}wsymbol_0050_freezing_rain.png`,
+        label: "Heavy freezing rain",
+      },
+      71: {
+        image: `${source}wsymbol_0019_cloudy_with_light_snow.png`,
+        label: "Light snow",
+      },
+      73: {
+        image: `${source}wsymbol_0019_cloudy_with_light_snow.png`,
+        label: "Moderate snow",
+      },
+      75: {
+        image: `${source}wsymbol_0020_cloudy_with_heavy_snow.png`,
+        label: "Heavy snow",
+      },
+      77: {
+        image: `${source}wsymbol_0020_cloudy_with_heavy_snow.png`,
+        label: "Snow grains",
+      },
+      80: {
+        image: `${source}wsymbol_0009_light_rain_showers.png`,
+        label: "Rain showers",
+      },
+      81: {
+        image: `${source}wsymbol_0009_light_rain_showers.png`,
+        label: "Moderate showers",
+      },
+      82: {
+        image: `${source}wsymbol_0010_heavy_rain_showers.png`,
+        label: "Violent showers",
+      },
+      85: {
+        image: `${source}wsymbol_0019_cloudy_with_light_snow.png`,
+        label: "Snow showers light",
+      },
+      86: {
+        image: `${source}wsymbol_0020_cloudy_with_heavy_snow.png`,
+        label: "Snow showers heavy",
+      },
+      95: {
+        image: `${source}wsymbol_0024_thunderstorms.png`,
+        label: "Thunderstorm",
+      },
       96: {
         image: `${source}wsymbol_0024_thunderstorms.png`,
         label: "Thunderstorm with hail",
@@ -251,4 +402,73 @@ export function getWeatherImageAndLabel(weatherCode, night = false) {
       map[weatherCode] || { image: `${source}cloud-sun.png`, label: "Unknown" }
     );
   }
+}
+
+/*export function renderWindWidget(parent, size=120,id = "wind-widget") {
+  const wind_widget = createDiv(parent, "wind-widget", id);
+  let wind_svg = `<svg viewBox="0 0 120 120" width="120" height="120">
+
+    
+    <g id="windDirGroup" transform="rotate(0 60 60)">
+
+      
+      <line x1="60" y1="60" x2="60" y2="20" class="shaft"/>
+
+      
+      <polygon points="60,12 52,26 68,26" class="head"/>
+
+      <circle cx="60" cy="60" r="20" class="circle"/>
+
+    </g>
+
+    
+    <text id="windSpeed"
+          x="60"
+          y="60"
+          class="speed"
+          text-anchor="middle"
+          dominant-baseline="middle">19</text>
+
+  </svg>`;
+  wind_widget.innerHTML = wind_svg;
+  return wind_widget;
+}
+*/
+
+export function renderWindWidget(parent, size = 120, id = "wind-widget") {
+  const wind_widget = createDiv(parent, "wind-widget", id);
+
+  wind_widget.innerHTML = `<svg viewBox="0 0 100 100"  width="${size}" height="${size}">
+<g class="windDirGroup" transform="rotate(0 50 50)">
+
+  <line x1="50" y1="50" x2="50" y2="16" class="shaft"/>
+
+  <!--<polygon points="50,20 44,30 56,30" class="head"/>-->
+
+  <circle cx="50" cy="50" r="18" class="circle"/>
+
+</g>
+
+      <text class="windSpeed"
+            x="50"
+            y="50"
+            class="speed"
+            text-anchor="middle"
+            dominant-baseline="middle">
+      </text>
+
+    </svg>
+  `;
+
+  return wind_widget;
+}
+
+export function setWind(directionDeg, speed, parentId = "wind-widget") {
+  const windDiv = document.getElementById(parentId);
+  const arrow = windDiv.querySelector(".windDirGroup");
+  const text = windDiv.querySelector(".windSpeed");
+
+  if (arrow) arrow.setAttribute("transform", `rotate(${directionDeg} 50 50)`);
+
+  if (text) text.textContent = `${Math.round(speed)}`;
 }

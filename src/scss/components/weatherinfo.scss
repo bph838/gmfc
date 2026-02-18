@@ -86,3 +86,34 @@
     transition: transform 0.5s ease;
   }
 }
+
+/*wind*/
+.wind-widget {
+  display: flex;
+  justify-content: center;
+}
+
+.shaft {
+  stroke: #000;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.head {
+  fill: #000;
+}
+
+.circle {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 4;
+}
+
+.speed {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: system-ui, sans-serif;
+  fill: #000;
+  pointer-events: none;
+}
+
