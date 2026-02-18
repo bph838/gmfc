@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><%= title %></title>
-    <meta name="keywords" content='<%=  keywords %>' />        
-     <meta name="author" content='<%= site.sitename %>'>
-    <meta name="description" content='<%= site.description %>'>  
+    <meta name="keywords" content="<%=  keywords %>" />
+    <meta name="author" content="<%= site.sitename %>" />
+    <meta name="description" content="<%= site.description %>" />
     <%= partials.favicon %>
     <link
       rel="stylesheet"
@@ -20,18 +20,32 @@
     />
     <link rel="stylesheet" href="/styles/styles.css" />
     <%= partials.google_analytics %>
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.gmfc.uk">
-    <meta property="og:description" content="Gordano Model Flying Club news.">
-    <meta property="og:image" content="<%= image %>">
-    <meta name="geo.position" content="51.459563;-2.790968">
-<script>
-    window.MY_NEWS_ITEM = {
-      title: "<%= title %>",     
-      hash: "<%= hash %>"
-    };
-  </script>
-  </head>  
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.gmfc.uk" />
+    <meta property="og:description" content="Gordano Model Flying Club news." />
+    <meta property="og:image" content="<%= image %>" />
+    <meta name="geo.position" content="51.459563;-2.790968" />
+    <script>
+      window.MY_NEWS_ITEM = {
+        title: "<%= title %>",
+        hash: "<%= hash %>",
+      };
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Club",
+        "name": "Gordano Model Flying Club",
+        "image": "https://siteimages.gmfc.uk/siteimages/logo.png",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 51.459563,
+          "longitude": -2.790968
+        },
+        "url": "https://www.gmfc.uk"
+      }
+    </script>
+  </head>
   <body>
     <%= partials.navigation %>
     <main>
