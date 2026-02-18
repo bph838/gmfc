@@ -71,5 +71,8 @@ function processData(data) {
 
         
 	}
-    console.log(JSON.stringify(days));
+  for (let i = 0; i < days.length; i++) {
+     console.log(days[i].d +",");
+  }
+ 
 }

@@ -13,7 +13,7 @@ import { initaliseCarousel, onRotate } from "@framework/carousel3d";
 import { sanitizeString } from "@framework/utils";
 import { fetchAndRenderWeatherForecast } from "@components/weatherforcast";
 
-export function renderSection(parent, data, pageurl = "", extraclass = "") {
+export function renderSection(parent, data, pageurl = "", extraclass = "", extraData = {}) {
   if (!data) {
     console.error("There is no data to render");
     return;
@@ -115,7 +115,7 @@ export function renderSection(parent, data, pageurl = "", extraclass = "") {
       renderPanoImage(contentdiv, data);
       break;
     case "weatherForecast":
-      fetchAndRenderWeatherForecast(contentdiv, data);
+      fetchAndRenderWeatherForecast(contentdiv, data, extraData);
       break;
   }
 

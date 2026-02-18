@@ -3,11 +3,11 @@ import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea } from "@framework/dom";
 import data from "@data/pages/club/weather.json";
+import daylight from "@data/daylight/daylight.json";
 
 console.log("Club Weather page loaded");
 setupMenuCommands("page-clubweather");
 renderClubWeather(data);
-
 
 function renderClubWeather(data) {
   console.log(data);
@@ -19,9 +19,8 @@ function renderClubWeather(data) {
 
   if (data.content.sections) {
     data.content.sections.forEach((section) => {
-      console.log(section);
-      renderSection(sectionsdiv, section);
+      console.log("Rendering weather section:", section.title);
+      renderSection(sectionsdiv, section, "", "", daylight);
     });
   }
 }
-

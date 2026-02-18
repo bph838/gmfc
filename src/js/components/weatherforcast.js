@@ -9,7 +9,7 @@ let forcast_data = [];
 const CACHE_KEY = "weatherForcastCache";
 const CACHE_DURATION = 1000 * 60 * 60; // 1 hour
 
-export function fetchAndRenderWeatherForecast(parent, data) {
+export function fetchAndRenderWeatherForecast(parent, data, daylightData) {
   if (!data.weatherCoordinates) {
     console.error("Unable to render fetchAndRenderWeatherForecast");
     return;
@@ -19,11 +19,11 @@ export function fetchAndRenderWeatherForecast(parent, data) {
   const longitude = data.weatherCoordinates.longitude;
 
   getWeather(latitude, longitude).then(() => {
-    renderWeatherForecast(parent);
+    renderWeatherForecast(parent, daylightData);
   });
 }
 
-function renderWeatherForecast(parent) {
+function renderWeatherForecast(parent, daylightData) {
   const sectiondiv = createDiv(parent, "sectionWeatherForecastDiv");
   console.log("Rendering weather forcast with data:", forcast_data);
   let currentDay = getDayOfYearUTC(forcast_data[0].time);
@@ -41,6 +41,10 @@ function renderWeatherForecast(parent) {
       ) {
         dayName = "Tomorrow";
       }
+      let dayOfYear = getDayOfYearUTC(data.time);
+      let daylightInfo = daylightData[dayOfYear];
+      console.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
+
       const h2 = createH3(sectiondiv, `${dayName}`);
       let weatherDayId = `weatherDay-${day}`;
       let weatherViewpostId = `weatherViewport-${day}`;
@@ -52,14 +56,19 @@ function renderWeatherForecast(parent) {
       const dayDiv = createDiv(viewportDiv, "weatherDayDiv", weatherDayId);
       dayDiv.dataset.day = day;
       for (let i = 0; i < 24; i++) {
+        console.log(`Checking daylight for day`);
         let divhourClass = "weatherHourDiv";
-        if (i < 6 || i > 20) {
-          divhourClass += " weather-night";
-        } else {
+        let x = Math.pow(2, i);
+        let isDayLight = true;
+        if ((daylightInfo & x) === x) {
           divhourClass += " weather-daylight";
+        } else {
+          divhourClass += " weather-night";
+          isDayLight = false;
         }
         const hourDiv = createDiv(dayDiv, divhourClass);
         hourDiv.dataset.hour = i;
+        hourDiv.dataset.daylight = isDayLight;
         const timeSpan = createSpan(hourDiv, "weatherTime", `${i}:00`);
         const tempSpan = createSpan(hourDiv, "weatherTemp");
         const precipSpan = createSpan(hourDiv, "weatherPrecip");
@@ -78,11 +87,12 @@ function renderWeatherForecast(parent) {
     const hourDiv = dayDiv.querySelector(
       `.weatherHourDiv[data-hour="${hour}"]`,
     );
+    const daylight = hourDiv.dataset.daylight === "true";
     const tempSpan = hourDiv.querySelector(".weatherTemp");
     const precipSpan = hourDiv.querySelector(".weatherPrecip");
     const iconSpan = hourDiv.querySelector(".weatherIcon");
     const windSpan = hourDiv.querySelector(".weatherWind");
-    const weatherInfo = getWeatherImageAndLabel(data.weather_code); //getWeatherIconAndLabel(data.weather_code);
+    const weatherInfo = getWeatherImageAndLabel(data.weather_code,!daylight); //getWeatherIconAndLabel(data.weather_code);
     const weatherimage = weatherInfo.image;
     const weatherlabel = weatherInfo.label;
 
