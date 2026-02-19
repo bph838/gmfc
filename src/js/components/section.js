@@ -341,12 +341,10 @@ function renderSectionSticker(parent, sticker) {
   if (sticker == "none") return;
   let url = "";
   let from = "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com";
-  //from = "https://siteimages.gmfc.uk";
+  from = "https://siteimages.gmfc.uk";
   if (sticker == "cancelled") {
     url = from + "/stickers/cancelled.png";
   }
   const stickerDiv = createDiv(parent, "sticker");
   createImage(stickerDiv, url);
-
-  //stickerDiv.style.backgroundImage = "url('" + from+url + "')";
 }

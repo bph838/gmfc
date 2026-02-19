@@ -1,6 +1,14 @@
 {
   "alerts": [
     {
+      "title": "Feb maintenance cancelled",
+      "message": "Due to the weather, the maintenance planned for this weekend has been cancelled.",
+      "type": "warning",
+      "date_from": "2026-02-18 10:00:00",
+      "date_to": "2026-02-21 10:00:00",
+      "hash": "db4bc2f71775803fb65224581dd99c4b"
+    },
+    {
       "title": "Test alert process",
       "message": "Bla bla bla testing <strong>alert</strong> system",
       "type": "warning",
