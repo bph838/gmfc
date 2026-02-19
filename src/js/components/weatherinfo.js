@@ -195,6 +195,8 @@ function getMPH(kmh) {
 export function getWeatherImageAndLabel(weatherCode, night = false) {
   let source = "https://siteimages.gmfc.uk/weather/";
 
+  console.log("Feching getWeatherImageAndLabel");
+
   if (night) {
     const map = {
       0: {

@@ -71,6 +71,7 @@ function renderWeatherForecast(parent, daylightData) {
         const hourDiv = createDiv(dayDiv, divhourClass);
         hourDiv.dataset.hour = i;
         hourDiv.dataset.night = isNight ? "true" : "false";
+        hourDiv.dataset.weathericon = ".";
         const timeSpan = createSpan(hourDiv, "weatherTime", `${i}:00`);
         const tempSpan = createSpan(hourDiv, "weatherTemp");
         const precipSpan = createSpan(hourDiv, "weatherPrecip");
@@ -97,6 +98,7 @@ function renderWeatherForecast(parent, daylightData) {
     const iconSpan = hourDiv.querySelector(".weatherIcon");
     const windSpan = hourDiv.querySelector(".weatherWind");
     const weatherInfo = getWeatherImageAndLabel(data.weather_code, isNight);
+    hourDiv.dataset.weathericon = data.weather_code;
     const weatherimage = weatherInfo.image;
     const weatherlabel = weatherInfo.label;
     if (!isNight) {
