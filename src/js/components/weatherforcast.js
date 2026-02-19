@@ -1,7 +1,6 @@
-import { fetchJson, getDayOfYearUTC } from "@framework/utils";
+import { DURATION_HOUR, getDayOfYearUTC } from "@framework/utils";
 import { createDiv, createH3, createSpan } from "@framework/dom";
 import {
-  getWeatherIconAndLabel,
   getWeatherImageAndLabel,
   renderWindWidget,
   setWind,
@@ -9,7 +8,7 @@ import {
 
 let forcast_data = [];
 const CACHE_KEY = "weatherForcastCache";
-const CACHE_DURATION = 1000 * 60 * 60; // 1 hour
+const CACHE_DURATION = DURATION_HOUR;
 
 export function fetchAndRenderWeatherForecast(parent, data, daylightData) {
   if (!data.weatherCoordinates) {

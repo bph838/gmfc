@@ -1,7 +1,11 @@
 import { createDiv, createH1, createSpan } from "@framework/dom";
 import { setSiteImage } from "@framework/utils";
 import { renderAlerts } from "@components/alerts";
-import { renderWeatherInfo, showhideWeather } from "@components/weatherinfo";
+import {
+  renderWeatherInfo,
+  showhideWeather,
+  getDaylight,
+} from "@components/weatherinfo";
 
 export function renderHero(data) {
   console.log("renderHero called");
@@ -111,11 +115,21 @@ export function renderHero(data) {
       showhideWeather();
     });
 
+    getDaylight().then((daylight) => {
+      renderWeatherInfo(
+        hero,
+        data.weatherCoordinates.latitude,
+        data.weatherCoordinates.longitude,
+        daylight
+      );
+    });
+
+    /*
     renderWeatherInfo(
       hero,
       data.weatherCoordinates.latitude,
       data.weatherCoordinates.longitude,
-    );
+    );*/
   }
 }
 

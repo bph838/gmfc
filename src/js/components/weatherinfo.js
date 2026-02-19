@@ -1,11 +1,15 @@
-import { fetchJson } from "@framework/utils";
+import { getDayOfYearUTC,DURATION_YEAR,DURATION_HOUR } from "@framework/utils";
 import { createDiv } from "@framework/dom";
 
 const SHOW_WEATHER_KEY = "showWeather";
 const CACHE_KEY = "weatherCache";
-const CACHE_DURATION = 56 * 1000; // 60 second
+const CACHE_DURATION = DURATION_HOUR;
 
-export function renderWeatherInfo(parent, latitude, longitude) {
+const CACHE_DAYLIGHT_KEY = "daylightCache";
+const CACHE_DAYLIGHT_DURATION = DURATION_YEAR;
+
+export function renderWeatherInfo(parent, latitude, longitude, daylight) {
+  let isNight = fetchIsNight(daylight);
   //render the weather info
   const weather_widgetdiv = createDiv(
     parent,
@@ -27,27 +31,13 @@ export function renderWeatherInfo(parent, latitude, longitude) {
   const weather_tempdiv = createDiv(weather_infodiv, "temp", "temp");
   weather_tempdiv.innerHTML = "--°C";
   renderWindWidget(weather_infodiv);
-  /*
-  const weather_winddiv = createDiv(weather_infodiv, "wind");
-  const weather_windarrowdiv = createDiv(
-    weather_winddiv,
-    "wind-arrow",
-    "wind-arrow",
-  );
-  weather_windarrowdiv.innerHTML = "↑";
-  const weather_windtextdiv = createDiv(
-    weather_winddiv,
-    "wind-text",
-    "wind-text",
-  );
-  weather_windtextdiv.innerHTML = "-- km/h";*/
 
   getWeather(latitude, longitude).then((data) => {
     const temp = data.current_weather.temperature;
     const wind = getMPH(data.current_weather.windspeed);
     const windDir = (data.current_weather.winddirection + 180) % 360; // Adjust to point in the direction the wind is coming from
     const weatherCode = data.current_weather.weathercode;
-    const weatherInfo = getWeatherImageAndLabel(weatherCode); //getWeatherIconAndLabel(weatherCode);
+    const weatherInfo = getWeatherImageAndLabel(weatherCode, isNight); //getWeatherIconAndLabel(weatherCode);
     const weatherimage = weatherInfo.image;
     const weatherlabel = weatherInfo.label;
 
@@ -56,12 +46,9 @@ export function renderWeatherInfo(parent, latitude, longitude) {
     let wind_widget = setWind(windDir, wind);
 
     let wind_widget_size = 120; // default size used in renderWindWidget
-    if(windDir > 90 && windDir < 270) {      
-      wind_widget.style.setProperty("margin-top", `-${wind_widget_size/6}px`);
+    if (windDir > 90 && windDir < 270) {
+      wind_widget.style.setProperty("margin-top", `-${wind_widget_size / 6}px`);
     }
-
-    //weather_windtextdiv.innerHTML = `${wind} mph`;
-    //weather_windarrowdiv.style.transform = `rotate(${windDir}deg)`;
 
     let weatherImgInner = `<img src="${weatherimage}" alt="${weatherlabel}" class="weather-image" />`;
     weather_icondiv.innerHTML = weatherImgInner;
@@ -108,6 +95,37 @@ async function getWeather(latitude, longitude) {
   );
 
   console.log("Fetched new weather:", data);
+  return data;
+}
+
+export async function getDaylight() {
+  // Check if cached data exists
+  const cached = localStorage.getItem(CACHE_DAYLIGHT_KEY);
+  if (cached) {
+    const { timestamp, data } = JSON.parse(cached);
+    if (Date.now() - timestamp < CACHE_DAYLIGHT_DURATION) {
+      console.log("Using cached daylight data:", data);
+      return data;
+    }
+  }
+
+  // Fetch fresh data
+  const url = `/data/daylight/daylight.json`;
+  console.log(`Fetching day light data: ${url}`);
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  // Save to cache
+  localStorage.setItem(
+    CACHE_DAYLIGHT_KEY,
+    JSON.stringify({
+      timestamp: Date.now(),
+      data,
+    }),
+  );
+
+  console.log("Fetched new daylight data:", data);
   return data;
 }
 
@@ -479,7 +497,7 @@ export function renderWindWidget(parent, size = 120, id = "wind-widget") {
 }
 
 export function setWind(directionDeg, speed, parentId = "wind-widget") {
-  let dir = directionDeg % 360; 
+  let dir = directionDeg % 360;
   const windDiv = document.getElementById(parentId);
   if (windDiv) {
     const arrow = windDiv.querySelector(".windDirGroup");
@@ -496,9 +514,29 @@ export function setWind(directionDeg, speed, parentId = "wind-widget") {
 
 function dirctionToCompass(deg) {
   const directions = [
-    "North",  "North East", "East",  "South East",      
-    "South",  "South West", "West",  "North West",
+    "North",
+    "North East",
+    "East",
+    "South East",
+    "South",
+    "South West",
+    "West",
+    "North West",
   ];
   const index = Math.round(deg / 45) % 8;
   return directions[index];
-} 
+}
+
+function fetchIsNight(daylightData) {
+  if (!daylightData) return;
+  let date = new Date();
+  let dayOfYear = getDayOfYearUTC(date);
+  let daylightInfo = daylightData[dayOfYear];
+  console.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
+
+  let isNight = true;
+  let hour = new Date().getHours();
+  let x = Math.pow(2, hour);
+  if ((daylightInfo & x) === x) isNight = false;
+  return isNight;
+}

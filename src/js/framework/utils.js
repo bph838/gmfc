@@ -1,3 +1,11 @@
+export const DURATION_SECOND = 1000;
+export const DURATION_MINUTE = DURATION_SECOND * 60;
+export const DURATION_HOUR = DURATION_MINUTE * 60;
+export const DURATION_DAY = DURATION_HOUR * 24;
+export const DURATION_WEEK = DURATION_DAY * 7;
+export const DURATION_YEAR = DURATION_WEEK * 52;
+
+
 export function loadScript(url, callback) {
   // Create a new script element
   const script = document.createElement("script");
@@ -251,8 +259,10 @@ export function getDayOfYearUTC(input) {
   const now = Date.UTC(
     date.getUTCFullYear(),
     date.getUTCMonth(),
-    date.getUTCDate()
+    date.getUTCDate(),
   );
 
   return Math.floor((now - start) / 86400000);
 }
+
+
