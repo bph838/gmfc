@@ -474,6 +474,7 @@ export function renderWindWidget(parent, size = 120, id = "wind-widget") {
 }
 
 export function setWind(directionDeg, speed, parentId = "wind-widget") {
+  let dir = directionDeg % 360; 
   const windDiv = document.getElementById(parentId);
   if (windDiv) {
     const arrow = windDiv.querySelector(".windDirGroup");
@@ -481,8 +482,17 @@ export function setWind(directionDeg, speed, parentId = "wind-widget") {
     const windTitle = windDiv.querySelector(".windTitle");
 
     if (windTitle)
-      windTitle.textContent = `Wind: ${Math.round(speed)} mph, Direction: ${Math.round(directionDeg)}°`;
-    if (arrow) arrow.setAttribute("transform", `rotate(${directionDeg} 50 50)`);
+      windTitle.textContent = `Wind: ${Math.round(speed)} mph, ${dirctionToCompass(Math.round(dir))}`;
+    if (arrow) arrow.setAttribute("transform", `rotate(${dir} 50 50)`);
     if (text) text.textContent = `${Math.round(speed)}`;
   }
 }
+
+function dirctionToCompass(deg) {
+  const directions = [
+    "North",  "North East", "East",  "South East",      
+    "South",  "South West", "West",  "North West",
+  ];
+  const index = Math.round(deg / 45) % 8;
+  return directions[index];
+} 
