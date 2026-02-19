@@ -61,6 +61,7 @@ $hoverTiltOffset: 60;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  position: relative;
 }
 
 $header-size: 0.75;
@@ -93,6 +94,7 @@ $header-scale-pc: 3;
 .section_header {
   flex: 100%;
   margin-bottom: 0.5em;
+  z-index: 100;
   .section_date {
     font-family: "Courier New", Courier, monospace;
   }
@@ -392,11 +394,29 @@ $header-scale-pc: 3;
   }
 }
 
-.sectionWeatherForecastDiv{
-  h2{
+.sectionWeatherForecastDiv {
+  h2 {
     font-size: 1.5em;
     text-align: left;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
+  }
+}
+
+.sticker {
+  position: absolute; /* float above */
+  top: 20;
+  left: 50;
+  z-index: 10;
+  
+  @include respond(pc, tablet) {
+    margin-left: 25%;
+  }
+
+  img{
+    width:300px;
+    @include respond(pc, tablet) {
+      width:100%;
+    }
   }
 }

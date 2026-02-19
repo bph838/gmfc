@@ -13,7 +13,13 @@ import { initaliseCarousel, onRotate } from "@framework/carousel3d";
 import { sanitizeString } from "@framework/utils";
 import { fetchAndRenderWeatherForecast } from "@components/weatherforcast";
 
-export function renderSection(parent, data, pageurl = "", extraclass = "", extraData = {}) {
+export function renderSection(
+  parent,
+  data,
+  pageurl = "",
+  extraclass = "",
+  extraData = {},
+) {
   if (!data) {
     console.error("There is no data to render");
     return;
@@ -136,12 +142,16 @@ function renderWrappedTextLeftSection(parent, data) {
     return;
   }
 
+  let sticker = data.imagesticker ?? "none";
+
   const innerdiv = createDiv(parent, "section_inner_wrap_left");
   createImage(innerdiv, data.image);
 
   data.text.forEach((text) => {
     createParagraph(innerdiv, text);
   });
+
+  renderSectionSticker(parent, sticker);
 
   return innerdiv;
 }
@@ -327,3 +337,16 @@ function renderListItems(parent, items) {
   });
 }
 
+function renderSectionSticker(parent, sticker) {
+  if (sticker == "none") return;
+  let url = "";
+  let from = "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com";
+  //from = "https://siteimages.gmfc.uk";
+  if (sticker == "cancelled") {
+    url = from + "/stickers/cancelled.png";
+  }
+  const stickerDiv = createDiv(parent, "sticker");
+  createImage(stickerDiv, url);
+
+  //stickerDiv.style.backgroundImage = "url('" + from+url + "')";
+}
