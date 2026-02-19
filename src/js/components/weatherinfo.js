@@ -45,7 +45,7 @@ export function renderWeatherInfo(parent, latitude, longitude) {
   getWeather(latitude, longitude).then((data) => {
     const temp = data.current_weather.temperature;
     const wind = getMPH(data.current_weather.windspeed);
-    const windDir = data.current_weather.winddirection + 180; // Adjust to point in the direction the wind is coming from
+    const windDir = (data.current_weather.winddirection + 180) % 360; // Adjust to point in the direction the wind is coming from
     const weatherCode = data.current_weather.weathercode;
     const weatherInfo = getWeatherImageAndLabel(weatherCode); //getWeatherIconAndLabel(weatherCode);
     const weatherimage = weatherInfo.image;
@@ -53,7 +53,12 @@ export function renderWeatherInfo(parent, latitude, longitude) {
 
     weather_descdiv.innerHTML = weatherlabel;
     weather_tempdiv.innerHTML = `${temp}°C`;
-    setWind(windDir, wind);
+    let wind_widget = setWind(windDir, wind);
+
+    let wind_widget_size = 120; // default size used in renderWindWidget
+    if(windDir > 90 && windDir < 270) {      
+      wind_widget.style.setProperty("margin-top", `-${wind_widget_size/6}px`);
+    }
 
     //weather_windtextdiv.innerHTML = `${wind} mph`;
     //weather_windarrowdiv.style.transform = `rotate(${windDir}deg)`;
@@ -486,6 +491,7 @@ export function setWind(directionDeg, speed, parentId = "wind-widget") {
     if (arrow) arrow.setAttribute("transform", `rotate(${dir} 50 50)`);
     if (text) text.textContent = `${Math.round(speed)}`;
   }
+  return windDiv;
 }
 
 function dirctionToCompass(deg) {

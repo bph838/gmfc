@@ -28,6 +28,7 @@ export function fetchAndRenderWeatherForecast(parent, data, daylightData) {
 function renderWeatherForecast(parent, daylightData) {
   const sectiondiv = createDiv(parent, "sectionWeatherForecastDiv");
   console.log("Rendering weather forcast with data:", forcast_data);
+  let wind_widget_size = 60;
   let currentDay = getDayOfYearUTC(forcast_data[0].time);
   forcast_data.forEach((data, index) => {
     let day = getDayOfYearUTC(data.time);
@@ -77,7 +78,7 @@ function renderWeatherForecast(parent, daylightData) {
         const iconSpan = createSpan(hourDiv, "weatherIcon");
         //const windSpan = createSpan(hourDiv, "weatherWind");
         let windwidgetId = `wind-widget-${day}-${i}`;
-        renderWindWidget(hourDiv, 60, windwidgetId);
+        renderWindWidget(hourDiv, wind_widget_size, windwidgetId);
       }
       currentDay = day;
     }
@@ -102,13 +103,17 @@ function renderWeatherForecast(parent, daylightData) {
     if (!isNight) {
       hourDiv.style.backgroundColor = tempToColor(data.temperature);
     }
-
+    let dir = (data.wind_direction_10m + 180) % 360;
     tempSpan.textContent = `${data.temperature}°C`;
     precipSpan.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${data.precipitation_probability}%`;
     iconSpan.innerHTML = `<img src="${weatherimage}" alt="${weatherlabel}"  title="${weatherlabel}"  class="weather-image" />`;
-    //windSpan.innerHTML = `<i class="fa-solid fa-wind"></i> ${data.wind_speed_10m} mph`;
     let windwidgetId = `wind-widget-${day}-${hour}`;
-    setWind( data.wind_direction_10m+180,data.wind_speed_10m, windwidgetId);
+    let wind_widget = setWind(dir, data.wind_speed_10m, windwidgetId);
+    /*if(dir < 45 || dir > (360-45)) {      
+      wind_widget.style.setProperty("margin-top", `-${wind_widget_size/6}px`);
+    }else if(dir < 90 || dir >= (360-90)) {
+      wind_widget.style.setProperty("margin-top", `-${wind_widget_size/3}px`);
+    }*/
   });
 
   let current_day = getDayOfYearUTC(new Date());
