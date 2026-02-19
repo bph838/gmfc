@@ -19,7 +19,7 @@
       "url": "@/news",
       "jdb": "@jdbpages/news.json",
       "datetype": "filemodified",
-      "date": "2026-02-15T14:14:34.746Z"
+      "date": "2026-02-19T13:32:30.652Z"
     },
     {
       "page": "gallery.html",
@@ -108,6 +108,22 @@
       "datetype": "static",
       "date": "2025-01-01",
       "title": "Monthly Club Days"
+    },
+    {
+      "hash": "439af5b6629825e873142ea066a488e0",
+      "page": "news/2026/2/february-maintenance-has-been-cancelled.html",
+      "jdb": "@jdbpages/newsitems/439af5b6629825e873142ea066a488e0.json",
+      "datetype": "static",
+      "date": "2026-02-19",
+      "title": "February maintenance has been cancelled"
+    },
+    {
+      "hash": "15efc237f0af1aeee7f5caada3af9c01",
+      "page": "news/2026/2/february-maintenance-help-needed.html",
+      "jdb": "@jdbpages/newsitems/15efc237f0af1aeee7f5caada3af9c01.json",
+      "datetype": "static",
+      "date": "2026-02-21",
+      "title": "February maintenance help needed"
     }
   ]
 }

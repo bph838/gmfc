@@ -43,7 +43,7 @@ function renderClubNews(data) {
   if (!contentarea) return;
   const sectionsdiv = createDiv(contentarea, "sections");
 
-  //render th news
+  //render the news
   if (data.content.sections && data.content.sections.length > 0) {
     const newsSections = data.content.sections;
     newsSections.sort(
@@ -52,7 +52,10 @@ function renderClubNews(data) {
     );
 
     data.content.sections.forEach((section) => {
-      renderSection(sectionsdiv, section, newsItemUrl, "sectionline");
+      console.log("Check show hide");
+      let showhide = section.showhide ?? true;
+      if (showhide)
+        renderSection(sectionsdiv, section, newsItemUrl, "sectionline");
     });
   }
 }

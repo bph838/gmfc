@@ -57,6 +57,8 @@ export function renderSection(parent, data, pageurl = "", extraclass = "", extra
     const titleText = createH2(titlediv, data.title);
   }
 
+  //check if for news updates
+
   //render header
   if (data.date) {
     const date = new Date(data.date);

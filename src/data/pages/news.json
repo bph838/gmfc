@@ -11,8 +11,21 @@
     },
     "sections": [
       {
-        "title": "February maintenance help needed",
+        "title": "February maintenance has been cancelled",
         "date": "2026-02-19",
+        "type": "wrappedTextLeft",
+        "image": "https://siteimages.gmfc.uk/news/helpneededtea.png",
+        "imagesticker":"cancelled",
+        "text": [
+          "Due to the weather the maintenance planned for this weekend has been cancelled.",
+          "If you want to keep an eye out on the weather, the website now has a 7-day forecast <a href='/club/weather'>here</a>"
+        ],
+        "hash": "439af5b6629825e873142ea066a488e0"
+      },
+      {
+        "title": "February maintenance help needed",
+        "showhide": false,
+        "date": "2026-02-21",
         "type": "wrappedTextLeft",
         "image": "https://siteimages.gmfc.uk/news/helpneededtea.png",
         "text": [
@@ -29,7 +42,7 @@
           "The remains of the fallen tree is ‘parked’ in parking area . Chainsaw enthusiasts welcome to help themselves to firewood. BUT at own risk! Not a club task!",
           "Hopefully we will  also arrange a quick mow of strip."
         ],
-        "hash": "b1cbbabc778c5d1ce1b26cae3fed4500"
+        "hash": "15efc237f0af1aeee7f5caada3af9c01"
       },
       {
         "title": "Track only members (non Flying)",
