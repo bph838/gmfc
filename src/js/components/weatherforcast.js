@@ -14,6 +14,7 @@ import {
 } from "@components/weatherinfo";
 
 let forcast_data = [];
+let daylight_data = [];
 const CACHE_KEY = "weatherForcastCache";
 const CACHE_DURATION = DURATION_HOUR;
 
@@ -25,14 +26,15 @@ export function fetchAndRenderWeatherForecast(parent, data, daylightData) {
 
   const latitude = data.weatherCoordinates.latitude;
   const longitude = data.weatherCoordinates.longitude;
+  daylight_data = daylightData;
 
   getWeather(latitude, longitude).then(() => {
     createWeatherFilter(parent);
-    renderWeather(parent, daylightData);
+    renderWeather(parent);
   });
 }
 
-export function renderWeather(parent, daylightData, type = "overview") {
+export function renderWeather(parent, type = "weather_overview") {
   let id = "sectionWeatherForcast";
   let weatherDiv = document.getElementById(id);
   if (!weatherDiv) {
@@ -43,11 +45,11 @@ export function renderWeather(parent, daylightData, type = "overview") {
 
   switch (type) {
     default:
-    case "overview":
-      renderWeatherForecast_Overview(weatherDiv, daylightData);
+    case "weather_overview":
+      renderWeatherForecast_Overview(weatherDiv);
       break;
-    case "wind":
-      renderWeatherForecast_Wind(weatherDiv, daylightData);
+    case "weather_wind":
+      renderWeatherForecast_Wind(weatherDiv);
       break;
   }
 }
@@ -143,8 +145,9 @@ function tempToColor(temp) {
 }
 
 function createWeatherFilter(parent) {
+  const holderDiv = createDiv(parent, "weather_filter_holder");
   const filterDiv = createDiv(
-    parent,
+    holderDiv,
     "btn-group  mb-3 weather_selector", //
     "weatherFilter",
     "group",
@@ -170,7 +173,7 @@ function createWeatherFilter(parent) {
     filterDiv,
     "radio",
     "btn-check",
-    "mediaType",
+    "weatherType",
     "weather_wind",
     "weather_wind",
   );
@@ -180,21 +183,15 @@ function createWeatherFilter(parent) {
     input.addEventListener("change", (e) => {
       console.log("weather input changed:" + e.target.value);
       const type = e.target.value;
-
-      /*let gallery_section_holder = document.getElementById(
-        "gallery_section_holder",
-      );
-      if (gallery_section_holder) {
-        renderGallery(gallery_section_holder, type);
-      }*/
+      let weatherDiv = document.getElementById("sectionWeatherForcast");
+      if (weatherDiv) renderWeather(weatherDiv, type);
     });
   });
 
   return filterDiv;
 }
 
-function renderWeatherForecast_Overview(parent, daylightData) {
-  
+function renderWeatherForecast_Overview(parent) {
   //const sectiondiv = createDiv(parent, "sectionWeatherForecastDiv");
   console.log("Rendering weather forcast with data:", forcast_data);
 
@@ -215,7 +212,7 @@ function renderWeatherForecast_Overview(parent, daylightData) {
         dayName = "Tomorrow";
       }
       let dayOfYear = getDayOfYearUTC(data.time);
-      let daylightInfo = daylightData[dayOfYear];
+      let daylightInfo = daylight_data[dayOfYear];
       console.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
 
       const h2 = createH3(parent, `${dayName}`);
@@ -294,6 +291,4 @@ function renderWeatherForecast_Overview(parent, daylightData) {
   }
 }
 
-function renderWeatherForecast_Wind(parent, daylightData){
-
-}
+function renderWeatherForecast_Wind(parent) {}
