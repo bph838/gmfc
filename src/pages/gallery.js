@@ -6,6 +6,7 @@ import {
   fetchContextArea,
   createInput,
   createLabel,
+  emptyDiv,
 } from "@framework/dom";
 import { fetchJson, loadMergedJson } from "@framework/utils";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
@@ -61,9 +62,7 @@ function render(data) {
 function renderGallery(sections, type) {
   console.log(type);
   //clear the element out
-  while (sections.firstChild) {
-    sections.removeChild(sections.firstChild);
-  }
+  emptyDiv(sections);
 
   //create a div to hold the gallery
   const gallerydiv = createDiv(sections, "gallery");

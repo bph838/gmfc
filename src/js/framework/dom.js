@@ -136,6 +136,13 @@ export function createLink(
   return el;
 }
 
+export function emptyDiv(el) {
+  if (!el) return;
+  while (el.firstChild) {
+    el.removeChild(el.firstChild);
+  }
+}
+
 export function createImage(
   parent,
   src = null,

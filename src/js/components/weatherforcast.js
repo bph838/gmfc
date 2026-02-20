@@ -1,5 +1,12 @@
 import { DURATION_HOUR, getDayOfYearUTC } from "@framework/utils";
-import { createDiv, createH3, createSpan } from "@framework/dom";
+import {
+  createDiv,
+  createH3,
+  createSpan,
+  createInput,
+  createLabel,
+  emptyDiv,
+} from "@framework/dom";
 import {
   getWeatherImageAndLabel,
   renderWindWidget,
@@ -20,106 +27,28 @@ export function fetchAndRenderWeatherForecast(parent, data, daylightData) {
   const longitude = data.weatherCoordinates.longitude;
 
   getWeather(latitude, longitude).then(() => {
-    renderWeatherForecast(parent, daylightData);
+    createWeatherFilter(parent);
+    renderWeather(parent, daylightData);
   });
 }
 
-function renderWeatherForecast(parent, daylightData) {
-  const sectiondiv = createDiv(parent, "sectionWeatherForecastDiv");
-  console.log("Rendering weather forcast with data:", forcast_data);
-  let wind_widget_size = 60;
-  let currentDay = getDayOfYearUTC(forcast_data[0].time);
-  forcast_data.forEach((data, index) => {
-    let day = getDayOfYearUTC(data.time);
-    if (day !== currentDay || index === 0) {
-      let dayName = data.time.toLocaleDateString("en-GB", { weekday: "long" });
+export function renderWeather(parent, daylightData, type = "overview") {
+  let id = "sectionWeatherForcast";
+  let weatherDiv = document.getElementById(id);
+  if (!weatherDiv) {
+    weatherDiv = createDiv(parent, "sectionWeatherForecastDiv", id);
+  } else {
+    emptyDiv(weatherDiv);
+  }
 
-      if (getDayOfYearUTC(data.time) === getDayOfYearUTC(new Date())) {
-        dayName = "Today";
-      }
-      if (
-        getDayOfYearUTC(data.time) ===
-        getDayOfYearUTC(new Date().setDate(new Date().getDate() + 1))
-      ) {
-        dayName = "Tomorrow";
-      }
-      let dayOfYear = getDayOfYearUTC(data.time);
-      let daylightInfo = daylightData[dayOfYear];
-      console.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
-
-      const h2 = createH3(sectiondiv, `${dayName}`);
-      let weatherDayId = `weatherDay-${day}`;
-      let weatherViewpostId = `weatherViewport-${day}`;
-      const viewportDiv = createDiv(
-        sectiondiv,
-        "weatherViewport",
-        weatherViewpostId,
-      );
-      const dayDiv = createDiv(viewportDiv, "weatherDayDiv", weatherDayId);
-      dayDiv.dataset.day = day;
-      for (let i = 0; i < 24; i++) {
-        console.log(`Checking daylight for day`);
-        let divhourClass = "weatherHourDiv";
-        let x = Math.pow(2, i);
-        let isNight = false;
-        if ((daylightInfo & x) === x) {
-          divhourClass += " weather-daylight";
-        } else {
-          divhourClass += " weather-night";
-          isNight = true;
-        }
-        const hourDiv = createDiv(dayDiv, divhourClass);
-        hourDiv.dataset.hour = i;
-        hourDiv.dataset.night = isNight ? "true" : "false";
-        hourDiv.dataset.weathericon = ".";
-        const timeSpan = createSpan(hourDiv, "weatherTime", `${i}:00`);
-        const tempSpan = createSpan(hourDiv, "weatherTemp");
-        const precipSpan = createSpan(hourDiv, "weatherPrecip");
-        const iconSpan = createSpan(hourDiv, "weatherIcon");
-        //const windSpan = createSpan(hourDiv, "weatherWind");
-        let windwidgetId = `wind-widget-${day}-${i}`;
-        renderWindWidget(hourDiv, wind_widget_size, windwidgetId);
-      }
-      currentDay = day;
-    }
-  });
-
-  forcast_data.forEach((data, index) => {
-    let day = getDayOfYearUTC(data.time);
-    let hour = data.time.getUTCHours();
-    let weatherDayId = `weatherDay-${day}`;
-    const dayDiv = document.getElementById(weatherDayId);
-    const hourDiv = dayDiv.querySelector(
-      `.weatherHourDiv[data-hour="${hour}"]`,
-    );
-    const isNight = hourDiv.dataset.night === "true";
-    const tempSpan = hourDiv.querySelector(".weatherTemp");
-    const precipSpan = hourDiv.querySelector(".weatherPrecip");
-    const iconSpan = hourDiv.querySelector(".weatherIcon");
-    const windSpan = hourDiv.querySelector(".weatherWind");
-    const weatherInfo = getWeatherImageAndLabel(data.weather_code, isNight);
-    hourDiv.dataset.weathericon = data.weather_code;
-    const weatherimage = weatherInfo.image;
-    const weatherlabel = weatherInfo.label;
-    if (!isNight) {
-      hourDiv.style.backgroundColor = tempToColor(data.temperature);
-    }
-    let dir = (data.wind_direction_10m + 180) % 360;
-    tempSpan.textContent = `${data.temperature}°C`;
-    precipSpan.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${data.precipitation_probability}%`;
-    iconSpan.innerHTML = `<img src="${weatherimage}" alt="${weatherlabel}"  title="${weatherlabel}"  class="weather-image" />`;
-    let windwidgetId = `wind-widget-${day}-${hour}`;
-    let wind_widget = setWind(dir, data.wind_speed_10m, windwidgetId);
-    /*if(dir < 45 || dir > (360-45)) {      
-      wind_widget.style.setProperty("margin-top", `-${wind_widget_size/6}px`);
-    }else if(dir < 90 || dir >= (360-90)) {
-      wind_widget.style.setProperty("margin-top", `-${wind_widget_size/3}px`);
-    }*/
-  });
-
-  let current_day = getDayOfYearUTC(new Date());
-  for (let day = current_day; day < current_day + 7; day++) {
-    scrollToHourCentered(day, 12);
+  switch (type) {
+    default:
+    case "overview":
+      renderWeatherForecast_Overview(weatherDiv, daylightData);
+      break;
+    case "wind":
+      renderWeatherForecast_Wind(weatherDiv, daylightData);
+      break;
   }
 }
 
@@ -211,4 +140,160 @@ function tempToColor(temp) {
   const hue = 220 - 220 * t;
 
   return `hsl(${hue}, 70%, 72%)`;
+}
+
+function createWeatherFilter(parent) {
+  const filterDiv = createDiv(
+    parent,
+    "btn-group  mb-3 weather_selector", //
+    "weatherFilter",
+    "group",
+  );
+
+  createInput(
+    filterDiv,
+    "radio",
+    "btn-check",
+    "weatherType",
+    "weather_overview",
+    "weather_overview",
+    true,
+  );
+  createLabel(
+    filterDiv,
+    "btn btn-outline-primary",
+    "weather_overview",
+    "Overview",
+  );
+
+  createInput(
+    filterDiv,
+    "radio",
+    "btn-check",
+    "mediaType",
+    "weather_wind",
+    "weather_wind",
+  );
+  createLabel(filterDiv, "btn btn-outline-primary", "weather_wind", "Wind");
+
+  document.querySelectorAll('input[name="weatherType"]').forEach((input) => {
+    input.addEventListener("change", (e) => {
+      console.log("weather input changed:" + e.target.value);
+      const type = e.target.value;
+
+      /*let gallery_section_holder = document.getElementById(
+        "gallery_section_holder",
+      );
+      if (gallery_section_holder) {
+        renderGallery(gallery_section_holder, type);
+      }*/
+    });
+  });
+
+  return filterDiv;
+}
+
+function renderWeatherForecast_Overview(parent, daylightData) {
+  
+  //const sectiondiv = createDiv(parent, "sectionWeatherForecastDiv");
+  console.log("Rendering weather forcast with data:", forcast_data);
+
+  let wind_widget_size = 60;
+  let currentDay = getDayOfYearUTC(forcast_data[0].time);
+  forcast_data.forEach((data, index) => {
+    let day = getDayOfYearUTC(data.time);
+    if (day !== currentDay || index === 0) {
+      let dayName = data.time.toLocaleDateString("en-GB", { weekday: "long" });
+
+      if (getDayOfYearUTC(data.time) === getDayOfYearUTC(new Date())) {
+        dayName = "Today";
+      }
+      if (
+        getDayOfYearUTC(data.time) ===
+        getDayOfYearUTC(new Date().setDate(new Date().getDate() + 1))
+      ) {
+        dayName = "Tomorrow";
+      }
+      let dayOfYear = getDayOfYearUTC(data.time);
+      let daylightInfo = daylightData[dayOfYear];
+      console.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
+
+      const h2 = createH3(parent, `${dayName}`);
+      let weatherDayId = `weatherDay-${day}`;
+      let weatherViewpostId = `weatherViewport-${day}`;
+      const viewportDiv = createDiv(
+        parent,
+        "weatherViewport",
+        weatherViewpostId,
+      );
+      const dayDiv = createDiv(viewportDiv, "weatherDayDiv", weatherDayId);
+      dayDiv.dataset.day = day;
+      for (let i = 0; i < 24; i++) {
+        console.log(`Checking daylight for day`);
+        let divhourClass = "weatherHourDiv";
+        let x = Math.pow(2, i);
+        let isNight = false;
+        if ((daylightInfo & x) === x) {
+          divhourClass += " weather-daylight";
+        } else {
+          divhourClass += " weather-night";
+          isNight = true;
+        }
+        const hourDiv = createDiv(dayDiv, divhourClass);
+        hourDiv.dataset.hour = i;
+        hourDiv.dataset.night = isNight ? "true" : "false";
+        hourDiv.dataset.weathericon = ".";
+        const timeSpan = createSpan(hourDiv, "weatherTime", `${i}:00`);
+        const tempSpan = createSpan(hourDiv, "weatherTemp");
+        const precipSpan = createSpan(hourDiv, "weatherPrecip");
+        const iconSpan = createSpan(hourDiv, "weatherIcon");
+        //const windSpan = createSpan(hourDiv, "weatherWind");
+        let windwidgetId = `wind-widget-${day}-${i}`;
+        renderWindWidget(hourDiv, wind_widget_size, windwidgetId);
+      }
+      currentDay = day;
+    }
+  });
+
+  forcast_data.forEach((data, index) => {
+    let day = getDayOfYearUTC(data.time);
+    let hour = data.time.getUTCHours();
+    let weatherDayId = `weatherDay-${day}`;
+    const dayDiv = document.getElementById(weatherDayId);
+    const hourDiv = dayDiv.querySelector(
+      `.weatherHourDiv[data-hour="${hour}"]`,
+    );
+    const isNight = hourDiv.dataset.night === "true";
+    const tempSpan = hourDiv.querySelector(".weatherTemp");
+    const precipSpan = hourDiv.querySelector(".weatherPrecip");
+    const iconSpan = hourDiv.querySelector(".weatherIcon");
+    const windSpan = hourDiv.querySelector(".weatherWind");
+    const weatherInfo = getWeatherImageAndLabel(data.weather_code, isNight);
+    hourDiv.dataset.weathericon = data.weather_code;
+    const weatherimage = weatherInfo.image;
+    const weatherlabel = weatherInfo.label;
+    if (!isNight) {
+      hourDiv.style.backgroundColor = tempToColor(data.temperature);
+    }
+    let dir = (data.wind_direction_10m + 180) % 360;
+    tempSpan.textContent = `${data.temperature}°C`;
+    precipSpan.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${data.precipitation_probability}%`;
+    iconSpan.innerHTML = `<img src="${weatherimage}" alt="${weatherlabel}"  title="${weatherlabel}"  class="weather-image" />`;
+    let windwidgetId = `wind-widget-${day}-${hour}`;
+    let wind_widget = setWind(dir, data.wind_speed_10m, windwidgetId);
+    /*if(dir < 45 || dir > (360-45)) {      
+      wind_widget.style.setProperty("margin-top", `-${wind_widget_size/6}px`);
+    }else if(dir < 90 || dir >= (360-90)) {
+      wind_widget.style.setProperty("margin-top", `-${wind_widget_size/3}px`);
+    }*/
+  });
+
+  let current_day = getDayOfYearUTC(new Date());
+  for (let day = current_day; day < current_day + 7; day++) {
+    scrollToHourCentered(day, 12);
+  }
+}
+
+function renderWeatherForecast_Wind(parent, daylightData){
+
 }
