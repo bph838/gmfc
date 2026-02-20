@@ -70,3 +70,12 @@
     width: 100px;
   }
 }
+
+.weatherWindDayDiv {
+  width:100%;
+  .windSpeedChartCanvas {
+    width:100%;
+    height:100px;
+    max-height: 250px;
+  }
+}

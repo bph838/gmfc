@@ -6,6 +6,8 @@ import {
   createInput,
   createLabel,
   emptyDiv,
+  createCanvas,
+  injectScript,
 } from "@framework/dom";
 import {
   getWeatherImageAndLabel,
@@ -192,8 +194,7 @@ function createWeatherFilter(parent) {
 }
 
 function renderWeatherForecast_Overview(parent) {
-  //const sectiondiv = createDiv(parent, "sectionWeatherForecastDiv");
-  console.log("Rendering weather forcast with data:", forcast_data);
+  console.log("Rendering overview weather forcast with data:", forcast_data);
 
   let wind_widget_size = 60;
   let currentDay = getDayOfYearUTC(forcast_data[0].time);
@@ -291,4 +292,144 @@ function renderWeatherForecast_Overview(parent) {
   }
 }
 
-function renderWeatherForecast_Wind(parent) {}
+function renderWeatherForecast_Wind(parent) {
+  console.log("Rendering wind weather forcast with data:", forcast_data);
+  let max_wind_speed = 0;
+  let currentDay = getDayOfYearUTC(forcast_data[0].time);
+  forcast_data.forEach((data, index) => {
+    if (data.wind_speed_10m > max_wind_speed)
+      max_wind_speed = data.wind_speed_10m;
+    if (data.wind_speed_80m > max_wind_speed)
+      max_wind_speed = data.wind_speed_80m;
+    if (data.wind_speed_120m > max_wind_speed)
+      max_wind_speed = data.wind_speed_120m;
+
+    let day = getDayOfYearUTC(data.time);
+    if (day !== currentDay || index === 0) {
+      let dayName = data.time.toLocaleDateString("en-GB", { weekday: "long" });
+
+      if (getDayOfYearUTC(data.time) === getDayOfYearUTC(new Date())) {
+        dayName = "Today";
+      }
+      if (
+        getDayOfYearUTC(data.time) ===
+        getDayOfYearUTC(new Date().setDate(new Date().getDate() + 1))
+      ) {
+        dayName = "Tomorrow";
+      }
+      let dayOfYear = getDayOfYearUTC(data.time);
+      let daylightInfo = daylight_data[dayOfYear];
+      console.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
+
+      const h2 = createH3(parent, `${dayName}`);
+      let weatherDayId = `weatherDay-${day}`;
+      let weatherWindDayId = `weatherWindDay-${day}`;
+      let weatherViewpostId = `weatherViewport-${day}`;
+      const viewportDiv = createDiv(
+        parent,
+        "weatherViewport",
+        weatherViewpostId,
+      );
+      const dayDiv = createDiv(viewportDiv, "weatherWindDayDiv", weatherDayId);
+      dayDiv.dataset.day = day;
+      createCanvas(dayDiv, "windSpeedChartCanvas", weatherWindDayId);
+      currentDay = day;
+    }
+  });
+  renderWindCharts(max_wind_speed);
+}
+
+async function renderWindCharts(max_wind_speed) {
+  max_wind_speed = Math.floor(max_wind_speed * 1.2);
+  await injectScript("https://cdn.jsdelivr.net/npm/chart.js");
+
+  let currentDay = getDayOfYearUTC(forcast_data[0].time);
+  forcast_data.forEach((data, index) => {
+    let day = getDayOfYearUTC(data.time);
+    if (day !== currentDay || index === 0) {
+      let weatherWindDayId = `weatherWindDay-${day}`;
+      const ctx = document.getElementById(weatherWindDayId);
+      const next24 = forcast_data.slice(index, index + 24);
+      renderWindDay(ctx, next24, max_wind_speed);
+      currentDay = day;
+    }
+  });
+}
+
+function renderWindDay(ctx, next24, max_wind_speed) {
+  console.log(`renderWindDay ${max_wind_speed}`);
+  let wind_speed_10m = [];
+  let wind_speed_80m = [];
+  next24.forEach((data, index) => {
+    wind_speed_10m.push(data.wind_speed_10m);
+    wind_speed_80m.push(data.wind_speed_80m);
+  });
+
+  new Chart(ctx, {
+    type: "line",
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: false,
+          text: "",
+        },
+      },
+      scales: {
+        y: {
+          min: 0,
+          max: max_wind_speed,
+        },
+      },
+    },
+    data: {
+      labels: [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+      ],
+      datasets: [
+        {
+          label: "Wind speed 10m",
+          data: wind_speed_10m,
+          tension: 0.4,
+        },
+        {
+          label: "Wind speed 80m",
+          data: wind_speed_80m,
+          tension: 0.4,
+        },
+      ],
+    },
+  });
+}
+
+/*options: {       
+        scales: {
+          y: {
+            min: 1,
+            max: max_wind_speed,
+          },
+        },
+      },*/

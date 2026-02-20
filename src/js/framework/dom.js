@@ -143,6 +143,14 @@ export function emptyDiv(el) {
   }
 }
 
+export function createCanvas(parent, className = null, id = null) {
+  let el = document.createElement("canvas");
+  if (className) el.className = className;
+  if (id) el.id = id;
+  parent.appendChild(el);
+  return el;
+}
+
 export function createImage(
   parent,
   src = null,
@@ -188,4 +196,35 @@ export function createListItem(parent, className = null, innerHTML = null) {
 
   parent.appendChild(el);
   return el;
+}
+
+export function injectScript(url) {
+  return new Promise((resolve, reject) => {
+    // already loaded?
+    const existing = document.querySelector(`script[src="${url}"]`);
+    if (existing) {
+      // if already finished loading, resolve immediately
+      if (existing.dataset.loaded === "true") {
+        resolve();
+      } else {
+        existing.addEventListener("load", resolve);
+        existing.addEventListener("error", reject);
+      }
+      return;
+    }
+
+    // create script
+    const script = document.createElement("script");
+    script.src = url;
+    script.async = true;
+
+    script.addEventListener("load", () => {
+      script.dataset.loaded = "true";
+      resolve();
+    });
+
+    script.addEventListener("error", reject);
+
+    document.head.appendChild(script);
+  });
 }
