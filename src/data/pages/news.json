@@ -10,12 +10,12 @@
       }
     },
     "sections": [
-     
       {
-        "title": "February maintenance help needed",        
+        "title": "February maintenance help needed",
         "date": "2026-02-21",
         "type": "wrappedTextLeft",
-        "imagesticker":"cancelled",
+        "imagesticker": "cancelled",
+        "showhide": true,
         "image": "https://siteimages.gmfc.uk/news/helpneededtea.png",
         "text": [
           "We really could use your help 9-12!",
