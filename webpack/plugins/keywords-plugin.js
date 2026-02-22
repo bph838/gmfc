@@ -12,18 +12,12 @@ class KeywordsPlugin {
     this.data = JSON.parse(file);
   }
 
-  get(group) {
-    return this.data[group] || [];
+  get(section,group) {
+    return this.data[section][group] || [];
   }
 
-  /**
-   * Return CSV string
-   * group can be:
-   *  - string
-   *  - array of strings
-   *  - undefined (all groups)
-   */
-  csv(groups, separator = ", ") {
+ 
+  keywords(groups, separator = ", ") {
     let result = [];
 
     // no groups → all
@@ -33,18 +27,40 @@ class KeywordsPlugin {
 
     // single string
     else if (typeof groups === "string") {
-      result = this.get(groups);
+      result = this.get("keywords",groups);
     }
 
     // array of groups
     else if (Array.isArray(groups)) {
       for (const g of groups) {
-        result.push(...this.get(g));
+        result.push(...this.get("keywords",g));
       }
     }
 
     // remove duplicates just in case
     result = [...new Set(result)];
+
+    return result.join(separator);
+  }
+
+  description(groups, separator = ", ") {
+    let result = [];
+   
+
+    // single string
+    if (typeof groups === "string") {
+      result = this.get("description",groups);
+    }
+
+    // array of groups
+    else if (Array.isArray(groups)) {
+      for (const g of groups) {
+        result.push(...this.get("description",g));
+      }
+    }
+
+    // remove duplicates just in case
+    result = [result];
 
     return result.join(separator);
   }

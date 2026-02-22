@@ -24,8 +24,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const loadPartials = require("./webpack/plugins/load-partials");
 const KeywordsPlugin = require("./webpack/plugins/keywords-plugin");
 
-const keywords = new KeywordsPlugin("./src/data/dynamic/keywords.json");
-keywords.load(); // blocks automatically
+const seo = new KeywordsPlugin("./src/data/dynamic/seo.json");
+seo.load(); // blocks automatically
 
 const site = {
   sitename: SITE_TITLE,
@@ -66,7 +66,8 @@ try {
         hash: item.hash,
         partials: loadPartials(isProduction),
         site: site,
-        keywords: keywords.csv(["all", "news"]),
+        keywords: seo.keywords(["all", "news"]),
+        description: seo.description("news"),
       },
     });
   });
@@ -187,7 +188,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/404",
           partials,
           site: site,
-          keywords: keywords.csv("all"),
+          keywords: seo.keywords("all"),
+          description: "",
         },
       }),
 
@@ -202,7 +204,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk",
           partials,
           site: site,
-          keywords: keywords.csv("all"),
+          keywords: seo.keywords("all"),
+          description: seo.description("index"),
         },
       }),
 
@@ -217,7 +220,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/calendar",
           partials,
           site: site,
-          keywords: keywords.csv(["all", "calendar"]),
+          keywords: seo.keywords(["all", "calendar"]),
+          description: seo.description("calendar"),
         },
       }),
 
@@ -232,7 +236,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/news",
           partials,
           site: site,
-          keywords: keywords.csv(["all", "news"]),
+          keywords: seo.keywords(["all", "news"]),
+          description: seo.description("news"),
         },
       }),
 
@@ -247,7 +252,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/news",
           partials,
           site: site,
-          keywords: keywords.csv(["all", "news"]),
+          keywords: seo.keywords(["all", "news"]),
+          description: seo.description("news"),
         },
       }),
 
@@ -262,7 +268,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/aboutus",
           partials,
           site: site,
-          keywords: keywords.csv(["all", "aboutus"]),
+          keywords: seo.keywords(["all", "aboutus"]),
+          description: seo.description("aboutus"),
         },
       }),
 
@@ -277,7 +284,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/gallery",
           partials,
           site: site,
-          keywords: keywords.csv(["all", "gallery"]),
+          keywords: seo.keywords(["all", "gallery"]),
+          description: seo.description("gallery"),
         },
       }),
 
@@ -292,7 +300,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/club/",
           partials,
           site: site,
-          keywords: keywords.csv("all"),
+          keywords: seo.keywords("all"),
+          description: seo.description("clubrules"),
         },
       }),
 
@@ -307,7 +316,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/club/rules",
           partials,
           site: site,
-          keywords: keywords.csv(["all", "clubrules"]),
+          keywords: seo.keywords(["all", "clubrules"]),
+          description: seo.description("clubrules"),
         },
       }),
 
@@ -322,13 +332,14 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/club/history",
           partials,
           site: site,
-          keywords: keywords.csv(["all", "history"]),
+          keywords: seo.keywords(["all", "history"]),
+          description: seo.description("history"),
         },
       }),
 
       //leaderboard.html
       new HtmlWebpackPlugin({
-        filename: "club/leaderboard.html",        
+        filename: "club/leaderboard.html",
         template: "./src/templates/main.html",
         chunks: ["leaderboard"],
         title: SITE_TITLE + " - Leaderboard",
@@ -337,13 +348,14 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/club/leaderboard",
           partials,
           site: site,
-          keywords: keywords.csv(["all", "leaderboard"]),
+          keywords: seo.keywords(["all", "leaderboard"]),
+          description: seo.description("leaderboard"),
         },
       }),
 
       //clubmerch.html
       new HtmlWebpackPlugin({
-        filename: "club/merch.html",        
+        filename: "club/merch.html",
         template: "./src/templates/main.html",
         chunks: ["clubmerch"],
         title: SITE_TITLE + " - Club Merch",
@@ -352,13 +364,14 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/club/merch",
           partials,
           site: site,
-          keywords: keywords.csv("all"),
+          keywords: seo.keywords("all"),
+          description: seo.description("clubmerch"),
         },
       }),
 
       //clubmember.html
       new HtmlWebpackPlugin({
-        filename: "club/member.html",        
+        filename: "club/member.html",
         template: "./src/templates/iframe_membermojo_holder.html",
         chunks: ["clubmember"],
         title: SITE_TITLE + " - Members",
@@ -367,13 +380,14 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/club/member",
           partials,
           site: site,
-          keywords: keywords.csv("all"),
+          keywords: seo.keywords("all"),
+          description: seo.description("clubmember"),
         },
       }),
 
       //clubweather.html
       new HtmlWebpackPlugin({
-        filename: "club/weather.html",        
+        filename: "club/weather.html",
         template: "./src/templates/main.html",
         chunks: ["clubweather"],
         title: SITE_TITLE + " - Weather",
@@ -382,7 +396,8 @@ module.exports = (env, argv) => {
           pageurl: "https://www.gmfc.uk/club/weather",
           partials,
           site: site,
-          keywords: keywords.csv(["all", "weather"]),
+          keywords: seo.keywords(["all", "weather"]),
+          description: seo.description("weather"),
         },
       }),
 
