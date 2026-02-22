@@ -115,7 +115,7 @@ class SplitNewsSectionsPlugin {
                     let year =  dateObj.getFullYear();
                     siteData.pages.push({
                       hash,
-                      page: `news/${year}/${month}/${pagetitle}.html`,
+                      page: `news/${year}/${month}/${pagetitle}`,
                       jdb: `@jdbpages/newsitems/${hash}.json`,
                       datetype: "static",
                       date: section.date,

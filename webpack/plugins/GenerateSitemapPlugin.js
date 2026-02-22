@@ -36,7 +36,7 @@ class GenerateSitemapToSrcPlugin {
             let loc;
 
             if (p.url) {
-              if (p.url.startsWith("@siteurl")) {
+              if (p.url.startsWith("@siteliveurl")) {
                 loc = this.siteUrl;
               } else if (p.url.startsWith("@/")) {
                 loc = this.siteUrl + p.url.slice(1);

@@ -46,7 +46,7 @@ try {
   const outputPath = path.resolve(__dirname, "dist");
   // Create an array of HtmlWebpackPlugin instances
   newsPlugins = newsItems.map((item) => {
-    const filename = `/news/${item.year}/${item.month}/${sanitize(item.title)}.html`;
+    const filename = `/news/${item.year}/${item.month}/${sanitize(item.title)}`;
     console.log(`Processing new item for: ${filename}`);
     const absoluteFilename = path.resolve(outputPath, filename);
 
@@ -59,6 +59,7 @@ try {
       chunks: ["news"],
       templateParameters: {
         title: SITE_TITLE + " - News - " + item.title,
+        pageurl: "https://www.gmfc.uk/" + filename,
         image: item.image,
         month: item.month,
         year: item.year,
@@ -102,7 +103,7 @@ module.exports = (env, argv) => {
       styles: "./src/scss/styles.scss",
     },
     output: {
-      filename: "js/[name].js", 
+      filename: "js/[name].js",
       path: path.resolve(__dirname, "dist"),
       publicPath: "/",
       clean: true,
@@ -134,7 +135,7 @@ module.exports = (env, argv) => {
         "@framework": path.resolve(__dirname, "src/js/framework"),
         "@data": path.resolve(__dirname, "src/data"),
         "@jdbpages": path.resolve(__dirname, "src/data/pages"),
-        "@siteurl": "https://www.gmfc.uk/",
+        "@siteliveurl": "https://www.gmfc.uk/",
       },
       extensions: [".js", ".json"], // optional, helps omit extensions
     },
@@ -183,6 +184,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE,
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/404",
           partials,
           site: site,
           keywords: keywords.csv("all"),
@@ -197,6 +199,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE,
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk",
           partials,
           site: site,
           keywords: keywords.csv("all"),
@@ -211,6 +214,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE + " - Calendar",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/calendar",
           partials,
           site: site,
           keywords: keywords.csv(["all", "calendar"]),
@@ -225,6 +229,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE + " - News",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/news",
           partials,
           site: site,
           keywords: keywords.csv(["all", "news"]),
@@ -239,6 +244,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE + " - News",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/news",
           partials,
           site: site,
           keywords: keywords.csv(["all", "news"]),
@@ -253,6 +259,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE + " - About Us",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/aboutus",
           partials,
           site: site,
           keywords: keywords.csv(["all", "aboutus"]),
@@ -267,6 +274,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE + " - Gallery",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/gallery",
           partials,
           site: site,
           keywords: keywords.csv(["all", "gallery"]),
@@ -281,6 +289,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE + " - Club Rules",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/club/",
           partials,
           site: site,
           keywords: keywords.csv("all"),
@@ -295,6 +304,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE + " - Club Rules",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/club/rules",
           partials,
           site: site,
           keywords: keywords.csv(["all", "clubrules"]),
@@ -309,6 +319,7 @@ module.exports = (env, argv) => {
         title: SITE_TITLE + " - Club History",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/club/history",
           partials,
           site: site,
           keywords: keywords.csv(["all", "history"]),
@@ -317,12 +328,13 @@ module.exports = (env, argv) => {
 
       //leaderboard.html
       new HtmlWebpackPlugin({
-        filename: "club/leaderboard.html",
+        filename: "club/leaderboard.html",        
         template: "./src/templates/main.html",
         chunks: ["leaderboard"],
         title: SITE_TITLE + " - Leaderboard",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/club/leaderboard",
           partials,
           site: site,
           keywords: keywords.csv(["all", "leaderboard"]),
@@ -331,12 +343,13 @@ module.exports = (env, argv) => {
 
       //clubmerch.html
       new HtmlWebpackPlugin({
-        filename: "club/merch.html",
+        filename: "club/merch.html",        
         template: "./src/templates/main.html",
         chunks: ["clubmerch"],
         title: SITE_TITLE + " - Club Merch",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/club/merch",
           partials,
           site: site,
           keywords: keywords.csv("all"),
@@ -345,12 +358,13 @@ module.exports = (env, argv) => {
 
       //clubmember.html
       new HtmlWebpackPlugin({
-        filename: "club/member.html",
+        filename: "club/member.html",        
         template: "./src/templates/iframe_membermojo_holder.html",
         chunks: ["clubmember"],
         title: SITE_TITLE + " - Members",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/club/member",
           partials,
           site: site,
           keywords: keywords.csv("all"),
@@ -359,15 +373,16 @@ module.exports = (env, argv) => {
 
       //clubweather.html
       new HtmlWebpackPlugin({
-        filename: "club/weather.html",
+        filename: "club/weather.html",        
         template: "./src/templates/main.html",
         chunks: ["clubweather"],
         title: SITE_TITLE + " - Weather",
         templateParameters: {
           siteName: SITE_TITLE,
+          pageurl: "https://www.gmfc.uk/club/weather",
           partials,
           site: site,
-          keywords: keywords.csv(["all","weather"]),
+          keywords: keywords.csv(["all", "weather"]),
         },
       }),
 

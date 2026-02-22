@@ -2,7 +2,7 @@
   "pages": [
     {
       "page": "index.html",
-      "url": "@siteurl",
+      "url": "@siteliveurl",
       "jdb": "@jdbpages/index.json",
       "datetype": "filemodified",
       "date": "2026-02-15T13:37:29.245Z"
@@ -79,7 +79,7 @@
     },
     {
       "hash": "b1cbbabc778c5d1ce1b26cae3fed4500",
-      "page": "news/2026/2/february-maintenance-help-needed.html",
+      "page": "news/2026/2/february-maintenance-help-needed",
       "jdb": "@jdbpages/newsitems/b1cbbabc778c5d1ce1b26cae3fed4500.json",
       "datetype": "static",
       "date": "2026-02-19",
@@ -87,7 +87,7 @@
     },
     {
       "hash": "c1363e4bb353782534016ac3c6577901",
-      "page": "news/2026/1/track-only-members-non-flying.html",
+      "page": "news/2026/1/track-only-members-non-flying",
       "jdb": "@jdbpages/newsitems/c1363e4bb353782534016ac3c6577901.json",
       "datetype": "static",
       "date": "2026-01-05",
@@ -95,7 +95,7 @@
     },
     {
       "hash": "cff8f66ca666a7f80caf2773b1042992",
-      "page": "news/2025/1/gmfc-and-the-caa-awareness-for-members.html",
+      "page": "news/2025/1/gmfc-and-the-caa-awareness-for-members",
       "jdb": "@jdbpages/newsitems/cff8f66ca666a7f80caf2773b1042992.json",
       "datetype": "static",
       "date": "2025-01-01",
@@ -103,7 +103,7 @@
     },
     {
       "hash": "373ce1cf4f81efaf5b0ae42ffc84390b",
-      "page": "news/2025/1/monthly-club-days.html",
+      "page": "news/2025/1/monthly-club-days",
       "jdb": "@jdbpages/newsitems/373ce1cf4f81efaf5b0ae42ffc84390b.json",
       "datetype": "static",
       "date": "2025-01-01",
@@ -111,7 +111,7 @@
     },
     {
       "hash": "439af5b6629825e873142ea066a488e0",
-      "page": "news/2026/2/february-maintenance-has-been-cancelled.html",
+      "page": "news/2026/2/february-maintenance-has-been-cancelled",
       "jdb": "@jdbpages/newsitems/439af5b6629825e873142ea066a488e0.json",
       "datetype": "static",
       "date": "2026-02-19",
@@ -119,7 +119,7 @@
     },
     {
       "hash": "15efc237f0af1aeee7f5caada3af9c01",
-      "page": "news/2026/2/february-maintenance-help-needed.html",
+      "page": "news/2026/2/february-maintenance-help-needed",
       "jdb": "@jdbpages/newsitems/15efc237f0af1aeee7f5caada3af9c01.json",
       "datetype": "static",
       "date": "2026-02-21",
