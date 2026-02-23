@@ -5,7 +5,7 @@
       "url": "@siteliveurl",
       "jdb": "@jdbpages/index.json",
       "datetype": "filemodified",
-      "date": "2026-02-15T13:37:29.245Z"
+      "date": "2026-02-23T08:56:29.068Z"
     },
     {
       "page": "calendar.html",
@@ -78,11 +78,11 @@
       "date": "2026-02-15T17:18:38.005Z"
     },
     {
-      "hash": "b1cbbabc778c5d1ce1b26cae3fed4500",
+      "hash": "15efc237f0af1aeee7f5caada3af9c01",
       "page": "news/2026/2/february-maintenance-help-needed",
-      "jdb": "@jdbpages/newsitems/b1cbbabc778c5d1ce1b26cae3fed4500.json",
+      "jdb": "@jdbpages/newsitems/15efc237f0af1aeee7f5caada3af9c01.json",
       "datetype": "static",
-      "date": "2026-02-19",
+      "date": "2026-02-21",
       "title": "February maintenance help needed"
     },
     {
@@ -108,22 +108,6 @@
       "datetype": "static",
       "date": "2025-01-01",
       "title": "Monthly Club Days"
-    },
-    {
-      "hash": "439af5b6629825e873142ea066a488e0",
-      "page": "news/2026/2/february-maintenance-has-been-cancelled",
-      "jdb": "@jdbpages/newsitems/439af5b6629825e873142ea066a488e0.json",
-      "datetype": "static",
-      "date": "2026-02-19",
-      "title": "February maintenance has been cancelled"
-    },
-    {
-      "hash": "15efc237f0af1aeee7f5caada3af9c01",
-      "page": "news/2026/2/february-maintenance-help-needed",
-      "jdb": "@jdbpages/newsitems/15efc237f0af1aeee7f5caada3af9c01.json",
-      "datetype": "static",
-      "date": "2026-02-21",
-      "title": "February maintenance help needed"
     }
   ]
 }
