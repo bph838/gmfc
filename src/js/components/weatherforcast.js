@@ -381,6 +381,18 @@ function renderWindDay(ctx, next24, max_wind_speed) {
           max: max_wind_speed,
         },
       },
+      interaction: {
+        mode: "index", // shows value for the vertical slice
+        intersect: false, // don't require exact point hit
+      },
+      plugins: {
+        tooltip: {
+          enabled: true,
+          callbacks: {
+            label: (ctx) => `${ctx.parsed.y} mph`,
+          },
+        },
+      },
     },
     data: {
       labels: [
@@ -414,11 +426,15 @@ function renderWindDay(ctx, next24, max_wind_speed) {
           label: "Wind speed 10m",
           data: wind_speed_10m,
           tension: 0.4,
+          pointRadius: 0,
+          pointHitRadius: 20,
         },
         {
           label: "Wind speed 80m",
           data: wind_speed_80m,
           tension: 0.4,
+          pointRadius: 0,
+          pointHitRadius: 20,
         },
       ],
     },
