@@ -301,8 +301,8 @@ function renderWeatherForecast_Wind(parent) {
       max_wind_speed = data.wind_speed_10m;
     if (data.wind_speed_80m > max_wind_speed)
       max_wind_speed = data.wind_speed_80m;
-    if (data.wind_speed_120m > max_wind_speed)
-      max_wind_speed = data.wind_speed_120m;
+    //if (data.wind_speed_120m > max_wind_speed)
+    //  max_wind_speed = data.wind_speed_120m;
 
     let day = getDayOfYearUTC(data.time);
     if (day !== currentDay || index === 0) {
@@ -340,7 +340,8 @@ function renderWeatherForecast_Wind(parent) {
 }
 
 async function renderWindCharts(max_wind_speed) {
-  max_wind_speed = Math.floor(max_wind_speed * 1.2);
+  max_wind_speed = nextWindBand(max_wind_speed);
+
   await injectScript("https://cdn.jsdelivr.net/npm/chart.js");
 
   let currentDay = getDayOfYearUTC(forcast_data[0].time);
@@ -441,11 +442,11 @@ function renderWindDay(ctx, next24, max_wind_speed) {
   });
 }
 
-/*options: {       
-        scales: {
-          y: {
-            min: 1,
-            max: max_wind_speed,
-          },
-        },
-      },*/
+function nextWindBand(value, step = 5) {
+  const min = 0;
+  const max = 100;
+
+  if (value >= max) return max;
+
+  return Math.min(max, Math.ceil(value / step) * step);
+}
