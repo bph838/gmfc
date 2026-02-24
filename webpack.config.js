@@ -46,7 +46,9 @@ try {
   const outputPath = path.resolve(__dirname, "dist");
   // Create an array of HtmlWebpackPlugin instances
   newsPlugins = newsItems.map((item) => {
-    const filename = `/news/${item.year}/${item.month}/${sanitize(item.title)}`;
+    const pageurl = `/news/${item.year}/${item.month}/${sanitize(item.title)}`;
+    const filename = `${pageurl}.html`;
+    
     console.log(`Processing new item for: ${filename}`);
     const absoluteFilename = path.resolve(outputPath, filename);
 
@@ -59,7 +61,7 @@ try {
       chunks: ["news"],
       templateParameters: {
         title: SITE_TITLE + " - News - " + item.title,
-        pageurl: "https://www.gmfc.uk" + filename,
+        pageurl: "https://www.gmfc.uk" + pageurl,
         image: item.image,
         month: item.month,
         year: item.year,
