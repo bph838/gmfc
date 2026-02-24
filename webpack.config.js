@@ -59,7 +59,7 @@ try {
       chunks: ["news"],
       templateParameters: {
         title: SITE_TITLE + " - News - " + item.title,
-        pageurl: "https://www.gmfc.uk/" + filename,
+        pageurl: "https://www.gmfc.uk" + filename,
         image: item.image,
         month: item.month,
         year: item.year,
