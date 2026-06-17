@@ -12,7 +12,7 @@ function dedupe(values) {
   return [...new Set(values)];
 }
 
-class CombinedMetaPlugin {
+class ProcessWebsiteStaticPages {
   /**
    * @param {string} pagesFile Path to the pages_static.json file (root description/keywords + pages list).
    * @param {string} [outputDir] Directory (relative to the project root) to write the combined pages file into.
@@ -87,4 +87,4 @@ class CombinedMetaPlugin {
   }
 }
 
-module.exports = CombinedMetaPlugin;
+module.exports = ProcessWebsiteStaticPages;
