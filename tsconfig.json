@@ -8,7 +8,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "@components/*": ["./src/js/components/*"],
+      "@framework/*": ["./src/js/framework/*"]
+    }
   },
   "include": ["src/**/*.ts"]
 }
