@@ -1,0 +1,731 @@
+import {
+  createDiv,
+  createSection,
+  createH2,
+  createSpan,
+  createLink,
+  createImage,
+  createParagraph,
+  createOrderedList,
+  createListItem,
+  createTable,
+  createTableHead,
+  createTableRow,
+  createHeadItem,
+  createTableBody,
+  createTableItem,
+} from "@framework/dom";
+import {
+  initialiseCarousel,
+  setConfig,
+  onKeepRotating,
+} from "3dgallery/src/index.js";
+import { sanitizeString, fetchJson } from "@framework/utils";
+import { fetchAndRenderWeatherForecast } from "@components/weatherforcast";
+import {
+  renderGallery,
+  createClickImage,
+  setGalleryData,
+} from "@components/gallery";
+
+export function renderSection(
+  parent: HTMLElement,
+  data: any,
+  pageurl = "",
+  extraclass = "",
+  extraData: any[] = [],
+  isNews = false,
+) {
+  if (!data) {
+    console.error("There is no data to render");
+    return;
+  }
+  if (!data.type) {
+    console.error("There is no section type to render");
+    return;
+  }
+
+  if (process.env.NODE_ENV === "development") {
+    if (data.title) {
+      console.log(`Rendering Section ${data.title}`);
+    }
+  }
+
+  let id = "";
+  if (data.id) id = data.id;
+
+  let section = createSection(parent, "rawsection", id);
+
+  let section_inner = null;
+  if (data.customsection) {
+    section_inner = createDiv(
+      section,
+      data.customsection + " sectionbreak " + extraclass,
+      id,
+    );
+  } else {
+    section_inner = createDiv(
+      section,
+      "section sectionbreak " + extraclass,
+      id,
+    );
+  }
+
+  const contentdiv = createDiv(section_inner, "section_content");
+
+  //render title
+  if (data.title) {
+    const titlediv = createDiv(contentdiv, "section_title");
+    const titleText = createH2(titlediv, data.title);
+    if (data.titleId) {
+      titleText.id = data.titleId;
+    }
+  }
+
+  //check if for news updates
+
+  //render header
+  if (data.date) {
+    const date = new Date(data.date);
+    const text = new Intl.DateTimeFormat("en-GB", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }).format(date);
+
+    const headerdiv = createDiv(contentdiv, "section_header");
+    createSpan(headerdiv, "section_date", text);
+
+    console.log("a");
+    //a link can be added with a hash as the anchor
+    if (pageurl.length > 1) {
+      let month = date.getMonth() + 1;
+      let formattedMonth = month.toString().padStart(2, "0");
+      const url = `/news/${date.getFullYear()}/${formattedMonth}/${sanitizeString(data.title)}`;
+      section.id = url;
+      createLink(
+        headerdiv,
+        url,
+        "sectionlink",
+        "<i class='fa-solid fa-link'></i>",
+        "",
+      );
+    }
+  }
+
+  //check if it a news type render
+  if (data.items) {
+    console.log("Render news typ items");
+    renderSectionItems(contentdiv, data);
+  } else {
+    let renderedDiv = null;
+    switch (data.type) {
+      default:
+        console.error("Unable to render " + data.type);
+        break;
+      case "wrappedTextLeft":
+        renderedDiv = renderWrappedTextLeftSection(contentdiv, data);
+        break;
+      case "rawhtml":
+        renderedDiv = renderRawHtmlSection(contentdiv, data);
+        break;
+      case "titletext":
+        renderedDiv = renderTitleTextSection(contentdiv, data);
+        break;
+      case "noImage":
+        renderedDiv = renderSectionNoImage(contentdiv, data);
+        break;
+      case "carousel":
+        renderCarousel(contentdiv, data);
+        break;
+      case "imageLeft":
+        renderedDiv = renderImageLeft(contentdiv, data);
+        break;
+      case "imageRight":
+        renderedDiv = renderImageRight(contentdiv, data);
+        break;
+      case "imagesLeft":
+        renderedDiv = renderImagesLeft(contentdiv, data);
+        break;
+      case "imagesRight":
+        renderedDiv = renderImagesRight(contentdiv, data);
+        break;
+      case "pano":
+        renderPanoImage(contentdiv, data);
+        break;
+      case "weatherForecast":
+        fetchAndRenderWeatherForecast(contentdiv, data, extraData);
+        break;
+      case "drivers":
+        renderDrivers(contentdiv, data, extraData);
+        break;
+      case "imageWide":
+        renderImageWide(contentdiv, data);
+        break;
+      case "gallery":
+        renderSectionGallery(contentdiv, data);
+        break;
+      case "wraptextleftclicksize":
+        renderedDiv = renderWrapTextLeftClickSize(contentdiv, data);
+        break;
+    }
+
+    //render any gallery
+    renderImageGallery(renderedDiv, data);
+
+    //render any simple gallery - no click
+    renberImageGallerySimple(renderedDiv, data);
+
+    //If there are any pdf links to render
+    renderPDFLinks(renderedDiv, data);
+
+    //If there are any in page menu items to render
+    renderInPageMenu(renderedDiv, data);
+  }
+
+  return section;
+}
+
+function renderWrappedTextLeftSection(parent: HTMLElement, data: any) {
+  if (!data.image) {
+    console.error("Unable to render renderSectionWrappedTextLeft");
+    return;
+  }
+
+  let sticker = data.imagesticker ?? "none";
+
+  const innerdiv = createDiv(parent, "section_inner_wrap_left");
+  createImage(innerdiv, data.image);
+
+  //
+  if (data.text) {
+    data.text.forEach((text: any) => {
+      createParagraph(innerdiv, text);
+    });
+  }
+
+  if (data.titletext) {
+    data.titletext.forEach((element: any) => {
+      if (element.title) {
+        createH2(innerdiv, element.title);
+      }
+      if (element.text) {
+        createParagraph(innerdiv, element.text);
+      }
+    });
+  }
+
+  renderSectionSticker(parent, sticker);
+
+  return innerdiv;
+}
+
+function renderRawHtmlSection(parent: HTMLElement, data: any) {
+  if (!data.html) {
+    console.error("Unable to render renderRawHtmlSection");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_raw_html");
+  let raw = "";
+  data.html.forEach((element: any) => {
+    raw += element;
+  });
+  innerdiv.innerHTML = raw;
+
+  return innerdiv;
+}
+
+function renderTitleTextSection(parent: HTMLElement, data: any) {
+  if (!data.titletext) {
+    console.error("Unable to render renderRawHtmlSection");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_titletext");
+  data.titletext.forEach((element: any) => {
+    if (element.title) {
+      createH2(innerdiv, element.title);
+    }
+    if (element.text) {
+      createParagraph(innerdiv, element.text);
+    }
+  });
+
+  return innerdiv;
+}
+
+function renderWrapTextLeftClickSize(parent: HTMLElement, data: any) {
+  if (!data.text || !data.click_image) {
+    console.error("Unable to render renderWrapTextLeftClickSize");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_wrap_left");
+  createClickImage(innerdiv, data.click_image);
+
+  data.text.forEach((text: any) => {
+    createParagraph(innerdiv, text);
+  });
+
+  return innerdiv;
+}
+
+export function renderPDFLinks(parent: HTMLElement | null | undefined, data: any) {
+  console.log("Checking for PDF links to render");
+  if (parent && data.pdfs && data.pdfs.length > 0) {
+    const pdfsDiv = document.createElement("div");
+    pdfsDiv.className = "pdfLinks";
+    parent.appendChild(pdfsDiv);
+
+    data.pdfs.forEach((pdf: any) => {
+      const pdfDiv = document.createElement("div");
+      pdfDiv.className = "pdfdoc";
+      pdfsDiv.appendChild(pdfDiv);
+
+      const pdfLink = document.createElement("a");
+      pdfLink.href = pdf.url;
+      pdfLink.target = "_blank";
+      pdfLink.rel = "noopener noreferrer";
+      pdfDiv.appendChild(pdfLink);
+
+      const imgPDF = document.createElement("img");
+      imgPDF.src = "https://siteimages.gmfc.uk/icons/pdf.png";
+      imgPDF.className = "pdfimage";
+      pdfLink.appendChild(imgPDF);
+
+      const spanPDF = document.createElement("span");
+      spanPDF.innerHTML = pdf.text;
+      spanPDF.className = "pdfimagedesc";
+      pdfLink.appendChild(spanPDF);
+    });
+  }
+}
+
+export function renderInPageMenu(parent: HTMLElement | null | undefined, data: any) {
+  console.log("Checking for sectionmenu menu items to render");
+  if (parent && data.sectionmenu && data.sectionmenu.items.length > 0) {
+    const sectionmenuDiv = document.createElement("nav");
+    sectionmenuDiv.className = "menu-grid";
+    sectionmenuDiv.ariaLabel = "Page sections";
+    parent.appendChild(sectionmenuDiv);
+
+    if (data.sectionmenu.className) {
+      sectionmenuDiv.classList.add(data.sectionmenu.className);
+    }
+
+    data.sectionmenu.items.forEach((item: any) => {
+      const menu = document.createElement("a");
+      menu.className = "menu-tile";
+      menu.href = item.url;
+      sectionmenuDiv.appendChild(menu);
+      if (item.extraClass) {
+        menu.classList.add(item.extraClass);
+      }
+
+      createSpan(menu, "tile-dot");
+      const icon = document.createElement("i");
+      icon.classList.add("fa-solid");
+      if (item.icon) {
+        icon.classList.add(item.icon);
+      }
+      icon.classList.add("tile-icon");
+      menu.appendChild(icon);
+      createSpan(menu, "tile-label", item.title);
+    });
+  }
+}
+
+export function renderImageGallery(parent: HTMLElement | null | undefined, data: any) {
+  console.log("Checking for images to render");
+  if (
+    !parent ||
+    !data?.gallery?.images ||
+    !data?.gallery?.name ||
+    data?.gallery?.images.length === 0
+  )
+    return;
+
+  const imgsDiv = createDiv(parent, "images_below_text");
+  const galleryTag = data.gallery.name ?? "Gallery";
+
+  data.gallery.images.forEach((image: any) => {
+    createClickImage(imgsDiv, image, galleryTag);
+  });
+}
+
+export function renderSectionNoImage(pageSection: HTMLElement, data: any) {
+  if (!data.text) {
+    console.error("Unable to render renderSectionNoImage");
+    return;
+  }
+
+  const sectiondiv = createDiv(pageSection, "sectionTextDiv");
+
+  if (data.text.length >= 1) {
+    data.text.forEach((text: any) => {
+      createParagraph(sectiondiv, text);
+    });
+  }
+  return sectiondiv;
+}
+
+function renderCarousel(pageSection: HTMLElement, data: any) {
+  if (!data.images) {
+    console.error("Unable to render renderCarousel");
+    return;
+  }
+
+  const carouselId = "carousel3D";
+  const carouseldiv = createDiv(pageSection, "carousel3D", carouselId);
+
+  data.images.forEach((image: any) => {
+    const carouselitemdiv = createDiv(carouseldiv, "element3D");
+    let alt = "";
+    if (image.alt) alt = image.alt;
+    createImage(carouselitemdiv, image.src, "carouselImage", alt);
+  });
+
+  document
+    .getElementById(carouselId)
+    ?.addEventListener("carousel3d:loaded", (e) => {
+      console.log(`All images loaded for ${carouselId}`);
+      slowSpin(carouselId);
+    });
+
+  initialiseCarousel(carouselId);
+
+  document
+    .getElementById(carouselId)
+    ?.addEventListener("carousel3d:touched", (e) => {
+      console.log(`All images loaded for ${carouselId}`);
+      slowSpin(carouselId);
+    });
+}
+
+function slowSpin(Id: string) {
+  const config = {
+    circleRatio: 0.45,
+    speed: 15,
+    rotateFreeSpeed: 100,
+    minimizeRatio: 0.8,
+    darknessRatio: 0.45,
+    waitTouchTimer:5000
+  };
+  setConfig(config);
+  onKeepRotating("left");
+}
+
+function renderImageLeft(parent: HTMLElement, data: any) {
+  if (!data.text || !data.image) {
+    console.error("Unable to render renderImageLeft");
+    return;
+  }
+  const innerdiv = createDiv(parent, "section_inner_image_left row");
+
+  const leftdiv = createDiv(innerdiv, "section_left");
+  createImage(leftdiv, data.image);
+
+  const rightdiv = createDiv(innerdiv, "section_right col");
+  data.text.forEach((text: any) => {
+    createParagraph(rightdiv, text);
+  });
+  return innerdiv;
+}
+
+function renderImageRight(parent: HTMLElement, data: any) {
+  if (!data.text || !data.image) {
+    console.error("Unable to render renderImageRight");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_image_right row");
+
+  const leftdiv = createDiv(innerdiv, "section_left col");
+  data.text.forEach((text: any) => {
+    createParagraph(leftdiv, text);
+  });
+
+  const rightdiv = createDiv(innerdiv, "section_right");
+  createImage(rightdiv, data.image);
+  return innerdiv;
+}
+
+function createImages(parent: HTMLElement, images: any[]) {
+  images.forEach((image) => {
+    createImage(parent, image.src);
+  });
+}
+
+function addScriptToMakeAcive(className: string) {
+  document.querySelectorAll(`.${className} img`).forEach((img) => {
+    img.addEventListener("click", () => {
+      document
+        .querySelectorAll(`.${className} img`)
+        .forEach((i) => i.classList.remove("active"));
+
+      img.classList.add("active");
+    });
+  });
+}
+
+function renderImagesLeft(parent: HTMLElement, data: any) {
+  if (!data.text || !data.images) {
+    console.error("Unable to render renderImagesLeft");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_images_row");
+
+  const leftdiv = createDiv(innerdiv, "section_images_left");
+  createImages(leftdiv, data.images);
+
+  data.text.forEach((text: any) => {
+    createParagraph(innerdiv, text);
+  });
+
+  addScriptToMakeAcive("section_images_left");
+  return innerdiv;
+}
+
+function renderImagesRight(parent: HTMLElement, data: any) {
+  if (!data.text || !data.images) {
+    console.error("Unable to render renderImagesLeft");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_images_row");
+
+  const leftdiv = createDiv(innerdiv, "section_images_right");
+  createImages(leftdiv, data.images);
+
+  data.text.forEach((text: any) => {
+    createParagraph(innerdiv, text);
+  });
+
+  addScriptToMakeAcive("section_images_right");
+  return innerdiv;
+}
+
+function renderPanoImage(parent: HTMLElement, data: any) {
+  if (!data.image) {
+    console.error("Unable to render pano image");
+    return;
+  }
+
+  const pano_wrap = createDiv(parent, "pano-wrap");
+  const pano = createImage(pano_wrap, data.image, "pano");
+
+  window.addEventListener("scroll", () => {
+    const maxScroll = document.body.scrollHeight - innerHeight;
+    const percent = scrollY / maxScroll;
+
+    pano.style.transform = `translateX(-${percent * (pano.scrollWidth - innerWidth)}px)`;
+  });
+}
+
+function renderListItems(parent: HTMLElement, items: any[]) {
+  if (!parent || !items || items.length === 0) {
+    return;
+  }
+  const list = createOrderedList(parent, "section_list");
+  items.forEach((item) => {
+    createListItem(list, "section_list_item", item);
+  });
+}
+
+function renderSectionSticker(parent: HTMLElement, sticker: string) {
+  if (sticker == "none") return;
+  let url = "";
+  let from = "https://gmfc-images-siteimages.s3.eu-west-2.amazonaws.com";
+  from = "https://siteimages.gmfc.uk";
+  if (sticker == "cancelled") {
+    url = from + "/stickers/cancelled.png";
+  }
+  const stickerDiv = createDiv(parent, "sticker");
+  createImage(stickerDiv, url);
+}
+
+function renderSectionItems(parent: HTMLElement, data: any) {
+  console.log("YYY");
+  let renderedDiv = null;
+  switch (data.type) {
+    default:
+      console.error("Unable to render " + data.type);
+      break;
+    case "wrappedTextLeft":
+      renderedDiv = renderWrappedTextLeftSectionNews(parent, data);
+      break;
+    case "wraptextleftclicksize":
+      renderedDiv = renderWrapTextLeftClickSizeNews(parent, data);
+      break;
+  }
+  //If there are any pdf links to render
+  if (data.items[0].pdfs) {
+    renderPDFLinks(renderedDiv, data.items[0]);
+  }
+  return renderedDiv;
+}
+
+function renderWrappedTextLeftSectionNews(parent: HTMLElement, data: any) {
+  if (!data.image) {
+    console.error("Unable to render renderWrappedTextLeftSectionNews");
+    return;
+  }
+
+  let sticker = data.imagesticker ?? "none";
+
+  const innerdiv = createDiv(parent, "section_inner_wrap_left");
+  createImage(innerdiv, data.image);
+
+  data.items.forEach((item: any) => {
+    renderSectionItem(innerdiv, item);
+  });
+
+  renderSectionSticker(parent, sticker);
+
+  return innerdiv;
+}
+
+function renderWrapTextLeftClickSizeNews(parent: HTMLElement, data: any) {
+  if (!data.click_image) {
+    console.error("Unable to render renderWrapTextLeftClickSize");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_inner_wrap_left");
+  createClickImage(innerdiv, data.click_image);
+
+  data.items.forEach((item: any) => {
+    renderSectionItem(innerdiv, item);
+  });
+
+  return innerdiv;
+}
+
+function renderSectionItem(parent: HTMLElement, data: any) {
+  switch (data.itemtype) {
+    default:
+      break;
+    case "text":
+      data.text.forEach((text: any) => {
+        createParagraph(parent, text);
+      });
+      break;
+    case "list":
+      renderListItems(parent, data.listitems);
+      break;
+  }
+}
+
+function renderDrivers(parent: HTMLElement, data: any, extraData: any[]) {
+  const section_drivers = createDiv(parent, "section_drivers");
+
+  if (data.text) {
+    data.text.forEach((text: any) => {
+      createParagraph(section_drivers, text);
+    });
+  }
+
+  const table = createTable(section_drivers, "drivers");
+  const tableHead = createTableHead(table);
+  const tR = createTableRow(tableHead);
+
+  createHeadItem(tR, "ID#");
+  createHeadItem(tR, "Name");
+  createHeadItem(tR, "Avatar");
+  createHeadItem(tR, "Build");
+
+  const tableBody = createTableBody(table);
+
+  for (const driverInformation of extraData) {
+    const tableRow = createTableRow(tableBody, "driver_table");
+    createTableItem(tableRow, driverInformation.transponderId);
+    createTableItem(tableRow, driverInformation.name);
+
+    const avatar_holder = createTableItem(tableRow);
+    const initials = driverInformation.name.slice(0, 2).toUpperCase();
+
+    let avatar = createDiv(avatar_holder, "lb_driver_avatar");
+    avatar.style.background = "#2a2a3a";
+    avatar.style.color = "#a0a0c0";
+    avatar.style.boxShadow = "none";
+    if (driverInformation.avatar) {
+      avatar.style.backgroundImage = "url('" + driverInformation.avatar + "')";
+      avatar.style.display = "block";
+      avatar.style.backgroundSize = "cover";
+      avatar.innerHTML = "&nbsp;";
+    } else avatar.innerHTML = initials;
+
+    const buildTd = createTableItem(tableRow, "", "driver_build");
+    if (driverInformation.build) {
+      driverInformation.build.forEach((text: any) => {
+        createParagraph(buildTd, text);
+      });
+    }
+  }
+}
+
+function renderImageWide(parent: HTMLElement, data: any) {
+  if (!data.image) {
+    console.error("Unable to render renderImageWide");
+    return;
+  }
+
+  const innerdiv = createDiv(parent, "section_wideimage");
+  createImage(innerdiv, data.image);
+}
+
+function renderSectionGallery(parent: HTMLElement, data: any) {
+  if (!data.gallery) {
+    console.error("Unable to render renderGallery");
+    return;
+  }
+
+  const url = data.gallery.url;
+  const externalPath = data.gallery.externalPath;
+  const displayDates = data.gallery.displayDates ?? "years";
+
+  const sections = createDiv(parent, "sections", "gallery_section_holder");
+
+  fetchJson(url).then((gdata) => {
+    if (!gdata) {
+      console.log("No alerts to render");
+      return;
+    }
+
+    //order gallery
+    gdata.sort((a: any, b: any) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+
+    console.log(gdata);
+    setGalleryData(gdata, externalPath);
+    renderGallery(sections, "gallery_all", displayDates);
+  });
+}
+
+export function renderSellingGallery(parent: HTMLElement, data: any, externalPath: string) {
+  const sections = createDiv(parent, "sections", "gallery_section_holder");
+
+  setGalleryData(data, externalPath);
+  renderGallery(sections, "gallery_all", "none");
+}
+
+function renberImageGallerySimple(parent: HTMLElement | null | undefined, data: any) {
+  if (!parent || !data.gallery_simple) {
+    return;
+  }
+
+  const sections = createDiv(
+    parent,
+    "sections",
+    "gallery_section_simple_holder",
+  );
+
+  data.gallery_simple.forEach((item: any) => {
+    const url = item.url;
+    createImage(sections, url, "simple_image");
+  });
+}

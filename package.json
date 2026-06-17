@@ -38,6 +38,9 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.8"
+    "bootstrap": "^5.3.8",
+    "3dgallery": "github:bph838/3dGallery#main",
+    "jquery": "^3.7.1",
+    "photoswipe": "^5.4.4"
   }
 }
