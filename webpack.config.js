@@ -3,19 +3,21 @@
 const path = require("path");
 const autoprefixer = require("autoprefixer");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const miniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProcessWebsiteStaticPages = require("./webpack/ProcessWebsiteStaticPages");
+const GenerateHtmlPagesPlugin = require("./webpack/GenerateHtmlPagesPlugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/js/main.ts",
+  //entry: "./src/js/main.ts",
+  entry: { index: "./src/js/pages/index.ts", styles: "./src/scss/styles.scss" },
   output: {
-    filename: "main.js",
+    filename: "js/[name].js",
     path: path.resolve(__dirname, "dist"),
-  },
-  resolve: {
-    extensions: [".ts", ".js"],
+    publicPath: "/",
+    clean: true,
+    devtoolModuleFilenameTemplate: (info) =>
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
   },
   devServer: {
     static: path.resolve(__dirname, "dist"),
@@ -23,9 +25,22 @@ module.exports = {
     hot: true,
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: "./src/index.html" }),
-    new miniCssExtractPlugin(),
     new ProcessWebsiteStaticPages("./src/database/pages_static.json"),
+    new GenerateHtmlPagesPlugin(
+      "./.build/database/pages.json",
+      "./src/templates",
+      {
+        site: {
+          sitename: "Gordano Model Flying Club",
+        },
+        partials: {
+          favicon: "",
+          google_analytics: "",
+          navigation: "",
+          footer: "",
+        },
+      },
+    ),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -38,9 +53,12 @@ module.exports = {
 
         { from: "src/rootdir/favicon.ico", to: "." },
         { from: "src/rootdir/site.webmanifest", to: "." },
-       // { from: "src/rootdir/sitemap.xml", to: "." },
+        // { from: "src/rootdir/sitemap.xml", to: "." },
         { from: "src/rootdir/robots.txt", to: "." },
       ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: "styles/[name].css", // output CSS file name
     }),
   ],
   resolve: {
@@ -52,7 +70,7 @@ module.exports = {
       //"@jdbpages": path.resolve(__dirname, "src/data/pages"),
       //"@siteliveurl": "https://www.gmfc.uk/",
     },
-    extensions: [".js", ".json"], // optional, helps omit extensions
+    extensions: [".ts", ".js", ".json"], // optional, helps omit extensions
   },
   module: {
     rules: [
@@ -70,36 +88,16 @@ module.exports = {
         },
       },
       {
-        test: /\.(scss)$/,
+        test: /\.scss$/i,
         use: [
+          MiniCssExtractPlugin.loader, // extract CSS to separate file
+          "css-loader", // translates CSS into CommonJS
+          "postcss-loader", // optional, for autoprefixing
           {
-            // Extracts CSS for each JS file that includes CSS
-            loader: miniCssExtractPlugin.loader,
-          },
-          {
-            // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: "css-loader",
-          },
-          {
-            // Loader for webpack to process CSS with PostCSS
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: [autoprefixer],
-              },
-            },
-          },
-          {
-            // Loads a SASS/SCSS file and compiles it to CSS
-            loader: "sass-loader",
+            loader: "sass-loader", // compiles SCSS to CSS
             options: {
               sassOptions: {
-                silenceDeprecations: [
-                  "color-functions",
-                  "global-builtin",
-                  "import",
-                  "if-function",
-                ],
+                quietDeps: true, // <- hides warnings from dependencies like Bootstrap
               },
             },
           },
