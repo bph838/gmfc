@@ -1,0 +1,11 @@
+{
+  "content": {
+    "hero": {
+      "generatehero": true,
+      "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
+      "text": "Gallery"
+    },
+    "sections": [{}]
+  },
+  "externalPath": "https://gallery.gmfc.uk"
+}
