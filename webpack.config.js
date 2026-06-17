@@ -42,7 +42,7 @@ module.exports = {
     },
   },
   plugins: [
-    new ProcessWebsiteStaticPages("./src/database/pages_static.json"),
+    new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
     new GenerateHtmlPagesPlugin(
       "./.build/database/pages.json",
       "./src/templates",

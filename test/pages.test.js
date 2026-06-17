@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const fs = require("fs");
 const path = require("path");
 
-const STATIC_PAGES_FILE = path.resolve(__dirname, "../src/database/pages_static.json");
+const STATIC_PAGES_FILE = path.resolve(__dirname, "../src/database/site/pages_static.json");
 const BUILT_PAGES_FILE = path.resolve(__dirname, "../.build/database/pages.json");
 
 test("pages.json has an entry for every page in pages_static.json", () => {
