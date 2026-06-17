@@ -12,8 +12,9 @@ const partials = loadPartials();
 
 module.exports = {
   mode: "development",
-  //entry: "./src/js/main.ts",
-  entry: { index: "./src/js/pages/index.ts", styles: "./src/scss/styles.scss" },
+  // Per-page entries (e.g. "index", "calendar") are added dynamically by
+  // GenerateHtmlPagesPlugin from .build/database/pages.json's "chunks" field.
+  entry: { styles: "./src/scss/styles.scss" },
   output: {
     filename: "js/[name].js",
     path: path.resolve(__dirname, "dist"),
