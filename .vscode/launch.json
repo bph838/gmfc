@@ -4,11 +4,11 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Debug news.ts in Chrome",
-      "url": "http://localhost:8080/news",
+      "name": "Debug in Chrome",
+      "url": "http://localhost:8080/",
       "webRoot": "${workspaceFolder}",
       "sourceMapPathOverrides": {
-        "webpack:///./*": "${webRoot}/*"
+        "webpack://gmfc/./*": "${webRoot}/*"
       }
     }
   ]

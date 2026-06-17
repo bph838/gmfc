@@ -27,8 +27,6 @@ class GenerateNewsIndexPlugin {
     const absNewsIndexFile = path.resolve(compiler.context, this.newsIndexFile);
 
     compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
-      compilation.fileDependencies.add(absNewsIndexFile);
-
       compilation.hooks.processAssets.tap(
         {
           name: PLUGIN_NAME,

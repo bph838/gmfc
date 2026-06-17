@@ -83,14 +83,25 @@ class ProcessNewsPlugin {
     });
 
     await fs.promises.mkdir(absOutputDir, { recursive: true });
-    await fs.promises.writeFile(
+    await this.writeIfChanged(
       path.join(absOutputDir, "newsHash.json"),
       JSON.stringify(hashed, null, 2),
     );
-    await fs.promises.writeFile(
+    await this.writeIfChanged(
       path.join(absOutputDir, "newsindex.json"),
       JSON.stringify(index, null, 2),
     );
+  }
+
+  // Several plugins watch these output files as fileDependencies, so rewriting them
+  // unconditionally on every watchRun (even with unchanged content) would retrigger
+  // the watcher and rebuild forever. Only write when the content actually changes.
+  async writeIfChanged(absFile, content) {
+    if (fs.existsSync(absFile)) {
+      const existing = await fs.promises.readFile(absFile, "utf8");
+      if (existing === content) return;
+    }
+    await fs.promises.writeFile(absFile, content);
   }
 }
 

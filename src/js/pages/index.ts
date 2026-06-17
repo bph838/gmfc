@@ -5,8 +5,7 @@ import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 
 import data from "@data/pages/index.json";
-//import menu from "@data/generated/menu.json";
-let menu:any = null;
+import menu from "@data/generated/menu.json";
 
 setupMenuCommands("page-home", menu);
 renderIndex(data);

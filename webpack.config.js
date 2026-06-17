@@ -28,8 +28,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
     clean: true,
-    devtoolModuleFilenameTemplate: (info) =>
-      path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
   },
   devServer: {
     static: path.resolve(__dirname, "dist"),

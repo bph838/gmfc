@@ -20,8 +20,7 @@ import {
 import { SITE_TITLE, SITE_ADDRESS } from "@components/constants";
 
 import data from "@data/pages/news.json";
-//import menu from "@data/generated/menu.json";
-let menu: any = null;
+import menu from "@data/generated/menu.json";
 
 const newsItemUrl = "news";
 
