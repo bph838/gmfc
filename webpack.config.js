@@ -9,6 +9,7 @@ const GenerateHtmlPagesPlugin = require("./webpack/GenerateHtmlPagesPlugin");
 const ProcessNewsHashAndIndex = require("./webpack/ProcessNewsHashAndIndex");
 const GenerateNewsItemFilesPlugin = require("./webpack/GenerateNewsItemFilesPlugin");
 const GenerateNewsIndexPlugin = require("./webpack/GenerateNewsIndexPlugin");
+const GenerateNewsItemsPagesPlugin = require("./webpack/GenerateNewsItemsPagesPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -16,7 +17,7 @@ const partials = loadPartials();
 module.exports = {
   mode: "development",
   // Per-page entries (e.g. "index", "calendar") are added dynamically by
-  // GenerateHtmlPagesPlugin from .build/database/pages.json's "chunks" field.
+  // GenerateHtmlPagesPlugin from .build/site/pages.json's "chunks" field.
   entry: { styles: "./src/scss/styles.scss" },
   output: {
     filename: "js/[name].js",
@@ -49,8 +50,9 @@ module.exports = {
     new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
     new GenerateNewsItemFilesPlugin(),
     new GenerateNewsIndexPlugin(),
+    new GenerateNewsItemsPagesPlugin(),
     new GenerateHtmlPagesPlugin(
-      "./.build/database/pages.json",
+      "./.build/site/pages.json",
       "./src/templates",
       {
         site: {

@@ -24,7 +24,7 @@ class GenerateHtmlPagesPlugin {
    *   in each page's `entry` field resolves to.
    */
   constructor(
-    pagesJsonFile = "./.build/database/pages.json",
+    pagesJsonFile = "./.build/site/pages.json",
     templatesDir = "./src/templates",
     { site = {}, partials = {}, pagesDir = "./src/js/pages" } = {}
   ) {

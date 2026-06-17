@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 
 const STATIC_PAGES_FILE = path.resolve(__dirname, "../src/database/site/pages_static.json");
-const BUILT_PAGES_FILE = path.resolve(__dirname, "../.build/database/pages.json");
+const BUILT_PAGES_FILE = path.resolve(__dirname, "../.build/site/pages.json");
 
 test("pages.json has an entry for every page in pages_static.json", () => {
   const { pages: staticPages } = JSON.parse(fs.readFileSync(STATIC_PAGES_FILE, "utf8"));
@@ -16,7 +16,7 @@ test("pages.json has an entry for every page in pages_static.json", () => {
   /*assert.equal(
     builtPages.length,
     staticPages.length,
-    `expected ${staticPages.length} pages from pages_static.json, but .build/database/pages.json has ${builtPages.length}`
+    `expected ${staticPages.length} pages from pages_static.json, but .build/site/pages.json has ${builtPages.length}`
   );*/
 
 });

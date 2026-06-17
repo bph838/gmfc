@@ -19,7 +19,7 @@ class ProcessWebsiteStaticPages {
    *   This is intermediate build data, not a published asset, so it lives outside the webpack output dir.
    * @param {string} [outputFile] Filename for the combined pages file, written inside outputDir.
    */
-  constructor(pagesFile, outputDir = "./.build/database", outputFile = "pages.json") {
+  constructor(pagesFile, outputDir = "./.build/site", outputFile = "pages.json") {
     this.pagesFile = pagesFile;
     this.outputDir = outputDir;
     this.outputFile = outputFile;
