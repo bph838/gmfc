@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProcessWebsiteStaticPages = require("./webpack/ProcessWebsiteStaticPages");
 const GenerateHtmlPagesPlugin = require("./webpack/GenerateHtmlPagesPlugin");
-const ProcessNewsPlugin = require("./webpack/ProcessNewsPlugin");
+const ProcessNewsHashAndIndex = require("./webpack/ProcessNewsHashAndIndex");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -44,7 +44,7 @@ module.exports = {
   },
   plugins: [
     new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
-    new ProcessNewsPlugin("./src/database/news/news-raw.json"),
+    new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
     new GenerateHtmlPagesPlugin(
       "./.build/database/pages.json",
       "./src/templates",
