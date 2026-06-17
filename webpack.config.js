@@ -8,6 +8,7 @@ const ProcessWebsiteStaticPages = require("./webpack/ProcessWebsiteStaticPages")
 const GenerateHtmlPagesPlugin = require("./webpack/GenerateHtmlPagesPlugin");
 const ProcessNewsHashAndIndex = require("./webpack/ProcessNewsHashAndIndex");
 const GenerateNewsItemFilesPlugin = require("./webpack/GenerateNewsItemFilesPlugin");
+const GenerateNewsIndexPlugin = require("./webpack/GenerateNewsIndexPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -47,6 +48,7 @@ module.exports = {
     new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
     new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
     new GenerateNewsItemFilesPlugin(),
+    new GenerateNewsIndexPlugin(),
     new GenerateHtmlPagesPlugin(
       "./.build/database/pages.json",
       "./src/templates",
