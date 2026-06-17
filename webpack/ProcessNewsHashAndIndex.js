@@ -77,7 +77,8 @@ class ProcessNewsPlugin {
         date,
         hash,
         showhide,
-        directory: `/news/${year}/${month}/${sanitizeTitle(title)}`,
+        url: `/news/${year}/${month}/${sanitizeTitle(title)}`,
+        jsondata:`/news/${year}/${month}/${hash}.json`,
       };
     });
 
