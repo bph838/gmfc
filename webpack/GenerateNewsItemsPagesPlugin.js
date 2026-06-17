@@ -50,6 +50,7 @@ class GenerateNewsItemsPagesPlugin {
       template: "news.html",
       jdb: item.jsondata,
       entry: "@pages/news.ts",
+      date:item.date
     }));
 
     await fs.promises.mkdir(absOutputDir, { recursive: true });

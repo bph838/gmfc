@@ -10,6 +10,7 @@ const ProcessNewsHashAndIndex = require("./webpack/ProcessNewsHashAndIndex");
 const GenerateNewsItemFilesPlugin = require("./webpack/GenerateNewsItemFilesPlugin");
 const GenerateNewsIndexPlugin = require("./webpack/GenerateNewsIndexPlugin");
 const GenerateNewsItemsPagesPlugin = require("./webpack/GenerateNewsItemsPagesPlugin");
+const GenerateNewsHtmlPagesPlugin = require("./webpack/GenerateNewsHtmlPagesPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -53,6 +54,16 @@ module.exports = {
     new GenerateNewsItemsPagesPlugin(),
     new GenerateHtmlPagesPlugin(
       "./.build/site/pages.json",
+      "./src/templates",
+      {
+        site: {
+          sitename: "Gordano Model Flying Club",
+        },
+        partials: partials,
+      },
+    ),
+    new GenerateNewsHtmlPagesPlugin(
+      "./.build/site/newsitems.json",
       "./src/templates",
       {
         site: {
