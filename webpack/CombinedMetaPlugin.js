@@ -5,7 +5,8 @@ const fs = require("fs");
 
 const PLUGIN_NAME = "CombinedMetaPlugin";
 const JDBPAGES_ALIAS = "@jdbpages";
-const JDBPAGES_DIR = "src/database/jdbpages";
+const JDBPAGES_DIR = "src/database/pages";
+const JDBPAGES_PUBLIC_PATH = "/data";
 
 function dedupe(values) {
   return [...new Set(values)];
@@ -71,8 +72,10 @@ class CombinedMetaPlugin {
           ? `${page.description} ${rootDescription}`
           : rootDescription;
         const keywords = dedupe([...(page.keywords || []), ...rootKeywords]);
+        const jdb = page.jdb.replace(JDBPAGES_ALIAS, JDBPAGES_PUBLIC_PATH);
 
-        return { ...page, description, keywords, date };
+        const { datetype, ...rest } = page;
+        return { ...rest, description, keywords, jdb, date };
       })
     );
 
