@@ -21,31 +21,31 @@
           "Anyone wishing to contact us, please use the methods found <a href='\\aboutus#contactus' target='_self'>here</a>."
         ],
         "sectionmenu": {
-          "className":"expanded_grid",
+          "className": "expanded_grid",
           "items": [
-             {
+            {
               "title": "Calendar",
               "icon": "fa-calendar-days",
               "url": "/calendar",
-              "extraClass":"tile-red"
+              "extraClass": "tile-red"
             },
             {
               "title": "Prospective Members",
               "icon": "fa-book-open",
               "url": "/club/member/prospective",
-              "extraClass":"tile-green"
+              "extraClass": "tile-green"
             },
             {
               "title": "Weather",
               "icon": "fa-cloud-sun-rain",
               "url": "/club/weather#sections-clubweather",
-              "extraClass":"tile-blue"
+              "extraClass": "tile-blue"
             },
             {
               "title": "Contact Us",
               "icon": "fa-person-circle-plus",
               "url": "/aboutus#contactus",
-              "extraClass":"tile-yellow"
+              "extraClass": "tile-yellow"
             }
           ]
         }
@@ -72,7 +72,7 @@
           {
             "src": "https://siteimages.gmfc.uk/carousel/carousel-05.jpg"
           },
-           {
+          {
             "src": "https://siteimages.gmfc.uk/carousel/carousel-07.jpg"
           }
         ]

@@ -2,6 +2,7 @@
 
 const path = require("path");
 const autoprefixer = require("autoprefixer");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProcessWebsiteStaticPages = require("./webpack/ProcessWebsiteStaticPages");
@@ -25,7 +26,34 @@ module.exports = {
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new miniCssExtractPlugin(),
     new ProcessWebsiteStaticPages("./src/database/pages_static.json"),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "src/database/pages/*",
+          to: "data/[name][ext]",
+          globOptions: {
+            ignore: [],
+          },
+        },
+
+        { from: "src/rootdir/favicon.ico", to: "." },
+        { from: "src/rootdir/site.webmanifest", to: "." },
+        { from: "src/rootdir/sitemap.xml", to: "." },
+        { from: "src/rootdir/robots.txt", to: "." },
+      ],
+    }),
   ],
+  resolve: {
+    alias: {
+      "@components": path.resolve(__dirname, "src/js/components"),
+      //"@framework": path.resolve(__dirname, "src/js/framework"),
+      //"@data": path.resolve(__dirname, "src/data"),
+      //"@lapmonitor": path.resolve(__dirname, "src/lapmonitor"),
+      //"@jdbpages": path.resolve(__dirname, "src/data/pages"),
+      //"@siteliveurl": "https://www.gmfc.uk/",
+    },
+    extensions: [".js", ".json"], // optional, helps omit extensions
+  },
   module: {
     rules: [
       {
