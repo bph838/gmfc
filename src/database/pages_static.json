@@ -65,16 +65,7 @@
       "url": "/aboutus",
       "jdb": "@jdbpages/aboutus.json",
       "datetype": "filemodified"
-    },
-    {
-      "title": "Gordano Model Flying Club | About Us",
-      "page": "/about-us.html",
-      "template": "main.html",
-      "chunks": "aboutus",
-      "url": "/about-us",
-      "jdb": "@jdbpages/aboutus.json",
-      "datetype": "filemodified"
-    },
+    },   
     {
       "title": "Gordano Model Flying Club | History",
       "page": "/club/history.html",

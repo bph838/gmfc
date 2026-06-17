@@ -26,16 +26,14 @@ let daylight_data: any[] = [];
 const CACHE_KEY = "weatherForcastCache";
 const CACHE_DURATION = DURATION_HOUR;
 
-export function fetchAndRenderWeatherForecast(parent: HTMLElement, data: any, daylightData: any[]) {
-  if (!data.weatherCoordinates) {
-    console.error("Unable to render fetchAndRenderWeatherForecast");
-    return;
-  }
-
-  const latitude = data.weatherCoordinates.latitude;
-  const longitude = data.weatherCoordinates.longitude;
+export function fetchAndRenderWeatherForecast(
+  parent: HTMLElement,
+  data: any,
+  daylightData: any[],
+) {
+  const latitude = 51.459563;
+  const longitude = -2.790968;
   daylight_data = daylightData;
-
   getWeather(latitude, longitude).then(() => {
     createWeatherFilter(parent);
     renderWeather(parent);
@@ -70,7 +68,9 @@ function scrollToHourCentered(day: number, hour: number) {
   if (!strip) {
     return;
   }
-  const target = strip.querySelector<HTMLElement>(`.weatherHourDiv[data-hour="${hour}"]`);
+  const target = strip.querySelector<HTMLElement>(
+    `.weatherHourDiv[data-hour="${hour}"]`,
+  );
   if (!target) return;
 
   const viewport = document.getElementById(weatherViewportId);
@@ -155,7 +155,6 @@ function procssDatesForWeatherForcast() {
   });
 }
 
-
 /*Chat gpt
 function getTemperatureColor(temp: number) {
   const min = -10;
@@ -172,28 +171,27 @@ function getTemperatureColor(temp: number) {
 /* UK-calibrated temperature colour — call getTemperatureColor(temp) */
 function getTemperatureColor(temp: number) {
   const stops = [
-    { t: -2, color: [10,  50,  180] },  // dark navy blue
-    { t:  6, color: [56,  189, 248] },  // cool cyan
-    { t: 9, color: [134, 239, 172] },  // mild green
-    { t: 14, color: [160, 230, 130] },  // fresh green
-    { t: 24, color: [251, 191, 36 ] },  // warm yellow
-    { t: 28, color: [249, 115, 22 ] },  // hot orange
-    { t: 40, color: [185, 28,  28 ] }   // scorching red
+    { t: -2, color: [10, 50, 180] }, // dark navy blue
+    { t: 6, color: [56, 189, 248] }, // cool cyan
+    { t: 9, color: [134, 239, 172] }, // mild green
+    { t: 14, color: [160, 230, 130] }, // fresh green
+    { t: 24, color: [251, 191, 36] }, // warm yellow
+    { t: 28, color: [249, 115, 22] }, // hot orange
+    { t: 40, color: [185, 28, 28] }, // scorching red
   ];
   const clamped = Math.min(40, Math.max(-2, temp));
   for (let i = 0; i < stops.length - 1; i++) {
-    const s = stops[i], e = stops[i + 1];
+    const s = stops[i],
+      e = stops[i + 1];
     if (clamped >= s.t && clamped <= e.t) {
       const f = (clamped - s.t) / (e.t - s.t);
       const lerp = (a: number, b: number) => Math.round(a + (b - a) * f);
-      const [r, g, b] = [0, 1, 2].map(j => lerp(s.color[j], e.color[j]));
+      const [r, g, b] = [0, 1, 2].map((j) => lerp(s.color[j], e.color[j]));
       return `rgb(${r},${g},${b})`;
     }
   }
   return `rgb(185,28,28)`;
 }
-
-
 
 function createWeatherFilter(parent: HTMLElement) {
   const holderDiv = createDiv(parent, "weather_filter_holder");
@@ -230,15 +228,17 @@ function createWeatherFilter(parent: HTMLElement) {
   );
   createLabel(filterDiv, "btn btn-outline-primary", "weather_wind", "Wind");
 
-  document.querySelectorAll<HTMLInputElement>('input[name="weatherType"]').forEach((input) => {
-    input.addEventListener("change", (e) => {
-      const target = e.target as HTMLInputElement;
-      console.log("weather input changed:" + target.value);
-      const type = target.value;
-      let weatherDiv = document.getElementById("sectionWeatherForcast");
-      if (weatherDiv) renderWeather(weatherDiv, type);
+  document
+    .querySelectorAll<HTMLInputElement>('input[name="weatherType"]')
+    .forEach((input) => {
+      input.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        console.log("weather input changed:" + target.value);
+        const type = target.value;
+        let weatherDiv = document.getElementById("sectionWeatherForcast");
+        if (weatherDiv) renderWeather(weatherDiv, type);
+      });
     });
-  });
 
   return filterDiv;
 }
@@ -344,8 +344,10 @@ function renderWeatherForecast_Overview(parent: HTMLElement) {
         }
         let dir = (data.wind_direction_10m + 180) % 360;
         if (tempSpan) tempSpan.textContent = `${data.temperature}°C`;
-        if (precipSpan) precipSpan.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${data.precipitation_probability}%`;
-        if (iconSpan) iconSpan.innerHTML = `<img src="${weatherimage}" alt="${weatherlabel}"  title="${weatherlabel}"  class="weather-image" />`;
+        if (precipSpan)
+          precipSpan.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${data.precipitation_probability}%`;
+        if (iconSpan)
+          iconSpan.innerHTML = `<img src="${weatherimage}" alt="${weatherlabel}"  title="${weatherlabel}"  class="weather-image" />`;
         let windwidgetId = `wind-widget-${day}-${hour}`;
         let wind_widget = setWind(dir, data.wind_speed_10m, windwidgetId);
 
@@ -441,7 +443,11 @@ async function renderWindCharts(max_wind_speed: number) {
   });
 }
 
-function renderWindDay(ctx: HTMLElement | null, next24: any[], max_wind_speed: number) {
+function renderWindDay(
+  ctx: HTMLElement | null,
+  next24: any[],
+  max_wind_speed: number,
+) {
   console.log(`renderWindDay ${max_wind_speed}`);
   let wind_speed_10m: number[] = [];
   let wind_speed_80m: number[] = [];

@@ -53,24 +53,24 @@ export function createSection(
 export function createH1(
   parent: any,
   innerHTML: any,
-  className = null,
-  id = null,
+  className: string | null = null,
+  id: string | null = null,
 ) {
   return createHeader(parent, innerHTML, className, id, 1);
 }
 export function createH2(
   parent: any,
   innerHTML: any,
-  className = null,
-  id = null,
+  className: string | null = null,
+  id: string | null = null,
 ) {
   return createHeader(parent, innerHTML, className, id, 2);
 }
 export function createH3(
   parent: any,
   innerHTML: any,
-  className = null,
-  id = null,
+  className: string | null = null,
+  id: string | null = null,
 ) {
   return createHeader(parent, innerHTML, className, id, 2);
 }
@@ -215,22 +215,20 @@ export function createImage(
 }
 
 export function createParagraph(
-  parent: { appendChild: (arg0: HTMLParagraphElement) => void },
+  parent: HTMLElement,
   innerHTML: string | null = null,
   className: string | null = null,
-) {
-  if (typeof innerHTML !== "string") return;
-
+): HTMLParagraphElement {
   let el = document.createElement("p");
   if (className) el.className = className;
-  if (innerHTML) el.innerHTML = innerHTML;
+  if (typeof innerHTML === "string" && innerHTML) el.innerHTML = innerHTML;
 
   parent.appendChild(el);
   return el;
 }
 
 export function createOrderedList(
-  parent: { appendChild: (arg0: HTMLOListElement) => void },
+  parent: HTMLElement,
   className: string | null = null,
   id: string | null = null,
 ) {

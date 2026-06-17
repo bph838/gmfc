@@ -8,7 +8,10 @@ import {
   getDaylight,
 } from "@components/weatherinfo";
 
-export function renderHero(data: { generatehero: boolean; image: string; text: any; weatherCoordinates: { latitude: any; longitude: any; }; }, setimage = true) {
+export function renderHero(
+  data: { generatehero: boolean; image: string; text: any },
+  setimage = true,
+) {
   console.log("renderHero called");
 
   const hero = document.getElementById("hero");
@@ -118,44 +121,29 @@ export function renderHero(data: { generatehero: boolean; image: string; text: a
   renderAlerts();
 
   //render any weather if we have the coordinates
-  if (
-    data.weatherCoordinates &&
-    data.weatherCoordinates.latitude &&
-    data.weatherCoordinates.longitude
-  ) {
-    const watherchangediv = createDiv(
-      hero,
-      "weatherchange-container",
-      "weatherchange-container",
-      "",
-      true,
-    );
-    const weatherspan = createSpan(
-      watherchangediv,
-      "weatherchange",
-      `<i class="fa-solid fa-cloud-sun"></i>`,
-    );
+  const latitude = 51.459563;
+  const longitude = -2.790968;
 
-    weatherspan.addEventListener("pointerup", (event) => {
-      showhideWeather();
-    });
+  const watherchangediv = createDiv(
+    hero,
+    "weatherchange-container",
+    "weatherchange-container",
+    "",
+    true,
+  );
+  const weatherspan = createSpan(
+    watherchangediv,
+    "weatherchange",
+    `<i class="fa-solid fa-cloud-sun"></i>`,
+  );
 
-    getDaylight().then((daylight: any) => {
-      renderWeatherInfo(
-        hero,
-        data.weatherCoordinates.latitude,
-        data.weatherCoordinates.longitude,
-        daylight,
-      );
-    });
+  weatherspan.addEventListener("pointerup", (event) => {
+    showhideWeather();
+  });
 
-    /*
-    renderWeatherInfo(
-      hero,
-      data.weatherCoordinates.latitude,
-      data.weatherCoordinates.longitude,
-    );*/
-  }
+  getDaylight().then((daylight: any) => {
+    renderWeatherInfo(hero, latitude, longitude, daylight);
+  });
 
   cookieWarningFunctionality();
 
@@ -201,5 +189,3 @@ function changeHeroImage(herotype: string) {
   hero.style.backgroundSize = "cover";
   hero.style.backgroundRepeat = "no-repeat";
 }
-
-

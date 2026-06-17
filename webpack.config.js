@@ -26,6 +26,19 @@ module.exports = {
     static: path.resolve(__dirname, "dist"),
     port: 8080,
     hot: true,
+    historyApiFallback: {
+      index: "/404.html",
+      rewrites: [
+        // specific exception
+        { from: /^\/news\/?$/, to: "/news.html" },
+
+        // only rewrite paths WITHOUT extensions
+        {
+          from: /^(?!.*\.\w+$).*/,
+          to: (ctx) => `${ctx.parsedUrl.pathname.replace(/\/$/, "")}.html`,
+        },
+      ],
+    },
   },
   plugins: [
     new ProcessWebsiteStaticPages("./src/database/pages_static.json"),
