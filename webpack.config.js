@@ -38,7 +38,7 @@ module.exports = {
 
         { from: "src/rootdir/favicon.ico", to: "." },
         { from: "src/rootdir/site.webmanifest", to: "." },
-        { from: "src/rootdir/sitemap.xml", to: "." },
+       // { from: "src/rootdir/sitemap.xml", to: "." },
         { from: "src/rootdir/robots.txt", to: "." },
       ],
     }),
