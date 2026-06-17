@@ -35,6 +35,11 @@
       content="https://siteimages.gmfc.uk/hero/hero-helicopter.jpg"
     />      
     <meta name="geo.position" content="51.459563;-2.790968" />
+    <% if (typeof MY_NEWS_ITEM !== "undefined" && MY_NEWS_ITEM) { %>
+    <script>
+      window.MY_NEWS_ITEM = <%= JSON.stringify(MY_NEWS_ITEM) %>;
+    </script>
+    <% } %>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

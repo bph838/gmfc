@@ -36,27 +36,18 @@ function renderNews(data: any) {
   if (!contentarea) return;
   const sectionsdiv = createDiv(contentarea, "sections");
 
-  if (
-    window.MY_NEWS_ITEM &&
-    window.MY_NEWS_ITEM.json &&
-    window.MY_NEWS_ITEM.year === "0" &&
-    window.MY_NEWS_ITEM.month === "0"
-  ) {
-    let jsonUrl = window.MY_NEWS_ITEM.json;
-    renderSingleNewsItem(sectionsdiv, jsonUrl);
-  } else if (
-    window.MY_NEWS_ITEM &&
-    window.MY_NEWS_ITEM.json &&
-    (window.MY_NEWS_ITEM.year !== "0" || window.MY_NEWS_ITEM.month !== "0")
-  ) {
-    const newsItem = window.MY_NEWS_ITEM;
+  const newsItem = window.MY_NEWS_ITEM;
+
+  if (newsItem && newsItem.type === "single" && newsItem.json) {
+    renderSingleNewsItem(sectionsdiv, newsItem.json);
+  } else if (newsItem && newsItem.type === "list" && newsItem.json) {
     const newUrl = newsItem.json;
-    //const newholderdiv = createDiv(sectionsdiv);
-    if (newsItem.year && newsItem.month !== "0") {
-      renderNewsBreadline(sectionsdiv, newsItem.year, newsItem.month, "month");
-    } else if (newsItem.year && newsItem.month === "0") {
-      renderNewsBreadline(sectionsdiv, newsItem.year, 0, "year");
-    }
+
+    let breadlineType: string;
+    if (newsItem.month && newsItem.month !== "0") breadlineType = "month";
+    else if (newsItem.year && newsItem.year !== "0") breadlineType = "year";
+    else breadlineType = "none";
+    renderNewsBreadline(sectionsdiv, newsItem.year ?? 0, newsItem.month ?? 0, breadlineType);
 
     fetchJson(newUrl)
       .then((news_items) => {
@@ -92,7 +83,7 @@ function fetchNews(
   console.log("Fetching news: ");
   console.log(news_section);
   const url = news_section.url;
-  const urlJson = news_section.urlJson;
+  const urlJson = news_section.jsondata;
   if (!urlJson || !url) return;
   renderNewsItem(parent, urlJson, url);
 }
@@ -112,7 +103,6 @@ function renderNewsItem(parent: HTMLElement, urlJson: string, url: string) {
 
 function renderSingleNewsItem(parent: HTMLElement, urlJson: string) {
   console.log("Fetching news item: ");
-  urlJson = "\\" + urlJson;
   fetchJson(urlJson).then((news) => {
     console.log("Processing news: ");
     console.log(news);

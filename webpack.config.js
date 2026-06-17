@@ -11,12 +11,14 @@ const GenerateNewsItemFilesPlugin = require("./webpack/GenerateNewsItemFilesPlug
 const GenerateNewsIndexPlugin = require("./webpack/GenerateNewsIndexPlugin");
 const GenerateNewsItemsPagesPlugin = require("./webpack/GenerateNewsItemsPagesPlugin");
 const GenerateNewsHtmlPagesPlugin = require("./webpack/GenerateNewsHtmlPagesPlugin");
+const GenerateNewsListPagesPlugin = require("./webpack/GenerateNewsListPagesPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
 
 module.exports = {
   mode: "development",
+  devtool: "eval-source-map",
   // Per-page entries (e.g. "index", "calendar") are added dynamically by
   // GenerateHtmlPagesPlugin from .build/site/pages.json's "chunks" field.
   entry: { styles: "./src/scss/styles.scss" },
@@ -64,6 +66,16 @@ module.exports = {
     ),
     new GenerateNewsHtmlPagesPlugin(
       "./.build/site/newsitems.json",
+      "./src/templates",
+      {
+        site: {
+          sitename: "Gordano Model Flying Club",
+        },
+        partials: partials,
+      },
+    ),
+    new GenerateNewsListPagesPlugin(
+      "./.build/news/newsindex.json",
       "./src/templates",
       {
         site: {

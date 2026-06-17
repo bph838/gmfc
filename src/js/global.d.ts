@@ -5,8 +5,9 @@ declare const process: { env: { NODE_ENV: string } };
 
 interface Window {
   MY_NEWS_ITEM?: {
+    type: "single" | "list";
     json: string;
-    year: string;
-    month: string;
+    year?: string;
+    month?: string;
   };
 }
