@@ -6,6 +6,9 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProcessWebsiteStaticPages = require("./webpack/ProcessWebsiteStaticPages");
 const GenerateHtmlPagesPlugin = require("./webpack/GenerateHtmlPagesPlugin");
+const loadPartials = require("./webpack/load-partials");
+
+const partials = loadPartials();
 
 module.exports = {
   mode: "development",
@@ -33,12 +36,7 @@ module.exports = {
         site: {
           sitename: "Gordano Model Flying Club",
         },
-        partials: {
-          favicon: "",
-          google_analytics: "",
-          navigation: "",
-          footer: "",
-        },
+        partials: partials,
       },
     ),
     new CopyWebpackPlugin({
