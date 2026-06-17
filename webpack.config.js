@@ -9,6 +9,7 @@ const GenerateHtmlPagesPlugin = require("./webpack/GenerateHtmlPagesPlugin");
 const ProcessNewsHashAndIndex = require("./webpack/ProcessNewsHashAndIndex");
 const GenerateNewsItemFilesPlugin = require("./webpack/GenerateNewsItemFilesPlugin");
 const GenerateNewsIndexPlugin = require("./webpack/GenerateNewsIndexPlugin");
+const GenerateNewsMenuPlugin = require("./webpack/GenerateNewsMenuPlugin");
 const GenerateNewsItemsPagesPlugin = require("./webpack/GenerateNewsItemsPagesPlugin");
 const GenerateNewsHtmlPagesPlugin = require("./webpack/GenerateNewsHtmlPagesPlugin");
 const GenerateNewsListPagesPlugin = require("./webpack/GenerateNewsListPagesPlugin");
@@ -53,6 +54,7 @@ module.exports = {
     new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
     new GenerateNewsItemFilesPlugin(),
     new GenerateNewsIndexPlugin(),
+    new GenerateNewsMenuPlugin(),
     new GenerateNewsItemsPagesPlugin(),
     new GenerateHtmlPagesPlugin(
       "./.build/site/pages.json",
