@@ -4,6 +4,7 @@ const path = require("path");
 const autoprefixer = require("autoprefixer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
+const CombinedMetaPlugin = require("./webpack/CombinedMetaPlugin");
 
 module.exports = {
   mode: "development",
@@ -23,6 +24,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
     new miniCssExtractPlugin(),
+    new CombinedMetaPlugin("./src/database/pages_static.json"),
   ],
   module: {
     rules: [

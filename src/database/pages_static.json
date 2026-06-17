@@ -1,0 +1,214 @@
+{
+  "keywords": [
+    "Gordano Model Flying Club",
+    "GMFC",
+    "RC helicopters",
+    "RC Planes",
+    "Remote Controlled",
+    "Gordano Model Flying Club website",
+    "RC Crawler",
+    "RC Crawler Course",
+    "RC Race track",
+    "Bristol RC Club",
+    "North Somerset RC Club",
+    "Gordano RC Club",
+    "Model helicopter",
+    "Model RC Club",
+    "Bristol Model RC Club",
+    "Somerset Model RC Club"
+  ],
+  "description": "Gordano Model Flying Club is an active model flying club offering members events, news, calendars, gallery and community activities for RC enthusiasts in Gordano and beyond.",
+  "pages": [
+    {
+      "title": "Gordano Model Flying Club",
+      "page": "@/index.html",
+      "template": "main.html",
+      "chunks": "index",
+      "keywords": ["RC Model Flying"],
+      "description": "About flying",
+      "url": "@/",
+      "jdb": "@jdbpages/index.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Calendar",
+      "page": "@/calendar.html",
+      "template": "main.html",
+      "chunks": "calendar",
+      "url": "@/calendar",
+      "jdb": "@jdbpages/calendar.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | News",
+      "page": "@/news.html",
+      "template": "main.html",
+      "chunks": "news",
+      "url": "@/news/",
+      "jdb": "@jdbpages/news.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Gallery",
+      "page": "@/gallery/index.html",
+      "template": "main.html",
+      "chunks": "gallery",
+      "url": "@/gallery",
+      "jdb": "@jdbpages/gallery/index.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | About Us",
+      "page": "@/aboutus.html",
+      "template": "main.html",
+      "chunks": "aboutus",
+      "url": "@/aboutus",
+      "jdb": "@jdbpages/aboutus.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | About Us",
+      "page": "@/about-us.html",
+      "template": "main.html",
+      "chunks": "aboutus",
+      "url": "@/about-us",
+      "jdb": "@jdbpages/aboutus.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | History",
+      "page": "@/club/history.html",
+      "template": "history.html",
+      "chunks": "clubhistory",
+      "url": "@/club/history",
+      "jdb": "@jdbpages/club/history.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Rules",
+      "page": "@/club/rules.html",
+      "template": "main.html",
+      "chunks": "clubrules",
+      "url": "@/club/rules",
+      "jdb": "@jdbpages/club/rules.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Rules",
+      "page": "@/club/rules/index.html",
+      "template": "main.html",
+      "chunks": "clubrules",
+      "url": "@/club/rules",
+      "jdb": "@jdbpages/club/rules.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Flying Guide",
+      "page": "@/club/rules/flyingguide.html",
+      "template": "main.html",
+      "chunks": "clubrulesflyingguide",
+      "url": "@/club/rules/flyingguide",
+      "jdb": "@jdbpages/club/rules/flyingguide.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club  | Flying Rules",
+      "page": "@/club/rules/flying.html",
+      "template": "main.html",
+      "chunks": "clubrulesflying",
+      "url": "@/club/rules/flying",
+      "jdb": "@jdbpages/club/rules/flying.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Rules | Disciplinary Procedure",
+      "page": "@/club/rules/disciplinaryprocedure.html",
+      "template": "main.html",
+      "chunks": "clubrulesdisciplinaryprocedure",
+      "url": "@/club/rules/disciplinaryprocedure",
+      "jdb": "@jdbpages/club/rules/disciplinaryprocedure.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Merchandise",
+      "page": "@/club/merch.html",
+      "template": "main.html",
+      "chunks": "clubmerch",
+      "url": "@/club/merch",
+      "jdb": "@jdbpages/club/merch.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Member",
+      "page": "@/club/member.html",
+      "template": "main.html",
+      "chunks": "clubmember",
+      "url": "@/club/member",
+      "jdb": "@jdbpages/club/member.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Member Existing",
+      "page": "@/club/member/existing.html",
+      "template": "member.html",
+      "chunks": "clubmemberexisting",
+      "url": "@/club/member/existing",
+      "jdb": "@jdbpages/club/member/existing.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Prospective Members",
+      "page": "@/club/member/prospective.html",
+      "template": "main.html",
+      "chunks": "clubmemberprospective",
+      "url": "@/club/member/prospective",
+      "jdb": "@jdbpages/club/member/prospective.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Leaderboard",
+      "page": "@/club/leaderboard.html",
+      "template": "main.html",
+      "chunks": "clubleaderboard",
+      "url": "@/club/leaderboard",
+      "jdb": "@jdbpages/club/leaderboard.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Leaderboard | Instructions",
+      "page": "@/club/leaderboard/instructions.html",
+      "template": "main.html",
+      "chunks": "clubleaderboardinstructions",
+      "url": "@/club/leaderboard/instructions",
+      "jdb": "@jdbpages/club/leaderboard/instructions.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Weather",
+      "page": "@/club/weather.html",
+      "template": "main.html",
+      "chunks": "clubweather",
+      "url": "@/club/weather",
+      "jdb": "@jdbpages/club/weather.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Wildlife",
+      "page": "@/club/wildlife/index.html",
+      "template": "main.html",
+      "chunks": "clubwildlife",
+      "url": "@/club/wildlife",
+      "jdb": "@jdbpages/club/wildlife/wildlife.json",
+      "datetype": "filemodified"
+    },
+    {
+      "title": "Gordano Model Flying Club | Items for Sale",
+      "page": "@/club/selling/index.html",
+      "template": "selling.html",
+      "chunks": "clubselling",
+      "url": "@/club/selling/",
+      "jdb": "@jdbpages/club/selling/selling.json",
+      "datetype": "filemodified"
+    }
+  ]
+}
