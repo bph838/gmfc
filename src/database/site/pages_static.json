@@ -192,7 +192,7 @@
       "url": "/club/wildlife",
       "jdb": "@jdbpages/club/wildlife/wildlife.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubwildlife.ts"
+      "entry": "@pages/club/wildlife/wildlife.ts"
     },
     {
       "title": "Gordano Model Flying Club | Items for Sale",

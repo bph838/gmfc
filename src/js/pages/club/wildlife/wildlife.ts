@@ -4,13 +4,12 @@ import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 
 import data from "@data/pages/club/wildlife/wildlife.json";
-import menu from "@data/generated/menu.json";
 
-setupMenuCommands("page-clubnature", menu);
+setupMenuCommands("page-clubnature");
 renderWildlife(data);
 renderFinish();
 
-function renderWildlife(data) {
+function renderWildlife(data: { content: any; }) {
   console.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
@@ -19,7 +18,7 @@ function renderWildlife(data) {
   const sectionsdiv = createDiv(contentarea, "sections");
 
   if (data.content.sections) {
-    data.content.sections.forEach((section) => {
+    data.content.sections.forEach((section: any) => {
       console.log(section);
       renderSection(sectionsdiv, section);
     });
