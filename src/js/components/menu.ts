@@ -14,7 +14,7 @@ import {
   createLink,
   emptyDiv,
 } from "@framework/dom";
-//import { getLongMonthName, fetchJson } from "@framework/utils";
+import { fetchJson } from "@framework/utils";
 
 import { SITE_TITLE } from "@components/constants";
 import galleryYears from "@data/generated/years.json";
@@ -106,13 +106,14 @@ function initGalleryYears() {
 }
 
 function checkItemsForSale() {
-  let saleUrl = "/data/pages/club/selling/generated/_index.json";
+  //let saleUrl = "/data/pages/club/selling/generated/_index.json";
+  let saleUrl = "/data/selling/_index.json";
 
-  /*
   fetchJson(saleUrl).then((selling_items: any[]) => {
     if (!selling_items || selling_items.length === 0) {
       removeElement("clubsellingitemsmenu");
       removeElement("clubsellingitemsdiv");
+      return;
     }
     let found = 0;
     selling_items.forEach((element: { expires: string | number | Date }) => {
@@ -125,10 +126,10 @@ function checkItemsForSale() {
       removeElement("clubsellingitemsdiv");
     }
   });
-  */
 }
 
 function removeElement(id: string) {
   const ele = document.getElementById(id);
   if (ele) ele.remove();
 }
+
