@@ -19,7 +19,7 @@ class GenerateNewsItemsPagesPlugin {
   constructor(
     newsIndexFile = "./.build/news/newsindex.json",
     outputDir = "./.build/site",
-    outputFile = "newsitems.json"
+    outputFile = "newsitems.json",
   ) {
     this.newsIndexFile = newsIndexFile;
     this.outputDir = outputDir;
@@ -35,13 +35,16 @@ class GenerateNewsItemsPagesPlugin {
       compilation.fileDependencies.add(absNewsIndexFile);
     });
 
-    const run = () => this.process(absNewsIndexFile, absOutputDir, absOutputFile);
+    const run = () =>
+      this.process(absNewsIndexFile, absOutputDir, absOutputFile);
     compiler.hooks.beforeRun.tapPromise(PLUGIN_NAME, run);
     compiler.hooks.watchRun.tapPromise(PLUGIN_NAME, run);
   }
 
   async process(absNewsIndexFile, absOutputDir, absOutputFile) {
-    const items = JSON.parse(await fs.promises.readFile(absNewsIndexFile, "utf8"));
+    const items = JSON.parse(
+      await fs.promises.readFile(absNewsIndexFile, "utf8"),
+    );
 
     const newsItems = items.map((item) => ({
       title: item.title,
@@ -50,11 +53,15 @@ class GenerateNewsItemsPagesPlugin {
       template: "news.html",
       jdb: item.jsondata,
       entry: "@pages/news.ts",
-      date:item.date
+      image: item.image,
+      date: item.date,
     }));
 
     await fs.promises.mkdir(absOutputDir, { recursive: true });
-    await fs.promises.writeFile(absOutputFile, JSON.stringify(newsItems, null, 2));
+    await fs.promises.writeFile(
+      absOutputFile,
+      JSON.stringify(newsItems, null, 2),
+    );
   }
 }
 
