@@ -138,7 +138,7 @@
       "url": "/club/member",
       "jdb": "@jdbpages/club/member.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubmember.ts"
+      "entry": "@pages/club/member.ts"
     },
     {
       "title": "Gordano Model Flying Club | Member Existing",
@@ -147,7 +147,7 @@
       "url": "/club/member/existing",
       "jdb": "@jdbpages/club/member/existing.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubmemberexisting.ts"
+      "entry": "@pages/club/member/existing.ts"
     },
     {
       "title": "Gordano Model Flying Club | Prospective Members",
@@ -156,7 +156,7 @@
       "url": "/club/member/prospective",
       "jdb": "@jdbpages/club/member/prospective.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubmemberprospective.ts"
+      "entry": "@pages/club/member/prospective.ts"
     },
     {
       "title": "Gordano Model Flying Club | Leaderboard",

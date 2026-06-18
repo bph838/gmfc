@@ -119,6 +119,7 @@ module.exports = {
         { from: "src/rootdir/robots.txt", to: "." },
         { from: "src/database/media/*.json", to: "data/media/[name][ext]" },
         { from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
+        { from: "src/database/pages/club/member/*.json", to: "data/pages/club/member/[name][ext]" },
         //{ from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
       ],
     }),
