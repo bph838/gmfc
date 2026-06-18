@@ -8,7 +8,7 @@ import {
 export function renderAlerts() {
   console.log("Rendering alerts");
   //need to load the alerts from site
-  const urlalerts = "/site/alerts.json";
+  const urlalerts = "/data/site/alerts.json";
 
   fetchJson(urlalerts).then((data) => {
     if (!data || data.length === 0) {

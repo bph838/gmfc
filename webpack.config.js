@@ -20,6 +20,7 @@ const GenerateGalleryYearsPlugin = require("./webpack/GenerateGalleryYearsPlugin
 const GenerateGalleryYearHtmlPagesPlugin = require("./webpack/GenerateGalleryYearHtmlPagesPlugin");
 const GenerateAlertsPlugin = require("./webpack/GenerateAlertsPlugin");
 const GenerateSitemapPlugin = require("./webpack/GenerateSitemapPlugin");
+const GenerateCalendarIcsPlugin = require("./webpack/GenerateCalendarIcsPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -103,6 +104,7 @@ module.exports = {
       },
     ),
     new GenerateSitemapPlugin(),
+    new GenerateCalendarIcsPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -115,7 +117,8 @@ module.exports = {
 
         { from: "src/rootdir/favicon.ico", to: "." },
         { from: "src/rootdir/site.webmanifest", to: "." },
-         { from: ".build/site/sitemap.xml", to: "." },
+        { from: ".build/site/sitemap.xml", to: "." },
+        { from: ".build/site/calendar.ics", to: "." },
         { from: "src/rootdir/robots.txt", to: "." },
         { from: "src/database/media/*.json", to: "data/media/[name][ext]" },
         {
@@ -126,7 +129,11 @@ module.exports = {
           from: "src/database/pages/club/member/*.json",
           to: "data/pages/club/member/[name][ext]",
         },
-        { from: "src/database/generated/selling/*.json", to: "data/selling/[name][ext]" },
+        {
+          from: "src/database/generated/selling/*.json",
+          to: "data/selling/[name][ext]",
+        },
+        { from: "src/database/site/calendarevents.json", to: "data/site/calendarevents.json" },
         //{ from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
       ],
     }),

@@ -15,7 +15,7 @@ class GenerateAlertsPlugin {
    * @param {string} [alertsFile] Path to alerts.json (relative to the project root).
    * @param {string} [outputFile] Path (relative to the webpack output) to emit the filtered file to.
    */
-  constructor(alertsFile = "./src/database/site/alerts.json", outputFile = "site/alerts.json") {
+  constructor(alertsFile = "./src/database/site/alerts.json", outputFile = "data/site/alerts.json") {
     this.alertsFile = alertsFile;
     this.outputFile = outputFile;
   }
