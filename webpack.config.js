@@ -19,6 +19,7 @@ const GenerateGalleryYearPagesPlugin = require("./webpack/GenerateGalleryYearPag
 const GenerateGalleryYearsPlugin = require("./webpack/GenerateGalleryYearsPlugin");
 const GenerateGalleryYearHtmlPagesPlugin = require("./webpack/GenerateGalleryYearHtmlPagesPlugin");
 const GenerateAlertsPlugin = require("./webpack/GenerateAlertsPlugin");
+const GenerateSitemapPlugin = require("./webpack/GenerateSitemapPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -101,6 +102,7 @@ module.exports = {
         partials: partials,
       },
     ),
+    new GenerateSitemapPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -113,7 +115,7 @@ module.exports = {
 
         { from: "src/rootdir/favicon.ico", to: "." },
         { from: "src/rootdir/site.webmanifest", to: "." },
-        // { from: "src/rootdir/sitemap.xml", to: "." },
+         { from: ".build/site/sitemap.xml", to: "." },
         { from: "src/rootdir/robots.txt", to: "." },
         { from: "src/database/media/*.json", to: "data/media/[name][ext]" },
         {
