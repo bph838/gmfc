@@ -8,10 +8,10 @@ import {
 export function renderAlerts() {
   console.log("Rendering alerts");
   //need to load the alerts from site
-  const urlalerts = "/data/alerts.json";
+  const urlalerts = "/site/alerts.json";
 
   fetchJson(urlalerts).then((data) => {
-    if (!data || !data.alerts || data.alerts.length === 0) {
+    if (!data || data.length === 0) {
       console.log("No alerts to render");
       return;
     }
@@ -23,30 +23,39 @@ export function renderAlerts() {
     }
 
     let alertsfound = false;
-    data.alerts.forEach((alert: { date_from: string | number | Date; date_to: string | number | Date; title: any; hash: any; type: any; message: any; }) => {
-      let now = new Date();
-      let dateFrom = alert.date_from ? new Date(alert.date_from) : null;
-      let dateTo = alert.date_to ? new Date(alert.date_to) : null;
+    data.forEach(
+      (alert: {
+        date_from: string | number | Date;
+        date_to: string | number | Date;
+        title: any;
+        hash: any;
+        type: any;
+        message: any;
+      }) => {
+        let now = new Date();
+        let dateFrom = alert.date_from ? new Date(alert.date_from) : null;
+        let dateTo = alert.date_to ? new Date(alert.date_to) : null;
 
-      //check date range
-      if ((dateFrom && now < dateFrom) || (dateTo && now > dateTo)) {
-        console.log(`Skipping alert "${alert.title}" due to date range`);
-        return; //skip this alert
-      } else {
-        alertsfound = true;
-        let showalert = shouldAlertBeShown(alert.hash);
-        const alertDiv = document.createElement("div");
-        alertDiv.className = `alert alert-${alert.type} show site-alerts`;
-        alertDiv.setAttribute("role", "alert");
-        alertDiv.innerHTML = `
+        //check date range
+        if ((dateFrom && now < dateFrom) || (dateTo && now > dateTo)) {
+          console.log(`Skipping alert "${alert.title}" due to date range`);
+          return; //skip this alert
+        } else {
+          alertsfound = true;
+          let showalert = shouldAlertBeShown(alert.hash);
+          const alertDiv = document.createElement("div");
+          alertDiv.className = `alert alert-${alert.type} show site-alerts`;
+          alertDiv.setAttribute("role", "alert");
+          alertDiv.innerHTML = `
           <h4>${alert.title}</h4> ${alert.message}`;
-        if (!showalert) alertDiv.style.display = "none";
-        alertsContainer.appendChild(alertDiv);
-        //need to add click handler for alert
-        addClickHandler(alertDiv, alert.hash);
-        shakeContainer(alertsContainer);
-      }
-    });
+          if (!showalert) alertDiv.style.display = "none";
+          alertsContainer.appendChild(alertDiv);
+          //need to add click handler for alert
+          addClickHandler(alertDiv, alert.hash);
+          shakeContainer(alertsContainer);
+        }
+      },
+    );
 
     if (alertsfound) {
       renderAnyCountdowns(alertsContainer);
@@ -54,9 +63,11 @@ export function renderAlerts() {
       const navbarAlertBell = document.getElementById("navbar-alert");
       if (navbarAlertBell) {
         navbarAlertBell.addEventListener("pointerup", () => {
-          document.querySelectorAll<HTMLElement>(".site-alerts").forEach((el) => {
-            el.style.display = "block";
-          });
+          document
+            .querySelectorAll<HTMLElement>(".site-alerts")
+            .forEach((el) => {
+              el.style.display = "block";
+            });
         });
       }
     }
@@ -128,13 +139,13 @@ function renderAnyCountdowns(alertsContainer: HTMLElement) {
         case "daystohourstomins":
           if (t.days > 1) {
             el.textContent = `${t.days} days`;
-          } else if ((t.days === 1)) {
+          } else if (t.days === 1) {
             el.textContent = `${t.days} day`;
           } else {
             if (t.hours > 6) el.textContent = `${t.hours} hours`;
             else if (t.hours > 1)
               el.textContent = `${t.hours} hours ${t.minutes} mins`;
-            else if ((t.hours === 1))
+            else if (t.hours === 1)
               el.textContent = `${t.hours} hour ${t.minutes} mins`;
             else el.textContent = `${t.minutes} mins`;
           }

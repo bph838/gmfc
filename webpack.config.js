@@ -17,6 +17,7 @@ const GenerateGalleryOrderedPlugin = require("./webpack/GenerateGalleryOrderedPl
 const GenerateGalleryYearPagesPlugin = require("./webpack/GenerateGalleryYearPagesPlugin");
 const GenerateGalleryYearsPlugin = require("./webpack/GenerateGalleryYearsPlugin");
 const GenerateGalleryYearHtmlPagesPlugin = require("./webpack/GenerateGalleryYearHtmlPagesPlugin");
+const GenerateAlertsPlugin = require("./webpack/GenerateAlertsPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -53,6 +54,7 @@ module.exports = {
   },
   plugins: [
     new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
+    new GenerateAlertsPlugin(),
     new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
     new GenerateGalleryOrderedPlugin(),
     new GenerateGalleryYearPagesPlugin(),
