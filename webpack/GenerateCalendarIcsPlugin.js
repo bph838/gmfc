@@ -122,6 +122,7 @@ class GenerateCalendarIcsPlugin {
         dtend,
         `SUMMARY:${escapeText(event.title)}`,
         `URL:${escapeText(url)}`,
+        `DESCRIPTION:${escapeText(`You can find out more at ${url}`)}`,
         "END:VEVENT",
       ].join("\r\n");
     });
