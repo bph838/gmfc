@@ -13,6 +13,7 @@ const GenerateNewsMenuPlugin = require("./webpack/GenerateNewsMenuPlugin");
 const GenerateNewsItemsPagesPlugin = require("./webpack/GenerateNewsItemsPagesPlugin");
 const GenerateNewsHtmlPagesPlugin = require("./webpack/GenerateNewsHtmlPagesPlugin");
 const GenerateNewsListPagesPlugin = require("./webpack/GenerateNewsListPagesPlugin");
+const GenerateGalleryOrderedPlugin = require("./webpack/GenerateGalleryOrderedPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -50,6 +51,7 @@ module.exports = {
   plugins: [
     new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
     new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
+    new GenerateGalleryOrderedPlugin(),
     new GenerateNewsItemFilesPlugin(),
     new GenerateNewsIndexPlugin(),
     new GenerateNewsMenuPlugin(),
