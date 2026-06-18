@@ -174,7 +174,7 @@
       "url": "/club/leaderboard/instructions",
       "jdb": "@jdbpages/club/leaderboard/instructions.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubleaderboardinstructions.ts"
+      "entry": "@pages/club/leaderboard/instructions.ts"
     },
     {
       "title": "Gordano Model Flying Club | Weather",

@@ -4,14 +4,13 @@ import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 
 import data from "@data/pages/club/leaderboard/instructions.json";
-import menu from "@data/generated/menu.json";
 import drivers from "@lapmonitor/drivers/drivers.json";
 
-setupMenuCommands("page-clubleaderboard-instructions",menu);
+setupMenuCommands("page-clubleaderboard-instructions");
 renderLeaderboardInstuctions(data);
 renderFinish();
 
-function renderLeaderboardInstuctions(data) {
+function renderLeaderboardInstuctions(data: { content: any }) {
   console.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
@@ -20,9 +19,9 @@ function renderLeaderboardInstuctions(data) {
   const sectionsdiv = createDiv(contentarea, "sections");
 
   if (data.content.sections) {
-    data.content.sections.forEach((section) => {
+    data.content.sections.forEach((section: any) => {
       console.log(section);
-      renderSection(sectionsdiv, section,"","",drivers);
+      renderSection(sectionsdiv, section, "", "", drivers);
     });
   }
 }
