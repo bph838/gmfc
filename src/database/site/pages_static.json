@@ -201,7 +201,7 @@
       "url": "/club/selling/",
       "jdb": "@jdbpages/club/selling/selling.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubselling.ts"
+      "entry": "@pages/club/selling/index.ts"
     }
   ]
 }

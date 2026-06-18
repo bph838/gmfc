@@ -61,6 +61,15 @@ class GenerateHtmlPagesPlugin {
     return path.join(absPagesDir, entry.slice(PAGES_ALIAS.length));
   }
 
+  resolveChunkName(entryPath, absPagesDir) {
+    // Basename alone isn't unique across subdirectories (e.g. pages/index.ts and
+    // pages/club/selling/index.ts both end in "index"), so derive the chunk name
+    // from the full path relative to pagesDir to guarantee uniqueness.
+    const relPath = path.relative(absPagesDir, entryPath);
+    const withoutExt = relPath.slice(0, -path.extname(relPath).length);
+    return withoutExt.split(path.sep).join("-");
+  }
+
   generatePages(compiler, absPagesJsonFile, absTemplatesDir, absPagesDir) {
     const { pages = [] } = JSON.parse(
       fs.readFileSync(absPagesJsonFile, "utf8"),
@@ -72,17 +81,24 @@ class GenerateHtmlPagesPlugin {
       });
     };
 
-    const registeredChunks = new Set();
+    const registeredChunks = new Map();
 
     for (const page of pages) {
       let chunkName = null;
 
       const entryPath = this.resolveEntryPath(page.entry, absPagesDir);
       if (entryPath) {
-        chunkName = path.basename(entryPath, path.extname(entryPath));
+        chunkName = this.resolveChunkName(entryPath, absPagesDir);
+
+        const existingEntryPath = registeredChunks.get(chunkName);
+        if (existingEntryPath && existingEntryPath !== entryPath) {
+          warn(
+            `${PLUGIN_NAME}: chunk name "${chunkName}" collision between "${existingEntryPath}" and "${entryPath}" - "${page.url}" will reuse the former's script`,
+          );
+        }
 
         if (!registeredChunks.has(chunkName)) {
-          registeredChunks.add(chunkName);
+          registeredChunks.set(chunkName, entryPath);
 
           if (fs.existsSync(entryPath)) {
             new EntryPlugin(compiler.context, entryPath, chunkName).apply(
