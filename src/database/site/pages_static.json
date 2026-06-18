@@ -75,7 +75,7 @@
       "url": "/club/history",
       "jdb": "@jdbpages/club/history.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubhistory.ts"
+      "entry": "@pages/club/history.ts"
     },
     {
       "title": "Gordano Model Flying Club | Rules",

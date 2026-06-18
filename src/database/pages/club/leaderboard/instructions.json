@@ -1,0 +1,49 @@
+{
+  "content": {
+    "hero": {
+      "generatehero": true,
+      "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
+      "text": "Lap timing - Instructions",
+      "weatherCoordinates": {
+        "latitude": 51.459563,
+        "longitude": -2.790968
+      }
+    },
+    "sections": [
+      {
+        "title": "Transponder",
+        "type": "wrappedTextLeft",
+        "image": "https://siteimages.gmfc.uk/racing/transponder_pointer.jpg",
+        "text": [
+          "To record the lap times made on the track we are using the <a href='https://lapmonitor.com/store/en/' target='_LapMonitor'>LapMonitor</a> system. ",
+          "The LapMonitor system consists of a <a href='https://lapmonitor.com/store/en/14-decoder' target='_LapMonitor'>decoder</a> that reads the beam of the <a href='https://lapmonitor.com/store/en/15-transponder' target='_LapMonitor'>transponder</a> that is installed on your car.",
+          "The transponder should be placed so the beam is facing out of the righthand side of the car."
+        ]
+      },
+      {
+        "title": "Track Layout",
+        "type": "imageWide",
+        "image": "https://siteimages.gmfc.uk/racing/trackmap_map.jpg",
+        "text": "The track being used for the club leaderboard is shown here."
+      },
+      {
+        "title": "LapMonitor Setting",
+        "type": "wrappedTextLeft",
+        "image": "https://siteimages.gmfc.uk/racing/lapmonitor.jpg",
+        "text": [
+          "The lap times need to be submitted to Ben via WhatsApp.",
+          "Change the <strong>Race export format</strong> to <strong>JSON</strong>, this can be done by going in to the settings.",
+          "Once the export format has been changed, just share the session with Ben and the times will be uploaded."
+        ]
+      },
+      {
+        "title": "Transponder Id",
+        "type": "drivers",
+        "text": [
+          "Each driver has a Transponder Id, this unique number identifies your vehicle.",
+          "Let Ben know your Transponder Id and Car build via WhatsApp if you want to take part in the leaderboard challenge."
+        ]
+      }
+    ]
+  }
+}

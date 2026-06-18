@@ -80,7 +80,8 @@ class GenerateHtmlPagesPlugin {
           if (fs.existsSync(entryPath)) {
             new EntryPlugin(compiler.context, entryPath, chunkName).apply(compiler);
           } else {
-            warn(`${PLUGIN_NAME}: no entry script for "${page.url}" (expected ${entryPath})`);
+            //warn(`${PLUGIN_NAME}: no entry script for "${page.url}" (expected ${entryPath})`);
+            continue;
           }
         }
       }

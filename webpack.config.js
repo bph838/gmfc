@@ -117,6 +117,7 @@ module.exports = {
         { from: "src/rootdir/site.webmanifest", to: "." },
         // { from: "src/rootdir/sitemap.xml", to: "." },
         { from: "src/rootdir/robots.txt", to: "." },
+        { from: "src/database/media/*.json", to: "data/media/[name][ext]" },
       ],
     }),
     new MiniCssExtractPlugin({

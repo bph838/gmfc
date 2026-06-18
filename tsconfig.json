@@ -15,5 +15,5 @@
       "@data/*": ["./src/database/*"],
     }
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "src/js/pages/club/leaderboard.js"]
 }

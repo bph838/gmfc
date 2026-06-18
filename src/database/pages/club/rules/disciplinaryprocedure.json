@@ -1,0 +1,157 @@
+{
+  "content": {
+    "hero": {
+      "generatehero": true,
+      "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
+      "text": "Disciplinary Procedure",
+      "weatherCoordinates": {
+        "latitude": 51.459563,
+        "longitude": -2.790968
+      }
+    },
+    "sections": [
+      {
+        "title": "",
+        "type": "wrappedTextLeft",
+        "image": "https://siteimages.gmfc.uk/siteimages/clubhistory.jpg",
+        "text": [
+          "Minor faults or shortcomings in behaviour should normally be dealt with informally by a committee member with a view to reaching agreement on the improvement required.",
+          "Informal warnings will not form part of the formal disciplinary procedure. If, however, the problem persists or if the matter is more serious, action under the formal disciplinary procedure would be considered by the Committee. ",
+          "The disciplinary procedure is intended to provide a formal framework to deal with the situation where an individual’s conduct falls below acceptable standards and to ensure fair and consistent treatment of all members in such circumstances. The procedure outlined is a BMFA good practice guide on how clubs should deal with disciplinary issues. "
+        ]
+      },
+      {
+        "title": "Invitation to a meeting",
+        "type": "titletext",
+        "titletext": [
+          {
+            "text": "The committee should set out in writing to the member, the alleged conduct or other circumstances which have led them to contemplate formal action or dismissal and the member should be invited to a meeting to discuss the matter with a panel appointed by the committee."
+          }
+        ]
+      },
+      {
+        "title": "Disciplinary meeting",
+        "type": "titletext",
+        "titletext": [
+          {
+            "text": "The meeting should take place before any action is taken (other than suspension, in the event of alleged gross misconduct or police investigation, to enable a full investigation to take place). "
+          },
+          {
+            "text": "The meeting should not take place until the member has been informed of the basis for the grounds given in the original notice of formal action or dismissal and the member has had a reasonable opportunity to consider their response to such information. "
+          },
+          {
+            "text": "At the meeting the committee should explain the complaint against the member concerned and go through the evidence that has been gathered. The member must take all reasonable steps to attend the meeting."
+          },
+          {
+            "text": "After the meeting the member should be informed in writing of the committee’s decision and their right of appeal against such decision to the members at a general meeting if they are not satisfied with it."
+          }
+        ]
+      },
+      {
+        "title": "Appeal",
+        "type": "titletext",
+        "titletext": [
+          {
+            "text": "If the member wishes to appeal they should inform the secretary in writing within the time frame stated in the decision notice. The member should set out specific reasons for the appeal. "
+          },
+          {
+            "text": "The Secretary should call an Extraordinary General meeting of the club to hear the appeal. The member must take all reasonable steps to attend the meeting. "
+          },
+          {
+            "text": "The appeal general meeting may take place after the disciplinary action or dismissal takes effect. After the appeal general meeting the member must be informed of the general meetings final decision."
+          },
+          {
+            "text": "At any meeting under the disciplinary procedure the member concerned should be given the right to be accompanied by another club member to act in a supporting capacity but such companion may not usually answer questions on behalf of the member subject to the procedure. The member concerned also has the right to call witnesses or ask questions of any witnesses called by the committee. "
+          }
+        ]
+      },
+      {
+        "title": "Gross misconduct",
+        "type": "rawhtml",
+        "html": [
+          "<p>The club may consider some types of misconduct to be so serious that a disciplinary warning would be an insufficient penalty. Such offences are known as offences of gross misconduct.</p>",
+          "<p>Where the offence is one of gross misconduct the normal penalty will be dismissal without a prior warning being issued (summary dismissal).</p>",
+          "<p>Matters which may justify summary dismissal include, but are not limited to:</p>",
+
+          "<ul>",
+          "<li>dishonesty, theft and fraud from the club or its members</li>",
+          "<li>deception, for example making untrue statements in membership applications or falsifying expenses incurred on behalf of the club, etc</li>",
+          "<li>vandalism or sabotage of club equipment and property </li>",
+          "<li>fighting, or seriously disruptive behaviour or offensive or abusive language</li>",
+          "<li>serious misuse of computer, email and internet systems, including posting to club websites or emailing pornographic, offensive or obscene emails to members</li>",
+          "<li>misuse of club financial or other confidential club information</li>",
+          "<li>acts of bullying, harassment or discrimination</li>",
+          "<li>model flying under the influence of drinks, illegal drugs or other intoxicants</li>",
+          "<li>misconduct which may bring the club into disrepute </li>",
+          "<li>serious breaches of the clubs policies, procedures and safety rules</li>",
+          "<li>deliberate or serious damage to the clubs/landowners property or causing loss,damage or injury through serious negligence</li>",
+          "<li>any criminal offence carried out at the club site or during club meetings/events where such offence impacts or may impact upon the club</li>",
+          "</ul>"
+        ]
+      },
+
+      {
+        "title": "General principles for the operation of the disciplinary and dismissal procedure: ",
+        "type": "titletext",
+        "titletext": [
+          {
+            "text": "Formal disciplinary action should not normally be taken until the matter has been investigated where an allegation of misconduct is made against a member, the member may be suspended from all club activities while an investigation is carried out the member should be informed that suspension is a neutral act, that it is not a disciplinary penalty and does not imply guilt"
+          },
+          {
+            "text": "The member should be advised of the allegations against them and have an opportunity to state their case before any formal disciplinary decision is made "
+          },
+          {
+            "text": "The member should be provided, where appropriate, with written copies of evidence and relevant witness statements in advance of a disciplinary meeting at every stage of the formal disciplinary procedure, the member will have a right to be accompanied at any disciplinary meeting by another club member "
+          },
+          {
+            "text": "A member should not be dismissed for a first breach of the rules, except in the case of gross misconduct, when the penalty will normally be immediate dismissal the member concerned will have the right to appeal against any formal disciplinary penalty"
+          },
+          {
+            "text": "Although the disciplinary penalties which may be imposed under this procedure will normally be imposed in the order set out in the constitution, the procedure may be commenced at any stage if the seriousness of the members alleged misconduct justifies this."
+          }
+        ]
+      },
+
+      {
+        "title": "Disciplinary sanctions",
+        "type": "titletext",
+        "titletext": [
+          {
+            "text": "As part of any disciplinary procedure, where the committee considers it appropriate to do so, they may impose a disciplinary sanction, which is a penalty. These will generally take the form of some type of warning. "
+          }
+        ]
+      },
+
+      {
+        "title": "Verbal warning notice",
+        "type": "titletext",
+        "titletext": [
+          {
+            "text": "If conduct does not meet acceptable standards, a member may be given a formal verbal warning. This should set out the conduct problem, confirmation of improvement required and time scale for improvement to be made, together with the assistance to be provided to meet the objectives. "
+          },
+          {
+            "text": "A record of the verbal warning will be kept but the warning will be disregarded after usually a six month period (the time frame is dependent on the committee’s decision) provided conduct has been satisfactory."
+          }
+        ]
+      },
+      {
+        "title": "Written warning",
+        "type": "noImage",
+         "text": ["If the offence is more serious or if there is insufficient improvement after a verbal warning or if a further broadly similar offence occurs whilst a verbal warning remains in force, a written warning may be given. This will set out the nature of the conduct problem and confirmation of improvement required and time scale for improvement to be made, together with the assistance provided to meet the objectives.","The warning should also inform the member that should your conduct fail to improve or you commit any further disciplinary offence over the next twelve months, (the time frame is dependent on the committee) then you will be issued with a final written warning. The written warning will be kept on file, and the member should be informed after what time period it will be disregarded providing their conduct, attendance or performance has been satisfactory. "]
+      },
+      {
+        
+         "title": "Final written warning",
+        "type": "noImage",
+        "text":["If there is still insufficient improvement after a verbal and / or written warning has been issued or if the misconduct is sufficiently serious to warrant only one written warning, a final written warning will be given. This will provide details of the complaint, the improvement required and the timescale for the improvement. It will also warn that a failure to improve or any further disciplinary offences over the next period referred by your employer may lead to dismissal or some other action short of dismissal. ","The final written warning will be kept on file and the member should be informed when the warning will be disregarded provided your conduct, attendance or performance has been satisfactory."]
+      },
+      {
+        
+         "title": "Dismissal or other sanction",
+        "type": "noImage",
+        "text":["If there is still further misconduct or a failure to improve conduct the final stage in the procedure may be dismissal. "]
+      }
+      
+    ]
+  }
+}
