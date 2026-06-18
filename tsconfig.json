@@ -13,7 +13,8 @@
       "@components/*": ["./src/js/components/*"],
       "@framework/*": ["./src/js/framework/*"],
       "@data/*": ["./src/database/*"],
+      "@lapmonitor/*": ["./src/lapmonitor/*"],
     }
   },
-  "include": ["src/**/*.ts", "src/js/pages/club/leaderboard.js"]
+  "include": ["src/**/*.ts", "src/js/pages/club/leaderboard.ts"]
 }

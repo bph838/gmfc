@@ -132,7 +132,7 @@ module.exports = {
       "@components": path.resolve(__dirname, "src/js/components"),
       "@framework": path.resolve(__dirname, "src/js/framework"),
       "@data": path.resolve(__dirname, "src/database"),
-      //"@lapmonitor": path.resolve(__dirname, "src/lapmonitor"),
+      "@lapmonitor": path.resolve(__dirname, "src/lapmonitor"),
       //"@jdbpages": path.resolve(__dirname, "src/data/pages"),
       //"@siteliveurl": "https://www.gmfc.uk/",
     },

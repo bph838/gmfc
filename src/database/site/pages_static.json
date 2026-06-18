@@ -165,7 +165,7 @@
       "url": "/club/leaderboard",
       "jdb": "@jdbpages/club/leaderboard.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubleaderboard.ts"
+      "entry": "@pages/club/leaderboard.ts"
     },
     {
       "title": "Gordano Model Flying Club | Leaderboard | Instructions",
