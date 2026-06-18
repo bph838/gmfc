@@ -21,169 +21,220 @@ const GenerateGalleryYearHtmlPagesPlugin = require("./webpack/GenerateGalleryYea
 const GenerateAlertsPlugin = require("./webpack/GenerateAlertsPlugin");
 const GenerateSitemapPlugin = require("./webpack/GenerateSitemapPlugin");
 const GenerateCalendarIcsPlugin = require("./webpack/GenerateCalendarIcsPlugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
 
-module.exports = {
-  mode: "development",
-  devtool: "eval-source-map",
-  // Per-page entries (e.g. "index", "calendar") are added dynamically by
-  // GenerateHtmlPagesPlugin from .build/site/pages.json's "chunks" field.
-  entry: { styles: "./src/scss/styles.scss" },
-  output: {
-    filename: "js/[name].js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "/",
-    clean: true,
-  },
-  devServer: {
-    static: path.resolve(__dirname, "dist"),
-    port: 8080,
-    hot: true,
-    historyApiFallback: {
-      index: "/404.html",
-      rewrites: [
-        // specific exception
-        { from: /^\/news\/?$/, to: "/news.html" },
+module.exports = (env, argv) => {
+  const isProduction = argv.mode === "production";
 
-        // only rewrite paths WITHOUT extensions
-        {
-          from: /^(?!.*\.\w+$).*/,
-          to: (ctx) => `${ctx.parsedUrl.pathname.replace(/\/$/, "")}.html`,
-        },
-      ],
-    },
-  },
-  plugins: [
-    new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
-    new GenerateAlertsPlugin(),
-    new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
-    new JsonHashCopyPlugin(),
-    new GenerateGalleryOrderedPlugin(),
-    new GenerateGalleryYearPagesPlugin(),
-    new GenerateGalleryYearsPlugin(),
-    new GenerateNewsItemFilesPlugin(),
-    new GenerateNewsIndexPlugin(),
-    new GenerateNewsMenuPlugin(),
-    new GenerateNewsItemsPagesPlugin(),
-    new GenerateHtmlPagesPlugin("./.build/site/pages.json", "./src/templates", {
-      site: {
-        sitename: "Gordano Model Flying Club",
-      },
-      partials: partials,
-    }),
-    new GenerateNewsHtmlPagesPlugin(
-      "./.build/site/newsitems.json",
-      "./src/templates",
-      {
-        site: {
-          sitename: "Gordano Model Flying Club",
-        },
-        partials: partials,
-      },
-    ),
-    new GenerateNewsListPagesPlugin(
-      "./.build/news/newsindex.json",
-      "./src/templates",
-      {
-        site: {
-          sitename: "Gordano Model Flying Club",
-        },
-        partials: partials,
-      },
-    ),
-    new GenerateGalleryYearHtmlPagesPlugin(
-      "./src/database/generated/years.json",
-      "./src/templates",
-      {
-        site: {
-          sitename: "Gordano Model Flying Club",
-        },
-        partials: partials,
-      },
-    ),
-    new GenerateSitemapPlugin(),
-    new GenerateCalendarIcsPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: "src/database/pages/*",
-          to: "data/pages/[name][ext]",
-          globOptions: {
-            ignore: [],
-          },
-        },
+  const partials = loadPartials(isProduction);
+  console.log(`Is Production  ${isProduction}`);
 
-        { from: "src/rootdir/favicon.ico", to: "." },
-        { from: "src/rootdir/site.webmanifest", to: "." },
-        { from: ".build/site/sitemap.xml", to: "." },
-        { from: ".build/site/calendar.ics", to: "." },
-        { from: "src/rootdir/robots.txt", to: "." },
-        { from: "src/database/media/*.json", to: "data/media/[name][ext]" },
-        {
-          from: "src/database/pages/club/*.json",
-          to: "data/pages/club/[name][ext]",
-        },
-        {
-          from: "src/database/pages/club/member/*.json",
-          to: "data/pages/club/member/[name][ext]",
-        },
-        {
-          from: "src/database/generated/selling/*.json",
-          to: "data/selling/[name][ext]",
-        },
-        { from: "src/database/site/calendarevents.json", to: "data/site/calendarevents.json" },
-        { from: ".build/lapmonitor/*.json", to: "data/lapmonitor/[name][ext]" },
-        //{ from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
-      ],
-    }),
-    new MiniCssExtractPlugin({
-      filename: "styles/[name].css", // output CSS file name
-    }),
-  ],
-  resolve: {
-    alias: {
-      "@components": path.resolve(__dirname, "src/js/components"),
-      "@framework": path.resolve(__dirname, "src/js/framework"),
-      "@data": path.resolve(__dirname, "src/database"),
-      "@lapmonitor": path.resolve(__dirname, "src/lapmonitor"),
-      //"@jdbpages": path.resolve(__dirname, "src/data/pages"),
-      //"@siteliveurl": "https://www.gmfc.uk/",
+  return {
+    mode: "development",
+    devtool: "eval-source-map",
+    // Per-page entries (e.g. "index", "calendar") are added dynamically by
+    // GenerateHtmlPagesPlugin from .build/site/pages.json's "chunks" field.
+    entry: { styles: "./src/scss/styles.scss" },
+    output: {
+      filename: "js/[name].js",
+      path: path.resolve(__dirname, "dist"),
+      publicPath: "/",
+      clean: true,
     },
-    extensions: [".ts", ".js", ".json"], // optional, helps omit extensions
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-      {
-        mimetype: "image/svg+xml",
-        scheme: "data",
-        type: "asset/resource",
-        generator: {
-          filename: "icons/[hash].svg",
-        },
-      },
-      {
-        test: /\.scss$/i,
-        use: [
-          MiniCssExtractPlugin.loader, // extract CSS to separate file
-          "css-loader", // translates CSS into CommonJS
-          "postcss-loader", // optional, for autoprefixing
+    devServer: {
+      static: path.resolve(__dirname, "dist"),
+      port: 8080,
+      hot: true,
+      historyApiFallback: {
+        index: "/404.html",
+        rewrites: [
+          // specific exception
+          { from: /^\/news\/?$/, to: "/news.html" },
+
+          // only rewrite paths WITHOUT extensions
           {
-            loader: "sass-loader", // compiles SCSS to CSS
-            options: {
-              sassOptions: {
-                quietDeps: true, // <- hides warnings from dependencies like Bootstrap
-              },
-            },
+            from: /^(?!.*\.\w+$).*/,
+            to: (ctx) => `${ctx.parsedUrl.pathname.replace(/\/$/, "")}.html`,
           },
         ],
       },
+    },
+    plugins: [
+      new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
+      new GenerateAlertsPlugin(),
+      new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
+      new JsonHashCopyPlugin(),
+      new GenerateGalleryOrderedPlugin(),
+      new GenerateGalleryYearPagesPlugin(),
+      new GenerateGalleryYearsPlugin(),
+      new GenerateNewsItemFilesPlugin(),
+      new GenerateNewsIndexPlugin(),
+      new GenerateNewsMenuPlugin(),
+      new GenerateNewsItemsPagesPlugin(),
+      new GenerateHtmlPagesPlugin(
+        "./.build/site/pages.json",
+        "./src/templates",
+        {
+          site: {
+            sitename: "Gordano Model Flying Club",
+          },
+          partials: partials,
+        },
+      ),
+      new GenerateNewsHtmlPagesPlugin(
+        "./.build/site/newsitems.json",
+        "./src/templates",
+        {
+          site: {
+            sitename: "Gordano Model Flying Club",
+          },
+          partials: partials,
+        },
+      ),
+      new GenerateNewsListPagesPlugin(
+        "./.build/news/newsindex.json",
+        "./src/templates",
+        {
+          site: {
+            sitename: "Gordano Model Flying Club",
+          },
+          partials: partials,
+        },
+      ),
+      new GenerateGalleryYearHtmlPagesPlugin(
+        "./src/database/generated/years.json",
+        "./src/templates",
+        {
+          site: {
+            sitename: "Gordano Model Flying Club",
+          },
+          partials: partials,
+        },
+      ),
+      new GenerateSitemapPlugin(),
+      new GenerateCalendarIcsPlugin(),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: "src/database/pages/*",
+            to: "data/pages/[name][ext]",
+            globOptions: {
+              ignore: [],
+            },
+          },
+
+          { from: "src/rootdir/favicon.ico", to: "." },
+          { from: "src/rootdir/site.webmanifest", to: "." },
+          { from: ".build/site/sitemap.xml", to: "." },
+          { from: ".build/site/calendar.ics", to: "." },
+          { from: "src/rootdir/robots.txt", to: "." },
+          { from: "src/database/media/*.json", to: "data/media/[name][ext]" },
+          {
+            from: "src/database/pages/club/*.json",
+            to: "data/pages/club/[name][ext]",
+          },
+          {
+            from: "src/database/pages/club/member/*.json",
+            to: "data/pages/club/member/[name][ext]",
+          },
+          {
+            from: "src/database/generated/selling/*.json",
+            to: "data/selling/[name][ext]",
+          },
+          {
+            from: "src/database/site/calendarevents.json",
+            to: "data/site/calendarevents.json",
+          },
+          {
+            from: ".build/lapmonitor/*.json",
+            to: "data/lapmonitor/[name][ext]",
+          },
+          //{ from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
+        ],
+      }),
+      new MiniCssExtractPlugin({
+        filename: "styles/[name].css", // output CSS file name
+      }),
     ],
-  },
+    resolve: {
+      alias: {
+        "@components": path.resolve(__dirname, "src/js/components"),
+        "@framework": path.resolve(__dirname, "src/js/framework"),
+        "@data": path.resolve(__dirname, "src/database"),
+        "@lapmonitor": path.resolve(__dirname, "src/lapmonitor"),
+        //"@jdbpages": path.resolve(__dirname, "src/data/pages"),
+        //"@siteliveurl": "https://www.gmfc.uk/",
+      },
+      extensions: [".ts", ".js", ".json"], // optional, helps omit extensions
+    },
+    optimization: {
+      minimize: isProduction,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            format: {
+              comments: false, // Remove all comments
+            },
+            compress: {
+              drop_console: true,
+            },
+          },
+        }),
+      ],
+      splitChunks: {
+        chunks: "all",
+        cacheGroups: {
+          framework: {
+            test: /[\\/]src[\\/]js[\\/]framework[\\/]/,
+            name: "framework",
+            chunks: "all",
+            enforce: true,
+          },
+
+          components: {
+            test: /[\\/]src[\\/]js[\\/]components[\\/]/,
+            name: "components",
+            chunks: "all",
+            enforce: true,
+          },
+        },
+      },
+    },
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          use: "ts-loader",
+          exclude: /node_modules/,
+        },
+        {
+          mimetype: "image/svg+xml",
+          scheme: "data",
+          type: "asset/resource",
+          generator: {
+            filename: "icons/[hash].svg",
+          },
+        },
+        {
+          test: /\.scss$/i,
+          use: [
+            MiniCssExtractPlugin.loader, // extract CSS to separate file
+            "css-loader", // translates CSS into CommonJS
+            "postcss-loader", // optional, for autoprefixing
+            {
+              loader: "sass-loader", // compiles SCSS to CSS
+              options: {
+                sassOptions: {
+                  quietDeps: true, // <- hides warnings from dependencies like Bootstrap
+                },
+              },
+            },
+          ],
+        },
+      ],
+    },
+  };
 };

@@ -7,7 +7,7 @@
     "start": "webpack serve",
     "build": "webpack build --mode=production",
     "test": "webpack build --mode=production && node --test",
-    "build-lapmonitor-file":"node ./utils/lapmonitor/lapmonitor.js"
+    "build-lapmonitor-file": "node ./utils/lapmonitor/lapmonitor.js"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,8 @@
     "webpack": "^5.107.2",
     "webpack-cli": "^7.0.3",
     "webpack-dev-server": "^5.2.5",
-    "copy-webpack-plugin": "^13.0.1"
+    "copy-webpack-plugin": "^13.0.1",
+    "terser-webpack-plugin": "5.3.16"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
