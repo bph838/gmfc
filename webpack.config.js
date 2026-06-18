@@ -134,6 +134,7 @@ module.exports = {
           to: "data/selling/[name][ext]",
         },
         { from: "src/database/site/calendarevents.json", to: "data/site/calendarevents.json" },
+        { from: ".build/lapmonitor/*.json", to: "data/lapmonitor/[name][ext]" },
         //{ from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
       ],
     }),

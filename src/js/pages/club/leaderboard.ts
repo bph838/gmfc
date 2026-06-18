@@ -105,7 +105,7 @@ function renderDriverLaps(driverInformation: { name: any; uuid: any }) {
   );
   const ctx = createCanvas(divDLapGraph, "driverlapgraph");
 
-  let url = `/data/drivers/${driverInformation.uuid}.json`;
+  let url = `/data/lapmonitor/${driverInformation.uuid}.json`;
   fetchJson(url).then((data) => {
     if (data) {
       console.log("Processing laps: ");

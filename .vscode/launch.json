@@ -10,6 +10,13 @@
       "sourceMapPathOverrides": {
         "webpack://gmfc/./*": "${webRoot}/*"
       }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug lapmonitor.js",
+      "program": "${workspaceFolder}/utils/lapmonitor/lapmonitor.js",
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }
