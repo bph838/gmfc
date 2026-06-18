@@ -5,14 +5,13 @@ import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 
 import data from "@data/pages/club/weather.json";
 import daylight from "@data/daylight/daylight.json";
-import menu from "@data/generated/menu.json";
 
 console.log("Club Weather page loaded");
-setupMenuCommands("page-clubweather",menu);
+setupMenuCommands("page-clubweather");
 renderClubWeather(data);
 renderFinish();
 
-function renderClubWeather(data) {
+function renderClubWeather(data: { content: any; }) {
   console.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
@@ -26,7 +25,7 @@ function renderClubWeather(data) {
   );
 
   if (data.content.sections) {
-    data.content.sections.forEach((section) => {
+    data.content.sections.forEach((section: { title: any; }) => {
       console.log("Rendering weather section:", section.title);
       renderSection(sectionsdiv, section, "", "", daylight);
     });

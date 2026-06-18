@@ -183,7 +183,7 @@
       "url": "/club/weather",
       "jdb": "@jdbpages/club/weather.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubweather.ts"
+      "entry": "@pages/club/weather.ts"
     },
     {
       "title": "Gordano Model Flying Club | Wildlife",
