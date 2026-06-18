@@ -150,6 +150,12 @@ export function renderHero(
   hero.style.display = "block";
 }
 
+export function setHeroText(heroText: string) {
+  const ch1 = document.getElementById("container-h1");
+  const title = ch1?.getElementsByTagName("h1")[0];
+  if (title) title.textContent = heroText;
+}
+
 function getImageForHero(herotype: string) {
   let imageurl = "";
   switch (herotype) {

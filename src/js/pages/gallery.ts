@@ -1,5 +1,5 @@
 import { setupMenuCommands } from "@components/menu";
-import { renderHero } from "@components/hero";
+import { renderHero, setHeroText } from "@components/hero";
 import {
   createDiv,
   fetchContextArea,
@@ -16,17 +16,54 @@ import {
   getAreVideosIncluded,
 } from "@components/gallery";
 
-
-//import galleryYears from "@data/generated/media/years.json";
-
-let galleryYears:any= null;
-
-const urls = ["/data/media/gallery_data.json", "/data/media/video_data.json"];
-
-const externalPath = data.externalPath || "";
-
 setupMenuCommands("page-gallery");
 render(data);
+
+function render(data: any) {
+  const path = window.location.pathname; // e.g. "/gallery/2026/" or "/gallery/2026/index.html"
+  const match = path.match(/^\/gallery\/(\d{4})\/?/);
+  const year = match ? Number(match[1]) : null; // null on the plain /gallery/ index
+
+  //If there is a hero image render it
+  if (data.content.hero) renderHero(data.content.hero);
+ 
+  if (!year) {
+    renderFullYearPicker();
+  } else {
+    setHeroText(String(year));
+    renderYearGallery(year);
+  }
+}
+
+function renderFullYearPicker() {
+  renderFinish();
+}
+
+function renderYearGallery(year: Number) {
+  const dataUrl = `/gallery/${year}/gallery_year.json`;
+
+  const contentarea = fetchContextArea(data);
+  if (!contentarea) return;
+
+  const sections = createDiv(contentarea, "sections", "gallery_section_holder");
+
+  (async () => {
+    try {
+      const items = await loadMergedJson(
+        [dataUrl],
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+      );
+
+      setGalleryData(items, data.externalPath);
+      renderGallery(sections, "gallery_all");
+      renderFinish();
+    } catch (err) {
+      console.error(err);
+    }
+  })();
+}
+
+/*
 
 function render(data: any) {
   console.log("Rendering Gallery");
@@ -52,10 +89,7 @@ function render(data: any) {
       );
 
       console.log(`Gallery Items: ${items.length}`);
-      setGalleryData(items, externalPath);
-      /*(if (getAreVideosIncluded()) {
-        createGalleryFilter(gallery_container);
-      }*/
+      setGalleryData(items, externalPath);     
       //display years
       renderYearPicker(gallery_container);
 
@@ -71,7 +105,8 @@ function render(data: any) {
     }
   })();
 }
-
+*/
+/*
 function createGalleryFilter(parent: HTMLElement) {
   const filterDiv = createDiv(
     parent,
@@ -127,7 +162,9 @@ function createGalleryFilter(parent: HTMLElement) {
 
   return filterDiv;
 }
+  */
 
+/*
 function renderYearPicker(parent: HTMLElement) {
   const holder = createDiv(parent, "gallery_section_year_picker");
 
@@ -149,11 +186,11 @@ function renderYearPicker(parent: HTMLElement) {
     createSpan(menu, "tile-dot");
     const icon = document.createElement("i");
     icon.classList.add("fa-solid");
-    /*if (item.icon) {
-      icon.classList.add(item.icon);
-    }*/
+    //if (item.icon) {
+    //  icon.classList.add(item.icon);
+    //}
     icon.classList.add("tile-icon");
     menu.appendChild(icon);
     createSpan(menu, "tile-label", String(year));
   });
-}
+}*/
