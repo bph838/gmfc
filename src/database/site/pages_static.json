@@ -59,6 +59,15 @@
       "datetype": "filemodified",
       "entry": "@pages/gallery.ts"
     },
+      {
+      "title": "Gordano Model Flying Club | 404",
+      "page": "/404.html",
+      "template": "main.html",
+      "url": "/404",
+      "jdb": "@jdbpages/404.json",
+      "datetype": "filemodified",
+      "entry": "@pages/404.ts"
+    },
     {
       "title": "Gordano Model Flying Club | About Us",
       "page": "/aboutus.html",

@@ -33,8 +33,8 @@ module.exports = (env, argv) => {
   console.log(`Is Production  ${isProduction}`);
 
   return {
-    mode: "development",
-    devtool: "eval-source-map",
+    mode: isProduction ? "production" : "development",
+    devtool: isProduction ? "source-map" : "eval-source-map",
     // Per-page entries (e.g. "index", "calendar") are added dynamically by
     // GenerateHtmlPagesPlugin from .build/site/pages.json's "chunks" field.
     entry: { styles: "./src/scss/styles.scss" },
@@ -171,6 +171,7 @@ module.exports = (env, argv) => {
       extensions: [".ts", ".js", ".json"], // optional, helps omit extensions
     },
     optimization: {
+      runtimeChunk: "single",
       minimize: isProduction,
       minimizer: [
         new TerserPlugin({
@@ -197,6 +198,13 @@ module.exports = (env, argv) => {
           components: {
             test: /[\\/]src[\\/]js[\\/]components[\\/]/,
             name: "components",
+            chunks: "all",
+            enforce: true,
+          },
+
+          gallery3d: {
+            test: /[\\/]node_modules[\\/]3dgallery[\\/]/,
+            name: "vendor-3dgallery",
             chunks: "all",
             enforce: true,
           },
