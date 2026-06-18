@@ -7,7 +7,8 @@
     "start": "webpack serve",
     "build": "webpack build --mode=production",
     "test": "webpack build --mode=production && node --test",
-    "build-lapmonitor-file": "node ./utils/lapmonitor/lapmonitor.js"
+    "build-lapmonitor-file": "node ./utils/lapmonitor/lapmonitor.js",
+    "deploy": "wrangler deploy"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/bootstrap": "^5.2.11",
     "autoprefixer": "^10.5.0",
+    "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^7.1.4",
     "html-webpack-plugin": "^5.6.7",
     "mini-css-extract-plugin": "^2.10.2",
@@ -30,18 +32,18 @@
     "sass": "^1.101.0",
     "sass-loader": "^17.0.0",
     "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "5.3.16",
     "ts-loader": "^9.6.1",
     "typescript": "^6.0.3",
     "webpack": "^5.107.2",
     "webpack-cli": "^7.0.3",
     "webpack-dev-server": "^5.2.5",
-    "copy-webpack-plugin": "^13.0.1",
-    "terser-webpack-plugin": "5.3.16"
+    "wrangler": "^4.102.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.8",
     "3dgallery": "github:bph838/3dGallery#main",
+    "bootstrap": "^5.3.8",
     "jquery": "^3.7.1",
     "photoswipe": "^5.4.4"
   }
