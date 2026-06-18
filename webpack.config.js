@@ -8,6 +8,7 @@ const ProcessWebsiteStaticPages = require("./webpack/ProcessWebsiteStaticPages")
 const GenerateHtmlPagesPlugin = require("./webpack/GenerateHtmlPagesPlugin");
 const ProcessNewsHashAndIndex = require("./webpack/ProcessNewsHashAndIndex");
 const GenerateNewsItemFilesPlugin = require("./webpack/GenerateNewsItemFilesPlugin");
+const JsonHashCopyPlugin = require("./webpack/JsonHashCopyPlugin");
 const GenerateNewsIndexPlugin = require("./webpack/GenerateNewsIndexPlugin");
 const GenerateNewsMenuPlugin = require("./webpack/GenerateNewsMenuPlugin");
 const GenerateNewsItemsPagesPlugin = require("./webpack/GenerateNewsItemsPagesPlugin");
@@ -56,6 +57,7 @@ module.exports = {
     new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
     new GenerateAlertsPlugin(),
     new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
+    new JsonHashCopyPlugin(),
     new GenerateGalleryOrderedPlugin(),
     new GenerateGalleryYearPagesPlugin(),
     new GenerateGalleryYearsPlugin(),
@@ -63,16 +65,12 @@ module.exports = {
     new GenerateNewsIndexPlugin(),
     new GenerateNewsMenuPlugin(),
     new GenerateNewsItemsPagesPlugin(),
-    new GenerateHtmlPagesPlugin(
-      "./.build/site/pages.json",
-      "./src/templates",
-      {
-        site: {
-          sitename: "Gordano Model Flying Club",
-        },
-        partials: partials,
+    new GenerateHtmlPagesPlugin("./.build/site/pages.json", "./src/templates", {
+      site: {
+        sitename: "Gordano Model Flying Club",
       },
-    ),
+      partials: partials,
+    }),
     new GenerateNewsHtmlPagesPlugin(
       "./.build/site/newsitems.json",
       "./src/templates",
@@ -118,8 +116,15 @@ module.exports = {
         // { from: "src/rootdir/sitemap.xml", to: "." },
         { from: "src/rootdir/robots.txt", to: "." },
         { from: "src/database/media/*.json", to: "data/media/[name][ext]" },
-        { from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
-        { from: "src/database/pages/club/member/*.json", to: "data/pages/club/member/[name][ext]" },
+        {
+          from: "src/database/pages/club/*.json",
+          to: "data/pages/club/[name][ext]",
+        },
+        {
+          from: "src/database/pages/club/member/*.json",
+          to: "data/pages/club/member/[name][ext]",
+        },
+        { from: "src/database/generated/selling/*.json", to: "data/selling/[name][ext]" },
         //{ from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
       ],
     }),
