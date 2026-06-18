@@ -152,6 +152,10 @@ module.exports = (env, argv) => {
             from: ".build/lapmonitor/*.json",
             to: "data/lapmonitor/[name][ext]",
           },
+          {
+            from: "src/database/daylight/*.json",
+            to: "data/daylight/[name][ext]",
+          },
           //{ from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
         ],
       }),

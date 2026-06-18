@@ -135,7 +135,7 @@ export async function getDaylight() {
   }
 
   // Fetch fresh data
-  const url = `/data/daylight/daylight.json`;
+  const url = `/data/daylight/daylight.json`; 
   console.log(`Fetching day light data: ${url}`);
 
   const response = await fetch(url).catch((err) => {
