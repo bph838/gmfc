@@ -14,6 +14,8 @@ const GenerateNewsItemsPagesPlugin = require("./webpack/GenerateNewsItemsPagesPl
 const GenerateNewsHtmlPagesPlugin = require("./webpack/GenerateNewsHtmlPagesPlugin");
 const GenerateNewsListPagesPlugin = require("./webpack/GenerateNewsListPagesPlugin");
 const GenerateGalleryOrderedPlugin = require("./webpack/GenerateGalleryOrderedPlugin");
+const GenerateGalleryYearPagesPlugin = require("./webpack/GenerateGalleryYearPagesPlugin");
+const GenerateGalleryYearsPlugin = require("./webpack/GenerateGalleryYearsPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -52,6 +54,8 @@ module.exports = {
     new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
     new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),
     new GenerateGalleryOrderedPlugin(),
+    new GenerateGalleryYearPagesPlugin(),
+    new GenerateGalleryYearsPlugin(),
     new GenerateNewsItemFilesPlugin(),
     new GenerateNewsIndexPlugin(),
     new GenerateNewsMenuPlugin(),
