@@ -25,30 +25,30 @@
 
         "merch": [
           {
-            "picture": "\\images\\merch\\T-Shirt-210x300.png",
-            "desc": "\\images\\merch\\T-Shirt-Details-300x172.png"
+            "picture": "https://siteimages.gmfc.uk/merch/T-Shirt-210x300.png",
+            "desc": "https://siteimages.gmfc.uk/merch/T-Shirt-Details-300x172.png"
           },
           {
-            "picture": "\\images\\merch\\polo-top-213x300.png",
-            "desc": "\\images\\merch\\Polo-Top-Details-300x168.png"
+            "picture": "https://siteimages.gmfc.uk/merch/polo-top-213x300.png",
+            "desc": "https://siteimages.gmfc.uk/merch/Polo-Top-Details-300x168.png"
           },
           {
-            "picture": "\\images\\merch\\Soft-Shell-Jacket-209x300.png",
-            "desc": "\\images\\merch\\Soft-Shell-Details-269x300.png"
+            "picture": "https://siteimages.gmfc.uk/merch/Soft-Shell-Jacket-209x300.png",
+            "desc": "https://siteimages.gmfc.uk/merch/Soft-Shell-Details-269x300.png"
           },
           {
-            "picture": "\\images\\merch\\Hoodie-210x300.png",
-            "desc": "\\images\\merch\\Hoodie-Details-300x231.png"
+            "picture": "https://siteimages.gmfc.uk/merch/Hoodie-210x300.png",
+            "desc": "https://siteimages.gmfc.uk/merch/Hoodie-Details-300x231.png"
           },
           {
-            "picture": "\\images\\merch\\Fleece-Jacket-207x300.png",
-            "desc": "\\images\\merch\\Fleece-Details-300x240.png"
+            "picture": "https://siteimages.gmfc.uk/merch/Fleece-Jacket-207x300.png",
+            "desc": "https://siteimages.gmfc.uk/merch/Fleece-Details-300x240.png"
           },
           {
-            "picture": "\\images\\merch\\Cap-225x300.png",
-            "desc": "\\images\\merch\\Cap-Details-300x167.png"
+            "picture": "https://siteimages.gmfc.uk/merch/Cap-225x300.png",
+            "desc": "https://siteimages.gmfc.uk/merch/Cap-Details-300x167.png"
           },
-          { "picture": "\\images\\merch\\Cup-207x300.jpg", "desc": "" }
+          { "picture": "https://siteimages.gmfc.uk/merch/Cup-207x300.jpg"}
         ]
       }
     ]

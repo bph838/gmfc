@@ -84,7 +84,7 @@
       "url": "/club/rules",
       "jdb": "@jdbpages/club/rules.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubrules.ts"
+      "entry": "@pages/club/rules.ts"
     },
     {
       "title": "Gordano Model Flying Club | Rules",
@@ -93,7 +93,7 @@
       "url": "/club/rules",
       "jdb": "@jdbpages/club/rules.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubrules.ts"
+      "entry": "@pages/club/rules.ts"
     },
     {
       "title": "Gordano Model Flying Club | Flying Guide",
@@ -102,7 +102,7 @@
       "url": "/club/rules/flyingguide",
       "jdb": "@jdbpages/club/rules/flyingguide.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubrulesflyingguide.ts"
+      "entry": "@pages/club/rules/flyingguide.ts"
     },
     {
       "title": "Gordano Model Flying Club  | Flying Rules",
@@ -111,7 +111,7 @@
       "url": "/club/rules/flying",
       "jdb": "@jdbpages/club/rules/flying.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubrulesflying.ts"
+      "entry": "@pages/club/rules/flying.ts"
     },
     {
       "title": "Gordano Model Flying Club | Rules | Disciplinary Procedure",
@@ -120,7 +120,7 @@
       "url": "/club/rules/disciplinaryprocedure",
       "jdb": "@jdbpages/club/rules/disciplinaryprocedure.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubrulesdisciplinaryprocedure.ts"
+      "entry": "@pages/club/rules/disciplinaryprocedure.ts"
     },
     {
       "title": "Gordano Model Flying Club | Merchandise",
@@ -129,7 +129,7 @@
       "url": "/club/merch",
       "jdb": "@jdbpages/club/merch.json",
       "datetype": "filemodified",
-      "entry": "@pages/clubmerch.ts"
+      "entry": "@pages/club/merch.ts"
     },
     {
       "title": "Gordano Model Flying Club | Member",

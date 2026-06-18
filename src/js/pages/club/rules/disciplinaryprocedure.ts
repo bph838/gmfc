@@ -1,22 +1,16 @@
 import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
-import {
-  createDiv,
-  fetchContextArea,
-  renderFinish,
- 
-} from "@framework/dom";
-import { renderRulesBreadcrumb } from "../rules.js";
+import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
+import { renderRulesBreadcrumb } from "./breadcrumb";
 
-import data from "@data/pages/club/rules/flying.json";
-import menu from "@data/generated/menu.json";
+import data from "@data/pages/club/rules/disciplinaryprocedure.json";
 
-setupMenuCommands("page-clubrules", menu);
+setupMenuCommands("page-clubrules");
 renderClubRules(data);
 renderFinish();
 
-function renderClubRules(data) {
+function renderClubRules(data: { content: any; }) {
   console.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
@@ -28,10 +22,9 @@ function renderClubRules(data) {
   const sectionsdiv = createDiv(contentarea, "sections");
 
   if (data.content.sections) {
-    data.content.sections.forEach((section) => {
+    data.content.sections.forEach((section: any) => {
       console.log(section);
       renderSection(sectionsdiv, section);
     });
   }
 }
-

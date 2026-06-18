@@ -107,7 +107,7 @@ module.exports = {
       patterns: [
         {
           from: "src/database/pages/*",
-          to: "data/[name][ext]",
+          to: "data/pages/[name][ext]",
           globOptions: {
             ignore: [],
           },
@@ -118,6 +118,8 @@ module.exports = {
         // { from: "src/rootdir/sitemap.xml", to: "." },
         { from: "src/rootdir/robots.txt", to: "." },
         { from: "src/database/media/*.json", to: "data/media/[name][ext]" },
+        { from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
+        //{ from: "src/database/pages/club/*.json", to: "data/pages/club/[name][ext]" },
       ],
     }),
     new MiniCssExtractPlugin({

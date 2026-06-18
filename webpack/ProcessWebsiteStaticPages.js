@@ -6,7 +6,7 @@ const fs = require("fs");
 const PLUGIN_NAME = "CombinedMetaPlugin";
 const JDBPAGES_ALIAS = "@jdbpages";
 const JDBPAGES_DIR = "src/database/pages";
-const JDBPAGES_PUBLIC_PATH = "/data";
+const JDBPAGES_PUBLIC_PATH = "/data/pages";
 
 function dedupe(values) {
   return [...new Set(values)];

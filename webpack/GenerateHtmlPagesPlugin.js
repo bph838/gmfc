@@ -26,7 +26,7 @@ class GenerateHtmlPagesPlugin {
   constructor(
     pagesJsonFile = "./.build/site/pages.json",
     templatesDir = "./src/templates",
-    { site = {}, partials = {}, pagesDir = "./src/js/pages" } = {}
+    { site = {}, partials = {}, pagesDir = "./src/js/pages" } = {},
   ) {
     this.pagesJsonFile = pagesJsonFile;
     this.templatesDir = templatesDir;
@@ -44,7 +44,12 @@ class GenerateHtmlPagesPlugin {
     const run = () => {
       if (applied) return;
       applied = true;
-      this.generatePages(compiler, absPagesJsonFile, absTemplatesDir, absPagesDir);
+      this.generatePages(
+        compiler,
+        absPagesJsonFile,
+        absTemplatesDir,
+        absPagesDir,
+      );
     };
 
     compiler.hooks.beforeRun.tap(PLUGIN_NAME, run);
@@ -57,7 +62,9 @@ class GenerateHtmlPagesPlugin {
   }
 
   generatePages(compiler, absPagesJsonFile, absTemplatesDir, absPagesDir) {
-    const { pages = [] } = JSON.parse(fs.readFileSync(absPagesJsonFile, "utf8"));
+    const { pages = [] } = JSON.parse(
+      fs.readFileSync(absPagesJsonFile, "utf8"),
+    );
 
     const warn = (message) => {
       compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
@@ -78,9 +85,14 @@ class GenerateHtmlPagesPlugin {
           registeredChunks.add(chunkName);
 
           if (fs.existsSync(entryPath)) {
-            new EntryPlugin(compiler.context, entryPath, chunkName).apply(compiler);
+            new EntryPlugin(compiler.context, entryPath, chunkName).apply(
+              compiler,
+            );
           } else {
             //warn(`${PLUGIN_NAME}: no entry script for "${page.url}" (expected ${entryPath})`);
+            console.log(
+              `${PLUGIN_NAME}: no entry script for "${page.url}" (expected ${entryPath})`,
+            );
             continue;
           }
         }
@@ -88,7 +100,9 @@ class GenerateHtmlPagesPlugin {
 
       const templatePath = path.join(absTemplatesDir, page.template);
       if (!fs.existsSync(templatePath)) {
-        warn(`${PLUGIN_NAME}: skipping "${page.url}" - template not found: ${templatePath}`);
+        warn(
+          `${PLUGIN_NAME}: skipping "${page.url}" - template not found: ${templatePath}`,
+        );
         continue;
       }
 
