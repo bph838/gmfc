@@ -28,3 +28,40 @@
     justify-content: flex-start;
   }
 }
+
+// Sliding underline on hover, shared by top-level nav links and
+// dropdown-menu items.
+@mixin sliding-underline($bottom: 0.1rem, $inset: 0) {
+  position: relative;
+
+  // ::before (not ::after) since Bootstrap draws the dropdown-toggle
+  // caret using ::after on this same element.
+  &::before {
+    content: "";
+    position: absolute;
+    left: $inset;
+    right: $inset;
+    bottom: $bottom;
+    width: auto;
+    height: 2px;
+    background-color: red;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+// Top-level nav links, including dropdown-toggle items (News, Gallery,
+// Club Links).
+.navbar-nav > .nav-item > .nav-link {
+  @include sliding-underline;
+}
+
+// Items inside an open dropdown-menu (History, Rules, Membership, etc.).
+.dropdown-menu > li > .dropdown-item {
+  @include sliding-underline(0, 5px);
+}
