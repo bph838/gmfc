@@ -67,7 +67,7 @@ class ProcessNewsPlugin {
       hash: hashNewsItem(item),
     }));
 
-    const index = hashed.map(({ title, date, hash,showhide }) => {
+    const index = hashed.map(({ title, date, hash, showhide, image, click_image }) => {
       const d = new Date(date);
       const year = d.getUTCFullYear();
       const month = String(d.getUTCMonth() + 1).padStart(2, "0");
@@ -77,6 +77,7 @@ class ProcessNewsPlugin {
         date,
         hash,
         showhide,
+        image: image ?? click_image?.image,
         url: `/news/${year}/${month}/${sanitizeTitle(title)}`,
         jsondata:`/news/${year}/${month}/${hash}.json`,
       };

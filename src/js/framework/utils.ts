@@ -20,7 +20,10 @@ const monthNamesLong = [
   "December",
 ];
 
-export function loadScript(url: string, callback: ((this: GlobalEventHandlers, ev: Event) => any) | null) {
+export function loadScript(
+  url: string,
+  callback: ((this: GlobalEventHandlers, ev: Event) => any) | null,
+) {
   // Create a new script element
   const script = document.createElement("script");
   script.src = url;
@@ -56,7 +59,10 @@ export async function fetchJson(url: RequestInfo | URL) {
   }
 }
 
-export async function loadMergedJson(urls: any[], sortFn: ((a: any, b: any) => number) | undefined) {
+export async function loadMergedJson(
+  urls: any[],
+  sortFn: ((a: any, b: any) => number) | undefined,
+) {
   // run requests in parallel
   const results = await Promise.allSettled(urls.map(fetchJson));
 
@@ -118,18 +124,23 @@ export function setPageTitle(titleText: string) {
   meta.setAttribute("content", titleText);
 }
 
-export function initMapFrame(data: { latitude: number; longitude: number; display: string; zoom: number; }) {
+export function initMapFrame(data: {
+  latitude: number;
+  longitude: number;
+  display: string;
+  zoom: number;
+}) {
   let latitude = data.latitude || 0;
   let longitude = data.longitude || 0;
-  let display  = data.display || "";
+  let display = data.display || "";
   let zoom = data.zoom || 14;
   display = display.toLowerCase();
-  switch(display){
+  switch (display) {
     case "satellite":
-      display="h"; //Hybrid (satellite + labels)
+      display = "h"; //Hybrid (satellite + labels)
       break;
     default:
-      display="m"; //standard map
+      display = "m"; //standard map
       break;
   }
 
@@ -150,7 +161,18 @@ export function initMapFrame(data: { latitude: number; longitude: number; displa
   </iframe>`;
 }
 
-export function formatDate(date: { getDate: () => any; getMonth: () => string | number; getFullYear: () => any; getHours: () => any; getMinutes: () => number; getSeconds: () => any; }, longMonth = false,incSeconds=false) {
+export function formatDate(
+  date: {
+    getDate: () => any;
+    getMonth: () => string | number;
+    getFullYear: () => any;
+    getHours: () => any;
+    getMinutes: () => number;
+    getSeconds: () => any;
+  },
+  longMonth = false,
+  incSeconds = false,
+) {
   if (!(date instanceof Date)) return "";
 
   const day = date.getDate();
@@ -198,8 +220,7 @@ export function formatDate(date: { getDate: () => any; getMonth: () => string | 
     result = `${ordinal(day)} ${month} ${year}`;
   else {
     result = `${ordinal(day)} ${month} ${year} ${hour}:${min}`;
-    if(incSeconds)
-      result+=`:${sec}`;
+    if (incSeconds) result += `:${sec}`;
   }
 
   return result;
@@ -212,12 +233,13 @@ export function formatLaptime(secs: number) {
 }
 
 export function setSiteImage(url: string) {
-  setMeta("og:image", url);
+  if (url.length > 0) {
+    setMeta("og:image", url);
+  }
 }
 export function setSiteTitle(title: string) {
   setMeta("og:title", title);
 }
-
 
 export function isAbsoluteUrl(url: string | URL) {
   try {
@@ -229,7 +251,6 @@ export function isAbsoluteUrl(url: string | URL) {
 }
 
 export function createCopy(className: string) {
-  
   document.querySelectorAll<HTMLElement>(className).forEach((el) => {
     console.log(el.textContent);
 
@@ -258,7 +279,9 @@ export function createCopy(className: string) {
   });
 }
 
-export function shakeContainer(container: { classList: { add: (arg0: string) => void; remove: (arg0: string) => void; }; }) {
+export function shakeContainer(container: {
+  classList: { add: (arg0: string) => void; remove: (arg0: string) => void };
+}) {
   container.classList.add("shake");
 
   setTimeout(() => {
@@ -292,7 +315,7 @@ export function getDayOfYearUTC(input: string | number | Date) {
 
 export function getLongMonthName(month: any) {
   let m = Number(month);
-  if (m > 0 && m < 13) return monthNamesLong[m-1];
+  if (m > 0 && m < 13) return monthNamesLong[m - 1];
   return "Unknown";
 }
 
@@ -307,8 +330,8 @@ export function isBritishSummerTime(date = new Date()) {
     return new Date(Date.UTC(year, month, lastSunday, 1, 0, 0)); // 1:00 UTC switch time
   }
 
-  const bstStart = getLastSunday(2);  // March
-  const bstEnd = getLastSunday(9);    // October
+  const bstStart = getLastSunday(2); // March
+  const bstEnd = getLastSunday(9); // October
 
   return date >= bstStart && date < bstEnd;
 }

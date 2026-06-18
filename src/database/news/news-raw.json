@@ -6,6 +6,7 @@
     "imagesticker": "cancelled",
     "showhide": false,
     "image": "https://siteimages.gmfc.uk/news/helpneededtea.png",
+
     "items": [
       {
         "itemtype": "text",
@@ -34,6 +35,7 @@
     "date": "2026-01-05",
     "type": "wrappedTextLeft",
     "image": "https://siteimages.gmfc.uk/news/stand.jpg",
+
     "items": [
       {
         "itemtype": "text",
@@ -51,6 +53,7 @@
     "date": "2026-01-05",
     "type": "wrappedTextLeft",
     "image": "https://siteimages.gmfc.uk/news/stand.jpg",
+
     "items": [
       {
         "itemtype": "text",
@@ -68,6 +71,7 @@
     "date": "2025-01-01",
     "type": "wrappedTextLeft",
     "image": "https://siteimages.gmfc.uk/news/caa.jpg",
+
     "items": [
       {
         "itemtype": "text",
@@ -88,6 +92,7 @@
     "date": "2025-01-01",
     "type": "wrappedTextLeft",
     "image": "https://siteimages.gmfc.uk/news/clubnews.jpg",
+
     "items": [
       {
         "itemtype": "text",
@@ -105,6 +110,7 @@
     "date": "2026-02-25",
     "type": "wrappedTextLeft",
     "image": "https://siteimages.gmfc.uk/news/newfence.jpg",
+
     "items": [
       {
         "itemtype": "text",
@@ -142,8 +148,8 @@
   {
     "title": "Friends & Family Day 2026",
     "date": "2026-05-02",
-    "type": "wraptextleftclicksize",    
-    "showhide":true,
+    "type": "wraptextleftclicksize",
+    "showhide": true,
     "click_image": {
       "thumbnail": "https://siteimages.gmfc.uk/news/friendsandfamily-2026-tn.png",
       "image": "https://siteimages.gmfc.uk/news/friendsandfamily-2026.png",
