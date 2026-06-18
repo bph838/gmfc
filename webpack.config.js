@@ -16,6 +16,7 @@ const GenerateNewsListPagesPlugin = require("./webpack/GenerateNewsListPagesPlug
 const GenerateGalleryOrderedPlugin = require("./webpack/GenerateGalleryOrderedPlugin");
 const GenerateGalleryYearPagesPlugin = require("./webpack/GenerateGalleryYearPagesPlugin");
 const GenerateGalleryYearsPlugin = require("./webpack/GenerateGalleryYearsPlugin");
+const GenerateGalleryYearHtmlPagesPlugin = require("./webpack/GenerateGalleryYearHtmlPagesPlugin");
 const loadPartials = require("./webpack/load-partials");
 
 const partials = loadPartials();
@@ -82,6 +83,16 @@ module.exports = {
     ),
     new GenerateNewsListPagesPlugin(
       "./.build/news/newsindex.json",
+      "./src/templates",
+      {
+        site: {
+          sitename: "Gordano Model Flying Club",
+        },
+        partials: partials,
+      },
+    ),
+    new GenerateGalleryYearHtmlPagesPlugin(
+      "./src/database/generated/years.json",
       "./src/templates",
       {
         site: {

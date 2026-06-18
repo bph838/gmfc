@@ -18,15 +18,14 @@ import {
 
 
 //import galleryYears from "@data/generated/media/years.json";
-//import menu from "@data/generated/menu.json";
-let menu:any = null;
+
 let galleryYears:any= null;
 
 const urls = ["/data/media/gallery_data.json", "/data/media/video_data.json"];
 
 const externalPath = data.externalPath || "";
 
-setupMenuCommands("page-gallery", menu);
+setupMenuCommands("page-gallery");
 render(data);
 
 function render(data: any) {

@@ -20,11 +20,10 @@ import {
 import { SITE_TITLE, SITE_ADDRESS } from "@components/constants";
 
 import data from "@data/pages/news.json";
-import menu from "@data/generated/menu.json";
 
 const newsItemUrl = "news";
 
-setupMenuCommands("page-news", menu);
+setupMenuCommands("page-news");
 console.log("Rending news");
 renderNews(data);
 

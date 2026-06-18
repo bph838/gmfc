@@ -5,10 +5,8 @@ import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 import { initMapFrame, createCopy } from "@framework/utils";
 
 import data from "@data/pages/aboutus.json";
-//import menu from "@data/generated/menu.json";
-let menu:any = null;
 
-setupMenuCommands("page-aboutus",menu);
+setupMenuCommands("page-aboutus");
 renderAboutUs(data);
 
 function renderAboutUs(data: { content: any; }) {

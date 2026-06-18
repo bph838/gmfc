@@ -15,10 +15,12 @@ import {
   emptyDiv,
 } from "@framework/dom";
 //import { getLongMonthName, fetchJson } from "@framework/utils";
-import { SITE_TITLE } from "@components/constants";
-//import galleryYears from "@data/generated/media/years.json";
 
-export function setupMenuCommands(activeClass = "page-home", menujson: any[]) {
+import { SITE_TITLE } from "@components/constants";
+import galleryYears from "@data/generated/years.json";
+import menujson from "@data/generated/menu.json";
+
+export function setupMenuCommands(activeClass = "page-home") {
   const navbarCollapseEl = document.querySelector(".navbar-collapse");
   if (!navbarCollapseEl) return;
 
@@ -34,12 +36,12 @@ export function setupMenuCommands(activeClass = "page-home", menujson: any[]) {
 
   initCopyrightYear();
   initMenuName(SITE_TITLE);
-  initMenuNews(menujson);
- // initGalleryYears();
+  initMenuNews();
+  initGalleryYears();
   checkItemsForSale();
 }
 
-function initMenuNews(menujson: any[]) {
+function initMenuNews() {
   if (!menujson) return;
 
   const el = document.getElementById("nav-news-menu");
@@ -70,7 +72,6 @@ function initMenuNews(menujson: any[]) {
   });
 }
 
-/*
 function initGalleryYears() {
   console.log("Gallery Year menu");
   const el = document.getElementById("nav-gallery-menu");
@@ -103,7 +104,6 @@ function initGalleryYears() {
     );
   });
 }
-  */
 
 function checkItemsForSale() {
   let saleUrl = "/data/pages/club/selling/generated/_index.json";

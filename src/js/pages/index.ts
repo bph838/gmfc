@@ -5,9 +5,8 @@ import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 
 import data from "@data/pages/index.json";
-import menu from "@data/generated/menu.json";
 
-setupMenuCommands("page-home", menu);
+setupMenuCommands("page-home");
 renderIndex(data);
 
 function renderIndex(data: { content: { hero: any; sections: any[] } }) {
