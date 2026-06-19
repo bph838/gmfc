@@ -57,11 +57,12 @@ function renderNews(data: any) {
 
     fetchJson(newUrl)
       .then((news_items) => {
-        if (news_items) {
-          news_items.forEach((news_section: any) => {
-            fetchNews(sectionsdiv, news_section, newsItem.year, newsItem.month);
-          });
-        }
+        if (!news_items) return;
+        return Promise.all(
+          news_items.map((news_section: any) =>
+            fetchNews(sectionsdiv, news_section, newsItem.year, newsItem.month),
+          ),
+        );
       })
       .then(() => renderFinish());
   } else {
@@ -70,11 +71,10 @@ function renderNews(data: any) {
     renderNewsBreadline(sectionsdiv, 0, 0, "none");
     fetchJson(newUrl)
       .then((news_items) => {
-        if (news_items) {
-          news_items.forEach((news_section: any) => {
-            fetchNews(sectionsdiv, news_section);
-          });
-        }
+        if (!news_items) return;
+        return Promise.all(
+          news_items.map((news_section: any) => fetchNews(sectionsdiv, news_section)),
+        );
       })
       .then(() => renderFinish());
   }
@@ -90,14 +90,14 @@ function fetchNews(
   console.log(news_section);
   const url = news_section.url;
   const urlJson = news_section.jsondata;
-  if (!urlJson || !url) return;
-  renderNewsItem(parent, urlJson, url);
+  if (!urlJson || !url) return Promise.resolve();
+  return renderNewsItem(parent, urlJson, url);
 }
 
 function renderNewsItem(parent: HTMLElement, urlJson: string, url: string) {
   console.log("Fetching news item: ");
   const newholderdiv = createDiv(parent, "section_generated_news");
-  fetchJson(urlJson).then((news) => {
+  return fetchJson(urlJson).then((news) => {
     console.log("Processing news: ");
     console.log(news);
     let showhide = news.showhide ?? true;
