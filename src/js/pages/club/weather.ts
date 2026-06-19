@@ -11,12 +11,13 @@ setupMenuCommands("page-clubweather");
 renderClubWeather(data);
 renderFinish();
 
-function renderClubWeather(data: { content: any; }) {
+function renderClubWeather(data: { content: any }) {
   console.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
+  if ((window as any).__PRERENDER_INJECTED) return;
 
   const sectionsdiv = createDiv(
     contentarea,
@@ -25,7 +26,7 @@ function renderClubWeather(data: { content: any; }) {
   );
 
   if (data.content.sections) {
-    data.content.sections.forEach((section: { title: any; }) => {
+    data.content.sections.forEach((section: { title: any }) => {
       console.log("Rendering weather section:", section.title);
       renderSection(sectionsdiv, section, "", "", daylight);
     });

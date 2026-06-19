@@ -29,6 +29,7 @@ function renderCalendar(data: {
   console.log("data");
   if (data.content.hero) renderHero(data.content.hero);
 
+  if ((window as any).__PRERENDER_INJECTED) return;
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
 

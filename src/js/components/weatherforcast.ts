@@ -31,6 +31,7 @@ export function fetchAndRenderWeatherForecast(
   data: any,
   daylightData: any[],
 ) {
+
   const latitude = 51.459563;
   const longitude = -2.790968;
   daylight_data = daylightData;

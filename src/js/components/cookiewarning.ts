@@ -13,8 +13,11 @@ const CACHE_KEY_COOKIES = "cookie_ok";
 
 export function cookieWarningFunctionality() {
   //it may be on the screen so delete from prerender
-  const hangingEl = document.getElementById("cookie_warning");
-  if (hangingEl) hangingEl.remove();
+  //const hangingEl = document.getElementById("cookie_warning");
+  //if (hangingEl) hangingEl.remove();
+
+  //don't show the cookie warning while prerendering, real visitors get it on hydration
+  if ((window as any).__PRERENDER_INJECTED) return;
 
   //need to find out if the user has clicked allow
   const cached = localStorage.getItem(CACHE_KEY_COOKIES);
