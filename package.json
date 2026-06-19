@@ -8,7 +8,8 @@
     "build": "webpack build --mode=production",
     "test": "webpack build --mode=production && node --test",
     "build-lapmonitor-file": "node ./utils/lapmonitor/lapmonitor.js",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "prerender":" node ./utils/prerender/prerender.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,8 @@
     "3dgallery": "github:bph838/3dGallery#main",
     "bootstrap": "^5.3.8",
     "jquery": "^3.7.1",
-    "photoswipe": "^5.4.4"
+    "photoswipe": "^5.4.4",
+    "@prerenderer/renderer-puppeteer": "^1.2.4",
+    "@prerenderer/webpack-plugin": "^5.3.10"
   }
 }
