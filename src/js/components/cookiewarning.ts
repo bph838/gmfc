@@ -12,6 +12,10 @@ import {
 const CACHE_KEY_COOKIES = "cookie_ok";
 
 export function cookieWarningFunctionality() {
+  //it may be on the screen so delete from prerender
+  const hangingEl = document.getElementById("cookie_warning");
+  if (hangingEl) hangingEl.remove();
+
   //need to find out if the user has clicked allow
   const cached = localStorage.getItem(CACHE_KEY_COOKIES);
   if (!cached) {
@@ -20,12 +24,16 @@ export function cookieWarningFunctionality() {
 }
 
 function renderCookieWarning() {
-  const cookieWarningText:string =
+  const cookieWarningText: string =
     'This website uses cookies, including Google Analytics, to analyse traffic and improve your experience. By clicking "Accept", you consent to our use of cookies.';
-  const cookie_div = document.createElement("div");
-  cookie_div.className = "cookie_warning";
-  cookie_div.id = "cookie_warning";
-  document.body.appendChild(cookie_div);
+
+  const cookie_div = createDiv(
+    document.body,
+    "cookie_warning",
+    "cookie_warning",
+    "",
+    true,
+  );
 
   createParagraph(cookie_div, cookieWarningText);
   const button_holder = createDiv(cookie_div, "cookie-buttons");

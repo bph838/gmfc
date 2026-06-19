@@ -32,7 +32,10 @@ function renderNews(data: any) {
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
-  const sectionsdiv = createDiv(contentarea, "sections");
+  const news_sections_Id = "news_sections";
+  const elFound = document.getElementById(news_sections_Id);
+  if (elFound) return;
+  const sectionsdiv = createDiv(contentarea, "sections", news_sections_Id);
 
   const newsItem = window.MY_NEWS_ITEM;
 
@@ -45,7 +48,12 @@ function renderNews(data: any) {
     if (newsItem.month && newsItem.month !== "0") breadlineType = "month";
     else if (newsItem.year && newsItem.year !== "0") breadlineType = "year";
     else breadlineType = "none";
-    renderNewsBreadline(sectionsdiv, newsItem.year ?? 0, newsItem.month ?? 0, breadlineType);
+    renderNewsBreadline(
+      sectionsdiv,
+      newsItem.year ?? 0,
+      newsItem.month ?? 0,
+      breadlineType,
+    );
 
     fetchJson(newUrl)
       .then((news_items) => {
