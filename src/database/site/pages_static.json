@@ -23,10 +23,8 @@
       "title": "Gordano Model Flying Club",
       "page": "/index.html",
       "template": "main.html",
-      "keywords": [
-        "RC Model Flying"
-      ],
-      "description": "About flying, ",
+      "keywords": ["RC Model Flying"],
+      "description": "It's all about having fun. ",
       "url": "/",
       "jdb": "@jdbpages/index.json",
       "datetype": "filemodified",
@@ -36,6 +34,8 @@
       "title": "Gordano Model Flying Club | Calendar",
       "page": "/calendar.html",
       "template": "main.html",
+      "keywords": ["Gordano Model Flying Club calendar", "GMFC events"],
+      "description": "View upcoming events, flying days, and club activities on the Gordano Model Flying Club calendar. Stay up to date with everything happening at our flying field in the Gordano Valley.",
       "url": "/calendar",
       "jdb": "@jdbpages/calendar.json",
       "datetype": "filemodified",
@@ -45,6 +45,8 @@
       "title": "Gordano Model Flying Club | News",
       "page": "/news.html",
       "template": "main.html",
+      "keywords": ["Gordano Model Flying Club news", "GMFC news and updates"],
+      "description": "Read the latest news, updates, and announcements from Gordano Model Flying Club. Stay informed on club activities, events, and happenings at our flying field ",
       "url": "/news/",
       "jdb": "@jdbpages/news.json",
       "datetype": "filemodified",
@@ -54,12 +56,14 @@
       "title": "Gordano Model Flying Club | Gallery",
       "page": "/gallery/index.html",
       "template": "main.html",
+      "keywords": ["Gordano Model Flying Club gallery", "GMFC photo gallery"],
+      "description": "Browse photos from Gordano Model Flying Club's 2026 gallery, showcasing members' RC planes, helicopters, and flying days at our field. ",
       "url": "/gallery",
       "jdb": "@jdbpages/gallery/index.json",
       "datetype": "filemodified",
       "entry": "@pages/gallery.ts"
     },
-      {
+    {
       "title": "Gordano Model Flying Club | 404",
       "page": "/404.html",
       "template": "main.html",
@@ -72,6 +76,8 @@
       "title": "Gordano Model Flying Club | About Us",
       "page": "/aboutus.html",
       "template": "main.html",
+      "keywords": ["About Gordano Model Flying Club", "GMFC about us"],
+      "description": "Learn about Gordano Model Flying Club, an RC flying club with its own field in the Gordano Valley between Portishead and Clevedon. Affiliated with the BMFA, members can fly year-round in daylight hours",
       "url": "/aboutus",
       "jdb": "@jdbpages/aboutus.json",
       "datetype": "filemodified",
@@ -81,6 +87,8 @@
       "title": "Gordano Model Flying Club | History",
       "page": "/club/history.html",
       "template": "history.html",
+      "keywords": ["Gordano Model Flying Club history", "GMFC club history"],
+      "description": "Discover the history of Gordano Model Flying Club, from its origins to today. Learn how the club established its flying field in the Gordano Valley between Portishead and Clevedon",
       "url": "/club/history",
       "jdb": "@jdbpages/club/history.json",
       "datetype": "filemodified",
@@ -108,6 +116,11 @@
       "title": "Gordano Model Flying Club | Flying Guide",
       "page": "/club/rules/flyingguide.html",
       "template": "main.html",
+      "keywords": [
+        "Gordano Model Flying Club flying guide",
+        "GMFC flying rules"
+      ],
+      "description": "Read the Gordano Model Flying Club flying guide, covering rules, safety procedures, and best practice for flying RC planes and helicopters at our field in the Gordano Valley. ",
       "url": "/club/rules/flyingguide",
       "jdb": "@jdbpages/club/rules/flyingguide.json",
       "datetype": "filemodified",
@@ -117,6 +130,8 @@
       "title": "Gordano Model Flying Club  | Flying Rules",
       "page": "/club/rules/flying.html",
       "template": "main.html",
+      "keywords": ["Gordano Model Flying Club flying rules", "GMFC club rules"],
+      "description": "View the official flying rules for Gordano Model Flying Club, covering safe operation of RC planes and helicopters at our field in the Gordano Valley between Portishead and Clevedon.",
       "url": "/club/rules/flying",
       "jdb": "@jdbpages/club/rules/flying.json",
       "datetype": "filemodified",
@@ -125,7 +140,9 @@
     {
       "title": "Gordano Model Flying Club | Rules | Disciplinary Procedure",
       "page": "/club/rules/disciplinaryprocedure.html",
-      "template": "main.html",
+      "template": "mainnofollow.html",
+      "keywords": [],
+      "description": "",
       "url": "/club/rules/disciplinaryprocedure",
       "jdb": "@jdbpages/club/rules/disciplinaryprocedure.json",
       "datetype": "filemodified",
@@ -162,6 +179,12 @@
       "title": "Gordano Model Flying Club | Prospective Members",
       "page": "/club/member/prospective.html",
       "template": "main.html",
+      "keywords": [
+        "join Gordano Model Flying Club",
+        "prospective members GMFC",
+        "how to join RC flying club"
+      ],
+      "description": "Thinking of joining Gordano Model Flying Club? Find out what to expect as a prospective member, how to get started, and how to fly RC planes and helicopters at our field in the Gordano Valley.",
       "url": "/club/member/prospective",
       "jdb": "@jdbpages/club/member/prospective.json",
       "datetype": "filemodified",
@@ -190,6 +213,11 @@
       "page": "/club/weather.html",
       "template": "main.html",
       "url": "/club/weather",
+      "keywords": [
+        "Gordano Model Flying Club weather",
+        "GMFC flying field weather"
+      ],
+      "description": "Check current weather conditions at Gordano Model Flying Club's flying field in the Gordano Valley, including wind speed and direction, to help plan your RC flying session.",
       "jdb": "@jdbpages/club/weather.json",
       "datetype": "filemodified",
       "entry": "@pages/club/weather.ts"
@@ -199,6 +227,8 @@
       "page": "/club/wildlife/index.html",
       "template": "main.html",
       "url": "/club/wildlife",
+      "keywords": ["Gordano Model Flying Club wildlife", "GMFC conservation"],
+      "description": "Discover how Gordano Model Flying Club cares for the wildlife and natural environment surrounding its flying field in the Gordano Valley, balancing RC flying with conservation.",
       "jdb": "@jdbpages/club/wildlife/wildlife.json",
       "datetype": "filemodified",
       "entry": "@pages/club/wildlife/wildlife.ts"
