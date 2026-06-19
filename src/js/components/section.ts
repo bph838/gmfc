@@ -51,21 +51,11 @@ export function renderSection(
     }
   }
 
-  //check if the section has been created
-  let generatedDiv;
-  if (data.hashId) {
-    const elFound = document.getElementById(data.hashId);
-    if (elFound) return;
-
-    generatedDiv = createDiv(parent, "section_generated", data.hashId);
-  } else {
-    generatedDiv = parent;
-  }
-
   let id = "";
   if (data.id) id = data.id;
 
-  let section = createSection(generatedDiv, "rawsection", id);
+  let section = createSection(parent, "rawsection", id);
+  if (data.hashId) section.dataset.hashId = data.hashId;
 
   let section_inner = null;
   if (data.customsection) {
