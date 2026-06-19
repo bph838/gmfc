@@ -8,6 +8,10 @@ const fs = require("fs");
 
 async function run() {
   const distPath = path.join(__dirname, "../../dist");
+
+  const pagesOutput = "./.build/site/pages.json";
+  const pagesData = JSON.parse(fs.readFileSync(pagesOutput, "utf8"));
+
   const newsOutput = "./.build/site/newsitems.json";
   const newsData = JSON.parse(fs.readFileSync(newsOutput, "utf8"));
   const menuOutput = "./src/database/generated/menu.json";
@@ -17,19 +21,16 @@ async function run() {
 
   // Change 'render' to 'renderRoutes'
   const routes = [
-    "/index.html",
-    //"/calendar.html",
-    //"/aboutus.html",
-    //"/gallery.html",
-    //"/news.html",
-    //"/club/history.html",
-    //"/club/rules.html",
-    //"/club/merch.html",
-    //"/club/leaderboard.html",
-    //"/club/weather.html",
+    //"/index.html",
   ];
 
-  /*
+  pagesData.pages.forEach((page) => {
+    if (page.page) {
+      routes.push(page.page);
+    }
+  });
+
+  
   newsData.forEach((element) => {
     if (element.url) {
       let newsUrl = element.url + ".html";
@@ -52,11 +53,14 @@ async function run() {
     let galleryUrl = `/gallery/${year}/index.html`;
     routes.push(galleryUrl);
   });
-*/
+
+
+  console.log(`Number of pages:${routes.length}`);
   routes.forEach((element) => {
     console.log(element);
   });
 
+ 
   const prerenderer = new Prerenderer({
     staticDir: distPath,
     renderer: new PuppeteerRenderer({
@@ -86,6 +90,7 @@ async function run() {
 
   await prerenderer.destroy();
   console.log("🏁 All done!");
+  
 }
 
 run().catch(console.error);
