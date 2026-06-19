@@ -40,7 +40,8 @@
               "height": 1656
             }
           ]
-        }
+        },
+        "hashId": "6ae5b95eb6fd72918ba5b92734e0e245"
       },
       {
         "title": "Gallery",
@@ -49,7 +50,8 @@
           "url": "/data/media/wildlife_gallery_data.json",
           "externalPath": "https://gallery.gmfc.uk",
           "displayDates": "none"
-        }
+        },
+        "hashId": "ec534d56098dbc8ade07212a434ba65a"
       },
       {
         "title": "Bees",
@@ -91,7 +93,8 @@
               "height": 2775
             }
           ]
-        }
+        },
+        "hashId": "c3852d05bb23a85f4164def448d3ecef"
       }
     ]
   }

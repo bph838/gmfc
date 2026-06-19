@@ -3,11 +3,13 @@
     "hero": {
       "generatehero": true,
       "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
-      "text": "News & Posts"     
+      "text": "News & Posts"
     },
-    "sections": [{
-      
-    }]
+    "sections": [
+      {
+        "hashId": "99914b932bd37a50b983c5e7c90ae93b"
+      }
+    ]
   },
   "newsUrl": "/data/news.json"
 }

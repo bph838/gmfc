@@ -5,6 +5,7 @@ const autoprefixer = require("autoprefixer");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProcessWebsiteStaticPages = require("./webpack/ProcessWebsiteStaticPages");
+const AddSectionHashIdPlugin = require("./webpack/AddSectionHashIdPlugin");
 const GenerateHtmlPagesPlugin = require("./webpack/GenerateHtmlPagesPlugin");
 const ProcessNewsHashAndIndex = require("./webpack/ProcessNewsHashAndIndex");
 const GenerateNewsItemFilesPlugin = require("./webpack/GenerateNewsItemFilesPlugin");
@@ -63,6 +64,7 @@ module.exports = (env, argv) => {
       },
     },
     plugins: [
+      new AddSectionHashIdPlugin(),
       new ProcessWebsiteStaticPages("./src/database/site/pages_static.json"),
       new GenerateAlertsPlugin(),
       new ProcessNewsHashAndIndex("./src/database/news/news-raw.json"),

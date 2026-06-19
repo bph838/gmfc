@@ -14,7 +14,9 @@
         "title": "Membership",
         "type": "noImage",
         "image": "https://siteimages.gmfc.uk/siteimages/member.jpg",
-        "text": [""],
+        "text": [
+          ""
+        ],
         "sectionmenu": {
           "items": [
             {
@@ -30,7 +32,8 @@
               "extraClass": "tile-blue"
             }
           ]
-        }
+        },
+        "hashId": "61955edd67367150cfea3a13f0d68283"
       }
     ]
   }

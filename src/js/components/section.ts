@@ -51,10 +51,21 @@ export function renderSection(
     }
   }
 
+  //check if the section has been created
+  let generatedDiv;
+  if (data.hashId) {
+    const elFound = document.getElementById(data.hashId);
+    if (elFound) return;
+
+    generatedDiv = createDiv(parent, "section_generated", data.hashId);
+  } else {
+    generatedDiv = parent;
+  }
+
   let id = "";
   if (data.id) id = data.id;
 
-  let section = createSection(parent, "rawsection", id);
+  let section = createSection(generatedDiv, "rawsection", id);
 
   let section_inner = null;
   if (data.customsection) {
@@ -272,7 +283,10 @@ function renderWrapTextLeftClickSize(parent: HTMLElement, data: any) {
   return innerdiv;
 }
 
-export function renderPDFLinks(parent: HTMLElement | null | undefined, data: any) {
+export function renderPDFLinks(
+  parent: HTMLElement | null | undefined,
+  data: any,
+) {
   console.log("Checking for PDF links to render");
   if (parent && data.pdfs && data.pdfs.length > 0) {
     const pdfsDiv = document.createElement("div");
@@ -303,7 +317,10 @@ export function renderPDFLinks(parent: HTMLElement | null | undefined, data: any
   }
 }
 
-export function renderInPageMenu(parent: HTMLElement | null | undefined, data: any) {
+export function renderInPageMenu(
+  parent: HTMLElement | null | undefined,
+  data: any,
+) {
   console.log("Checking for sectionmenu menu items to render");
   if (parent && data.sectionmenu && data.sectionmenu.items.length > 0) {
     const sectionmenuDiv = document.createElement("nav");
@@ -337,7 +354,10 @@ export function renderInPageMenu(parent: HTMLElement | null | undefined, data: a
   }
 }
 
-export function renderImageGallery(parent: HTMLElement | null | undefined, data: any) {
+export function renderImageGallery(
+  parent: HTMLElement | null | undefined,
+  data: any,
+) {
   console.log("Checking for images to render");
   if (
     !parent ||
@@ -411,7 +431,7 @@ function slowSpin(Id: string) {
     rotateFreeSpeed: 100,
     minimizeRatio: 0.8,
     darknessRatio: 0.45,
-    waitTouchTimer:5000
+    waitTouchTimer: 5000,
   };
   setConfig(config);
   onKeepRotating("left");
@@ -706,14 +726,21 @@ function renderSectionGallery(parent: HTMLElement, data: any) {
   });
 }
 
-export function renderSellingGallery(parent: HTMLElement, data: any, externalPath: string) {
+export function renderSellingGallery(
+  parent: HTMLElement,
+  data: any,
+  externalPath: string,
+) {
   const sections = createDiv(parent, "sections", "gallery_section_holder");
 
   setGalleryData(data, externalPath);
   renderGallery(sections, "gallery_all", "none");
 }
 
-function renberImageGallerySimple(parent: HTMLElement | null | undefined, data: any) {
+function renberImageGallerySimple(
+  parent: HTMLElement | null | undefined,
+  data: any,
+) {
   if (!parent || !data.gallery_simple) {
     return;
   }

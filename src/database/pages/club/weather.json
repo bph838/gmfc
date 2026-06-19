@@ -17,15 +17,17 @@
         "text": [
           "The weather at our flying site is generally good for flying aircraft, with mild temperatures and moderate winds.",
           "However, it can be unpredictable at times, so it's always a good idea to check the forecast before heading out to fly."
-        ]
+        ],
+        "hashId": "3975b127480870f8adc11e07990baed8"
       },
       {
         "title": "7 Day Forecast",
         "type": "weatherForecast",
-        "weatherCoordinates": { 
+        "weatherCoordinates": {
           "latitude": 51.459563,
-          "longitude": -2.790968 
-        }
+          "longitude": -2.790968
+        },
+        "hashId": "aa07ef9db3a9ab443299ae4c52594c33"
       }
     ]
   }

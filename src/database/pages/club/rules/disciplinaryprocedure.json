@@ -18,7 +18,8 @@
           "Minor faults or shortcomings in behaviour should normally be dealt with informally by a committee member with a view to reaching agreement on the improvement required.",
           "Informal warnings will not form part of the formal disciplinary procedure. If, however, the problem persists or if the matter is more serious, action under the formal disciplinary procedure would be considered by the Committee. ",
           "The disciplinary procedure is intended to provide a formal framework to deal with the situation where an individual’s conduct falls below acceptable standards and to ensure fair and consistent treatment of all members in such circumstances. The procedure outlined is a BMFA good practice guide on how clubs should deal with disciplinary issues. "
-        ]
+        ],
+        "hashId": "6144d498206cfae61c0538df7a82a850"
       },
       {
         "title": "Invitation to a meeting",
@@ -27,7 +28,8 @@
           {
             "text": "The committee should set out in writing to the member, the alleged conduct or other circumstances which have led them to contemplate formal action or dismissal and the member should be invited to a meeting to discuss the matter with a panel appointed by the committee."
           }
-        ]
+        ],
+        "hashId": "1ea7337baeb4bd561aab324dbfb1399e"
       },
       {
         "title": "Disciplinary meeting",
@@ -45,7 +47,8 @@
           {
             "text": "After the meeting the member should be informed in writing of the committee’s decision and their right of appeal against such decision to the members at a general meeting if they are not satisfied with it."
           }
-        ]
+        ],
+        "hashId": "b6bcbac1e0091e10937d49ff9cbe73b2"
       },
       {
         "title": "Appeal",
@@ -63,7 +66,8 @@
           {
             "text": "At any meeting under the disciplinary procedure the member concerned should be given the right to be accompanied by another club member to act in a supporting capacity but such companion may not usually answer questions on behalf of the member subject to the procedure. The member concerned also has the right to call witnesses or ask questions of any witnesses called by the committee. "
           }
-        ]
+        ],
+        "hashId": "6366e3a98882cf3c6fde12baab727de8"
       },
       {
         "title": "Gross misconduct",
@@ -72,7 +76,6 @@
           "<p>The club may consider some types of misconduct to be so serious that a disciplinary warning would be an insufficient penalty. Such offences are known as offences of gross misconduct.</p>",
           "<p>Where the offence is one of gross misconduct the normal penalty will be dismissal without a prior warning being issued (summary dismissal).</p>",
           "<p>Matters which may justify summary dismissal include, but are not limited to:</p>",
-
           "<ul>",
           "<li>dishonesty, theft and fraud from the club or its members</li>",
           "<li>deception, for example making untrue statements in membership applications or falsifying expenses incurred on behalf of the club, etc</li>",
@@ -87,9 +90,9 @@
           "<li>deliberate or serious damage to the clubs/landowners property or causing loss,damage or injury through serious negligence</li>",
           "<li>any criminal offence carried out at the club site or during club meetings/events where such offence impacts or may impact upon the club</li>",
           "</ul>"
-        ]
+        ],
+        "hashId": "03efcfb9ad2f3c6bb68756ed9845c81d"
       },
-
       {
         "title": "General principles for the operation of the disciplinary and dismissal procedure: ",
         "type": "titletext",
@@ -109,9 +112,9 @@
           {
             "text": "Although the disciplinary penalties which may be imposed under this procedure will normally be imposed in the order set out in the constitution, the procedure may be commenced at any stage if the seriousness of the members alleged misconduct justifies this."
           }
-        ]
+        ],
+        "hashId": "fa400c35059c6e95dff3b218eb33f964"
       },
-
       {
         "title": "Disciplinary sanctions",
         "type": "titletext",
@@ -119,9 +122,9 @@
           {
             "text": "As part of any disciplinary procedure, where the committee considers it appropriate to do so, they may impose a disciplinary sanction, which is a penalty. These will generally take the form of some type of warning. "
           }
-        ]
+        ],
+        "hashId": "38ab66726a79d9d89bdadf8a36b16e06"
       },
-
       {
         "title": "Verbal warning notice",
         "type": "titletext",
@@ -132,26 +135,35 @@
           {
             "text": "A record of the verbal warning will be kept but the warning will be disregarded after usually a six month period (the time frame is dependent on the committee’s decision) provided conduct has been satisfactory."
           }
-        ]
+        ],
+        "hashId": "018bc70a38aa8873b577f9a641acd343"
       },
       {
         "title": "Written warning",
         "type": "noImage",
-         "text": ["If the offence is more serious or if there is insufficient improvement after a verbal warning or if a further broadly similar offence occurs whilst a verbal warning remains in force, a written warning may be given. This will set out the nature of the conduct problem and confirmation of improvement required and time scale for improvement to be made, together with the assistance provided to meet the objectives.","The warning should also inform the member that should your conduct fail to improve or you commit any further disciplinary offence over the next twelve months, (the time frame is dependent on the committee) then you will be issued with a final written warning. The written warning will be kept on file, and the member should be informed after what time period it will be disregarded providing their conduct, attendance or performance has been satisfactory. "]
+        "text": [
+          "If the offence is more serious or if there is insufficient improvement after a verbal warning or if a further broadly similar offence occurs whilst a verbal warning remains in force, a written warning may be given. This will set out the nature of the conduct problem and confirmation of improvement required and time scale for improvement to be made, together with the assistance provided to meet the objectives.",
+          "The warning should also inform the member that should your conduct fail to improve or you commit any further disciplinary offence over the next twelve months, (the time frame is dependent on the committee) then you will be issued with a final written warning. The written warning will be kept on file, and the member should be informed after what time period it will be disregarded providing their conduct, attendance or performance has been satisfactory. "
+        ],
+        "hashId": "402aa47e1a939439d3c19c54bda2e11c"
       },
       {
-        
-         "title": "Final written warning",
+        "title": "Final written warning",
         "type": "noImage",
-        "text":["If there is still insufficient improvement after a verbal and / or written warning has been issued or if the misconduct is sufficiently serious to warrant only one written warning, a final written warning will be given. This will provide details of the complaint, the improvement required and the timescale for the improvement. It will also warn that a failure to improve or any further disciplinary offences over the next period referred by your employer may lead to dismissal or some other action short of dismissal. ","The final written warning will be kept on file and the member should be informed when the warning will be disregarded provided your conduct, attendance or performance has been satisfactory."]
+        "text": [
+          "If there is still insufficient improvement after a verbal and / or written warning has been issued or if the misconduct is sufficiently serious to warrant only one written warning, a final written warning will be given. This will provide details of the complaint, the improvement required and the timescale for the improvement. It will also warn that a failure to improve or any further disciplinary offences over the next period referred by your employer may lead to dismissal or some other action short of dismissal. ",
+          "The final written warning will be kept on file and the member should be informed when the warning will be disregarded provided your conduct, attendance or performance has been satisfactory."
+        ],
+        "hashId": "0301ff19d8c5465a245395df254840d5"
       },
       {
-        
-         "title": "Dismissal or other sanction",
+        "title": "Dismissal or other sanction",
         "type": "noImage",
-        "text":["If there is still further misconduct or a failure to improve conduct the final stage in the procedure may be dismissal. "]
+        "text": [
+          "If there is still further misconduct or a failure to improve conduct the final stage in the procedure may be dismissal. "
+        ],
+        "hashId": "b89c63b10b5b540a7476ae516fcfaeb8"
       }
-      
     ]
   }
 }

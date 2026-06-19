@@ -3,7 +3,7 @@
     "hero": {
       "generatehero": true,
       "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
-      "text": "Gordano Model Flying Club"      
+      "text": "Gordano Model Flying Club"
     },
     "sections": [
       {
@@ -44,7 +44,8 @@
               "extraClass": "tile-yellow"
             }
           ]
-        }
+        },
+        "hashId": "bce503f504997a5b9f554d8a6b198388"
       },
       {
         "type": "carousel",
@@ -71,9 +72,9 @@
           {
             "src": "https://siteimages.gmfc.uk/carousel/carousel-07.jpg"
           }
-        ]
+        ],
+        "hashId": "d0667b845fc8281b569960b12c6e7956"
       },
-
       {
         "type": "imagesLeft",
         "images": [
@@ -89,9 +90,9 @@
         ],
         "text": [
           "Our wonderful south-south-west facing flying site sits on 12 acres of land."
-        ]
+        ],
+        "hashId": "81ea64cd1468c38a30e84e353a44c51c"
       },
-
       {
         "type": "imagesRight",
         "images": [
@@ -109,9 +110,9 @@
           "We now have an RC track that is perfectly suited to 1:10 scale cars, and for those with the skill and confidence, 1:8 scale cars can really stretch their legs too.",
           "Gordano Model Flying Club unfortunately can not host any race competitions due to site access and facilities.",
           "But for those members though who would like to take part in a little healthy competition, there is a <a href='/club/leaderboard'>leaderboard</a> of fastest laps.   "
-        ]
+        ],
+        "hashId": "10649478476cfc50ec40df79da7ff836"
       },
-
       {
         "type": "imagesLeft",
         "images": [
@@ -128,7 +129,8 @@
         "text": [
           "Our new crawler track is now open for members.",
           "Featuring technical obstacles and challenging lines, it’s ideal for drivers who enjoy skill, patience, and realism over outright speed."
-        ]
+        ],
+        "hashId": "e71991a20128ee33cb8f45a2f901c62a"
       }
     ]
   }

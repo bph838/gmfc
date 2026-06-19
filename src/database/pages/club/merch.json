@@ -1,7 +1,7 @@
 {
   "content": {
     "hero": {
-      "generatehero":true,
+      "generatehero": true,
       "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
       "text": "Club Merchandise",
       "weatherCoordinates": {
@@ -22,7 +22,6 @@
             "url": "https://siteimages.gmfc.uk/documents/order-form-pdf.pdf"
           }
         ],
-
         "merch": [
           {
             "picture": "https://siteimages.gmfc.uk/merch/T-Shirt-210x300.png",
@@ -48,8 +47,11 @@
             "picture": "https://siteimages.gmfc.uk/merch/Cap-225x300.png",
             "desc": "https://siteimages.gmfc.uk/merch/Cap-Details-300x167.png"
           },
-          { "picture": "https://siteimages.gmfc.uk/merch/Cup-207x300.jpg"}
-        ]
+          {
+            "picture": "https://siteimages.gmfc.uk/merch/Cup-207x300.jpg"
+          }
+        ],
+        "hashId": "db2e445ef25cc06878f6cb221dafd317"
       }
     ]
   }

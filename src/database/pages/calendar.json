@@ -1,11 +1,15 @@
 {
   "content": {
     "hero": {
-      "generatehero":true,
+      "generatehero": true,
       "image": "https://siteimages.gmfc.uk/hero/hero-plane.jpg",
-      "text": "Calendar"     
+      "text": "Calendar"
     },
-    "sections": [{}]    
+    "sections": [
+      {
+        "hashId": "99914b932bd37a50b983c5e7c90ae93b"
+      }
+    ]
   },
   "calendarevents": "/data/site/calendarevents.json"
 }

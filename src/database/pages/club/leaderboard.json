@@ -21,8 +21,9 @@
           "The leaderboard is only for the last year! after that your time disappears."
         ],
         "leaderboard": {
-          "url": "/data/driver_laps.json" 
-        }
+          "url": "/data/driver_laps.json"
+        },
+        "hashId": "339c0ceab73ceaec04508a232c0e9e35"
       }
     ]
   }

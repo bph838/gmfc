@@ -18,8 +18,8 @@
       "mapCoordinates": {
         "latitude": 51.459563,
         "longitude": -2.790968,
-        "display":"satellite",
-        "zoom":17
+        "display": "satellite",
+        "zoom": 17
       }
     },
     "sections": [
@@ -36,7 +36,8 @@
           "Local dog walkers are welcome to use the field to exercise their dogs providing there are no flying aircraft. If the club is occupied by members flying, or members arrive at the club to fly, then the main field is out of bounds and all dogs must be kept on their leads. It is the responsibility of the dog owner to clear up their dogs mess and take it home to dispose of it.",
           "We welcome new members after they have met with a member of the club committee, where the clubs aspirations and limitations will be discussed. You will be asked to read, understand and sign an agreement to abide by the club rules and BMFA guidelines.",
           "Guest Fliers are always welcome to join us, we prefer them to be current BMFA members and ask them to carry their card when on our site. They must be accompanied at all times when in possession of an aircraft by the inviting member, who will have cleared their visit with the Chair, Vice chair, Treasurer or Secretary beforehand. They are limited to a MAXIMUM of two visits per year and are the members sole responsibility."
-        ]
+        ],
+        "hashId": "e88b549bd5eaf703c98a5e30a3507f58"
       },
       {
         "title": "Contact Us",
@@ -47,7 +48,8 @@
           "If you would like to contact us this can be done through our <a href='https://www.facebook.com/groups/327796220935498' target='_blank'>facebook</a> group or via email <a href='mailto:secretary@amarc2002.co.uk'>secretary@amarc2002.co.uk</a><span class='copydata' data-tooltip='Click to copy' data-copy='secretary@amarc2002.co.uk'><i class='fa-regular fa-copy'></i></span> ",
           "If you are interested in joining, please reach out and we would be happy to arrange a time that is suitable for you to come and meet someone at the field."
         ],
-        "contactus": "Facebook"
+        "contactus": "Facebook",
+        "hashId": "b9d6b77189ab6b7c4583b2be5a9dbca1"
       }
     ]
   }

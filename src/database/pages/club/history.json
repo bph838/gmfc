@@ -3,7 +3,7 @@
     "hero": {
       "generatehero": false,
       "image": "https://siteimages.gmfc.uk/hero/hero-history.jpg",
-      "text": ""      
+      "text": ""
     },
     "sections": [
       {
@@ -30,9 +30,9 @@
             "text": "Original article",
             "url": "https://siteimages.gmfc.uk/documents/AMARC%282002%29-Ltd-Win-Full-Planning-Permission.pdf"
           }
-        ]
+        ],
+        "hashId": "f4d474604f434fd923baa1ddc367ad6f"
       },
-
       {
         "title": "Gallery",
         "titleId": "gallery",
@@ -45,7 +45,8 @@
           "externalPath_live": "https://gallery.gmfc.uk",
           "externalPath": "https://gmfc-images-gallery.s3.eu-west-2.amazonaws.com",
           "displayDates": "none"
-        }
+        },
+        "hashId": "7a9c267a59796c40298f785ce2b6112b"
       },
       {
         "title": "Historic Club Documents",
@@ -59,7 +60,6 @@
             {
               "thumbnail": "https://gallery.gmfc.uk/history/membercard/thumbnails/IMG_20260527_0069.jpg",
               "image": "https://gallery.gmfc.uk/history/membercard/IMG_20260527_0069.jpg",
-
               "width": 1152,
               "height": 800
             },
@@ -94,7 +94,8 @@
               "height": 1110
             }
           ]
-        }
+        },
+        "hashId": "6351335b8909137fef0ab28698d7cd0f"
       }
     ]
   }

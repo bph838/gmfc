@@ -21,7 +21,8 @@
           "<li>Prospectus has been signed agreeing to abide by them at all times.</li>",
           "<li>The applicant accepts a probationary me.</li>",
           "</ul>"
-        ]
+        ],
+        "hashId": "9f4a7d4d410371ac700b0ff9d4670c98"
       },
       {
         "title": "Training",
@@ -30,7 +31,8 @@
           "The Club does not provide a formal training programme. It does, however, have a number of members who are willing to mentor new members and support their progress. These sessions are to be arranged in advance directly with one of the volunteers.",
           "The club has a limited number of models that may be used to help in the initial stages of being introduced to the hobby. New members are encouraged to obtain their own model and equipment as this is an essential element of becoming a competent model pilot.  The club has an BMFA examiner who will also assist you. Members will be happy to assist in recommending suitable models and equipment.",
           "It is a requirement for new members to have achieved their BMFA A certificate before flying unsupervised."
-        ]
+        ],
+        "hashId": "b26697d7b9aa4aa771407ca2bd3c6395"
       },
       {
         "title": "Safety",
@@ -58,7 +60,8 @@
           {
             "text": "Junior members under the age of 14 years shall not start an engine or carry a model with the engine running unless they are supervised by a responsible adult. "
           }
-        ]
+        ],
+        "hashId": "6aadf35ef54530eccede4c79e257339f"
       },
       {
         "title": "Site information",
@@ -113,7 +116,8 @@
             "title": "Storage",
             "text": "The Club does not provide model storage facilities."
           }
-        ]
+        ],
+        "hashId": "1b8e3362825f6026fa5b8f3ed6a6102b"
       },
       {
         "title": "Vehicular Access to the field",
@@ -125,7 +129,8 @@
           "<p>Stop and give way to all pedestrians in the lane and drove. Children and dogs may be present in the lane, drove or car parking area. Every care must be exercised on entering or leaving the site Please park considerately within the designated Car Parking areas.</p>",
           "<p>No vehicles are permitted to use the access way to the spectator area, pits or the Flying area without the express permission of a member of the Committee.</p>",
           "<p>Vehicles may only use the area to dispose of green waste on the left of he runway, for bonafide maintenance work or in an emergency situation.</p>"
-        ]
+        ],
+        "hashId": "d8b65a2fa06ab0aa0561484d6dbaca99"
       },
       {
         "title": "AMARC flying Zones",
@@ -164,7 +169,8 @@
           {
             "text": "There is no exception to this process regardless of model value. It needs to remain in the field until we have permission to collect. "
           }
-        ]
+        ],
+        "hashId": "02d55e1283cfc5abc9412dbdfd1d40a4"
       },
       {
         "title": "Flying Rules",
@@ -188,11 +194,15 @@
           {
             "text": "Jet Turbine powered models are NOT cleared for general flying."
           },
-          { "text": "Do not taxi in or out of the pit area." },
+          {
+            "text": "Do not taxi in or out of the pit area."
+          },
           {
             "text": "No low aerobatics between the pilots box and take off area, pits, or members of the public. All prop hanging to be done at least halfway across the runway strip away from the pilot’s box."
           },
-          { "text": "Unattended running of engines is not allowed." },
+          {
+            "text": "Unattended running of engines is not allowed."
+          },
           {
             "text": "All I.C. powered fixed wing models in the pits must be tethered."
           },
@@ -215,7 +225,8 @@
             "title": "Guest Flyers",
             "text": "Members wishing to invite guests to fly at our field must have permission, prior to bringing them on site, from a committee member and recorded with a note on the Official WhatsApp group. Guest fliers must be accompanied at all times by the inviting member and are the sole responsibility of the inviting member. The guest should be encouraged to join the Club if practical."
           }
-        ]
+        ],
+        "hashId": "f0bdeb9752cd9cbb44acef27d7c5349f"
       },
       {
         "title": "Data Protection",
@@ -238,7 +249,8 @@
           "</ul>",
           "<p>By email: secretary@amarc2002.co.uk</p>",
           "<p>By post: AMARC (2002) Limited, 61 Bridge Street, Kington, HR5 3DJ</p>"
-        ]
+        ],
+        "hashId": "f13d017e5972114706b0031d3c9c370a"
       },
       {
         "title": "AMARC Whatsapp Groups Code of Conduct",
@@ -250,7 +262,8 @@
           "Ridiculing other members, rude jokes, religious comments, hate speech, racism, politics, and vulgar language will not be allowed, or carefully adjusted text to infer swear words. Be respectful and polite, don’t shame or bully other group members, if they have a different point of view or if there is a problem take it off line, no megaphone diplomacy. Be mindful of your posts, there are users of all ages and sexes within the group (especially children).",
           "Administrators reserve the right to remove members from the group, without notice, up to a period of 6 months, for members who don’t adhere to these rules.",
           "By participating in the AMARC 2002 WhatsApp groups, members accept the terms and conditions above."
-        ]
+        ],
+        "hashId": "d6fd35c1317cf84ebee8ebca15580111"
       },
       {
         "title": "Safeguarding Junior Members and Children",
@@ -262,7 +275,8 @@
           "Children must be supervised at all times by a responsible adult. The level of supervision is to be commensurate with the junior member’s age, maturity, capabilities and levels of experience.",
           "No member is to be expected to assume responsibility for a child. If asked to do so, he/she is to assume complete and total responsibility for the junior member whilst he/she is in their charge. Whilst supervising children, members should be aware of the requirements of The Children Act (1989) and avoid placing themselves in a position that could be open to misinterpretation or question. A leaflet giving advice is available from the BMFA’s Leicester Office or from the Club Secretary.",
           "Should a member discover a child is unsupervised he/she should assume temporarily responsibility for the child’s safety in the first instance. The situation should then be rectified as soon as possible by seeking out the child’s parent/guardian/nominated adult. Any instance of such an occurrence is to be reported to the Committee as soon as possible. "
-        ]
+        ],
+        "hashId": "14d069a3bf04b113876354a6da2a4c17"
       }
     ]
   }
