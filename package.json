@@ -10,6 +10,7 @@
     "build-lapmonitor-file": "node ./utils/lapmonitor/lapmonitor.js",
     "deploy": "wrangler deploy",
     "prerender": " node ./utils/prerender/prerender.js",
+    "Upload Gallery Images": " node ./utils/gallery/gallery.mjs",
     "webserver": "webpack serve --config webpack.serve.js"
   },
   "repository": {
