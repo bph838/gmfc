@@ -3,3 +3,5 @@ dist
 .build
 src/database/generated/
 utils/gallery/images.json
+playwright-report/
+test-results/
