@@ -31,16 +31,16 @@ function renderNews(data: any) {
   if (data.content.hero) renderHero(data.content.hero, false);
 
   const contentarea = fetchContextArea(data);
-  if (!contentarea) return;
+  if (!contentarea) return Promise.resolve();
   const news_sections_Id = "news_sections";
   const elFound = document.getElementById(news_sections_Id);
-  if (elFound) return;
+  if (elFound) return Promise.resolve();
   const sectionsdiv = createDiv(contentarea, "sections", news_sections_Id);
 
   const newsItem = window.MY_NEWS_ITEM;
 
   if (newsItem && newsItem.type === "single" && newsItem.json) {
-    renderSingleNewsItem(sectionsdiv, newsItem.json);
+    return renderSingleNewsItem(sectionsdiv, newsItem.json);
   } else if (newsItem && newsItem.type === "list" && newsItem.json) {
     const newUrl = newsItem.json;
 
@@ -55,7 +55,7 @@ function renderNews(data: any) {
       breadlineType,
     );
 
-    fetchJson(newUrl)
+    return fetchJson(newUrl)
       .then((news_items) => {
         if (!news_items) return;
         return Promise.all(
@@ -64,18 +64,20 @@ function renderNews(data: any) {
           ),
         );
       })
+      .catch((err) => console.error("Failed to render news list:", err))
       .then(() => renderFinish());
   } else {
     const newUrl = data.newsUrl;
 
     renderNewsBreadline(sectionsdiv, 0, 0, "none");
-    fetchJson(newUrl)
+    return fetchJson(newUrl)
       .then((news_items) => {
         if (!news_items) return;
         return Promise.all(
           news_items.map((news_section: any) => fetchNews(sectionsdiv, news_section)),
         );
       })
+      .catch((err) => console.error("Failed to render news list:", err))
       .then(() => renderFinish());
   }
 }
@@ -100,18 +102,28 @@ function renderNewsItem(parent: HTMLElement, urlJson: string, url: string) {
   return fetchJson(urlJson).then((news) => {
     console.log("Processing news: ");
     console.log(news);
+    if (!news) {
+      newholderdiv.classList.remove("section_generated_news");
+      return;
+    }
     let showhide = news.showhide ?? true;
     if (showhide)
-      renderSection(newholderdiv, news, url, "sectionline", [], true);
-    else newholderdiv.classList.remove("section_generated_news");
+      return renderSection(newholderdiv, news, url, "sectionline", [], true);
+    newholderdiv.classList.remove("section_generated_news");
   });
 }
 
 function renderSingleNewsItem(parent: HTMLElement, urlJson: string) {
   console.log("Fetching news item: ");
-  fetchJson(urlJson).then((news) => {
+  return fetchJson(urlJson).then((news) => {
     console.log("Processing news: ");
     console.log(news);
+    if (!news) {
+      console.error(`Failed to load single news item: ${urlJson}`);
+      renderNewsBreadline(parent, 0, 0, "none");
+      renderFinish();
+      return;
+    }
     if (news.image) {
       setSiteImage(news.image);
     }
@@ -125,7 +137,11 @@ function renderSingleNewsItem(parent: HTMLElement, urlJson: string) {
     let month = date.getUTCMonth() + 1;
 
     renderNewsBreadline(parent, year, month);
-    renderSection(parent, news, "", "sectionline", [], true);
+    return renderSection(parent, news, "", "sectionline", [], true).then(() =>
+      renderFinish(),
+    );
+  }).catch((err) => {
+    console.error("Failed to render single news item:", err);
     renderFinish();
   });
 }

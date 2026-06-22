@@ -35,7 +35,7 @@ export function fetchAndRenderWeatherForecast(
   const latitude = 51.459563;
   const longitude = -2.790968;
   daylight_data = daylightData;
-  getWeather(latitude, longitude).then(() => {
+  return getWeather(latitude, longitude).then(() => {
     createWeatherFilter(parent);
     renderWeather(parent);
   });

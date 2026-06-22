@@ -35,14 +35,14 @@ export function renderSection(
   extraclass = "",
   extraData: any[] = [],
   isNews = false,
-) {
+): Promise<HTMLElement | void> {
   if (!data) {
     console.error("There is no data to render");
-    return;
+    return Promise.resolve();
   }
   if (!data.type) {
     console.error("There is no section type to render");
-    return;
+    return Promise.resolve();
   }
 
   if (process.env.NODE_ENV === "development") {
@@ -116,6 +116,8 @@ export function renderSection(
   }
 
   //check if it a news type render
+  let pendingWork: Promise<any> = Promise.resolve();
+
   if (data.items) {
     console.log("Render news typ items");
     renderSectionItems(contentdiv, data);
@@ -156,7 +158,7 @@ export function renderSection(
         renderPanoImage(contentdiv, data);
         break;
       case "weatherForecast":
-        fetchAndRenderWeatherForecast(contentdiv, data, extraData);
+        pendingWork = fetchAndRenderWeatherForecast(contentdiv, data, extraData);
         break;
       case "drivers":
         renderDrivers(contentdiv, data, extraData);
@@ -165,7 +167,7 @@ export function renderSection(
         renderImageWide(contentdiv, data);
         break;
       case "gallery":
-        renderSectionGallery(contentdiv, data);
+        pendingWork = renderSectionGallery(contentdiv, data);
         break;
       case "wraptextleftclicksize":
         renderedDiv = renderWrapTextLeftClickSize(contentdiv, data);
@@ -185,7 +187,7 @@ export function renderSection(
     renderInPageMenu(renderedDiv, data);
   }
 
-  return section;
+  return pendingWork.then(() => section);
 }
 
 function renderWrappedTextLeftSection(parent: HTMLElement, data: any) {
@@ -690,7 +692,7 @@ function renderImageWide(parent: HTMLElement, data: any) {
 function renderSectionGallery(parent: HTMLElement, data: any) {
   if (!data.gallery) {
     console.error("Unable to render renderGallery");
-    return;
+    return Promise.resolve();
   }
 
   const url = data.gallery.url;
@@ -699,7 +701,7 @@ function renderSectionGallery(parent: HTMLElement, data: any) {
 
   const sections = createDiv(parent, "sections", "gallery_section_holder");
 
-  fetchJson(url).then((gdata) => {
+  return fetchJson(url).then((gdata) => {
     if (!gdata) {
       console.log("No alerts to render");
       return;

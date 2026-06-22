@@ -38,6 +38,8 @@ async function run() {
     }
   });
 
+  routes.push("/news/index.html");
+
   menuData.forEach((year) => {
     let newsUrl = `/news/${year.year}/index.html`;
     routes.push(newsUrl);
