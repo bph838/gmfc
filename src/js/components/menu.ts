@@ -106,7 +106,9 @@ function initGalleryYears() {
 }
 
 function checkItemsForSale() {
-  //let saleUrl = "/data/pages/club/selling/generated/_index.json";
+  //Don't worry about items for sale when we are prerendering
+  if ((window as any).__PRERENDER_INJECTED) return;
+
   let saleUrl = "/data/selling/_index.json";
 
   fetchJson(saleUrl).then((selling_items: any[]) => {
@@ -132,4 +134,3 @@ function removeElement(id: string) {
   const ele = document.getElementById(id);
   if (ele) ele.remove();
 }
-

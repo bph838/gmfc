@@ -13,7 +13,8 @@ const ALERTS_URL = "/data/site/alerts.json";
 
 // Fetches site alerts and renders the ones currently within their date range.
 export async function renderAlerts() {
-  console.log("Rendering alerts");
+  //don't worry about alerts in a prerender
+  if ((window as any).__PRERENDER_INJECTED) return;
 
   const data: Alert[] = await fetchJson(ALERTS_URL);
   if (!data || data.length === 0) {
