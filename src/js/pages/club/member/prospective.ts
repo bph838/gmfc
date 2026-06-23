@@ -10,13 +10,14 @@ import {
 } from "@framework/dom";
 
 import data from "@data/pages/club/member/prospective.json";
+import { logger } from "@framework/logger";
 
 setupMenuCommands("page-clubmemberprospective");
 renderMemberProspective(data);
 renderFinish();
 
 function renderMemberProspective(data: { content: any }) {
-  console.log(data);
+  logger.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
@@ -26,7 +27,7 @@ function renderMemberProspective(data: { content: any }) {
   const sectionsdiv = createDiv(contentarea, "sections");
 
   data.content.sections?.forEach((section: any) => {
-    console.log(section);
+    logger.log(section);
     renderSection(sectionsdiv, section);
   });
 }

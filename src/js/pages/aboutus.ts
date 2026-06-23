@@ -5,12 +5,13 @@ import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 import { initMapFrame, createCopy } from "@framework/utils";
 
 import data from "@data/pages/aboutus.json";
+import { logger } from "@framework/logger";
 
 setupMenuCommands("page-aboutus");
 renderAboutUs(data);
 
 function renderAboutUs(data: { content: any; }) {
-  console.log("Rendering About Us Page");
+  logger.log("Rendering About Us Page");
   //If there is a hero image render it
   if (data.content.hero) renderHero(data.content.hero);
 

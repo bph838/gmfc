@@ -18,6 +18,7 @@ import {
   renderWindWidget,
   setWind,
 } from "@components/weatherinfo";
+import { logger } from "@framework/logger";
 
 declare const Chart: any;
 
@@ -62,7 +63,7 @@ export function renderWeather(parent: HTMLElement, type = "weather_overview") {
 }
 
 function scrollToHourCentered(day: number, hour: number) {
-  console.log(`Scrolling to day ${day}, hour ${hour}`);
+  logger.log(`Scrolling to day ${day}, hour ${hour}`);
   let weatherDayId = `weatherDay-${day}`;
   let weatherViewportId = `weatherViewport-${day}`;
   const strip = document.getElementById(weatherDayId);
@@ -90,7 +91,7 @@ async function getWeather(latitude: number, longitude: number) {
     let now = Date.now();
     let duration = now - timestamp;
     if (duration < CACHE_DURATION) {
-      console.log("Using cached weather forcast:", data);
+      logger.log("Using cached weather forcast:", data);
       forcast_data = data;
       procssDatesForWeatherForcast();
       return;
@@ -100,7 +101,7 @@ async function getWeather(latitude: number, longitude: number) {
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code,precipitation_probability,precipitation,wind_speed_10m,wind_speed_80m,wind_speed_120m,wind_speed_180m,wind_direction_10m,wind_direction_80m,wind_direction_120m,wind_direction_180m,wind_gusts_10m&wind_speed_unit=mph`;
 
   //need to convert this to a structure that the render function can use
-  console.log(`Fetching weather data from ${url}`);
+  logger.log(`Fetching weather data from ${url}`);
 
   const response = await fetch(url).catch((err) => {
     throw new Error(`Forcast Weather API unreachable ${url}`);
@@ -113,7 +114,7 @@ async function getWeather(latitude: number, longitude: number) {
       let jDate = new Date(timeStr); // Ensure it's treated as UTC
       let utcHours = jDate.getUTCHours();
 
-      console.log(
+      logger.log(
         `Processing weather data for time ${time} (local: ${utcHours})`,
       );
       forcast_data.push({
@@ -145,7 +146,7 @@ async function getWeather(latitude: number, longitude: number) {
       }),
     );
 
-    console.log("Fetched new weather forcast:", forcast_data);
+    logger.log("Fetched new weather forcast:", forcast_data);
   }
 }
 
@@ -234,7 +235,7 @@ function createWeatherFilter(parent: HTMLElement) {
     .forEach((input) => {
       input.addEventListener("change", (e) => {
         const target = e.target as HTMLInputElement;
-        console.log("weather input changed:" + target.value);
+        logger.log("weather input changed:" + target.value);
         const type = target.value;
         let weatherDiv = document.getElementById("sectionWeatherForcast");
         if (weatherDiv) renderWeather(weatherDiv, type);
@@ -245,7 +246,7 @@ function createWeatherFilter(parent: HTMLElement) {
 }
 
 function renderWeatherForecast_Overview(parent: HTMLElement) {
-  console.log("Rendering overview weather forcast with data:", forcast_data);
+  logger.log("Rendering overview weather forcast with data:", forcast_data);
   let isBST = isBritishSummerTime();
   let today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -254,7 +255,7 @@ function renderWeatherForecast_Overview(parent: HTMLElement) {
   tomorrow.setHours(0, 0, 0, 0);
   tomorrow.setDate(tomorrow.getDate() + 1);
   let calculatedTomorrow = getDayOfYearUTC(tomorrow);
-  console.log(`Tomorrow's day of year: ${calculatedTomorrow}`);
+  logger.log(`Tomorrow's day of year: ${calculatedTomorrow}`);
 
   let wind_widget_size = 60;
   let currentDay = -1;
@@ -274,7 +275,7 @@ function renderWeatherForecast_Overview(parent: HTMLElement) {
       let dayOfYear = day;
       let daylightInfo = daylight_data[dayOfYear] << 1;
       if (isBST) daylightInfo = daylightInfo << 1;
-      console.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
+      logger.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
 
       const h2 = createH3(parent, `${dayName}`);
       let weatherDayId = `weatherDay-${day}`;
@@ -287,7 +288,7 @@ function renderWeatherForecast_Overview(parent: HTMLElement) {
       const dayDiv = createDiv(viewportDiv, "weatherDayDiv", weatherDayId);
       dayDiv.dataset.day = String(day);
       for (let i = 0; i < 24; i++) {
-        console.log(`Checking daylight for day`);
+        logger.log(`Checking daylight for day`);
         let divhourClass = "weatherHourDiv";
         let x = Math.pow(2, i);
         let isNight = false;
@@ -314,7 +315,7 @@ function renderWeatherForecast_Overview(parent: HTMLElement) {
   });
 
   forcast_data.forEach((data: any, index: number) => {
-    console.log(`Processing weather data for time ${data.time} (${index})`);
+    logger.log(`Processing weather data for time ${data.time} (${index})`);
     let thisDayDay = new Date(data.time);
     thisDayDay.setHours(0, 0, 0, 0);
     let thisDay = new Date(data.time);
@@ -368,7 +369,7 @@ function renderWeatherForecast_Overview(parent: HTMLElement) {
 }
 
 function renderWeatherForecast_Wind(parent: HTMLElement) {
-  console.log("Rendering wind weather forcast with data:", forcast_data);
+  logger.log("Rendering wind weather forcast with data:", forcast_data);
   let max_wind_speed = 0;
   let currentDay = -1;
   let isBST = isBritishSummerTime();
@@ -379,7 +380,7 @@ function renderWeatherForecast_Wind(parent: HTMLElement) {
   tomorrow.setHours(0, 0, 0, 0);
   tomorrow.setDate(tomorrow.getDate() + 1);
   let calculatedTomorrow = getDayOfYearUTC(tomorrow);
-  console.log(`Tomorrow's day of year: ${calculatedTomorrow}`);
+  logger.log(`Tomorrow's day of year: ${calculatedTomorrow}`);
 
   forcast_data.forEach((data: any, index: number) => {
     let thisDay = new Date(data.time);
@@ -404,7 +405,7 @@ function renderWeatherForecast_Wind(parent: HTMLElement) {
 
       let dayOfYear = day;
       let daylightInfo = daylight_data[dayOfYear];
-      console.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
+      logger.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
 
       const h2 = createH3(parent, `${dayName}`);
       let weatherDayId = `weatherDay-${day}`;
@@ -449,7 +450,7 @@ function renderWindDay(
   next24: any[],
   max_wind_speed: number,
 ) {
-  console.log(`renderWindDay ${max_wind_speed}`);
+  logger.log(`renderWindDay ${max_wind_speed}`);
   let wind_speed_10m: number[] = [];
   let wind_speed_80m: number[] = [];
   next24.forEach((data: any) => {

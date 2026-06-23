@@ -11,6 +11,7 @@ import {
 import { loadScript, createCopy } from "@framework/utils";
 
 import data from "@data/pages/calendar.json";
+import { logger } from "@framework/logger";
 
 setupMenuCommands("page-calendar");
 loadScript(
@@ -26,7 +27,7 @@ loadScript(
 function renderCalendar(data: {
   content: { hero: { generatehero: boolean; image: string; text: any } };
 }) {
-  console.log("data");
+  logger.log("data");
   if (data.content.hero) renderHero(data.content.hero);
 
   if ((window as any).__PRERENDER_INJECTED) return;
@@ -56,7 +57,7 @@ function renderCalendar(data: {
 declare const FullCalendar: any;
 
 function renderExternalCalendar(url: any) {
-  console.log("Render");
+  logger.log("Render");
   var calendarEl = document.getElementById("calendar");
   if (!calendarEl) return;
 
@@ -68,7 +69,7 @@ function renderExternalCalendar(url: any) {
       event: { url: string | URL | undefined };
       jsEvent: { preventDefault: () => void };
     }) {
-      console.log("cal click");
+      logger.log("cal click");
       if (info.event.url) {
         const urlObj = new URL(info.event.url, window.location.origin);
         if (

@@ -4,6 +4,7 @@ import {
   DURATION_HOUR,
 } from "@framework/utils";
 import { createDiv } from "@framework/dom";
+import { logger } from "@framework/logger";
 
 const SHOW_WEATHER_KEY = "showWeather";
 const CACHE_KEY = "weatherCache";
@@ -91,17 +92,17 @@ async function getWeather(latitude: number, longitude: number) {
   if (cached) {
     const { timestamp, data } = JSON.parse(cached);
     if (Date.now() - timestamp < CACHE_DURATION) {
-      console.log("Using cached weather:", data);
+      logger.log("Using cached weather:", data);
       return data;
     }
   }
 
   // Fetch fresh data
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
-  console.log(`Fetching weather: ${url}`);
+  logger.log(`Fetching weather: ${url}`);
 
   const response = await fetch(url).catch((err) => {
-    console.log(`Live Weather API unreachable ${url}`);
+    logger.log(`Live Weather API unreachable ${url}`);
     return;
   });
   if (response && response.ok) {
@@ -116,7 +117,7 @@ async function getWeather(latitude: number, longitude: number) {
       }),
     );
 
-    console.log("Fetched new weather:", data);
+    logger.log("Fetched new weather:", data);
     return data;
   } else {
     return null;
@@ -129,14 +130,14 @@ export async function getDaylight() {
   if (cached) {
     const { timestamp, data } = JSON.parse(cached);
     if (Date.now() - timestamp < CACHE_DAYLIGHT_DURATION) {
-      console.log("Using cached daylight data:", data);
+      logger.log("Using cached daylight data:", data);
       return data;
     }
   }
 
   // Fetch fresh data
   const url = `/data/daylight/daylight.json`; 
-  console.log(`Fetching day light data: ${url}`);
+  logger.log(`Fetching day light data: ${url}`);
 
   const response = await fetch(url).catch((err) => {
     throw new Error("Daylight data unreachable");
@@ -153,7 +154,7 @@ export async function getDaylight() {
       }),
     );
 
-    console.log("Fetched new daylight data:", data);
+    logger.log("Fetched new daylight data:", data);
     return data;
   } else return [];
 }
@@ -227,7 +228,7 @@ export function getWeatherImageAndLabel(
 ) {
   let source = "https://siteimages.gmfc.uk/weather/";
 
-  console.log("Feching getWeatherImageAndLabel");
+  logger.log("Feching getWeatherImageAndLabel");
 
   if (night) {
     const map: Record<number, { image: string; label: string }> = {
@@ -574,7 +575,7 @@ function fetchIsNight(daylightData: any[]) {
   let date = new Date();
   let dayOfYear = getDayOfYearUTC(date);
   let daylightInfo = daylightData[dayOfYear];
-  console.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
+  logger.log(`Daylight info for day ${dayOfYear}:`, daylightInfo);
 
   let isNight = true;
   let hour = new Date().getHours();

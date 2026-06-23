@@ -1,4 +1,5 @@
 import { fetchJson, shakeContainer, getTimeParts } from "@framework/utils";
+import { logger } from "@framework/logger";
 
 interface Alert {
   date_from: string | number | Date;
@@ -18,13 +19,13 @@ export async function renderAlerts() {
 
   const data: Alert[] = await fetchJson(ALERTS_URL);
   if (!data || data.length === 0) {
-    console.log("No alerts to render");
+    logger.log("No alerts to render");
     return;
   }
 
   const alertsContainer = document.getElementById("alerts-container");
   if (!alertsContainer) {
-    console.error("Alerts container not found");
+    logger.error("Alerts container not found");
     return;
   }
 
@@ -37,7 +38,7 @@ export async function renderAlerts() {
 
     // Alerts outside their configured date range are skipped entirely.
     if ((dateFrom && now < dateFrom) || (dateTo && now > dateTo)) {
-      console.log(`Skipping alert "${alert.title}" due to date range`);
+      logger.log(`Skipping alert "${alert.title}" due to date range`);
       continue;
     }
 
@@ -109,7 +110,7 @@ function addClickHandler(el: HTMLDivElement, hash: string) {
       return; // let the link work normally
     }
 
-    console.log(`activated alert click ${hash}`);
+    logger.log(`activated alert click ${hash}`);
     localStorage.setItem(hash, new Date().toISOString());
     el.style.display = "none";
   });

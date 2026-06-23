@@ -5,13 +5,14 @@ import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 import { renderRulesBreadcrumb } from "./breadcrumb";
 
 import data from "@data/pages/club/rules/disciplinaryprocedure.json";
+import { logger } from "@framework/logger";
 
 setupMenuCommands("page-clubrules");
 renderClubRules(data);
 renderFinish();
 
 function renderClubRules(data: { content: any; }) {
-  console.log(data);
+  logger.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
@@ -23,7 +24,7 @@ function renderClubRules(data: { content: any; }) {
 
   if (data.content.sections) {
     data.content.sections.forEach((section: any) => {
-      console.log(section);
+      logger.log(section);
       renderSection(sectionsdiv, section);
     });
   }

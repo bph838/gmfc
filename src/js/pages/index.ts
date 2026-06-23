@@ -5,12 +5,13 @@ import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 
 import data from "@data/pages/index.json";
+import { logger } from "@framework/logger";
 
 setupMenuCommands("page-home");
 renderIndex(data);
 
 function renderIndex(data: { content: { hero: any; sections: any[] } }) {
-  console.log(data);
+  logger.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
@@ -19,7 +20,7 @@ function renderIndex(data: { content: { hero: any; sections: any[] } }) {
 
   if (data.content.sections) {
     data.content.sections.forEach((section: any) => {
-      console.log(section);
+      logger.log(section);
       renderSection(div, section);
     });
   }

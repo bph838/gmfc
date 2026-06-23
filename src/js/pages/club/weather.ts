@@ -5,14 +5,15 @@ import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 
 import data from "@data/pages/club/weather.json";
 import daylight from "@data/daylight/daylight.json";
+import { logger } from "@framework/logger";
 
-console.log("Club Weather page loaded");
+logger.log("Club Weather page loaded");
 setupMenuCommands("page-clubweather");
 renderClubWeather(data);
 renderFinish();
 
 function renderClubWeather(data: { content: any }) {
-  console.log(data);
+  logger.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
@@ -27,7 +28,7 @@ function renderClubWeather(data: { content: any }) {
 
   if (data.content.sections) {
     data.content.sections.forEach((section: { title: any }) => {
-      console.log("Rendering weather section:", section.title);
+      logger.log("Rendering weather section:", section.title);
       renderSection(sectionsdiv, section, "", "", daylight);
     });
   }

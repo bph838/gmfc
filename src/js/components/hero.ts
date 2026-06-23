@@ -7,16 +7,17 @@ import {
   showhideWeather,
   getDaylight,
 } from "@components/weatherinfo";
+import { logger } from "@framework/logger";
 
 export function renderHero(
   data: { generatehero: boolean; image: string; text: any },
   setimage = true,
 ) {
-  console.log("renderHero called");
+  logger.log("renderHero called");
 
   const hero = document.getElementById("hero");
   if (!hero) {
-    console.error("There is no hero id to render to");
+    logger.error("There is no hero id to render to");
     return;
   }
 
@@ -184,7 +185,7 @@ function changeHeroImage(herotype: string) {
   const hero = document.getElementById("hero");
   if (!hero) return;
 
-  console.log("changeHeroImage");
+  logger.log("changeHeroImage");
   let imageurl = getImageForHero(herotype);
 
   if (imageurl.length <= 1) return;

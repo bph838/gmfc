@@ -4,6 +4,7 @@ import { renderSection } from "@components/section";
 import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 
 import data from "@data/pages/club/history.json";
+import { logger } from "@framework/logger";
 
 
 setupMenuCommands("page-clubhistory");
@@ -11,7 +12,7 @@ renderClubHistory(data);
 renderFinish();
 
 function renderClubHistory(data: { content: any; }) {
-  console.log(data);
+  logger.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
@@ -19,7 +20,7 @@ function renderClubHistory(data: { content: any; }) {
   const sectionsdiv = createDiv(contentarea, "sections");
 
   data.content.sections?.forEach((section: any) => {
-    console.log(section);
+    logger.log(section);
     renderSection(sectionsdiv, section);
   });
 }

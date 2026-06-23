@@ -17,6 +17,7 @@ import {
 import { fetchJson } from "@framework/utils";
 
 import data from "@data/pages/club/selling/selling.json";
+import { logger } from "@framework/logger";
 
 const externalPath = data.externalPath;
 let hash = window.location.hash;
@@ -29,14 +30,14 @@ else renderClubSelling(data);
 renderFinish();
 
 function renderClubSelling(data: { content: any; externalPath?: string }) {
-  console.log(data);
+  logger.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
   const sectionsdiv = createDiv(contentarea, "sections");
   data.content.sections?.forEach((section: any) => {
-    console.log(section);
+    logger.log(section);
     renderSection(sectionsdiv, section);
   });
 
@@ -72,7 +73,7 @@ function renderClubSellingLot(
   data: { content: any; externalPath?: string },
   lotHash: any,
 ) {
-  console.log(data);
+  logger.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
@@ -84,7 +85,7 @@ function renderClubSellingLot(
     if (selling_item) {
       const expiry = new Date(selling_item.date);
       expiry.setDate(expiry.getDate() + Number(selling_item.period));
-      console.log(expiry);
+      logger.log(expiry);
       const now = new Date();
 
       if (now > expiry) {
@@ -103,8 +104,8 @@ function renderClubSellingLot(
           }
         }
 
-        console.log("Processing selling item: ");
-        console.log(selling_item);
+        logger.log("Processing selling item: ");
+        logger.log(selling_item);
 
         const textdiv = createDiv(sectionsdiv, "section");
         renderSectionNoImage(textdiv, selling_item);

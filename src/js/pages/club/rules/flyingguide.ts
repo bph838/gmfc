@@ -5,13 +5,14 @@ import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 import { renderRulesBreadcrumb } from "./breadcrumb";
 
 import data from "@data/pages/club/rules/flyingguide.json";
+import { logger } from "@framework/logger";
 
 setupMenuCommands("page-clubrules");
 renderClubRulesFlyingGuide(data);
 renderFinish();
 
 function renderClubRulesFlyingGuide(data: { content: any; }) {
-  console.log(data);
+  logger.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
@@ -23,7 +24,7 @@ function renderClubRulesFlyingGuide(data: { content: any; }) {
 
   if (data.content.sections) {
     data.content.sections.forEach((section: any) => {
-      console.log(section);
+      logger.log(section);
       renderSection(sectionsdiv, section);
     });
   }

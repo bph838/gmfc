@@ -9,6 +9,7 @@ import {
   createH3,
 } from "@framework/dom";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
+import { logger } from "@framework/logger";
 
 let Loaded_Gallery_Data: any[] | null = null;
 let timePeriodSections: string[] = [];
@@ -30,7 +31,7 @@ export function getAreVideosIncluded() {
 
 export function createClickImage(parent: HTMLElement, data: any, tag = "tag") {
   if (!data.thumbnail || !data.image || !data.width || !data.height) {
-    console.error("Unable to render createClickImage");
+    logger.error("Unable to render createClickImage");
     return;
   }
 
@@ -54,7 +55,7 @@ export function createClickImage(parent: HTMLElement, data: any, tag = "tag") {
 displayDates = "years","months","none"
 */
 export function renderGallery(sections: HTMLElement, type: string, displayDates = "none") {
-  console.log(type);
+  logger.log(type);
   //clear the element out
   emptyDiv(sections);
 
@@ -185,7 +186,7 @@ function renderGalleryImage(image: any, galleryDiv: HTMLElement, displayDates = 
 displayDates = "years","months","none"
 */
 function renderGalleryVideo(video: any, galleryDiv: HTMLElement, displayDates = "none") {
-  console.log("Rendering video: " + video);
+  logger.log("Rendering video: " + video);
 
   let timePeriodDiv = galleryDiv;
   if (displayDates == "years") {

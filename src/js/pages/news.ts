@@ -20,11 +20,12 @@ import {
 import { SITE_TITLE, SITE_ADDRESS } from "@components/constants";
 
 import data from "@data/pages/news.json";
+import { logger } from "@framework/logger";
 
 const newsItemUrl = "news";
 
 setupMenuCommands("page-news");
-console.log("Rending news");
+logger.log("Rending news");
 renderNews(data);
 
 function renderNews(data: any) {
@@ -64,7 +65,7 @@ function renderNews(data: any) {
           ),
         );
       })
-      .catch((err) => console.error("Failed to render news list:", err))
+      .catch((err) => logger.error("Failed to render news list:", err))
       .then(() => renderFinish());
   } else {
     const newUrl = data.newsUrl;
@@ -77,7 +78,7 @@ function renderNews(data: any) {
           news_items.map((news_section: any) => fetchNews(sectionsdiv, news_section)),
         );
       })
-      .catch((err) => console.error("Failed to render news list:", err))
+      .catch((err) => logger.error("Failed to render news list:", err))
       .then(() => renderFinish());
   }
 }
@@ -87,9 +88,7 @@ function fetchNews(
   news_section: any,
   year: string | null = null,
   month: string | null = null,
-) {
-  console.log("Fetching news: ");
-  console.log(news_section);
+) {  
   const url = news_section.url;
   const urlJson = news_section.jsondata;
   if (!urlJson || !url) return Promise.resolve();
@@ -97,11 +96,9 @@ function fetchNews(
 }
 
 function renderNewsItem(parent: HTMLElement, urlJson: string, url: string) {
-  console.log("Fetching news item: ");
+  logger.log("Fetching news item: ");
   const newholderdiv = createDiv(parent, "section_generated_news");
-  return fetchJson(urlJson).then((news) => {
-    console.log("Processing news: ");
-    console.log(news);
+  return fetchJson(urlJson).then((news) => {  
     if (!news) {
       newholderdiv.classList.remove("section_generated_news");
       return;
@@ -114,12 +111,10 @@ function renderNewsItem(parent: HTMLElement, urlJson: string, url: string) {
 }
 
 function renderSingleNewsItem(parent: HTMLElement, urlJson: string) {
-  console.log("Fetching news item: ");
-  return fetchJson(urlJson).then((news) => {
-    console.log("Processing news: ");
-    console.log(news);
+  logger.log("Fetching news item: ");
+  return fetchJson(urlJson).then((news) => { 
     if (!news) {
-      console.error(`Failed to load single news item: ${urlJson}`);
+      logger.error(`Failed to load single news item: ${urlJson}`);
       renderNewsBreadline(parent, 0, 0, "none");
       renderFinish();
       return;
@@ -141,7 +136,7 @@ function renderSingleNewsItem(parent: HTMLElement, urlJson: string) {
       renderFinish(),
     );
   }).catch((err) => {
-    console.error("Failed to render single news item:", err);
+    logger.error("Failed to render single news item:", err);
     renderFinish();
   });
 }

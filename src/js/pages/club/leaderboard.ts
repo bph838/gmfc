@@ -25,6 +25,7 @@ declare const Chart: any;
 import data from "@data/pages/club/leaderboard.json";
 import driver_details from "@lapmonitor/drivers/drivers.json";
 import leaderboard_details from "@lapmonitor/summary/driver_summary.json";
+import { logger } from "@framework/logger";
 
 const sorted_leaderboard_details = Object.values(leaderboard_details).sort(
   (a, b) => a.fastestLap - b.fastestLap,
@@ -45,7 +46,7 @@ function renderClubLeaderBoard(data: { content: any }) {
 
   if (data.content.sections) {
     data.content.sections.forEach((section: { leaderboard: any }) => {
-      console.log(section);
+      logger.log(section);
       renderSection(sectionsdiv, section);
       if (section.leaderboard) {
         renderDriverLeaderBoard(sectionsdiv);
@@ -60,7 +61,7 @@ function renderDriverLeaderBoard(parent: HTMLDivElement) {
   const lbdriverHolder = createDiv(lbdiv, "lb_driverholder");
 
   sorted_leaderboard_details.map((driver, i) => {
-    console.log(i);
+    logger.log(i);
     const driverInformation =
       driver_details.find(
         (d: { transponderId: any }) => d.transponderId === driver.transponderId,
@@ -108,8 +109,8 @@ function renderDriverLaps(driverInformation: { name: any; uuid: any }) {
   let url = `/data/lapmonitor/${driverInformation.uuid}.json`;
   fetchJson(url).then((data) => {
     if (data) {
-      console.log("Processing laps: ");
-      console.log(data);
+      logger.log("Processing laps: ");
+      logger.log(data);
 
       const table = createTable(divDLapTimes, "drivers");
       const tableHead = createTableHead(table);

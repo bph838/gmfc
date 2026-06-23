@@ -27,6 +27,7 @@ import {
   createClickImage,
   setGalleryData,
 } from "@components/gallery";
+import { logger } from "@framework/logger";
 
 export function renderSection(
   parent: HTMLElement,
@@ -37,17 +38,17 @@ export function renderSection(
   isNews = false,
 ): Promise<HTMLElement | void> {
   if (!data) {
-    console.error("There is no data to render");
+    logger.error("There is no data to render");
     return Promise.resolve();
   }
   if (!data.type) {
-    console.error("There is no section type to render");
+    logger.error("There is no section type to render");
     return Promise.resolve();
   }
 
   if (process.env.NODE_ENV === "development") {
     if (data.title) {
-      console.log(`Rendering Section ${data.title}`);
+      logger.log(`Rendering Section ${data.title}`);
     }
   }
 
@@ -98,7 +99,6 @@ export function renderSection(
     const headerdiv = createDiv(contentdiv, "section_header");
     createSpan(headerdiv, "section_date", text);
 
-    console.log("a");
     //a link can be added with a hash as the anchor
     if (pageurl.length > 1) {
       let month = date.getMonth() + 1;
@@ -119,13 +119,12 @@ export function renderSection(
   let pendingWork: Promise<any> = Promise.resolve();
 
   if (data.items) {
-    console.log("Render news typ items");
     renderSectionItems(contentdiv, data);
   } else {
     let renderedDiv = null;
     switch (data.type) {
       default:
-        console.error("Unable to render " + data.type);
+        logger.error("Unable to render " + data.type);
         break;
       case "wrappedTextLeft":
         renderedDiv = renderWrappedTextLeftSection(contentdiv, data);
@@ -192,7 +191,7 @@ export function renderSection(
 
 function renderWrappedTextLeftSection(parent: HTMLElement, data: any) {
   if (!data.image) {
-    console.error("Unable to render renderSectionWrappedTextLeft");
+    logger.error("Unable to render renderSectionWrappedTextLeft");
     return;
   }
 
@@ -226,7 +225,7 @@ function renderWrappedTextLeftSection(parent: HTMLElement, data: any) {
 
 function renderRawHtmlSection(parent: HTMLElement, data: any) {
   if (!data.html) {
-    console.error("Unable to render renderRawHtmlSection");
+    logger.error("Unable to render renderRawHtmlSection");
     return;
   }
 
@@ -242,7 +241,7 @@ function renderRawHtmlSection(parent: HTMLElement, data: any) {
 
 function renderTitleTextSection(parent: HTMLElement, data: any) {
   if (!data.titletext) {
-    console.error("Unable to render renderRawHtmlSection");
+    logger.error("Unable to render renderRawHtmlSection");
     return;
   }
 
@@ -261,7 +260,7 @@ function renderTitleTextSection(parent: HTMLElement, data: any) {
 
 function renderWrapTextLeftClickSize(parent: HTMLElement, data: any) {
   if (!data.text || !data.click_image) {
-    console.error("Unable to render renderWrapTextLeftClickSize");
+    logger.error("Unable to render renderWrapTextLeftClickSize");
     return;
   }
 
@@ -279,7 +278,7 @@ export function renderPDFLinks(
   parent: HTMLElement | null | undefined,
   data: any,
 ) {
-  console.log("Checking for PDF links to render");
+  logger.log("Checking for PDF links to render");
   if (parent && data.pdfs && data.pdfs.length > 0) {
     const pdfsDiv = document.createElement("div");
     pdfsDiv.className = "pdfLinks";
@@ -313,7 +312,7 @@ export function renderInPageMenu(
   parent: HTMLElement | null | undefined,
   data: any,
 ) {
-  console.log("Checking for sectionmenu menu items to render");
+  logger.log("Checking for sectionmenu menu items to render");
   if (parent && data.sectionmenu && data.sectionmenu.items.length > 0) {
     const sectionmenuDiv = document.createElement("nav");
     sectionmenuDiv.className = "menu-grid";
@@ -350,7 +349,7 @@ export function renderImageGallery(
   parent: HTMLElement | null | undefined,
   data: any,
 ) {
-  console.log("Checking for images to render");
+  logger.log("Checking for images to render");
   if (
     !parent ||
     !data?.gallery?.images ||
@@ -369,7 +368,7 @@ export function renderImageGallery(
 
 export function renderSectionNoImage(pageSection: HTMLElement, data: any) {
   if (!data.text) {
-    console.error("Unable to render renderSectionNoImage");
+    logger.error("Unable to render renderSectionNoImage");
     return;
   }
 
@@ -385,7 +384,7 @@ export function renderSectionNoImage(pageSection: HTMLElement, data: any) {
 
 function renderCarousel(pageSection: HTMLElement, data: any) {
   if (!data.images) {
-    console.error("Unable to render renderCarousel");
+    logger.error("Unable to render renderCarousel");
     return;
   }
 
@@ -402,7 +401,7 @@ function renderCarousel(pageSection: HTMLElement, data: any) {
   document
     .getElementById(carouselId)
     ?.addEventListener("carousel3d:loaded", (e) => {
-      console.log(`All images loaded for ${carouselId}`);
+      logger.log(`All images loaded for ${carouselId}`);
       slowSpin(carouselId);
     });
 
@@ -411,7 +410,7 @@ function renderCarousel(pageSection: HTMLElement, data: any) {
   document
     .getElementById(carouselId)
     ?.addEventListener("carousel3d:touched", (e) => {
-      console.log(`All images loaded for ${carouselId}`);
+      logger.log(`All images loaded for ${carouselId}`);
       slowSpin(carouselId);
     });
 }
@@ -431,7 +430,7 @@ function slowSpin(Id: string) {
 
 function renderImageLeft(parent: HTMLElement, data: any) {
   if (!data.text || !data.image) {
-    console.error("Unable to render renderImageLeft");
+    logger.error("Unable to render renderImageLeft");
     return;
   }
   const innerdiv = createDiv(parent, "section_inner_image_left row");
@@ -448,7 +447,7 @@ function renderImageLeft(parent: HTMLElement, data: any) {
 
 function renderImageRight(parent: HTMLElement, data: any) {
   if (!data.text || !data.image) {
-    console.error("Unable to render renderImageRight");
+    logger.error("Unable to render renderImageRight");
     return;
   }
 
@@ -484,7 +483,7 @@ function addScriptToMakeAcive(className: string) {
 
 function renderImagesLeft(parent: HTMLElement, data: any) {
   if (!data.text || !data.images) {
-    console.error("Unable to render renderImagesLeft");
+    logger.error("Unable to render renderImagesLeft");
     return;
   }
 
@@ -503,7 +502,7 @@ function renderImagesLeft(parent: HTMLElement, data: any) {
 
 function renderImagesRight(parent: HTMLElement, data: any) {
   if (!data.text || !data.images) {
-    console.error("Unable to render renderImagesLeft");
+    logger.error("Unable to render renderImagesLeft");
     return;
   }
 
@@ -522,7 +521,7 @@ function renderImagesRight(parent: HTMLElement, data: any) {
 
 function renderPanoImage(parent: HTMLElement, data: any) {
   if (!data.image) {
-    console.error("Unable to render pano image");
+    logger.error("Unable to render pano image");
     return;
   }
 
@@ -560,11 +559,10 @@ function renderSectionSticker(parent: HTMLElement, sticker: string) {
 }
 
 function renderSectionItems(parent: HTMLElement, data: any) {
-  console.log("YYY");
   let renderedDiv = null;
   switch (data.type) {
     default:
-      console.error("Unable to render " + data.type);
+      logger.error("Unable to render " + data.type);
       break;
     case "wrappedTextLeft":
       renderedDiv = renderWrappedTextLeftSectionNews(parent, data);
@@ -582,7 +580,7 @@ function renderSectionItems(parent: HTMLElement, data: any) {
 
 function renderWrappedTextLeftSectionNews(parent: HTMLElement, data: any) {
   if (!data.image) {
-    console.error("Unable to render renderWrappedTextLeftSectionNews");
+    logger.error("Unable to render renderWrappedTextLeftSectionNews");
     return;
   }
 
@@ -602,7 +600,7 @@ function renderWrappedTextLeftSectionNews(parent: HTMLElement, data: any) {
 
 function renderWrapTextLeftClickSizeNews(parent: HTMLElement, data: any) {
   if (!data.click_image) {
-    console.error("Unable to render renderWrapTextLeftClickSize");
+    logger.error("Unable to render renderWrapTextLeftClickSize");
     return;
   }
 
@@ -681,7 +679,7 @@ function renderDrivers(parent: HTMLElement, data: any, extraData: any[]) {
 
 function renderImageWide(parent: HTMLElement, data: any) {
   if (!data.image) {
-    console.error("Unable to render renderImageWide");
+    logger.error("Unable to render renderImageWide");
     return;
   }
 
@@ -691,7 +689,7 @@ function renderImageWide(parent: HTMLElement, data: any) {
 
 function renderSectionGallery(parent: HTMLElement, data: any) {
   if (!data.gallery) {
-    console.error("Unable to render renderGallery");
+    logger.error("Unable to render renderGallery");
     return Promise.resolve();
   }
 
@@ -703,7 +701,7 @@ function renderSectionGallery(parent: HTMLElement, data: any) {
 
   return fetchJson(url).then((gdata) => {
     if (!gdata) {
-      console.log("No alerts to render");
+      logger.log("No alerts to render");
       return;
     }
 
@@ -712,7 +710,7 @@ function renderSectionGallery(parent: HTMLElement, data: any) {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
 
-    console.log(gdata);
+    logger.log(gdata);
     setGalleryData(gdata, externalPath);
     renderGallery(sections, "gallery_all", displayDates);
   });

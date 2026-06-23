@@ -19,6 +19,7 @@ import { fetchJson } from "@framework/utils";
 import { SITE_TITLE } from "@components/constants";
 import galleryYears from "@data/generated/years.json";
 import menujson from "@data/generated/menu.json";
+import { logger } from "@framework/logger";
 
 export function setupMenuCommands(activeClass = "page-home") {
   const navbarCollapseEl = document.querySelector(".navbar-collapse");
@@ -73,7 +74,7 @@ function initMenuNews() {
 }
 
 function initGalleryYears() {
-  console.log("Gallery Year menu");
+  logger.log("Gallery Year menu");
   const el = document.getElementById("nav-gallery-menu");
   if (!el) return;
   el.classList.add("dropdown");

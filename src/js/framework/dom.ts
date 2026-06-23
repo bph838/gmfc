@@ -1,11 +1,12 @@
+import { logger } from "./logger";
 export function fetchContextArea(data: any) {
   let contentarea = document.getElementById("contentarea");
   if (!contentarea) {
-    console.error("There is no contentarea id to render to");
+    logger.error("There is no contentarea id to render to");
     return null;
   }
   if (!data) {
-    console.error("There is no data content to render from");
+    logger.error("There is no data content to render from");
     return null;
   }
   return contentarea;

@@ -18,6 +18,7 @@ import {
 } from "@components/gallery";
 
 import galleryYears from "@data/generated/years.json";
+import { logger } from "@framework/logger";
 setupMenuCommands("page-gallery");
 render(data);
 
@@ -60,7 +61,7 @@ function renderYearGallery(year: number) {
       renderPrevNext(year);
       renderFinish();
     } catch (err) {
-      console.error(err);
+      logger.error(err);
     }
   })();
 }

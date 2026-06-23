@@ -12,6 +12,13 @@ $hoverTiltOffset: 60;
 
 .sections {
   width: 100%;
+  margin-top: 0.5em;
+  @include respond(tablet) {
+    margin-top: 0.5em;
+  }
+  @include respond(pc) {
+    margin-top: 0.75em;
+  }
 }
 
 .section-sales {
@@ -103,9 +110,9 @@ $header-scale-pc: 3;
 
   h2 {
     margin-bottom: 0.45em;
-    padding-bottom:0;
+    padding-bottom: 0;
     margin-top: 0;
-    padding-top:0;
+    padding-top: 0;
 
     font-weight: 300;
     line-height: 1.2;

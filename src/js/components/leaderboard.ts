@@ -7,6 +7,7 @@ import {
 } from "@framework/dom";
 import { formatLapTime } from "@framework/lapmonitor";
 import { formatDate } from "@framework/utils";
+import { logger } from "@framework/logger";
 
 const RANK_STYLES: Record<number, { bg: string; color: string; label: string }> = {
   1: { bg: "#FFD700", color: "#1a1a1a", label: "🥇" },
@@ -25,7 +26,7 @@ export function renderDriver(
   position: number,
   driverInformation: DriverInformation | null = null,
 ) {
-  //console.log(driver);
+  //logger.log(driver);
 
   const rankStyle = RANK_STYLES[position];
   let delay = position * 80;

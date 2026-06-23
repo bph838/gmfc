@@ -4,13 +4,14 @@ import { renderSection, renderPDFLinks } from "@components/section";
 import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
 
 import data from "@data/pages/club/merch.json";
+import { logger } from "@framework/logger";
 
 setupMenuCommands("page-clubmerch");
 renderMerch(data);
 renderFinish();
 
 function renderMerch(data: { content: any; }) {
-  console.log(data);
+  logger.log(data);
   if (data.content.hero) renderHero(data.content.hero);
 
   const contentarea = fetchContextArea(data);
@@ -28,7 +29,7 @@ function renderMerch(data: { content: any; }) {
 }
 
 function renderClubMerchItems(div: HTMLDivElement, section: { merch: any[]; }) {
-  console.log("Rendering Club Merch");
+  logger.log("Rendering Club Merch");
   if (!section.merch) return;
 
   div.style.display = "block";
@@ -48,7 +49,7 @@ function renderClubMerchItems(div: HTMLDivElement, section: { merch: any[]; }) {
       merchItemPic.src = String(merch.picture);
       merchItemDiv.appendChild(merchItemPic);
     }
-    console.log("ls");
+    logger.log("ls");
     if (merch.desc && merch.desc.length > 1) {
       const merchItemDesc = document.createElement("img");
       merchItemDesc.className = "merchdesc";
@@ -59,7 +60,7 @@ function renderClubMerchItems(div: HTMLDivElement, section: { merch: any[]; }) {
 }
 
 function renderClubMerchSize(div: HTMLDivElement, section: { merch: any; }) {
-  console.log("Rendering Club Merch Size");
+  logger.log("Rendering Club Merch Size");
   if (!section.merch) return;
 
   div.style.display = "block";

@@ -1,3 +1,4 @@
+import { logger } from "./logger";
 export const DURATION_SECOND = 1000;
 export const DURATION_MINUTE = DURATION_SECOND * 60;
 export const DURATION_HOUR = DURATION_MINUTE * 60;
@@ -33,7 +34,7 @@ export function loadScript(
   // Optional: call a function when script is loaded
   if (callback) {
     script.onload = callback;
-    script.onerror = () => console.error("Failed to load script:", url);
+    script.onerror = () => logger.error("Failed to load script:", url);
   }
 
   // Inject into <head>
@@ -42,7 +43,7 @@ export function loadScript(
 
 export async function fetchJson(url: RequestInfo | URL) {
   try {
-    console.log(`Fetching: ${url}`);
+    logger.log(`Fetching: ${url}`);
     const response = await fetch(url); // fetch the URL
 
     // Check for HTTP errors
@@ -51,10 +52,10 @@ export async function fetchJson(url: RequestInfo | URL) {
     }
 
     const data = await response.json(); // parse JSON
-    console.log(`Fetched data from ${url}:`, data);
+    logger.log(`Fetched data from ${url}:`, data);
     return data;
   } catch (error) {
-    console.error("Failed to fetch JSON:", error);
+    logger.error("Failed to fetch JSON:", error);
     return null; // or throw error if you prefer
   }
 }
@@ -146,7 +147,7 @@ export function initMapFrame(data: {
 
   const mapDiv = document.getElementById("map");
   if (!mapDiv) {
-    console.error("No map div to render to");
+    logger.error("No map div to render to");
     return;
   }
 
@@ -252,7 +253,7 @@ export function isAbsoluteUrl(url: string | URL) {
 
 export function createCopy(className: string) {
   document.querySelectorAll<HTMLElement>(className).forEach((el) => {
-    console.log(el.textContent);
+    logger.log(el.textContent);
 
     // Define the handler function
     const handler = () => {
@@ -261,15 +262,15 @@ export function createCopy(className: string) {
 
       // Use modern Clipboard API
       if (navigator.clipboard) {
-        console.log("copy");
+        logger.log("copy");
 
         // Change tooltip text
         el.dataset.tooltip = "Copied!";
 
         navigator.clipboard
           .writeText(textToCopy)
-          .then(() => console.log(`Copied: ${textToCopy}`))
-          .catch((err) => console.error("Copy failed:", err));
+          .then(() => logger.log(`Copied: ${textToCopy}`))
+          .catch((err) => logger.error("Copy failed:", err));
       }
     };
 
