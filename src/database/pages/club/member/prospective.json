@@ -17,12 +17,14 @@
         "text": [
           "Welcome! It looks like you're interested in joining the Gordano Model Flying Club, and we're glad you're here.",
           "As part of our joining process, we ask that all new members come along and meet us first, it's a great opportunity for us to get to know each other.",
-          "Please <a href='\\aboutus#contactus' target='_self'>contact us</a> and we'll get a time sorted for you to come down to the club, we'd love to show you around!"
+          "Please <a href='\\aboutus#contactus' target='_self'>contact us</a> and we'll get a time sorted for you to come down to the club, we'd love to show you around!",
+          "Below is intended to be of use if you are looking to learn to fly.  If you're here purely for the RC car action, welcome! your earning curve is a gentler slope (but don't worry, you can make up for it in tyre smoke and sideways grins). Either way, we're all having a ridiculous amount of fun.",
+          "One small bit of paperwork before you unleash your inner Stig: car drivers need to be a member of either the <a href='https://www.brca.org/' target='brca'>British Radio Car Association (BRCA)</a> or the <a href='https://bmfa.club/' target='bmfa'>British Model Flying Association (BMFA)</a> to cover the insurance."
         ],
         "hashId": "bc112995be9b5e66f4fc38326516fe00"
       },
       {
-        "title": "Training",
+        "title": "Training ✈️",
         "type": "noImage",
         "text": [
           "Nothing would please us more if we could employ a full-time trainer, sadly that’s not really an option.",
@@ -62,7 +64,7 @@
           "<h3>Charger and Batteries</h3>",
           "Every plane needs power, and today that means <a href='https://en.wikipedia.org/wiki/Lithium_polymer_battery' target='wiki'>Lithium polymer (LiPo)</a> batteries. They're compact, powerful, and the go-to choice for the hobby. Your trainer will probably take a <strong>3S 2200mAh</strong> battery but pay attention to connectors There are several types out there, and your battery and ESC need to match. The <strong>XT-60</strong> is by far the most common, so it's a good one to look out for.",
           "To charge your batteries you'll need a charger, nothing fancy, but it must be capable of safely charging LiPo batteries. Chargers come in two types: AC and DC. A DC-only charger will need a converter if you want to charge from the mains, so opting for one that handles both AC and DC gives you more flexibility, including the handy option of charging from a car battery out at the field.",
-          "How many batteries do you need? well that depends on how many flights you want at the field."
+          "How many batteries do you need? well that depends on how many flights you want ✈️"
         ],
         "hashId": "d9e0c2fef1985c3f8b4300e2c273a6b1"
       },
