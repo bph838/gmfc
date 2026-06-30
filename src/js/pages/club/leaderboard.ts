@@ -15,6 +15,8 @@ import {
   createTableItem,
   createCanvas,
   injectScript,
+  createOrderedList,
+  createListItem,
 } from "@framework/dom";
 import { fetchJson, formatDate } from "@framework/utils";
 import { formatLapTime } from "@framework/lapmonitor";
@@ -41,7 +43,7 @@ function renderClubLeaderBoard(data: { content: any }) {
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
-
+  renderBreadcrumbs(contentarea);
   const sectionsdiv = createDiv(contentarea, "sections");
 
   if (data.content.sections) {
@@ -54,6 +56,17 @@ function renderClubLeaderBoard(data: { content: any }) {
       }
     });
   }
+}
+
+function renderBreadcrumbs(parent: HTMLElement) {
+  let elNav = document.createElement("nav");
+  elNav.setAttribute("aria-label", "breadcrumb");
+  parent.appendChild(elNav);
+
+  let homeUrl = "/"; //http://localhost:8080";
+
+  let ol = createOrderedList(elNav, "breadcrumb section");
+  createListItem(ol, "breadcrumb-item", `<a href="${homeUrl}">Home</a>`);
 }
 
 function renderDriverLeaderBoard(parent: HTMLDivElement) {

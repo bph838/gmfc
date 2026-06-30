@@ -1,7 +1,13 @@
 import { setupMenuCommands } from "@components/menu";
 import { renderHero } from "@components/hero";
 import { renderSection } from "@components/section";
-import { createDiv, fetchContextArea, renderFinish } from "@framework/dom";
+import {
+  createDiv,
+  fetchContextArea,
+  renderFinish,
+  createOrderedList,
+  createListItem,
+} from "@framework/dom";
 
 import data from "@data/pages/club/leaderboard/instructions.json";
 import drivers from "@lapmonitor/drivers/drivers.json";
@@ -17,6 +23,7 @@ function renderLeaderboardInstuctions(data: { content: any }) {
 
   const contentarea = fetchContextArea(data);
   if (!contentarea) return;
+  renderBreadcrumbs(contentarea);
   const sectionsdiv = createDiv(contentarea, "sections");
 
   if (data.content.sections) {
@@ -25,4 +32,23 @@ function renderLeaderboardInstuctions(data: { content: any }) {
       renderSection(sectionsdiv, section, "", "", drivers);
     });
   }
+}
+
+function renderBreadcrumbs(parent: HTMLElement) {
+  let elNav = document.createElement("nav");
+  elNav.setAttribute("aria-label", "breadcrumb");
+  parent.appendChild(elNav);
+
+  let homeUrl = "/"; //http://localhost:8080";
+  let clubUrl = homeUrl + "club/";
+  let leaderboardUrl = clubUrl + "leaderboard/";
+
+  let ol = createOrderedList(elNav, "breadcrumb section");
+  createListItem(ol, "breadcrumb-item", `<a href="${homeUrl}">Home</a>`);
+  //createListItem(ol, "breadcrumb-item", `<a href="${clubUrl}">Club</a>`);
+  createListItem(
+    ol,
+    "breadcrumb-item",
+    `<a href="${leaderboardUrl}">leaderboard</a>`,
+  );
 }
