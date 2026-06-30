@@ -31,7 +31,7 @@
 
 // Sliding underline on hover, shared by top-level nav links and
 // dropdown-menu items.
-@mixin sliding-underline($bottom: 0.1rem, $inset: 0) {
+@mixin sliding-underline($bottom: 0.1rem, $inset: 0, $highlight-colour:red) {
   position: relative;
 
   // ::before (not ::after) since Bootstrap draws the dropdown-toggle
@@ -44,7 +44,7 @@
     bottom: $bottom;
     width: auto;
     height: 2px;
-    background-color: red;
+    background-color: $highlight-colour;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.25s ease;
@@ -58,7 +58,7 @@
 // Top-level nav links, including dropdown-toggle items (News, Gallery,
 // Club Links).
 .navbar-nav > .nav-item > .nav-link {
-  @include sliding-underline;
+  @include sliding-underline();
 }
 
 // Items inside an open dropdown-menu (History, Rules, Membership, etc.).
