@@ -11,7 +11,7 @@
     },
     "sections": [
       {
-        "title": "Welcome",
+        "title": "Welcome 👋",
         "type": "wrappedTextLeft",
         "image": "https://siteimages.gmfc.uk/siteimages/siteflying.jpg",
         "text": [
@@ -24,7 +24,7 @@
         "hashId": "bc112995be9b5e66f4fc38326516fe00"
       },
       {
-        "title": "Training ✈️",
+        "title": "Training 🎓",
         "type": "noImage",
         "text": [
           "Nothing would please us more if we could employ a full-time trainer, sadly that’s not really an option.",
@@ -80,7 +80,7 @@
         "hashId": "2bbbdb3a3621b67e81a7fa14b2379486"
       },
       {
-        "title": "Safety ",
+        "title": "Safety 🚑",
         "type": "noImage",
         "image": "https://siteimages.gmfc.uk/siteimages/siteflying.jpg",
         "text": [

@@ -11,5 +11,5 @@
       }
     ]
   },
-  "newsUrl": "/data/news.json"
+  "newsUrl": "/news/index.json"
 }
