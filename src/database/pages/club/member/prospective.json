@@ -57,7 +57,7 @@
           "<h3>Receiver</h3>",
           "The receiver picks up the signal from your transmitter and translates it into action, telling the servos, <a href='https://en.wikipedia.org/wiki/Electronic_speed_control' target='wiki'>ESC</a>, and engine exactly what to do.",
           "Transmitters and receivers communicate via a shared protocol, essentially a common language. Just as a French speaker and an English speaker can't easily understand each other, a transmitter and receiver on different protocols won't be able to communicate. Stick to the same protocol on both, and you're good to go.",
-          "<h3>First Plane</h3>",
+          "<h3>First Plane 🛩️</h3>",
           "For your first plane, you'll need one that weighs over <strong>1kg</strong>, as this is a requirement for getting your <a href='https://achievements.bmfa.uk/' target='bmfa'>BMFA 'A' Certificate</a> . It should also have an undercarriage fitted, so it can take off from the ground unassisted.",
           "A high-wing foam plane is an ideal choice for beginners. It will likely pick up the odd bump along the way, but that's all part of learning, and thankfully, foam is one of the easiest materials to fix.",
           "You can pick one up a second-hand trainer, it’s well worth enquiring at the club as someone might have one to sell.",
