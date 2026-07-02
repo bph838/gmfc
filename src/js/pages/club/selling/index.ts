@@ -21,8 +21,7 @@ import { logger } from "@framework/logger";
 
 const externalPath = data.externalPath;
 let hash = window.location.hash;
-if(hash.length>1)
-  hash = hash.substring(1);
+if (hash.length > 1) hash = hash.substring(1);
 
 setupMenuCommands("page-clubselling");
 if (hash) renderClubSellingLot(data, hash);
@@ -99,8 +98,7 @@ function renderClubSellingLot(
           let heroTitleDiv = document.getElementById("container-h1");
           let heroTitle = heroTitleDiv?.getElementsByTagName("h1")[0];
           if (heroTitle) {
-            let CurrentTitle = heroTitle.textContent;
-            heroTitle.textContent = `${CurrentTitle} - ${selling_item.title}`;
+            heroTitle.innerHTML = selling_item.title;
           }
         }
 
