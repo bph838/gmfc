@@ -157,6 +157,7 @@ module.exports = (env, argv) => {
           {
             from: ".build/lapmonitor/**/*.json", // Use ** for nested directories
             to: "data/lapmonitor/[name][ext]",
+            noErrorOnMissing: true,
             globOptions: {
               ignore: [],
               nostat: true,
