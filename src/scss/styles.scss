@@ -1,7 +1,3 @@
-
-
-
-
 @use "./response.scss" as *;
 
 @use "./components/hero.scss" as *;
@@ -17,19 +13,28 @@
 @use "./components/weatherforcast.scss" as *;
 @use "./components/members.scss" as *;
 
-
 @import "~photoswipe/style.css";
 
-body{
-    height: 100vh;
+body {
+  height: 100vh;
 
-    p{
-        line-height: 2em;
-    }
+  p {
+    line-height: 2em;
+  }
 }
 
-.iFrameMemberMojo{
-    width:100%;
-    height: 1750px;
-    margin-top: 50px;
+h1,
+h2,
+h3 {
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+}
+p {
+  font-family: "Jost", sans-serif;
+}
+
+.iFrameMemberMojo {
+  width: 100%;
+  height: 1750px;
+  margin-top: 50px;
 }

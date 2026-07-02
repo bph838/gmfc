@@ -61,10 +61,8 @@ $video-scale-pc: 55;
   $year-scale-tablet: 2;
   $year-scale-pc: 3;
 
-  h2 {
-    font-weight: 300;
+  h2 { 
     line-height: 1.2;
-    font-weight: 700 !important;
     color: white;
     font-size: ($year-size * $year-scale-mobile) * 1rem;
     @include respond(tablet) {

@@ -6,6 +6,7 @@ const partials = {
   navigation: "navigation.html",
   footer: "footer.html",
   favicon: "favicon.html",
+  google_fonts: "google_fonts.html",
 };
 
 const loadPartials = () => {

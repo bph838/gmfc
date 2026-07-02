@@ -26,10 +26,8 @@
 
   .container-hero {
     h1 {
-      font-size: 3.5rem;
-      font-weight: 300;
+      font-size: 3.5rem;   
       line-height: 1.2;
-      font-weight: 700 !important;
       color: white;
       font-size: 2rem;
       @include respond(tablet) {

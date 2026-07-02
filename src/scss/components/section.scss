@@ -113,10 +113,7 @@ $header-scale-pc: 3;
     padding-bottom: 0;
     margin-top: 0;
     padding-top: 0;
-
-    font-weight: 300;
     line-height: 1.2;
-    font-weight: 700 !important;
     color: rgb(0, 0, 0);
     font-size: ($header-size * $header-scale-mobile) * 1rem;
     @include respond(tablet) {
