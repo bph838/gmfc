@@ -15,6 +15,20 @@
         "type": "noImage",
         "image": "https://siteimages.gmfc.uk/siteimages/member.jpg",
         "text": [
+          "Welcome, so you are interested in joining the Gordano Model Flying Club, you can find the options below.",
+          "If you want to become a flying member there are some <a href='/club/member/prospective#prerequisites'>prerequisites</a> before you can take to the skys.",
+          "If you are looking to use the RC car facilities drivers need to be a member of either the <a href='https://www.brca.org/' target='brca'>British Radio Car Association (BRCA)</a> or the <a href='https://bmfa.club/' target='bmfa'>British Model Flying Association (BMFA)</a> to cover the insurance."
+        ],
+        "memberoptions": {
+          "url": "/data/member_options.json"
+        },
+        "hashId": "5c2a7e64533d9f2b668562ed12c2e5dc"
+      },
+      {
+        "title": "",
+        "type": "noImage",
+        "image": "https://siteimages.gmfc.uk/siteimages/member.jpg",
+        "text": [
           ""
         ],
         "sectionmenu": {
@@ -33,7 +47,7 @@
             }
           ]
         },
-        "hashId": "61955edd67367150cfea3a13f0d68283"
+        "hashId": "752bd5380e403d3f51150a8e128a7b1e"
       }
     ]
   }

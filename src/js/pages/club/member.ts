@@ -21,5 +21,6 @@ function renderClubMemberOptions(data: { content: any; }) {
   data.content.sections?.forEach((section: any) => {
     logger.log(section);
     renderSection(sectionsdiv, section);
+    //todo memberoptions
   });
 }
