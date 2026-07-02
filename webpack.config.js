@@ -155,11 +155,11 @@ module.exports = (env, argv) => {
             to: "data/site/member_options.json",
           },
           {
-            from: ".build/lapmonitor/*.json",
+            from: ".build/lapmonitor/**/*.json", // Use ** for nested directories
             to: "data/lapmonitor/[name][ext]",
             globOptions: {
               ignore: [],
-              nostat: true, // Silently skip if pattern doesn't match
+              nostat: true,
             },
           },
           {
