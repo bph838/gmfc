@@ -5,6 +5,7 @@ import {
 } from "@framework/utils";
 import { createDiv } from "@framework/dom";
 import { logger } from "@framework/logger";
+import { getCurrentWeatherUrl } from "@framework/APIWeather";
 
 const SHOW_WEATHER_KEY = "showWeather";
 const CACHE_KEY = "weatherCache";
@@ -98,7 +99,8 @@ async function getWeather(latitude: number, longitude: number) {
   }
 
   // Fetch fresh data
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
+  const url = getCurrentWeatherUrl(latitude, longitude);
+  //`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
   logger.log(`Fetching weather: ${url}`);
 
   const response = await fetch(url).catch((err) => {
@@ -136,7 +138,7 @@ export async function getDaylight() {
   }
 
   // Fetch fresh data
-  const url = `/data/daylight/daylight.json`; 
+  const url = `/data/daylight/daylight.json`;
   logger.log(`Fetching day light data: ${url}`);
 
   const response = await fetch(url).catch((err) => {
@@ -457,7 +459,10 @@ export function getWeatherImageAndLabel(
     };
 
     return (
-      map[Number(weatherCode)] || { image: `${source}cloud-sun.png`, label: "Unknown" }
+      map[Number(weatherCode)] || {
+        image: `${source}cloud-sun.png`,
+        label: "Unknown",
+      }
     );
   }
 }

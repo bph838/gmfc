@@ -19,6 +19,7 @@ import {
   setWind,
 } from "@components/weatherinfo";
 import { logger } from "@framework/logger";
+import { getForcastWeatherUrl } from "@framework/APIWeather";
 
 declare const Chart: any;
 
@@ -32,7 +33,6 @@ export function fetchAndRenderWeatherForecast(
   data: any,
   daylightData: any[],
 ) {
-
   const latitude = 51.459563;
   const longitude = -2.790968;
   daylight_data = daylightData;
@@ -98,7 +98,7 @@ async function getWeather(latitude: number, longitude: number) {
     }
   }
 
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weather_code,precipitation_probability,precipitation,wind_speed_10m,wind_speed_80m,wind_speed_120m,wind_speed_180m,wind_direction_10m,wind_direction_80m,wind_direction_120m,wind_direction_180m,wind_gusts_10m&wind_speed_unit=mph`;
+  const url = getForcastWeatherUrl(latitude, longitude);
 
   //need to convert this to a structure that the render function can use
   logger.log(`Fetching weather data from ${url}`);
