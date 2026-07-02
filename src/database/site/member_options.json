@@ -1,1 +1,38 @@
-[]
+{
+  "joiningFee": "Joining fee applies £75 Expires 30/04/2027",
+  "member_types": [
+    {
+      "name": "Adult member",
+      "icon": "👨‍🦳",
+      "period": "Annual",
+      "cost": 80,
+      "joiningFee": true
+    },
+    {
+      "name": "Child member",
+      "icon": "🧒",
+      "period": "Annual",
+      "cost": 10
+    },
+    {
+      "name": "New Adult member",
+      "icon": "👨‍🦳",
+      "period": "Half Year (from 1st November)",
+      "cost": 40,
+      "joiningFee": true
+    },
+    {
+      "name": "Non-flying membership",
+      "icon": "🏎️",
+      "period": "Annual",
+      "cost": 80,
+      "joiningFee": true
+    },
+    {
+      "name": "Previous Member or Additional Family member",
+      "icon": "👨‍🦳",
+      "period": "Annual",
+      "cost": 80
+    }
+  ]
+}

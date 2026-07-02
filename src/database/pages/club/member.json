@@ -20,7 +20,7 @@
           "If you are looking to use the RC car facilities drivers need to be a member of either the <a href='https://www.brca.org/' target='brca'>British Radio Car Association (BRCA)</a> or the <a href='https://bmfa.club/' target='bmfa'>British Model Flying Association (BMFA)</a> to cover the insurance."
         ],
         "memberoptions": {
-          "url": "/data/member_options.json"
+          "url": "/data/site/member_options.json"
         },
         "hashId": "5c2a7e64533d9f2b668562ed12c2e5dc"
       },
@@ -34,7 +34,7 @@
         "sectionmenu": {
           "items": [
             {
-              "title": "Members",
+              "title": "Members / Join",
               "icon": "fa-plane",
               "url": "/club/member/existing",
               "extraClass": "tile-green"
