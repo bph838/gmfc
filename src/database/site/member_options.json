@@ -3,7 +3,7 @@
   "member_types": [
     {
       "name": "Adult member",
-      "icon": "👨‍🦳",
+      "icon": "👨‍🦰",
       "period": "Annual",
       "cost": 80,
       "joiningFee": true
@@ -16,7 +16,7 @@
     },
     {
       "name": "New Adult member",
-      "icon": "👨‍🦳",
+      "icon": "🧑",
       "period": "Half Year (from 1st November)",
       "cost": 40,
       "joiningFee": true
