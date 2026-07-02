@@ -21,6 +21,7 @@ export function renderHero(
     return;
   }
 
+  const generateHero = data.generatehero ?? true;
   let sitepic = "";
   if (data.generatehero && data.generatehero == true) {
     //check for hero type
@@ -69,82 +70,84 @@ export function renderHero(
   //setup for alerts div
   createDiv(hero, "alerts-container", "alerts-container", "", true);
 
-  //setup fonts for changing the hero image
-  const herochangediv = createDiv(
-    hero,
-    "herochange-container",
-    "herochange-container-id",
-    "",
-    true,
-  );
+  if (generateHero) {
+    //setup fonts for changing the hero image
+    const herochangediv = createDiv(
+      hero,
+      "herochange-container",
+      "herochange-container-id",
+      "",
+      true,
+    );
 
-  const planespan = createSpan(
-    herochangediv,
-    "herochange",
-    `<i class="fa-solid fa-plane"></i>`,
-  );
-  const helicopterspan = createSpan(
-    herochangediv,
-    "herochange",
-    `<i class="fa-solid fa-helicopter"></i>`,
-  );
-  const dronespanParent = createSpan(herochangediv, "herochangedronespan");
-  const dronespanDiv = createDiv(dronespanParent, "herochangedrone");
+    const planespan = createSpan(
+      herochangediv,
+      "herochange",
+      `<i class="fa-solid fa-plane"></i>`,
+    );
+    const helicopterspan = createSpan(
+      herochangediv,
+      "herochange",
+      `<i class="fa-solid fa-helicopter"></i>`,
+    );
+    const dronespanParent = createSpan(herochangediv, "herochangedronespan");
+    const dronespanDiv = createDiv(dronespanParent, "herochangedrone");
 
-  const racecarspan = createSpan(
-    herochangediv,
-    "herochange",
-    `<i class="fa-solid fa-car"></i>`,
-  );
-  const crawlerspan = createSpan(
-    herochangediv,
-    "herochange",
-    `<i class="fa-solid fa-truck-pickup"></i>`,
-  );
+    const racecarspan = createSpan(
+      herochangediv,
+      "herochange",
+      `<i class="fa-solid fa-car"></i>`,
+    );
+    const crawlerspan = createSpan(
+      herochangediv,
+      "herochange",
+      `<i class="fa-solid fa-truck-pickup"></i>`,
+    );
 
-  planespan.addEventListener("pointerup", (event) => {
-    changeHeroImage("plane");
-  });
-  helicopterspan.addEventListener("pointerup", (event) => {
-    changeHeroImage("helicopter");
-  });
-  racecarspan.addEventListener("pointerup", (event) => {
-    changeHeroImage("racecar");
-  });
-  crawlerspan.addEventListener("pointerup", (event) => {
-    changeHeroImage("crawler");
-  });
-  dronespanDiv.addEventListener("pointerup", (event) => {
-    changeHeroImage("drone");
-  });
+    planespan.addEventListener("pointerup", (event) => {
+      changeHeroImage("plane");
+    });
+    helicopterspan.addEventListener("pointerup", (event) => {
+      changeHeroImage("helicopter");
+    });
+    racecarspan.addEventListener("pointerup", (event) => {
+      changeHeroImage("racecar");
+    });
+    crawlerspan.addEventListener("pointerup", (event) => {
+      changeHeroImage("crawler");
+    });
+    dronespanDiv.addEventListener("pointerup", (event) => {
+      changeHeroImage("drone");
+    });
 
-  //render any alerts
-  renderAlerts();
+    //render any alerts
+    renderAlerts();
 
-  //render any weather if we have the coordinates
-  const latitude = 51.459563;
-  const longitude = -2.790968;
+    //render any weather if we have the coordinates
+    const latitude = 51.459563;
+    const longitude = -2.790968;
 
-  const watherchangediv = createDiv(
-    hero,
-    "weatherchange-container",
-    "weatherchange-container",
-    "",
-    true,
-  );
-  const weatherspan = createSpan(
-    watherchangediv,
-    "weatherchange",
-    `<i class="fa-solid fa-cloud-sun"></i>`,
-  );
+    const watherchangediv = createDiv(
+      hero,
+      "weatherchange-container",
+      "weatherchange-container",
+      "",
+      true,
+    );
+    const weatherspan = createSpan(
+      watherchangediv,
+      "weatherchange",
+      `<i class="fa-solid fa-cloud-sun"></i>`,
+    );
 
-  weatherspan.addEventListener("pointerup", (event) => {
-    showhideWeather();
-  });
+    weatherspan.addEventListener("pointerup", (event) => {
+      showhideWeather();
+    });
 
-  getDaylight().then((daylight: any) => {
-    renderWeatherInfo(hero, latitude, longitude, daylight);
-  });
+    getDaylight().then((daylight: any) => {
+      renderWeatherInfo(hero, latitude, longitude, daylight);
+    });
+  }
 
   cookieWarningFunctionality();
 
