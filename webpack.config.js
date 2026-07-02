@@ -150,13 +150,17 @@ module.exports = (env, argv) => {
             from: "src/database/site/calendarevents.json",
             to: "data/site/calendarevents.json",
           },
-            {
+          {
             from: "src/database/site/member_options.json",
             to: "data/site/member_options.json",
           },
           {
             from: ".build/lapmonitor/*.json",
             to: "data/lapmonitor/[name][ext]",
+            globOptions: {
+              ignore: [],
+              nostat: true, // Silently skip if pattern doesn't match
+            },
           },
           {
             from: "src/database/daylight/*.json",
